@@ -1,0 +1,19 @@
+#toggle{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0px;
+    padding-bottom: 35px;
+    margin-bottom: -5px;
+  }
+
+  
+  #toggle .pad {
+    padding-top: 10px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  #toggle .pad:hover {
+    background: gray;
+  }

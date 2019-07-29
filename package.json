@@ -1,0 +1,76 @@
+{
+  "name": "gatsby-starter-default",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "dependencies": {
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "@livechat/ui-kit": "^0.4.0-5",
+    "@loadable/component": "^5.10.1",
+    "@reach/router": "^1.2.1",
+    "@sweetalert/with-react": "^0.1.1",
+    "@types/react-dropzone": "^4.2.2",
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link": "^1.2.12",
+    "apollo-link-context": "^1.0.18",
+    "apollo-link-error": "^1.1.11",
+    "apollo-link-http": "^1.5.15",
+    "apollo-upload-client": "^10.0.1",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "emotion-theming": "^10.0.9",
+    "firebase": "^6.2.2",
+    "gatsby": "^2.3.16",
+    "gatsby-image": "^2.0.32",
+    "gatsby-plugin-emotion": "^4.0.6",
+    "gatsby-plugin-manifest": "^2.0.23",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-page-transitions": "^1.0.7",
+    "gatsby-plugin-react-helmet": "^3.0.9",
+    "gatsby-plugin-sharp": "^2.0.33",
+    "gatsby-source-filesystem": "^2.0.24",
+    "gatsby-source-graphql": "^2.0.19",
+    "gatsby-transformer-sharp": "^2.1.16",
+    "graphql-tag": "^2.10.1",
+    "prop-types": "^15.7.2",
+    "radium": "^0.25.1",
+    "react": "^16.8.4",
+    "react-apollo": "^2.5.6",
+    "react-dom": "^16.8.4",
+    "react-dropzone": "^10.1.5",
+    "react-helmet": "^5.2.0",
+    "react-modal": "^3.8.1",
+    "react-paystack": "^2.0.2",
+    "react-redux": "^7.0.1",
+    "react-responsive-modal": "^3.6.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.1",
+    "sweetalert": "^2.1.2",
+    "validate.js": "^0.13.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}

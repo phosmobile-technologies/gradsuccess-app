@@ -295,6 +295,7 @@ body{
   height: 100vh;
   position: fixed;
   width: 253px;
+  z-index: 100000;
 
 }
 .client_main_area_menu button{

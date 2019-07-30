@@ -581,35 +581,42 @@ body{
     padding: 10px;
     margin: 10px 0;
     color: white;
-    padding: 30px;
     font-size: 12px;
 
 }
 /* Darker chat container */
 
 .lighter {
-  background-color: white;
   color: black;
-  border-radius: 10px 40px;
-  border: 1px solid #ccc;
   margin-top: 20px;
-}
+} 
 
 #uncoloured {
-  background-color: #3dfcec;
   color: black;
-  border-radius: 40px 10px;
   margin-top: 20px;
   border: none;
 }
 #coloured {
-  background-color: white;
   color: black;
   border-radius: 40px 10px;
   margin-top: 20px;
   border: none;
 }
 
+
+#coloured p, #uncoloured p{
+  padding: 10px;
+}
+
+#coloured p{
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+}
+#uncoloured p{
+  display: inline-block;
+  background-color: #3dfcec;
+}
 
 .chat_component{
   width: 90%;
@@ -657,7 +664,8 @@ body{
   float: right;
   color: darkgreen;
   font-family: "Poppins", sans-serif;
-  padding-left: 20px;
+  padding-left: 10px;
+  font-size: 9px;
 
 }
 
@@ -847,25 +855,82 @@ body{
 }
 
 .assigned_application_board{
-  padding: 5px;
-  font-size: 12px;
-  color: black;
-  background-color: white;
-  text-align: left;
-  min-height: 200px;
+    padding: 0px;
+    font-size: 12px;
+    color: #f9f9f0;
+    background-color: #056e65;
+    text-align: left;
+    min-height: 200px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    border-top: 2px solid wheat;
 }
 .assigned_application_board h5{
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
+  padding: 5px;
 }
 .assigned_application_board .clientItem{
-  padding: 5px 0px;
+  padding: 7px;
   cursor: pointer;
   background-color: transparent;
   border: none;
   text-align: left;
-  color: black;
+  color: #f9f9f0;
+  width: 100%;
 }
+
 .assigned_application_board .clientItem:hover{
   padding: 5px 15px;
   opacity: .5;
 }
+
+
+/*assigned aapplication drop box styling*/
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #056e65;
+  min-width: 100px;
+  z-index: 1;
+  right: -160px;
+  top: 0px;
+  color: white;
+}
+
+.dropdown-content button {
+  color: #f9f9f9;
+  padding: 5px 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: flex;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+.messagingNotAvailable{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  color: #bbb;
+
+}
+

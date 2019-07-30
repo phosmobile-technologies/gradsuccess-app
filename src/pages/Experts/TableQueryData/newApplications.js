@@ -7,6 +7,7 @@ import {GET_ALL_COVER_LETTER_REVIEW_FORMS} from "../../graphql/queries"
 import { GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS } from "../../graphql/queries"
 import {GET_ALL_RESUMME_REVIEW_FORMS} from "../../graphql/queries"
 import Modal from "react-modal"
+import { Mutation } from 'react-apollo';
 
 
 import CoverLetterRedraft from "../../FormDetailsPreview/coverLetterRedraft"
@@ -20,6 +21,15 @@ import AssignExpertToApplicationCoverLetterReview from "./assignExpert/assignExp
 import AssignExpertToApplicationCoverLetterRedraft from "./assignExpert/assignExpertToApplicationCoverLetterRedraft"
 import AssignExpertToApplicationGraduateEssayRedraft from "./assignExpert/assignExpertToApplicationGraduateEssayRedraft"
 import AssignExpertToApplicationGraduateStatementReview from "./assignExpert/assignExpertToApplicationGraduateStatementReview"
+
+
+
+import {UPDATE_RESUME_REVIEW_FORM} from '../../graphql/mutations';
+import {UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../../graphql/mutations';
+import {UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT} from '../../graphql/mutations';
+import {UPDATE_COVER_LETTER_REVIEW_FORM} from '../../graphql/mutations';
+import {UPDATE_COVER_LETTER_REDRAFT} from '../../graphql/mutations';
+
 
 
 
@@ -154,7 +164,43 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
+                                                    {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
+
+                                                    <Mutation 
+                                                    mutation={UPDATE_COVER_LETTER_REDRAFT}
+                                                    onError={this.error} 
+                                                    >        
+                                                        {(assignSelf, { data,loading, error}) => (        
+                                                            <div className = "loader-wrapper">
+                                                                <div id="submittedSucces" className="SuccessTagForm">
+                                                                    Applicaion Assigned Successfully...
+                                                                </div>
+                                                                <form 
+                                                                onSubmit={e => {
+                                                                    e.preventDefault();
+                                                                    assignSelf({ 
+                                                                         variables: {
+                                                                             id:Item.id,
+                                                                             has_expert:this.props.expert_id,
+                                                                             status:"Assigned"
+                                                                         },
+                                                                         refetchQueries:[
+                                                                            {
+                                                                                query:GET_ALL_COVER_LETTER_REDRAFT_FORMS,
+                                                                               
+                                                                            }]
+                                                                        });
+                                                                 }}
+                                                                >    
+                                                                    <br />
+                                                                    <button type = "submit" >Assign Self</button>     
+                                                                </form>
+                                                                {loading && <div className = "loader">Assigning...</div>}
+                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+                                                        </div>
+                                                         )}
+                                                </Mutation>
+                                                    
                                                     
                                                 </div>
                                             </div>
@@ -200,7 +246,40 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
+                                                    {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
+                                                   <Mutation 
+                                                    mutation={UPDATE_COVER_LETTER_REVIEW_FORM}
+                                                    onError={this.error}>        
+                                                        {(assignSelf, { data,loading, error}) => (        
+                                                            <div className = "loader-wrapper">
+                                                                <div id="submittedSucces" className="SuccessTagForm">
+                                                                    Applicaion Assigned Successfully...
+                                                                </div>
+                                                                <form 
+                                                                onSubmit={e => {
+                                                                    e.preventDefault();
+                                                                    assignSelf({ 
+                                                                         variables: {
+                                                                             id:Item.id,
+                                                                             has_expert:this.props.expert_id,
+                                                                             status:"Assigned"
+                                                                         },
+                                                                         refetchQueries:[
+                                                                            {
+                                                                                query:GET_ALL_COVER_LETTER_REVIEW_FORMS,
+                                                                               
+                                                                            }]
+                                                                        });
+                                                                 }}
+                                                                >
+                                                                    <br />
+                                                                    <button type = "submit" >Assign Self</button>     
+                                                                </form>
+                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
+                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+                                                        </div>
+                                                         )}
+                                                </Mutation>
                                                     
                                                 </div>
                                             </div>
@@ -246,7 +325,40 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
+                                                    {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
+                                                    <Mutation 
+                                                    mutation={UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT}
+                                                    onError={this.error} 
+                                                    >        
+                                                        {(assignSelf, { data,loading, error}) => (        
+                                                            <div className = "loader-wrapper">
+                                                                <div id="submittedSucces" className="SuccessTagForm">
+                                                                    Applicaion Assigned Successfully...
+                                                                </div>
+                                                                <form 
+                                                                onSubmit={e => {
+                                                                    e.preventDefault();
+                                                                    assignSelf({ 
+                                                                         variables: {
+                                                                             id:Item.id,
+                                                                             has_expert:this.props.expert_id,
+                                                                             status:"Assigned"
+                                                                         },
+                                                                         refetchQueries:[
+                                                                            {
+                                                                                query:GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS,
+                                                                               
+                                                                            }]
+                                                                        });
+                                                                 }}
+                                                                >    <br />
+                                                                    <button type = "submit" >Assign Self</button>     
+                                                                </form>
+                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
+                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+                                                        </div>
+                                                         )}
+                                                </Mutation>
                                                     
                                                 </div>
                                             </div>
@@ -292,7 +404,41 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
+                                                    {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
+                                                    <Mutation 
+                                                    mutation={UPDATE_RESUME_REVIEW_FORM}
+                                                    onError={this.error} 
+                                                    >        
+                                                        {(assignSelf, { data,loading, error}) => (        
+                                                            <div className = "loader-wrapper">
+                                                                <div id="submittedSucces" className="SuccessTagForm">
+                                                                    Applicaion Assigned Successfully...
+                                                                </div>
+                                                                <form 
+                                                                onSubmit={e => {
+                                                                    e.preventDefault();
+                                                                    assignSelf({ 
+                                                                         variables: {
+                                                                             id:Item.id,
+                                                                             has_expert:this.props.expert_id,
+                                                                             status:"Assigned"
+                                                                         },
+                                                                         refetchQueries:[
+                                                                            {
+                                                                                query:GET_ALL_RESUMME_REVIEW_FORMS,
+                                                                               
+                                                                            }]
+                                                                        });
+                                                                 }}
+                                                                >
+                                                                    <br />
+                                                                    <button type = "submit" >Assign Self</button>     
+                                                                </form>
+                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
+                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+                                                        </div>
+                                                         )}
+                                                </Mutation>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,7 +483,43 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package,Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
+                                                    {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
+                                                    
+                                                    <Mutation 
+                                                    mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+                                                    onError={this.error} 
+                                                    >        
+                                                        {(assignSelf, { data,loading, error}) => (        
+                                                            <div className = "loader-wrapper">
+                                                                <div id="submittedSucces" className="SuccessTagForm">
+                                                                    Applicaion Assigned Successfully...
+                                                                </div>
+                                                                <form 
+                                                                onSubmit={e => {
+                                                                    e.preventDefault();
+                                                                    assignSelf({ 
+                                                                         variables: {
+                                                                             id:Item.id,
+                                                                             has_expert:this.props.expert_id,
+                                                                             status:"Assigned"
+                                                                         },
+                                                                         refetchQueries:[
+                                                                            {
+                                                                                query:GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS,
+                                                                               
+                                                                            }]
+                                                                        });
+                                                                 }}
+                                                                >
+                                                                    <br />
+                                                                    <button type = "submit" >Assign Self</button>     
+                                                                </form>
+                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
+                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+                                                        </div>
+                                                         )}
+
+                                                </Mutation>
                                                     
                                                 </div>
                                             </div>

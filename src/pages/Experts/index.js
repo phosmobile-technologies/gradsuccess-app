@@ -16,6 +16,11 @@ import MainLayout from "../components/ExpertAccountComponents/mainLayout"
 import { LOGGED_IN_USER } from "../graphql/queries"
 import ExpertClients from "./getExpertClients"
 
+import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
+
+
+
+
 const customStyles = {
   content : {
     top                   : '0%',
@@ -35,14 +40,17 @@ class IndexPage extends Component {
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
+            LeaveAMessageComponent:false,
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
             loggedIn:"",
+            client_id:null
 
 
             
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
+         this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -52,6 +60,22 @@ class IndexPage extends Component {
         if (this.state.loggedIn === "") {
            this.setState({ showModal: true });
         }
+    }
+    handleDisplayMessagingComponent(client_id,client_name){
+       this.setState({
+            NewApplications:false,
+            AssignedApplication:false,
+            InProgressApplication:false,
+            CompletedApplication:false,
+            ExpertsComponent:false,
+            LeaveAMessageComponent:false
+        })
+
+        this.setState({
+            client_id:client_id,
+            currentComponent:"Conversation with " + client_name,
+            LeaveAMessageComponent:true,
+        })
     }
 
 
@@ -65,6 +89,7 @@ class IndexPage extends Component {
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
+            LeaveAMessageComponent:false
         })
 
         this.setState({
@@ -134,19 +159,17 @@ class IndexPage extends Component {
                                     </button>
                                     <LogoutForm />
 
-                                    <hr />
-
-                                      <ExpertClients expertID = {data.me.id}/>
+                                      <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>
                                 </div>
                                 <div>
                                     <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
                                     <div className="client_main_area_content_area">
-                                        {this.state.NewApplications && <NewApplications />}
+                                        {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
                                         {this.state.AssignedApplication && <AssignedApplication />}
                                         {this.state.InProgressApplication && <InProgressApplication />}
                                         {this.state.CompletedApplication && <CompletedApplication />}
                                         {this.state.ExpertsComponent && <ExpertsComponent />}
-                                        <div className = "spacing"></div>
+                                        {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
                                     </div>
                                 </div>
                             </div>

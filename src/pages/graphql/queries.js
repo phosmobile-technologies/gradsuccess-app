@@ -384,35 +384,50 @@ export const FETCH_CLIENT_MESSAGES = gql`
 export const GET_EXPERT_CLIENTS_COVER_LETTER_REVIEW = gql`
   query GetExpertClientsCoverLetterReview($has_expert: ID!) {
       getExpertClientsCoverLetterReview(has_expert:$has_expert){
-      name
+      id,
+      name,
+      package,
+      form_id
   }
   }
 `;
 export const GET_EXPERT_CLIENTS_RESUME_REVIEW_FORM= gql`
   query GetExpertClientsResumeReviewForm($has_expert: ID!) {
       getExpertClientsResumeReviewForm(has_expert:$has_expert){
-      name
+      id,
+      name,
+      package,
+      form_id
   }
   }
 `;
 export const GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM= gql`
   query GetExpertClientsGraduateSchoolStatementReviewForm($has_expert: ID!) {
       getExpertClientsGraduateSchoolStatementReviewForm(has_expert:$has_expert){
-      name
+      id,
+      name,
+      package,
+      form_id
   }
   }
 `;
 export const GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT= gql`
   query GetExpertClientsCoverLetterRedraft($has_expert: ID!) {
       getExpertClientsCoverLetterRedraft(has_expert:$has_expert){
-        name
+        id,
+      name,
+      package,
+      form_id
       }
   }
 `;
 export const GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM= gql`
   query GetExpertClientsGraduateSchoolEssayRedraftForm($has_expert: ID!) {
      getExpertClientsGraduateSchoolEssayRedraftForm(has_expert:$has_expert){
-      name
+      id,
+      name,
+      package,
+      form_id
   } 
   }
 `;

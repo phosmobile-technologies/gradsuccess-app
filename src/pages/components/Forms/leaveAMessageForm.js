@@ -27,9 +27,16 @@ export default class leaveAMessageForm extends React.Component {
 			this.submitMessage = this.submitMessage.bind(this)
 		}
 		componentDidMount(){
-			this.setState({
+			if(this.props.expert_id){
+				this.setState({
+				expertInChargeID:this.props.expert_id
+			})
+			}else{
+				this.setState({
 				expertInChargeID:localStorage.getItem('chat_state')
 			})
+			}
+			
 		}
 
 		handleSendMessage(e){
@@ -61,12 +68,18 @@ export default class leaveAMessageForm extends React.Component {
 	        })
 	        this.submitMessage(data)
 
+	        document.getElementById('chat_message').value = ""
+
 	    }
 
 	render() {
 		return (
 			<div>
 				<p className = "chat_header">Gradsuccess Chat Bot</p>
+				{this.state.expertInChargeID === "empty"?
+				<div className = "chat_component">
+					<p className = "messagingNotAvailable">Messaging is not available at the moment, Your Application has not been assigned to an expert yet</p>
+				</div>:
 				<div className = "chat_component">
 				<Query 
 		        query={FETCH_CLIENT_MESSAGES}
@@ -90,7 +103,7 @@ export default class leaveAMessageForm extends React.Component {
 								</div>:
 			                	<div>
 									{data.getClientMessages.map((messageInstance,index) =>
-		                            <div className="container lighter" id = {messageInstance.client_name === "You"?"colored":"uncoloured"}>
+		                            <div className="container lighter" id = {messageInstance.client_name === this.props.sender?"coloured":"uncoloured"} key  = {index}>
 									  	<p>{messageInstance.message_body}</p>
 									  	<span className="time-right">{messageInstance.client_name}</span>
 									  	<span className="time-right">{messageInstance.created_at}</span>
@@ -102,8 +115,8 @@ export default class leaveAMessageForm extends React.Component {
 		              );
 		            }}
 		        </Query>
-		        </div>
-				<Mutation
+		        </div>}
+				{this.state.expertInChargeID === "empty" ? "" :<Mutation
                 mutation={CREATE_MESSAGE}
                 onError={this.error}
                 onCompleted={data=>{
@@ -119,7 +132,7 @@ export default class leaveAMessageForm extends React.Component {
                     sendMessage({
                     variables: {
                     	client_id:this.props.logged_in_user_id,
-						client_name:"You",
+						client_name:this.props.sender,
 						expert_id:this.state.expertInChargeID,
 						expert_name:"Expert",
 						message_body:this.state.typedText,
@@ -129,7 +142,7 @@ export default class leaveAMessageForm extends React.Component {
                     	query:FETCH_CLIENT_MESSAGES,
                     	variables: {
 	                    	client_id:this.props.logged_in_user_id,
-							client_name:"You",
+							client_name:this.props.sender,
 							expert_id:this.state.expertInChargeID,
 							expert_name:"Expert",
 							message_body:this.state.typedText,
@@ -152,7 +165,7 @@ export default class leaveAMessageForm extends React.Component {
                   {error && <div className="FailedTagForm"> Failed! Something is not right...</div>}
                 </div>
                 )}
-                </Mutation>
+                </Mutation>}
 			</div>
 		);
 	}

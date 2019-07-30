@@ -9,9 +9,66 @@ class Message extends Component {
         super(props)
         this.state = {
             open: false,
-            form_id:props.userID || "empty"
+            form_id:props.userID || "empty",
+            fileUrl:"",
+            fileNotAvailable:false
         }
     }
+
+
+    downloadUploadedFile(downloadRef){
+        const firebase = require("firebase")
+        const config = {
+          apiKey: 'AIzaSyB9uwinxn9jEKUmcz0_7rxgLDycAeGO2Fk',
+          authDomain: 'gradsuccess-6c883.firebaseapp.com',
+          databaseURL: 'https://gradsuccess-6c883.firebaseio.com',
+          projectId: 'gradsuccess-6c883',
+          storageBucket: 'gs://gradsuccess-6c883.appspot.com/',
+          messagingSenderId: '153907721792',
+          appID:"1:153907721792:web:ff681e47886cdbb7"
+        }
+        if (!firebase.apps.length) {
+           firebase.initializeApp(config)
+        }
+        var storageRef = firebase.storage().ref(downloadRef)
+
+       storageRef.getDownloadURL().then((url) =>{
+          this.setState({
+              fileUrl:url
+          })
+
+          console.log(url)
+       
+        }).catch((error) => {
+
+         switch (error.code) {
+            case 'storage/object-not-found':
+             this.setState({
+                  fileNotAvailable:true
+              })
+              break;
+
+            case 'storage/unauthorized':
+               this.setState({
+                  fileNotAvailable:true
+              })
+              break;
+
+            case 'storage/canceled':
+               this.setState({
+                  fileNotAvailable:true
+              })
+              break;
+
+            case 'storage/unknown':
+               this.setState({
+                  fileNotAvailable:true
+              })
+              break;
+         }
+                });
+    }
+
     render() {
         return (
             <div>
@@ -185,11 +242,17 @@ class Message extends Component {
                     </div>
 
                     <div className="form_preview_col_1">
+                        <div className="form_preview_fields"> 
+                            <small>Post Study Goals (Career Ambitions)</small>
+                            <p>{data.getGraduateSchoolEssayRedraftForm.post_study_goal}</p>
+                        </div>
                         <div className="form_preview_fields">
                             <small>Referee</small>
                             <p>{data.getGraduateSchoolEssayRedraftForm.referee}</p>
                         </div>
-                        <div className = "spacing">
+                        <br />
+                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} target = "_blank"> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                            <div className = "spacing">
                                 
                             </div>
                     </div>

@@ -68,7 +68,7 @@ export default class resumeReviewForm extends React.Component {
     onChange(e) {
         const firebase = require("firebase")
 
-          const config = {
+        const config = {
           apiKey: 'AIzaSyB9uwinxn9jEKUmcz0_7rxgLDycAeGO2Fk',
           authDomain: 'gradsuccess-6c883.firebaseapp.com',
           databaseURL: 'https://gradsuccess-6c883.firebaseio.com',

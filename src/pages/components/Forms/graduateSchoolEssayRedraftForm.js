@@ -455,8 +455,8 @@ export default class resumeReviewForm extends React.Component {
                       
                       <textarea
                       type="text"
-                      id = "summery_of_interest"
-                      name = "summery_of_interest"
+                      id = "summary_of_interest"
+                      name = "summary_of_interest"
                       placeholder="Summary of your interest"
                       rows = '4'
                       onChange = {this.handleFormInput}></textarea>

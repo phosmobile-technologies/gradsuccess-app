@@ -9,19 +9,24 @@ body{
   padding: 0px;
   margin: 0px;
   display: grid;
-  grid-template-columns: 1fr 4fr 4fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
+  padding-bottom: 5px;
 }
 .logo-image{
- background-color: white;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  margin-left: 0px;
+  padding-left: 0px
 }
 .logo-image img{
   margin-bottom: 0px;
   width: 100px;
-  padding-left: 10px;
   padding-top: 10px;
 }
+
 
 .logo-image-mobile{
  background-color: white;
@@ -108,7 +113,7 @@ body{
     padding-right: 5px;
 }
 .main-content{
-  width: 80%;
+  width: 100%;
   margin:auto;
 
 }
@@ -277,14 +282,19 @@ body{
 
 .client_main_area{
   background-color: white;
-  margin: 50px 0px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: 2fr 8fr;
+  min-height: 500px;
 }
 .client_main_area_menu{
-  display: flex;
   flex-direction: column;
   position: relative;
+  border-right: 1px solid #ccc;
+  background-color: #19a99d;
+  height: 100vh;
+  position: fixed;
+  width: 253px;
 
 }
 .client_main_area_menu button{
@@ -292,29 +302,10 @@ body{
   border: none;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
-
-}
-
-.client_main_area{
-  background-color: white;
-  margin: 50px 0px;
-  display: grid;
-  grid-template-columns: 2fr 8fr;
-  box-shadow: 0px 0px 12px 1px #ccc;
-  min-height: 500px;
 }
 .form-header{
   text-transform: uppercase;
   border-bottom: 1px solid #darkgreen;
-  
-}
-
-.client_main_area_menu{
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #ccc;
-  background-color: #19a99d;
-  padding-top: 20px;
 }
 
 .client_main_area_menu button{
@@ -326,7 +317,9 @@ body{
   padding: 10px;
   cursor: pointer;
   color: white;
+  width: 100%
 }
+
 .client_main_area small{
   font-size: 12px !important;
   opacity: 0.7;
@@ -341,12 +334,15 @@ body{
 .client_main_area_menu_icon{
   display: none;
 }
+
 .client_main_area_content_area{
   width: 100%;
   margin: auto;
   position: relative;
   padding-left: 50px;
+  min-height: 500px;
 }
+
 .form_preview{
   margin: 0px auto;
   background-color: white;
@@ -407,10 +403,11 @@ body{
     background-color: ghostwhite;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 5px;
     border: 1px solid mediumaquamarine;
     color: #056e65;
     margin-right: 50px;
+    margin-bottom: 20px;
 }
 .client_expert_listing_main span{
   font-family: "Poppins", sans-serif;
@@ -546,7 +543,6 @@ body{
   }
   .currentMenu{
     background-color: #056e65 !important;
-    margin-left: 10px;
     outline: none;
   }
   .spacing{
@@ -934,3 +930,14 @@ body{
 
 }
 
+.download_file{
+  background-color: rgb(0,128,0,0.6);
+  color: white;
+  padding: 10px 30px;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+.no_file{
+  color: #ccc;
+  padding: 10px 20px;
+}

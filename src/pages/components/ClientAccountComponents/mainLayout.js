@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'gatsby'
 
 
-import discouted from "../../../images/logo.png"
+
 import displayPicture from "../../../images/dan.jpeg"
 
 //Men icon
@@ -73,7 +73,7 @@ export default class mainLayout extends Component {
       <div>
       <div className = "d-header">
          <div className = "d-header-inner">
-            <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
+            
             <div className = "hamburger-menu">
               <div className = "stroke-1"></div>
               <div className = "stroke-2"></div>

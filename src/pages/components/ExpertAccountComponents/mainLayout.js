@@ -73,7 +73,6 @@ export default class mainLayout extends Component {
       <div>
       <div className = "d-header">
          <div className = "d-header-inner">
-            <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
             <div className = "d-menu-container">
               <ul>
                 <li> <Link to="../">Home</Link></li>

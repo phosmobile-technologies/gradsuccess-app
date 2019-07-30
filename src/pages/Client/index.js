@@ -17,6 +17,7 @@ import account_info from "../../images/icons/account_info.png"
 import leave_a_message from "../../images/icons/leave_a_message.png"
 import change_cv from "../../images/icons/change_cv.png"
 import complaint from "../../images/icons/complaint.png"
+import discouted from "../../images/logo.png"
 
 
 
@@ -39,7 +40,8 @@ class IndexPage extends Component {
             leaveAComplain:false,
             changeCV:false,
             accountInfo:true,
-            showModal:false
+            showModal:false,
+            currentMenu:"accountInfo"
 
         }
         this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
@@ -70,7 +72,8 @@ class IndexPage extends Component {
        })
 
        this.setState({
-            [Component]:true
+            [Component]:true,
+            currentMenu:Component
        })
     }
 
@@ -97,26 +100,39 @@ class IndexPage extends Component {
                     {data.me.account_type === "Expert"?
                         <NotFoundPage />
                         :<div>
-                        <MainLayout  userID = {data.me}/>
+                        
+
 
                             <div className = "main-content">
                                 <div className = "client_main_area">
-                                    <div className = "client_main_area_menu">
-                                        <button id = "accountInfo" onClick = {this.handleDisplayComponent}>Uploaded Info</button>
-                                        <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
-                                        <LogoutForm />
-                                        
+                                    <div className = "fixedHeader">
+                                        <div className = "client_main_area_menu">
+                                            <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
+                                            <button 
+                                            className = {this.state.currentMenu === "accountInfo"? "currentMenu":""} 
+                                            id = "accountInfo" 
+                                            onClick = {this.handleDisplayComponent}>Uploaded Info
+                                            </button>
+                                            <button 
+                                            className = {this.state.currentMenu === "leaveAMessage"? "currentMenu":""}
+                                            id = "leaveAMessage" 
+                                            onClick = {this.handleDisplayComponent}>Leave a Message
+                                            </button>
+                                            <LogoutForm />
+                                        </div>
                                     </div>
 
                                     <div>
+                                        <MainLayout  userID = {data.me}/>
                                         <div className="client_main_area_content_area">
                                             {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
                                             {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.form_id} sender = {data.me.first_name +" "+ data.me.last_name}/>}
                                         </div>
+                                        <Footer />
                                     </div>
                                 </div>
                             </div>
-                        <Footer />
+                        
                         </div>
                     }
                 </div>

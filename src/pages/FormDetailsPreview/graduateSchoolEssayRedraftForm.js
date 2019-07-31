@@ -13,6 +13,7 @@ class Message extends Component {
             fileUrl:"",
             fileNotAvailable:false
         }
+        this.downloadUploadedFile = this.downloadUploadedFile.bind(this);
     }
 
 
@@ -36,8 +37,6 @@ class Message extends Component {
           this.setState({
               fileUrl:url
           })
-
-          console.log(url)
        
         }).catch((error) => {
 
@@ -75,6 +74,9 @@ class Message extends Component {
                 <Query
                 query={GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM}
                 variables={{ form_id:this.state.form_id }}
+                onCompleted={(data)=>{
+                    this.downloadUploadedFile(data.getCoverLetterReview.curriculum_vitae)
+                }}
                 >
                     {({ loading, error, data }) => {
                     if (loading) return (
@@ -251,7 +253,7 @@ class Message extends Component {
                             <p>{data.getGraduateSchoolEssayRedraftForm.referee}</p>
                         </div>
                         <br />
-                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} target = "_blank"> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl}> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                             <div className = "spacing">
                                 
                             </div>

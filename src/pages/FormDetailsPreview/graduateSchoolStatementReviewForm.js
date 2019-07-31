@@ -17,6 +17,7 @@ class GraduateSchoolEssayRedraftForm extends Component {
             fileUrl:"",
             fileNotAvailable:false
         }
+        this.downloadUploadedFile = this.downloadUploadedFile.bind(this);
 }
 
 downloadUploadedFile(downloadRef){
@@ -39,8 +40,6 @@ downloadUploadedFile(downloadRef){
           this.setState({
               fileUrl:url
           })
-
-          console.log(url)
        
         }).catch((error) => {
 
@@ -78,6 +77,9 @@ render() {
         <Query 
         query={GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
         variables={{form_id:this.state.form_id }}
+        onCompleted={(data)=>{
+            this.downloadUploadedFile(data.getCoverLetterReview.curriculum_vitae)
+        }}
         >
             {({ loading, error, data }) => {
               if (loading) return (
@@ -109,7 +111,7 @@ render() {
                                 <p>{data.getGraduateSchoolStatementReviewForm.summary_of_interest}</p>
                             </div>
                              <br />
-                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} target = "_blank"> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                             <div className = "spacing">
                                 
                             </div>

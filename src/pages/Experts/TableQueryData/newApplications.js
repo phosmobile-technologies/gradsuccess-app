@@ -33,7 +33,7 @@ import {UPDATE_COVER_LETTER_REDRAFT} from '../../graphql/mutations';
 
 
 
-const customStyles = {
+const defaultStyles = {
   content : {
     top                   : '0%',
     left                  : '0%',
@@ -536,7 +536,7 @@ render() {
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -550,7 +550,7 @@ render() {
         <Modal 
            isOpen={this.state.coverLetterRedraftForm}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -564,7 +564,7 @@ render() {
         <Modal 
            isOpen={this.state.coverLetterReviewForm}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -578,7 +578,7 @@ render() {
         <Modal 
            isOpen={this.state.graduateSchoolEssayRedraftForm}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -592,7 +592,7 @@ render() {
         <Modal 
            isOpen={this.state.resumeReviewForm}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -609,7 +609,7 @@ render() {
         <Modal 
            isOpen={this.state.assignExpertToApplicationResumeReview}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -623,7 +623,7 @@ render() {
         <Modal 
            isOpen={this.state.assignExpertToApplicationCoverLetterReview}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -638,7 +638,7 @@ render() {
         <Modal 
            isOpen={this.state.assignExpertToApplicationCoverLetterRedraft}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -652,7 +652,7 @@ render() {
         <Modal 
            isOpen={this.state.assignExpertToApplicationGraduateEssayRedraft}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">
@@ -666,7 +666,7 @@ render() {
         <Modal 
            isOpen={this.state.assignExpertToApplicationGraduateStatementReview}
            contentLabel="Minimal Modal Example"
-           style={customStyles}
+           style={defaultStyles}
            ariaHideApp={false}
         >
             <div className = "detail_preview_modal_container">

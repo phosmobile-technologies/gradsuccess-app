@@ -1,5 +1,6 @@
 import React from 'react';
 import sendIcon from "../../../images/send_icon.svg"
+import AttachedFile from "../../../images/attach.png"
 import { CREATE_MESSAGE } from '../../graphql/mutations';
 import { FETCH_CLIENT_MESSAGES } from '../../graphql/queries';
 import { Mutation } from 'react-apollo';
@@ -154,6 +155,10 @@ export default class leaveAMessageForm extends React.Component {
                     className = "chat_form">
                     
                     <input name = "chat_message" id = "chat_message" placeholder = "Type a message" onChange = {this.handleSendMessage}></input>
+                    	<input type = "file" name = "attachedDocument" id = "attachedDocument" className = "file_attach_input"/>
+                    	<div for = "attachedDocument" type = "button" className = "attach_file_btn">
+							<img  src={AttachedFile} alt="Logo" /> 
+						</div>
 
 						<button type = "submit" disabled = {this.state.typedText===""?true:false}>
 							<img  src={sendIcon} alt="Logo" /> 

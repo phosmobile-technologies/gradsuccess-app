@@ -94,6 +94,7 @@ class Header extends React.Component {
            isOpen={this.state.showModal}
            contentLabel="Minimal Modal Example"
            style={customStyles}
+           className = "modelStyling"
            ariaHideApp={false}
         >
           <LoginForm />

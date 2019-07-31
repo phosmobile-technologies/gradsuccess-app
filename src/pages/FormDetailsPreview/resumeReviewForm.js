@@ -2,11 +2,7 @@ import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {RESUME_REVIEW_FORM} from "../graphql/queries"
-import ExpertInCharge from "../Client/getExpertInCharge"
-
-
-
-
+import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 
 class ResumeReviewForm extends Component {
     constructor(props) {
@@ -81,7 +77,7 @@ render() {
         variables={{ 
             form_id:this.state.form_id }}
         onCompleted={(data)=>{
-          this.downloadUploadedFile(data.getCoverLetterReview.curriculum_vitae)
+          this.downloadUploadedFile(data.getResumeReviewForm.curriculum_vitae)
         }}
         >
             {({ loading, error, data }) => {
@@ -97,8 +93,8 @@ render() {
               return (
                 <div className="form_preview">
                     <div className="form_preview_inner">
-                        <ExpertInCharge id = {data.getResumeReviewForm.has_expert}/>
                         <h3 className = "form-header" >Form Details </h3>
+                        <ExpertInCharge id = {data.getResumeReviewForm.has_expert}/>
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
                                 <small>Name</small>
@@ -116,7 +112,6 @@ render() {
                              <br />
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                             <div className = "spacing">
-                                
                             </div>
                         </div>
                         

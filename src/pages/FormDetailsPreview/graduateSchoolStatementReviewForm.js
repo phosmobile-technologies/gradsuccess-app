@@ -2,7 +2,7 @@ import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../graphql/queries"
-import ExpertInCharge from "../Client/getExpertInCharge"
+import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 
 
 
@@ -78,7 +78,7 @@ render() {
         query={GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
         variables={{form_id:this.state.form_id }}
         onCompleted={(data)=>{
-            this.downloadUploadedFile(data.getCoverLetterReview.curriculum_vitae)
+            this.downloadUploadedFile(data.getGraduateSchoolStatementReviewForm.curriculum_vitae)
         }}
         >
             {({ loading, error, data }) => {
@@ -94,8 +94,8 @@ render() {
               return (
                 <div className="form_preview">
                     <div className="form_preview_inner">
-                        <ExpertInCharge id = {data.getGraduateSchoolStatementReviewForm.has_expert}/>
                         <h3 className = "form-header" >Form Details </h3>
+                        <ExpertInCharge id = {data.getGraduateSchoolStatementReviewForm.has_expert}/>
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
                                 <small>Name:</small>

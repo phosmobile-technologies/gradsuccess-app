@@ -2,7 +2,7 @@ import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {COVER_LETTER_REVIEW_FORM} from "../graphql/queries"
-import ExpertInCharge from "../Client/getExpertInCharge"
+import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 
 
 
@@ -99,8 +99,8 @@ render() {
               return (
                 <div className="form_preview">
                     <div className="form_preview_inner">
-                        <ExpertInCharge id = {data.getCoverLetterReview.has_expert}/>
                         <h3 className = "form-header" >Form Details </h3>
+                        <ExpertInCharge id = {data.getCoverLetterReview.has_expert}/>
 
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">

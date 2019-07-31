@@ -550,16 +550,12 @@ body{
     height: 50px;
   }
   .expert_in_charge_board{
-    background-color: #f9f9f9;
-    width: 40%;
-    padding: 5px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+    background-color: #f9f9f9; 
+    padding: 15px;
     font-size: 11px;
     line-height: 18px;
     text-align: right;
-    padding-right: 20px;
+    padding-right: 50px;
   }
   .expert_in_charge_board h4{
     font-family: "Poppins", sans-serif;
@@ -935,13 +931,15 @@ body{
   background-color: rgb(0,128,0,0.6);
   color: white;
   padding: 10px 30px;
-  margin-left: 15px;
+  margin-left: 70px;
   margin-top: 20px;
 }
+
 .no_file{
   color: #ccc;
   padding: 10px 20px;
 }
+
 .attach_file_btn{
   width: 40px;
   height: 40px;

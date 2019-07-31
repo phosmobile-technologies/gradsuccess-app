@@ -9,7 +9,6 @@ import NewApplications from "./TableQueryData/newApplications"
 import AssignedApplication from "./TableQueryData/assignedApplication"
 import InProgressApplication from "./TableQueryData/inProgressApplication"
 import CompletedApplication from "./TableQueryData/completedApplication"
-import ExpertsComponent from "./registeredExperts"
 import NotFoundPage from "../401"
 import LogoutForm from "../components/Forms/logoutForm"
 import MainLayout from "../components/ExpertAccountComponents/mainLayout"
@@ -40,7 +39,6 @@ class IndexPage extends Component {
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
-            ExpertsComponent:false,
             LeaveAMessageComponent:false,
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
@@ -68,7 +66,6 @@ class IndexPage extends Component {
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
-            ExpertsComponent:false,
             LeaveAMessageComponent:false
         })
 
@@ -89,7 +86,6 @@ class IndexPage extends Component {
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
-            ExpertsComponent:false,
             LeaveAMessageComponent:false
         })
 
@@ -153,13 +149,6 @@ class IndexPage extends Component {
                                             id = "CompletedApplication" 
                                             onClick = {this.handleDisplayComponent}>Completed Applications
                                         </button>
-
-                                        <button 
-                                            className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
-                                            name = "Experts List" 
-                                            id = "ExpertsComponent" 
-                                            onClick = {this.handleDisplayComponent}>Experts
-                                        </button>
                                         <LogoutForm />
 
                                           <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>
@@ -169,11 +158,10 @@ class IndexPage extends Component {
                                     <MainLayout />
                                     <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
                                     <div className="client_main_area_content_area">
-                                        {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
-                                        {this.state.AssignedApplication && <AssignedApplication />}
-                                        {this.state.InProgressApplication && <InProgressApplication />}
-                                        {this.state.CompletedApplication && <CompletedApplication />}
-                                        {this.state.ExpertsComponent && <ExpertsComponent />}
+                                        {this.state.NewApplications && <NewApplications  expert_id = {data.me.id}/>}
+                                        {this.state.AssignedApplication && <AssignedApplication expert_id = {data.me.id}/>}
+                                        {this.state.InProgressApplication && <InProgressApplication expert_id = {data.me.id}/>}
+                                        {this.state.CompletedApplication && <CompletedApplication expert_id = {data.me.id}/>}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
                                     </div>
                                      <Footer />

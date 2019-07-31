@@ -42,12 +42,15 @@ constructor(props) {
     }, 2000)
     localStorage.setItem(AUTH_TOKEN, data.login.access_token)
 
-    if(data.login.  user.account_type === "Client"){
-    	window.location = '/Client'
+    if(data.login.user.account_type === "Client"){
+    	window.location = '/Client-dashboard'
+    }else if(data.login.user.account_type === "Expert"){
+    	window.location = '/Expert-dashboard'
     }else{
-    	window.location = '/Experts'
+       	window.location = '/Gradsuccess-admin'
     }
-  }
+    }
+  
 
   handleForgotPassword(){
   	this.setState({

@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {COVER_LETTER_REDRAFT} from "../graphql/queries"
 
-import ExpertInCharge from "../Client/getExpertInCharge"
+import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 
 
 
@@ -80,7 +80,7 @@ render() {
         query={COVER_LETTER_REDRAFT}
         variables={{ form_id:this.state.form_id }}
         onCompleted={(data)=>{
-            this.downloadUploadedFile(data.getCoverLetterReview.curriculum_vitae)
+            this.downloadUploadedFile(data.getCoverLetterRedraft.curriculum_vitae)
         }}
         >
             {({ loading, error, data }) => {
@@ -98,8 +98,8 @@ render() {
 
                 <div className="form_preview_inner">
 
-                    <ExpertInCharge id = {data.getCoverLetterRedraft.has_expert}/>
                     <h3 className = "form-header" >Form Details </h3>
+                    <ExpertInCharge id = {data.getCoverLetterRedraft.has_expert}/>
                     <div className="form_preview_col_1">
                         <div className="form_preview_fields">
                             <small>Name</small>

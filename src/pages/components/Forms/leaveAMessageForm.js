@@ -6,7 +6,19 @@ import { FETCH_CLIENT_MESSAGES } from '../../graphql/queries';
 import { Mutation } from 'react-apollo';
 import { Query } from 'react-apollo';
 import loader from "../../../images/loader.gif"
+import Modal from "react-modal"
+import UploadMessageFile from './uploadMessageFile';
 
+
+const defaultStyles = {
+  content : {
+    top                   : '0%',
+    left                  : '0%',
+    width                 : '100%',
+    height                : '100%',
+    backgroundColor       : 'rgba(17, 153, 146, 0.3)'
+  }
+};
 
 export default class leaveAMessageForm extends React.Component {
 	
@@ -21,11 +33,14 @@ export default class leaveAMessageForm extends React.Component {
 				}
 				],
 			typedText:"",
-			expertInChargeID:""
+			expertInChargeID:"",
+			UploadMessageFile:false
 
 			}
 			this.handleSendMessage = this.handleSendMessage.bind(this)
 			this.submitMessage = this.submitMessage.bind(this)
+			this.handleMessageUpload = this.handleMessageUpload.bind(this)
+			this.handleCloseModal = this.handleCloseModal.bind(this)
 		}
 		componentDidMount(){
 			if(this.props.expert_id){
@@ -40,12 +55,25 @@ export default class leaveAMessageForm extends React.Component {
 			
 		}
 
+		handleCloseModal(){
+		    this.setState({
+		        UploadMessageFile:false
+
+		    })   
+		}
+
 		handleSendMessage(e){
 			const typedText = e.target.value;
 			this.setState({
 				typedText:typedText
 			})
 			console.log(this.state.typedText)
+		}
+
+		handleMessageUpload(){
+			this.setState({
+				UploadMessageFile:true
+			})
 		}
 
 		submitMessage(data){
@@ -155,9 +183,9 @@ export default class leaveAMessageForm extends React.Component {
                     className = "chat_form">
                     
                     <input name = "chat_message" id = "chat_message" placeholder = "Type a message" onChange = {this.handleSendMessage}></input>
-                    	<input type = "file" name = "attachedDocument" id = "attachedDocument" className = "file_attach_input"/>
-                    	<div for = "attachedDocument" type = "button" className = "attach_file_btn">
-							<img  src={AttachedFile} alt="Logo" /> 
+                    	
+                    	<div onClick = {()=>{this.handleMessageUpload()}} type = "button" className = "attach_file_btn">
+							<img  htmlFor = "attachedDocument" src={AttachedFile} alt="Logo" /> 
 						</div>
 
 						<button type = "submit" disabled = {this.state.typedText===""?true:false}>
@@ -171,6 +199,24 @@ export default class leaveAMessageForm extends React.Component {
                 </div>
                 )}
                 </Mutation>}
+
+
+	        <Modal 
+	           isOpen={this.state.UploadMessageFile}
+	           contentLabel="Minimal Modal Example"
+	           style={defaultStyles}
+	           ariaHideApp={false}
+	        >
+	            <div className = "detail_preview_modal_container">
+	                <div className = "detail_preview_modal_container_inner">
+	                      <UploadMessageFile  sender = {this.props.sender}/>
+	                </div>
+	            </div>
+	            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+
+
+
 			</div>
 		);
 	}

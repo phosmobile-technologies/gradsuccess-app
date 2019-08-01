@@ -426,6 +426,25 @@ export const UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 	}
 `;
 
+export const SEND_ATTACHMENT = gql`
+    mutation UpdateGraduateSchoolEssayRedraftForm(
+    $id: ID!,
+	$has_expert:String
+	$status:String
+	){
+		updateGraduateSchoolEssayRedraftForm(
+			id:$id,
+			has_expert:$has_expert
+			status:$status
+			){
+			name
+    
+		}
+	}
+`;
+
+
+
 
 
 export const CREATE_MESSAGE = gql`

@@ -39,11 +39,14 @@ class AllApplications extends Component {
             resumeReviewForm:false,
             graduateSchoolStatementReviewForm:false,
             formID:"",
-            id:""
+            id:"",
+            itemCount:0
 
         }
         this.OpenApplicationDetails = this.OpenApplicationDetails.bind(this)
         this.handleCloseModal = this.handleCloseModal.bind(this)
+        this.upadateItemCount = this.upadateItemCount.bind(this)
+
 }
 
 OpenApplicationDetails(formType,formID){
@@ -66,6 +69,11 @@ handleCloseModal(){
 
     })   
 }
+upadateItemCount(plus){
+    this.setState({
+        itemCount:this.state.itemCount+plus
+    })
+}
 
 
 
@@ -75,6 +83,8 @@ render() {
         <div>
             <Query 
         query={GET_ALL_COVER_LETTER_REDRAFT_FORMS}
+        fetchPolicy = "no-cache"
+        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterRedraft.length)}
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -120,6 +130,8 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_COVER_LETTER_REVIEW_FORMS}
+        fetchPolicy = "no-cache"
+        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterReview.length)}
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -165,6 +177,8 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS}
+        fetchPolicy = "no-cache"
+        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolEssayRedraftForm.length)}
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -210,6 +224,8 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_RESUMME_REVIEW_FORMS}
+        fetchPolicy = "no-cache"
+        onCompleted={data => this.upadateItemCount(data.getAllResumeReviewForm.length)}
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -254,6 +270,8 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS}
+        fetchPolicy = "no-cache"
+        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolStatementReviewForm.length)}
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -297,7 +315,7 @@ render() {
               );
             }}
         </Query>
-
+       {this.state.itemCount !==0? <div className = "no_item">No in-progress applications</div>:""}
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}
            contentLabel="Minimal Modal Example"

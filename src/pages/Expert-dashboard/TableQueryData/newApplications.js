@@ -52,11 +52,13 @@ class AllApplications extends Component {
             resumeReviewForm:false,
             graduateSchoolStatementReviewForm:false,
             formID:"",
-            id:""
+            id:"",
+            itemCount:0
 
         }
         this.OpenApplicationDetails = this.OpenApplicationDetails.bind(this)
         this.handleCloseModal = this.handleCloseModal.bind(this)
+        this.upadateItemCount = this.upadateItemCount.bind(this)
 }
 
 OpenApplicationDetails(formType,formID){
@@ -79,6 +81,11 @@ handleCloseModal(){
 
     })   
 }
+upadateItemCount(plus){
+    this.setState({
+        itemCount:this.state.itemCount+plus
+    })
+}
 
 
 
@@ -87,7 +94,9 @@ render() {
         <div>
             <Query 
         query={GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT}
-        variables={{ id:this.props.expert_id }}
+        variables={{ has_expert:this.props.expert_id }}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterRedraft.length)}
+        fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -104,11 +113,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getAllCoverLetterRedraft === null ?
-                                    <div className = "client_expert_listing_main">
-                                        <h4>No Item Available</h4>
-                                    </div>:
-                                    data.getAllCoverLetterRedraft.map((Item,index) =>
+                            {data.getExpertClientsCoverLetterRedraft.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -168,7 +173,9 @@ render() {
         </Query>
         <Query 
         query={GET_EXPERT_CLIENTS_COVER_LETTER_REVIEW}
-        variables={{ id:this.props.expert_id }}
+        variables={{ has_expert:this.props.expert_id }}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterReview.length)}
+        fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -185,11 +192,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getAllCoverLetterReview === null ?
-                                    <div className = "client_expert_listing_main">
-                                        <h4>No Item Available</h4>
-                                    </div>:
-                                    data.getAllCoverLetterReview.map((Item,index) =>
+                            {data.getExpertClientsCoverLetterReview.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -247,7 +250,9 @@ render() {
         </Query>
         <Query 
         query={GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM}
-        variables={{ id:this.props.expert_id }}
+        variables={{ has_expert:this.props.expert_id }}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolEssayRedraftForm.length)}
+        fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -264,11 +269,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getAllGraduateSchoolEssayRedraftForm === null ?
-                                    <div className = "client_expert_listing_main">
-                                        <h4>No Item Available</h4>
-                                    </div>:
-                                    data.getAllGraduateSchoolEssayRedraftForm.map((Item,index) =>
+                            {data.getExpertClientsGraduateSchoolEssayRedraftForm.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -327,7 +328,9 @@ render() {
         </Query>
         <Query 
         query={GET_EXPERT_CLIENTS_RESUME_REVIEW_FORM}
-        variables={{ id:this.props.expert_id }}
+        variables={{ has_expert:this.props.expert_id }}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsResumeReviewForm.length)}
+        fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -344,11 +347,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getAllResumeReviewForm === null ?
-                                    <div className = "client_expert_listing_main">
-                                        <h4>No Item Available</h4>
-                                    </div>:
-                                    data.getAllResumeReviewForm.map((Item,index) =>
+                            {data.getExpertClientsResumeReviewForm.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -407,7 +406,9 @@ render() {
         </Query>
         <Query 
         query={GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
-        variables={{ id:this.props.expert_id }}
+        variables={{ has_expert:this.props.expert_id }}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolStatementReviewForm.length)}
+        fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
              if (loading) return (
@@ -424,11 +425,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getAllGraduateSchoolStatementReviewForm === null ?
-                                    <div className = "client_expert_listing_main">
-                                        <h4>No Item Available</h4>
-                                    </div>:
-                                    data.getAllGraduateSchoolStatementReviewForm.map((Item,index) =>
+                            {data.getExpertClientsGraduateSchoolStatementReviewForm.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -486,6 +483,7 @@ render() {
               );
             }}
         </Query>
+        {this.state.itemCount !==0? <div className = "no_item">No new application</div>:""}
 
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}

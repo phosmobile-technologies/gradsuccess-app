@@ -453,20 +453,33 @@ export const CREATE_MESSAGE = gql`
 	$client_name:String!,
 	$expert_id:String!,
 	$expert_name:String!,
-	$message_body:String!
+	$message_body:String,
+	$attachment_ref:String,
+	$attachment_name:String,
+	$message_type:String,
+
+
+
 	){
 		createMessages(
 		client_id:$client_id,
 		client_name:$client_name,
 		expert_id:$expert_id,
 		expert_name:$expert_name,
-		message_body:$message_body){
+		message_body:$message_body
+		attachment_ref:$attachment_ref
+		attachment_name:$attachment_name
+		message_type:$message_type
+		){
 
 	    client_id
 		client_name
 		expert_id
 		expert_name
 		message_body
+		attachment_ref
+		attachment_name
+		message_type
   }
 	}
 `;

@@ -34,13 +34,18 @@ export default class leaveAMessageForm extends React.Component {
 				],
 			typedText:"",
 			expertInChargeID:"",
-			UploadMessageFile:false
+			UploadMessageFile:false,
+			fileRef:"",
+			fileUrl:"",
+			fileName:"",
+			fileType:""
 
 			}
 			this.handleSendMessage = this.handleSendMessage.bind(this)
 			this.submitMessage = this.submitMessage.bind(this)
 			this.handleMessageUpload = this.handleMessageUpload.bind(this)
 			this.handleCloseModal = this.handleCloseModal.bind(this)
+			this.onChange = this.onChange.bind(this)
 		}
 		componentDidMount(){
 			if(this.props.expert_id){
@@ -52,13 +57,11 @@ export default class leaveAMessageForm extends React.Component {
 				expertInChargeID:localStorage.getItem('chat_state')
 			})
 			}
-			
 		}
 
 		handleCloseModal(){
 		    this.setState({
 		        UploadMessageFile:false
-
 		    })   
 		}
 
@@ -67,7 +70,6 @@ export default class leaveAMessageForm extends React.Component {
 			this.setState({
 				typedText:typedText
 			})
-			console.log(this.state.typedText)
 		}
 
 		handleMessageUpload(){
@@ -85,11 +87,11 @@ export default class leaveAMessageForm extends React.Component {
 	        }))
 		}
 		formSubmitted(data) {
-        document.getElementById("submittedSucces").style.display = "block"
+        document.getElementById("submittedSuccess").style.display = "block"
 
 	        setTimeout(function() {
-	            if (document.getElementById("submittedSucces") != null) {
-	                document.getElementById("submittedSucces").style.display = "none"
+	            if (document.getElementById("submittedSuccess") != null) {
+	                document.getElementById("submittedSuccess").style.display = "none"
 	            }
 	        }, 5000)
 	        this.setState({
@@ -98,8 +100,82 @@ export default class leaveAMessageForm extends React.Component {
 	        this.submitMessage(data)
 
 	        document.getElementById('chat_message').value = ""
-
 	    }
+
+
+
+	    onChange(e) {
+	    document.getElementById('attachedDocument').src = loader
+	    document.getElementById('submittedInprogress').style.display = "block"
+	    const firebase = require("firebase")
+
+	    const config = {
+	      apiKey: 'AIzaSyB9uwinxn9jEKUmcz0_7rxgLDycAeGO2Fk',
+	      authDomain: 'gradsuccess-6c883.firebaseapp.com',
+	      databaseURL: 'https://gradsuccess-6c883.firebaseio.com',
+	      projectId: 'gradsuccess-6c883',
+	      storageBucket: 'gs://gradsuccess-6c883.appspot.com/',
+	      messagingSenderId: '153907721792',
+	      appID:"1:153907721792:web:ff681e47886cdbb7"
+	    }
+	    if (!firebase.apps.length) {
+	       firebase.initializeApp(config)
+	    }
+
+        let CVName = this.props.sender.replace(/\s+/g, '_')
+        let timeSubmitted = new Date().getTime()
+        var file = document.getElementById('file').files[0];
+        var fileLink = "";
+        var uploaded = false;
+        var complete = ""
+        let fileRef = 'upload_files/' + CVName + "_" + timeSubmitted + "_" + file.name
+        let FileType = file.type.split("/")[0];
+        this.setState({
+                "upload_files": fileRef
+            }
+        )
+        var storageRef = firebase.storage().ref(fileRef)
+        var task = storageRef.put(file)
+        task.on('state_changed',
+            function progress(snapshot) {
+               document.getElementById('submittedInprogress').style.display = "none"
+            },
+            function error(err) {
+            	alert("file upload interupted abruptly...plase try again");
+            },
+            complete = () =>{
+	       		storageRef.getDownloadURL().then((url) =>{
+	       		fileLink= url;
+	       		uploaded = true;
+        		document.getElementById('submittedInprogress').style.display = "none"
+	       		document.getElementById('submittedSuccess').style.display = "block"
+			    document.getElementById('attachedDocument').src = AttachedFile
+
+			    setTimeout(() =>{
+		        if (document.getElementById("submittedSuccess") != null) {
+		            document.getElementById("submittedSuccess").style.display = "none"
+		            
+		            }
+		            this.setState({
+						fileRef:fileRef,
+						fileUrl:fileLink,
+						fileName:file.name,
+						fileType:FileType,
+						UploadMessageFile:true
+
+					})
+		        }, 1000)
+		        
+	        }).catch((error) => {
+
+	         console.log(error)
+	        });
+
+
+            })
+
+    }
+
 
 	render() {
 		return (
@@ -154,7 +230,8 @@ export default class leaveAMessageForm extends React.Component {
                 >
                 {(sendMessage, { data,loading, error}) => (
                 <div className = "loader-wrapper">
-                  <div id="submittedSucces" className = "message_sent_notification">Message sent!</div>
+                  <div id="submittedSuccess" className = "message_sent_notification">Message sent!</div>
+                  <div id="submittedInprogress" className = "sending_message_notification2">Uploading...</div>
                   <form
                     onSubmit={e => {
                     e.preventDefault();
@@ -165,6 +242,9 @@ export default class leaveAMessageForm extends React.Component {
 						expert_id:this.state.expertInChargeID,
 						expert_name:"Expert",
 						message_body:this.state.typedText,
+						attachment_ref:null,
+						attachment_name:null,
+						message_type:null
                     },
                     refetchQueries:[
                     {
@@ -183,10 +263,15 @@ export default class leaveAMessageForm extends React.Component {
                     className = "chat_form">
                     
                     <input name = "chat_message" id = "chat_message" placeholder = "Type a message" onChange = {this.handleSendMessage}></input>
-                    	
-                    	<div onClick = {()=>{this.handleMessageUpload()}} type = "button" className = "attach_file_btn">
-							<img  htmlFor = "attachedDocument" src={AttachedFile} alt="Logo" /> 
-						</div>
+                    	<input
+	                      type="file"
+	                      name="file"
+	                      id="file"
+	                      className = "file_upload"
+	                      onChange={this.onChange}/>
+						<label htmlFor="file" id = "attLabel" >
+							<img  htmlFor = "attachedDocument" id = "attachedDocument" src={AttachedFile} alt="Logo" />
+						</label>
 
 						<button type = "submit" disabled = {this.state.typedText===""?true:false}>
 							<img  src={sendIcon} alt="Logo" /> 
@@ -209,7 +294,16 @@ export default class leaveAMessageForm extends React.Component {
 	        >
 	            <div className = "detail_preview_modal_container">
 	                <div className = "detail_preview_modal_container_inner">
-	                      <UploadMessageFile  sender = {this.props.sender}/>
+	                      <UploadMessageFile  
+		                    fileRef = {this.state.fileRef}
+							fileUrl = {this.state.fileUrl}
+							fileName = {this.state.fileName}
+							fileType = {this.state.fileType}
+							logged_in_user_id = {this.props.logged_in_user_id}
+							client_name = {this.props.sender}
+							expert_id = {this.state.expertInChargeID}
+							callback = {this.handleCloseModal}
+							/>
 	                </div>
 	            </div>
 	            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>

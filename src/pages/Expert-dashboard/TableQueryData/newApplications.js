@@ -1,11 +1,12 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../../images/loader.gif"
-import {GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../../graphql/queries"
-import {GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT} from "../../graphql/queries"
-import {GET_EXPERT_CLIENTS_COVER_LETTER_REVIEW} from "../../graphql/queries"
-import { GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM } from "../../graphql/queries"
-import {GET_EXPERT_CLIENTS_RESUME_REVIEW_FORM} from "../../graphql/queries"
+import {GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS} from "../../graphql/queries"
+import {GET_ALL_COVER_LETTER_REDRAFT_FORMS} from "../../graphql/queries"
+import {GET_ALL_COVER_LETTER_REVIEW_FORMS} from "../../graphql/queries"
+import { GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS } from "../../graphql/queries"
+import {GET_ALL_RESUMME_REVIEW_FORMS} from "../../graphql/queries"
+
 import Modal from "react-modal"
 import { Mutation } from 'react-apollo';
 
@@ -87,15 +88,34 @@ upadateItemCount(plus){
     })
 }
 
+assignSelf(form_id){
+   //  let url = "http://127.0.0.1:8000/api/sendEmail"
+   //  let data = {
+   //      expert_id: this.props.expert_id,
+   //      form_id:this.props.form_id
+   //  }
+
+   // fetch(url, {
+   //    method: 'post', // or 'PUT'
+   //    body: JSON.stringify(data), // data can be `string` or {object}!
+   //    headers:{
+   //      'Content-Type': 'application/json'
+   //    }
+   //  }).then(res => res.json())
+   //  .then(response => console.log('Success:', JSON.stringify(response)))
+   //  .catch(error => console.error('Error:', error));
+
+   alert("Request sent.....Admin will Approve");
+}
+
 
 
 render() {
     return(  
         <div>
             <Query 
-        query={GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT}
-        variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterRedraft.length)}
+        query={GET_ALL_COVER_LETTER_REDRAFT_FORMS}
+        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterRedraft.length)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -113,7 +133,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getExpertClientsCoverLetterRedraft.map((Item,index) =>
+                            {data.getAllCoverLetterRedraft.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -124,40 +144,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <Mutation 
-                                                    mutation={UPDATE_COVER_LETTER_REDRAFT}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >    
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader">Assigning...</div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                    <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
                                                     
                                                     
                                                 </div>
@@ -172,9 +159,8 @@ render() {
             }}
         </Query>
         <Query 
-        query={GET_EXPERT_CLIENTS_COVER_LETTER_REVIEW}
-        variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterReview.length)}
+        query={GET_ALL_COVER_LETTER_REVIEW_FORMS}
+        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterReview.length)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -192,7 +178,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getExpertClientsCoverLetterReview.map((Item,index) =>
+                            {data.getAllCoverLetterReview.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -203,39 +189,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                   <Mutation 
-                                                    mutation={UPDATE_COVER_LETTER_REVIEW_FORM}
-                                                    onError={this.error}>        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_EXPERT_CLIENTS_COVER_LETTER_REVIEW,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                   <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
                                                     
                                                 </div>
                                             </div>
@@ -249,9 +203,8 @@ render() {
             }}
         </Query>
         <Query 
-        query={GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM}
-        variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolEssayRedraftForm.length)}
+        query={GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS}
+        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolEssayRedraftForm.length)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -269,7 +222,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getExpertClientsGraduateSchoolEssayRedraftForm.map((Item,index) =>
+                            {data.getAllGraduateSchoolEssayRedraftForm.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -280,40 +233,8 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                   
-                                                    <Mutation 
-                                                    mutation={UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                    <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>     
+                                                 
                                                     
                                                 </div>
                                             </div>
@@ -327,9 +248,8 @@ render() {
             }}
         </Query>
         <Query 
-        query={GET_EXPERT_CLIENTS_RESUME_REVIEW_FORM}
-        variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsResumeReviewForm.length)}
+        query={GET_ALL_RESUMME_REVIEW_FORMS}
+        onCompleted={data => this.upadateItemCount(data.getAllResumeReviewForm.length)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -347,7 +267,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getExpertClientsResumeReviewForm.map((Item,index) =>
+                            {data.getAllResumeReviewForm.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -358,41 +278,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                   
-                                                    <Mutation 
-                                                    mutation={UPDATE_RESUME_REVIEW_FORM}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_EXPERT_CLIENTS_RESUME_REVIEW_FORM,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                   <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
                                                 </div>
                                             </div>
                                         </div>
@@ -405,9 +291,8 @@ render() {
             }}
         </Query>
         <Query 
-        query={GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
-        variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolStatementReviewForm.length)}
+        query={GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS}
+        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolStatementReviewForm.length)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -425,7 +310,7 @@ render() {
                     <div className="form_preview_inner">
                         <div className="form_preview_col_1">
 
-                            {data.getExpertClientsGraduateSchoolStatementReviewForm.map((Item,index) =>
+                            {data.getAllGraduateSchoolStatementReviewForm.map((Item,index) =>
                                         <div key = {index} className = {Item.status==="Assigned"?"hide_application":""}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
@@ -436,41 +321,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package,Item.form_id)}>view</button>
-                                                    <Mutation 
-                                                    mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-
-                                                </Mutation>
+                                                    <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
                                                     
                                                 </div>
                                             </div>
@@ -483,7 +334,7 @@ render() {
               );
             }}
         </Query>
-        {this.state.itemCount !==0? <div className = "no_item">No new application</div>:""}
+        {this.state.itemCount ===0? <div className = "no_item">No new application</div>:""}
 
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}

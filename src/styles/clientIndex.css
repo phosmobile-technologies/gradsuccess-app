@@ -572,9 +572,10 @@ body{
 
   .container {
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 10px;
     color: white;
     font-size: 12px;
+    box-shadow: 0px 0px 11px 0px rgba(0,0,0,.1);
 
 }
 /* Darker chat container */
@@ -591,7 +592,6 @@ body{
 }
 #coloured {
   color: black;
-  border-radius: 40px 10px;
   margin-top: 20px;
   border: none;
 }
@@ -635,16 +635,6 @@ body{
   clear: both;
   display: table;
 }
-
-/* Style images */
-.container img {
-  max-width: 40px;
-  width: 100%;
-  margin-right: 20px;
-  border-radius: 50%;
-}
-
-
 /* Style the right image */
 .container img.right {
   float: right;
@@ -1128,4 +1118,53 @@ body{
   padding: 10px;
   width: 60%;
   margin: auto
+}
+
+.display_message_upload_exist{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.display_message_upload_exist .up_exist{
+  width: 50%;
+  margin-bottom: 0px;
+}
+
+.display_message_upload_exist div{
+  background-color: #f9f9f9;
+  width: 50%;
+  text-align: center;
+}
+
+.display_message_upload_exist a{
+  color: green;
+}
+
+
+.display_message_upload_icon{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #f9f9f9
+}
+    
+.display_message_upload_icon .dl_icon{
+  width: 30px;
+  margin-bottom: 0px;
+}
+.display_message_upload_icon a{
+  color: green;
+}
+
+#uploadLoader{
+  display: none
+}
+#send_attached_mail{
+  position: absolute;
+  top: 0px;
+  background-color: white;
+  
 }

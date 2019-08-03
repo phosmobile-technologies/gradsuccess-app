@@ -377,6 +377,9 @@ export const FETCH_CLIENT_MESSAGES = gql`
       expert_id
       expert_name
       message_body
+      attachment_ref
+      attachment_name
+      message_type
       created_at
   }
   }

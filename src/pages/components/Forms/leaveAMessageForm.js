@@ -1,11 +1,13 @@
 import React from 'react';
 import sendIcon from "../../../images/send_icon.svg"
 import AttachedFile from "../../../images/attach.png"
+import downloadedAttach from "../../../images/download2.png"
 import { CREATE_MESSAGE } from '../../graphql/mutations';
 import { FETCH_CLIENT_MESSAGES } from '../../graphql/queries';
 import { Mutation } from 'react-apollo';
 import { Query } from 'react-apollo';
 import loader from "../../../images/loader.gif"
+import loaderImage from "../../../images/loadingImage.gif"
 import Modal from "react-modal"
 import UploadMessageFile from './uploadMessageFile';
 
@@ -105,7 +107,8 @@ export default class leaveAMessageForm extends React.Component {
 
 
 	    onChange(e) {
-	    document.getElementById('attachedDocument').src = loader
+	    document.getElementById('attachedDocument').src = loaderImage
+	    document.getElementById('uploadLoader').style.display = "block"
 	    document.getElementById('submittedInprogress').style.display = "block"
 	    const firebase = require("firebase")
 
@@ -148,8 +151,8 @@ export default class leaveAMessageForm extends React.Component {
 	       		fileLink= url;
 	       		uploaded = true;
         		document.getElementById('submittedInprogress').style.display = "none"
-	       		document.getElementById('submittedSuccess').style.display = "block"
 			    document.getElementById('attachedDocument').src = AttachedFile
+
 
 			    setTimeout(() =>{
 		        if (document.getElementById("submittedSuccess") != null) {
@@ -165,21 +168,27 @@ export default class leaveAMessageForm extends React.Component {
 
 					})
 		        }, 1000)
+		        document.getElementById('uploadLoader').style.display = "none"
+
 		        
 	        }).catch((error) => {
 
 	         console.log(error)
 	        });
-
-
             })
 
     }
-
-
 	render() {
 		return (
 			<div>
+				<div id = "uploadLoader">
+					<div  className = "loader">
+	                    <div className="loader_main_content">
+	                        <img  src={loader} alt="gradsuccess" />
+	                        <h1>Just a moment..</h1>
+	                    </div>
+	                </div>
+                </div>
 				<p className = "chat_header">Gradsuccess Chat Bot</p>
 				{this.state.expertInChargeID === "empty"?
 				<div className = "chat_component">
@@ -208,11 +217,36 @@ export default class leaveAMessageForm extends React.Component {
 								</div>:
 			                	<div>
 									{data.getClientMessages.map((messageInstance,index) =>
-		                            <div className="container lighter" id = {messageInstance.client_name === this.props.sender?"coloured":"uncoloured"} key  = {index}>
-									  	<p>{messageInstance.message_body}</p>
-									  	<span className="time-right">{messageInstance.client_name}</span>
-									  	<span className="time-right">{messageInstance.created_at}</span>
+										<div>
+			                           {messageInstance.message_type === "image" || messageInstance.message_type === "file"? 
+			                           	<div className="container lighter" id = {messageInstance.client_name === this.props.sender?"coloured":"uncoloured"} key  = {index}>
+										  	{messageInstance.message_type === "image"?
+										  	<div className = "display_message_upload_exist">
+											  	<img className = "up_exist" src = {messageInstance.attachment_ref}/>
+											  	<div>
+											  		<a target = "_blank" href = {messageInstance.attachment_ref}>{messageInstance.attachment_name}</a>
+											  	</div>
+										  	</div>:
+										  	<div className = "display_message_upload_icon">
+											  	<img className = "dl_icon" src = {downloadedAttach}/>
+											  	<div>
+											  		<a target = "_blank" href = {messageInstance.attachment_ref}>{messageInstance.attachment_name}</a>
+											  	</div>
+										  	</div>
+										  	}
+
+										  	<p>{messageInstance.message_body}</p>
+										  	<span className="time-right">{messageInstance.client_name}</span>
+										  	<span className="time-right">{messageInstance.created_at}</span>
+										</div>:
+										<div className="container lighter" id = {messageInstance.client_name === this.props.sender?"coloured":"uncoloured"} key  = {index}>
+										  	<p>{messageInstance.message_body}</p>
+										  	<span className="time-right">{messageInstance.client_name}</span>
+										  	<span className="time-right">{messageInstance.created_at}</span>
+										</div>
+										}
 									</div>
+
 			                        )}
 								</div>
 							}

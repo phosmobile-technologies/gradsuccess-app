@@ -48,8 +48,8 @@ export default class uploadMessageFile extends React.Component {
 	        >
 	        {(sendMessage, { data,loading, error}) => (
 	        <div className = "loader-wrapper">
-	          <div id="submittedSuccess" className = "message_sent_notification">File sent!</div>
-	          <div id="submittedInprogress" className = "sending_message_notification2">Uploading...</div>
+	          
+	          
 	          <form
 	          	style = {{
 	          		marginTop:'0px',
@@ -66,9 +66,9 @@ export default class uploadMessageFile extends React.Component {
 					expert_id:this.props.expert_id,
 					expert_name:"Expert",
 					message_body:this.state.typedText,
-					attachment_ref:this.props.fileRef,
+					attachment_ref:this.props.fileUrl,
 					attachment_name:this.props.fileName,
-					message_type:this.props.fileType
+					message_type:this.props.fileType || "file"
 	            },
 	            refetchQueries:[
                     {
@@ -92,8 +92,9 @@ export default class uploadMessageFile extends React.Component {
 				</button>
 	            
 	          </form>
-	          {loading && <div className = "sending_message_notification">Sending...</div>}
+	          {loading && <div></div>}
 	          {error && <div style = {{top: '0px',left: '40%'}}className="FailedTagForm"> Failed! Something is not right...</div>}
+	          
 	        </div>
 	        )}
         </Mutation>

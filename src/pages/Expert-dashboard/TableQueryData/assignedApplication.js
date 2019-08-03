@@ -300,7 +300,7 @@ render() {
             }}
         </Query>
 
-        {this.state.itemCount !==0? <div className = "no_item">assigned application is empty</div>:""}
+        {this.state.itemCount ===0 ? <div className = "no_item">assigned application is empty</div>:""}
 
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}

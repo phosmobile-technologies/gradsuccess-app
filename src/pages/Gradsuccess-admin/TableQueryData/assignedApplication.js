@@ -317,7 +317,7 @@ render() {
               );
             }}
         </Query>
-        {this.state.itemCount !==0? <div className = "no_item">No application is assigned</div>:""}
+        {this.state.itemCount ===0? <div className = "no_item">No application is assigned</div>:""}
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}
            contentLabel="Minimal Modal Example"

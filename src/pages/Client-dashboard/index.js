@@ -41,11 +41,12 @@ class IndexPage extends Component {
             changeCV:false,
             accountInfo:true,
             showModal:false,
-            currentMenu:"accountInfo"
+            currentMenu:"accountInfo",
+            toggle:true
 
         }
         this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
-        this.logoutClient = this.logoutClient.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
          this.handleCloseModal = this.handleCloseModal.bind(this)
     }
     componentDidMount(){
@@ -73,12 +74,16 @@ class IndexPage extends Component {
 
        this.setState({
             [Component]:true,
-            currentMenu:Component
+            currentMenu:Component,
+            toggle:true
        })
     }
 
-    logoutClient(){
-
+    toggleMenu(){
+        this.setState({
+            toggle:!this.state.toggle
+        })
+    
     }
 
     render() {
@@ -106,7 +111,7 @@ class IndexPage extends Component {
                             <div className = "main-content">
                                 <div className = "client_main_area">
                                     <div className = "fixedHeader">
-                                        <div className = "client_main_area_menu">
+                                        <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
                                             <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
                                             <button 
                                             className = {this.state.currentMenu === "accountInfo"? "currentMenu":""} 
@@ -120,10 +125,15 @@ class IndexPage extends Component {
                                             </button>
                                             <LogoutForm />
                                         </div>
+                                        <div class = "hamburger-menu" onClick = {this.toggleMenu}>
+                                          <div class = "stroke-1"></div>
+                                          <div class = "stroke-2"></div>
+                                          <div class = "stroke-3"></div>
+                                    </div>
                                     </div>
 
                                     <div>
-                                        <MainLayout  userID = {data.me}/>
+                                        <MainLayout  currentComponent = {this.state.currentMenu} toggleMenu = {this.toggleMenu}/>
                                         <div className="client_main_area_content_area">
                                             {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
                                             {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.form_id} sender = {data.me.first_name +" "+ data.me.last_name}/>}

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'gatsby'
 
 
-
+import discouted from "../../../images/logo.png"
 import displayPicture from "../../../images/dan.jpeg"
 
 //Men icon
@@ -70,31 +70,23 @@ export default class mainLayout extends Component {
 
   render() {
     return (
-      <div>
+      <div className = "d-header-container">
       <div className = "d-header">
          <div className = "d-header-inner">
-            
-            <div className = "hamburger-menu">
-              <div className = "stroke-1"></div>
-              <div className = "stroke-2"></div>
-              <div className = "stroke-3"></div>
-            </div>
             <div className = "d-menu-container">
-              <ul>
-                <li> <Link to="../">Home</Link></li>
-                <li><Link to="Client/history">History</Link></li>
-                <li><Link to="Client/message">Messages</Link></li>
-                <li><Link to="Client/profile">Profile</Link></li>
-                
-              </ul>
+             <h3 className = "form-header-main" >{this.props.currentComponent}</h3>
             </div>
 
             <div className = "d-notifications-area-container" >
-                <div></div>
-                <div><img  onClick={this.handleDropDownMenu.bind(this,"Notifications")} src={notificationsIcon} alt="Logo" /></div>
-                <div><img onClick={this.handleDropDownMenu.bind(this,"Messages")} src={messageIcon} alt="Logo" /></div>
-                <div><img  onClick={this.handleDropDownMenu.bind(this,"Support")} src={helpIcon} alt="Logo" /></div>
-                <div><img  onClick={this.handleDropDownMenu.bind(this,"Settings")} src={settingIcon} alt="Logo" /></div>
+                <div className = "hamburger-menu" onClick = {this.props.toggleMenu}>
+                  <div className = "stroke-1"></div>
+                  <div className = "stroke-2"></div>
+                  <div className = "stroke-3"></div>
+                </div>
+                <img  onClick={this.handleDropDownMenu.bind(this,"Notifications")} src={notificationsIcon} alt="Logo" />
+                <img onClick={this.handleDropDownMenu.bind(this,"Messages")} src={messageIcon} alt="Logo" />
+                <img  onClick={this.handleDropDownMenu.bind(this,"Support")} src={helpIcon} alt="Logo" />
+                <img  onClick={this.handleDropDownMenu.bind(this,"Settings")} src={settingIcon} alt="Logo" />
             </div>
          </div>
 

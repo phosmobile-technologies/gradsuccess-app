@@ -88,24 +88,27 @@ upadateItemCount(plus){
     })
 }
 
-assignSelf(form_id){
-   //  let url = "http://127.0.0.1:8000/api/sendEmail"
-   //  let data = {
-   //      expert_id: this.props.expert_id,
-   //      form_id:this.props.form_id
-   //  }
-
-   // fetch(url, {
-   //    method: 'post', // or 'PUT'
-   //    body: JSON.stringify(data), // data can be `string` or {object}!
-   //    headers:{
-   //      'Content-Type': 'application/json'
-   //    }
-   //  }).then(res => res.json())
-   //  .then(response => console.log('Success:', JSON.stringify(response)))
-   //  .catch(error => console.error('Error:', error));
-
-   alert("Request sent.....Admin will Approve");
+assignSelf(form_id,application){
+    let url = "http://127.0.0.1:8000/api/sendEmail"
+    let data = {
+        expert_id: this.props.expert_id,
+        form_id:form_id,
+        formType: application
+    }
+      fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      method: "post",
+      body: JSON.stringify(data)
+    }).then(function(response){
+        return response.text()
+    }).then(function(text){
+        console.log(text);
+    }).catch(function(error){
+        console.log(error);
+    })
 }
 
 
@@ -144,9 +147,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
-                                                    
-                                                    
+                                                    <button onClick = {() => this.assignSelf(Item.form_id,Item.package)} type = "submit" >Assign Self</button> 
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +190,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                   <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
+                                                   <button onClick = {() => this.assignSelf(Item.form_id,Item.package)} type = "submit" >Assign Self</button>   
                                                     
                                                 </div>
                                             </div>
@@ -233,7 +234,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>     
+                                                    <button onClick = {() => this.assignSelf(Item.form_id,Item.package)} type = "submit" >Assign Self</button>     
                                                  
                                                     
                                                 </div>
@@ -278,7 +279,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                   <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
+                                                   <button onClick = {() => this.assignSelf(Item.form_id,Item.package)} type = "submit" >Assign Self</button>   
                                                 </div>
                                             </div>
                                         </div>
@@ -321,7 +322,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package,Item.form_id)}>view</button>
-                                                    <button onClick = {() => this.assignSelf(Item.form_id)} type = "submit" >Assign Self</button>   
+                                                    <button onClick = {() => this.assignSelf(Item.form_id,Item.package)} type = "submit" >Assign Self</button>   
                                                     
                                                 </div>
                                             </div>

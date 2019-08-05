@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import{ jsx, css } from "@emotion/core"
 import './toggle.css'
 import Image from "./logoImage"
-import Cart from "./cart"
+import cartImage from "../../images/cart.png"
 import Modal from "react-modal"
 import LoginForm from "./Forms/loginForm"
 
@@ -136,7 +136,7 @@ class Header extends React.Component {
         }}
         id = {this.state.toggle ? "toggle" : "null"}
       >
-        <button className = "loginBtn" onClick = {this.handleOpenModal}>login</button>
+        
         <Link to="/Admissions" activeStyle={{color: 'white'}} className="pad" id="one" 
         css={{
           [mq[2]]: {
@@ -148,38 +148,21 @@ class Header extends React.Component {
         <Link to="about-us" activeStyle={{color: 'white'}} className="pad">About Us</Link>
         <Link to="blog" activeStyle={{color: 'white'}} className="pad">Blog</Link>
         <Link to="Contact" activeStyle={{color: 'white'}} className="pad">Contact</Link>
-
-        <Link to="Cart" activeStyle={{color: 'white'}} className="pad">
-        <div style={cart}>
-          <span  id = "counter" style={cart_indicator}>{this.state.cartCounter}</span>
-            <Cart />
-        </div>
-        </Link>
-          
       </ul>
+
+        <div className = "cart_wrapper">
+          <Link to="Cart" activeStyle={{color: 'white'}} className="pad">
+          <div className = "cart">
+            <div>
+              <span  id = "counter" className="cart_indicator">{this.state.cartCounter}</span>
+              <img src = {cartImage}/>
+              </div>
+          </div>
+          </Link>
+          <button className = "loginBtn" onClick = {this.handleOpenModal}>login</button>
+        </div>
   </header>
 )
 }}
-
-
-const cart = {
-  width:"30px",
-  position:'absolute',
-  right: '7%'
-};
-
-const cart_indicator = {
-  width:'100px',
-  color:'yellow',
-  fontSize:"12px",  
-  position:'absolute',
-  top:'-25px',
-  left:'-20px',
-  padding:'10px',
-  color:'#FF8C00',
-  fontWeight:'2000px',
-  fontFamily:'arial',
-  textTransform: 'capitalize'
-}
 
 export default Header

@@ -57,7 +57,8 @@ openApplicationDetails(formType,formID){
         formID:formID,
         [formType]:true
     })
-    console.log(formType);
+
+   this.props.closeMenu();
 }
 handleCloseModal(){
     this.setState({

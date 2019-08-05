@@ -1,9 +1,12 @@
 body{
   font-family: "Poppins", sans-serif;
+  width: 100%;
 }
 .d-header{
- background-color: #00a99d;
- padding: 0px;
+  background-color: #00a99d;
+  padding: 10px;
+  margin-bottom: 30px;
+  border-bottom: 4px solid #47dcbc;
 }
 .d-header-inner{
   padding: 0px;
@@ -60,22 +63,16 @@ body{
 }
 
 .d-notifications-area-container{
-  display:grid;
-  grid-template-columns: 6fr 2fr 2fr 2fr 2fr 3fr;
-  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.d-notifications-area-container div{
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  padding-top: 15px;
-}
 
 .d-notifications-area-container img{
   width: 20px;
   cursor: pointer;
+  margin-bottom: 0px;
 }
 
 .d-notifications-area-container img:hover, .d-menu-container ul li:hover{
@@ -458,9 +455,22 @@ body{
   margin-top: 4px;
   font-weight: 200
 }
-
 .hamburger-menu{
-  display: none;
+  width: 35px;
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    display: none;
+    cursor: pointer;
+
+}
+    
+.stroke-1, .stroke-2, .stroke-3{
+  height: 17%;
+    background-color: white;
+    margin-top: 4px;
+    border-radius: 2px;
 }
 .statusCard{
   background-color: brown;
@@ -536,11 +546,14 @@ body{
   }
   .form-header-main{
     font-family: "Poppins", sans-serif;
-    border-bottom: 1px solid #ccc;
-    width: 100%;
     text-align: center;
-    padding: 10px !important;
-    text-align: center;
+    text-align: left;
+    color: white;
+    font-weight: initial;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-left: 50px;
   }
   .currentMenu{
     background-color: rgb(0, 169, 157) !important;
@@ -729,107 +742,6 @@ body{
   display: none;
 }
 
-@media only screen and (max-width: 500px) {
-    .d-menu-container-mobile{
-      display: block;
-      width: 50%;
-      height: 100vh;
-      position: fixed;
-      top: 57px;
-      left: 0px;
-      z-index: 1000;
-      background-color: #00a99d;
-      color: white;
-      display: none;
-    }
-
-    .d-menu-container-mobile ul li{
-      list-style: none;
-      padding: 10px 10px;
-
-    }
-    .d-menu-container-mobile ul li a{
-      color: white;
-      font-size: 14px;
-    }
-
-    .logo-image{
-      display: none;
-    }
-
-    .d-menu-container{
-      display: none;
-    }
-
-    .hamburger-menu{
-      width: 27px;
-      height: 27px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      margin-left: 20px;
-
-    }
-    
-    .stroke-1, .stroke-2, .stroke-3{
-      height:  17%;
-      background-color: white;
-      margin-top: 6px;
-      border-radius: 10px;
-    }
-    .d-notifications-area-container {
-      display: flex;
-      width: 400px;
-    }
-
-    .d-header-inner {
-      display: flex;
-      justify-content: space-between;
-    }
-  .drop-down-main{
-    width: 100%;
-    top: 65px;
-    right: 0px;
-    z-index: 1000;
-    box-shadow: none;
-  }
-
- .client_main_area{
-    grid-template-columns: 1fr;
-  }
-
-  .main-content {
-    width: 98%;
-  }
-
-  .client_main_area_menu{
-    display: none
-  }
-
-  .client_main_area_menu_icon{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #19a99d;
-  }
-
-  .client_main_area_menu_icon img{
-    width: 40px;
-    padding: 10px;
-    cursor: pointer;
-  }
-
-  .client_main_area_menu_icon img:hover{
-    opacity: 0.3;
-  }
-  
-  .client_main_area_menu_icon{
-    display: flex;
-  }
-
-
-
-}
 
 .unauthorized{
   width: 50%;
@@ -1168,3 +1080,192 @@ body{
   background-color: white;
   
 }
+
+.fixedHeader{
+  width: 253px;
+}
+.loginBtn {
+    color: white;
+    border: none;
+    padding: 0px 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background: transparent;
+    font-family: "Poppins", sans-serif;
+}
+.cart {
+    width: 70px;
+    display: flex;  
+    justify-content: center;
+}
+.cart:hover{
+  background-color: #47dcbc;
+  transition: 0.5s;
+}
+
+.loginBtn:hover {
+    transition: 0.5s;
+    color: white;
+    transition: 0.5s;
+}
+
+.cart_indicator{
+  width:100px;
+  color:yellow;
+  font-size:12px;
+  color:black;
+  font-weight: bold;
+  font-family:arial;
+  text-transform: capitalize
+}
+.cart_wrapper{
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  top: 44px;
+  right: 0px;
+  background-color: #00a99d;
+  }
+
+  .cart_wrapper img{
+    width: 25px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+  }
+  
+.loginModal {
+    margin-top: 25vh !important;
+}
+
+@media only screen and (max-width: 500px) {
+    .d-menu-container-mobile{
+      display: block;
+      width: 50%;
+      height: 100vh;
+      position: fixed;
+      top: 57px;
+      left: 0px;
+      z-index: 1000;
+      background-color: #00a99d;
+      color: white;
+      display: none;
+    }
+    .form_preview_inner{
+      width: 90%;
+    }
+    .cart_wrapper{
+      flex-direction: column;
+      top: 10px;
+    }
+
+    .d-menu-container-mobile ul li{
+      list-style: none;
+      padding: 10px 10px;
+
+    }
+    .d-menu-container-mobile ul li a{
+      color: white;
+      font-size: 14px;
+    }
+
+    .logo-image{
+      display: none;
+    }
+
+    .d-menu-container{
+      display: none;
+    }
+
+    .hamburger-menu{
+      display: block;
+    }
+    .d-header{
+      width:100%;
+    }
+  
+    .d-notifications-area-container {
+      display: flex;
+      width: 100%;
+    }
+
+    .d-header-inner {
+      display: flex;
+      justify-content: space-between;
+    }
+  .drop-down-main{
+    width: 100%;
+    top: 65px;
+    right: 0px;
+    z-index: 1000;
+    box-shadow: none;
+  }
+
+ .client_main_area{
+    grid-template-columns: 1fr;
+
+  }
+  .client_main_area_menu{
+    position: absolute;
+    top: 59px;
+    left: 0px;
+    z-index: 1000;
+  }
+
+  .client_main_area_menu_icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #19a99d;
+  }
+
+  .client_main_area_menu_icon img{
+    width: 40px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .client_main_area_menu_icon img:hover{
+    opacity: 0.3;
+  }
+  
+  .client_main_area_menu_icon{
+    display: flex;
+  }
+  .client_main_area_content_area{
+    padding-left: 0px;
+  }
+  .client_expert_listing_main{
+    margin-right: 0px
+  }
+  .detail_preview_modal_container{
+    width: 100%;
+  }
+  .form_preview_fields{
+    padding: 10px;
+    font-size: 14px;
+  }
+  .download_file{
+    margin-left: 10px;
+  }
+  .sendMessage{
+    display: none;
+  }
+
+  .dropdown-content button{
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  .dropdown-content{
+    right: -100px
+  }
+
+#toggle_menu{
+  display: none;
+}
+.loginModal {
+    margin-top: 10vh !important;
+}
+
+}
+
+

@@ -43,13 +43,15 @@ class IndexPage extends Component {
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
             loggedIn:"",
-            client_id:null
+            client_id:null,
+            toggle:true
 
 
             
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
          this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
+         this.toggleMenu = this.toggleMenu.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -73,6 +75,7 @@ class IndexPage extends Component {
             client_id:client_id,
             currentComponent:"Conversation with " + client_name,
             LeaveAMessageComponent:true,
+            toggle:true
         })
     }
 
@@ -92,10 +95,17 @@ class IndexPage extends Component {
         this.setState({
             [Component]:true,
             currentComponent:currentComponent,
-            currentMenu:Component
+            currentMenu:Component,
+            toggle:true
         })
     }
 
+    toggleMenu(){
+        this.setState({
+            toggle:!this.state.toggle
+        })
+    
+    }
 
     render() {
           if (this.state.loggedIn != "") {
@@ -120,7 +130,7 @@ class IndexPage extends Component {
                     <div className = "main-content">
                             <div className = "client_main_area">
                                 <div className = "fixedHeader">
-                                    <div className = "client_main_area_menu">
+                                    <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
                                         <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
                                         <button 
                                             className = {this.state.currentMenu === "NewApplications"? "currentMenu":""} 
@@ -151,12 +161,11 @@ class IndexPage extends Component {
                                         </button>
                                         <LogoutForm />
 
-                                          <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>
+                                          <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} closeMenu = {this.toggleMenu}/>
                                     </div>
                                 </div>
                                 <div>
-                                    <MainLayout />
-                                    <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
+                                    <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
                                     <div className="client_main_area_content_area">
                                         {this.state.NewApplications && <NewApplications  expert_id = {data.me.id}/>}
                                         {this.state.AssignedApplication && <AssignedApplication expert_id = {data.me.id}/>}

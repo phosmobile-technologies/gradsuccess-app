@@ -309,7 +309,7 @@ export default class leaveAMessageForm extends React.Component {
 
 						<button type = "submit" disabled = {this.state.typedText===""?true:false}>
 							<img  src={sendIcon} alt="Logo" /> 
-							<span>Send Message</span>
+							<span className = "sendMessage">Send Message</span>
 						</button>
                     
                   </form>

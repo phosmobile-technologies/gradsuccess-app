@@ -444,6 +444,24 @@ export const SEND_ATTACHMENT = gql`
 `;
 
 
+export const ASSIGN_SELF_REQUEST = gql`
+    mutation AssignRequest(
+	$expert_id:String,
+	$form_id:String
+	){
+		assignRequest(
+			expert_id:$expert_id
+			form_id:$form_id
+			){
+			expert_id
+		    form_id
+		    created_at
+		}
+	}
+`;
+
+
+
 
 
 

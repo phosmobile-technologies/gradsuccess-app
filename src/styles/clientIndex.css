@@ -416,6 +416,8 @@ body{
 .client_expert_listing_btn_wrapper{
   display: flex;
   justify-content: flex-end;
+  align-items: baseline;
+
 }
 
 .client_expert_listing_btn_wrapper button{

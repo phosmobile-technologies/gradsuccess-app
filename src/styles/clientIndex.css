@@ -2,6 +2,7 @@ body{
   font-family: "Poppins", sans-serif;
   width: 100%;
 }
+
 .d-header{
   background-color: #00a99d;
   padding: 10px;
@@ -432,7 +433,7 @@ body{
 .client_expert_listing_btn_wrapper button:hover{
   border-bottom: 1px solid darkgreen;
   opacity: 0.7;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .client_expert_listing_btn_wrapper span{
@@ -1270,4 +1271,50 @@ body{
 
 }
 
+
+.confirm_form{
+  background-color: white;
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.confirm_form img{
+    width: 100px;
+    margin: 0px;
+}
+
+
+.confirm_form h2{
+  text-transform: uppercase;
+  font-weight: 500;
+  color: darkred;
+  margin-bottom: 10px
+}
+.confirm_form p{
+    font-size: 12px;
+    line-height: 14px;
+    color: green;
+    padding: 20px;
+    border-bottom:1px solid #ccc;
+}
+
+.confirm_form button{
+    width: 100%;
+    background-color: rgb(5, 110, 101);
+    color: white;
+    margin-top: 20px;
+    padding: 5px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+}
 

@@ -1,6 +1,7 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../../images/loader.gif"
+import confirm from "../../../images/email.png"
 import {GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS} from "../../graphql/queries"
 import {GET_ALL_COVER_LETTER_REDRAFT_FORMS} from "../../graphql/queries"
 import {GET_ALL_COVER_LETTER_REVIEW_FORMS} from "../../graphql/queries"
@@ -29,6 +30,7 @@ import {UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../../graphql/mutati
 import {UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT} from '../../graphql/mutations';
 import {UPDATE_COVER_LETTER_REVIEW_FORM} from '../../graphql/mutations';
 import {UPDATE_COVER_LETTER_REDRAFT} from '../../graphql/mutations';
+import {ASSIGN_SELF_REQUEST} from '../../graphql/mutations';
 
 
 
@@ -61,13 +63,20 @@ class AllApplications extends Component {
             assignExpertToApplicationGraduateEssayRedraft:false,
             assignExpertToApplicationGraduateStatementReview:false,
             id:"",
-            itemCount:0
+            itemCount:0,
+            applicationID:"",
+            CoverLetterReviewFormAR:false,
+            ResumeReviewFormAR:false,
+            GraduateSchoolStatementReviewFormAR:false,
+            CoverLetterRedraftAR:false,
+            GraduateSchoolEssayRedraftFormAR:false
 
         }
         this.OpenApplicationDetails = this.OpenApplicationDetails.bind(this)
         this.handleCloseModal = this.handleCloseModal.bind(this)
         this.OpenAssignExpertModal = this.OpenAssignExpertModal.bind(this)
         this.upadateItemCount = this.upadateItemCount.bind(this)
+        this.assignSelf = this.assignSelf.bind(this)
 }
 
 OpenApplicationDetails(formType,formID){
@@ -93,6 +102,11 @@ handleCloseModal(){
         assignExpertToApplicationCoverLetterRedraft:false,
         assignExpertToApplicationGraduateEssayRedraft:false,
         assignExpertToApplicationGraduateStatementReview:false,
+        CoverLetterReviewFormAR:false,
+        ResumeReviewFormAR:false,
+        GraduateSchoolStatementReviewFormAR:false,
+        CoverLetterRedraftAR:false,
+        GraduateSchoolEssayRedraftFormAR:false
 
     })   
 }
@@ -133,6 +147,59 @@ upadateItemCount(plus){
         itemCount:this.state.itemCount+plus
     })
 }
+
+assignSelf(form_id,application,id){
+    let url = "http://127.0.0.1:8000/api/sendEmail"
+    let data = {
+        expert_id: this.props.expert_id,
+        form_id:form_id,
+        formType: application
+    }
+      fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      method: "post",
+      body: JSON.stringify(data)
+    }).then(function(response){
+        return response.text()
+    }).then((text)=>{
+
+        if(application === "coverLetterReviewForm"){
+            this.setState({
+                CoverLetterReviewFormAR:true,
+                applicationID:id,
+            })
+        }else if(application === "resumeReviewForm"){
+             this.setState({
+                ResumeReviewFormAR:true,
+                applicationID:id,
+            })
+        }else if(application === "graduateSchoolStatementReviewForm"){
+             this.setState({
+                GraduateSchoolStatementReviewFormAR:true,
+                applicationID:id,
+            })
+        }else if(application === "coverLetterRedraft") {
+                 this.setState({
+                CoverLetterRedraftAR:true,
+                applicationID:id,
+            })
+        }else{
+             this.setState({
+                GraduateSchoolEssayRedraftFormAR:true,
+                applicationID:id,
+            })
+        }
+
+    }).catch(function(error){
+        console.log(error);
+    })
+    
+
+}
+
 
 
 render() {
@@ -175,40 +242,37 @@ render() {
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
                                                     {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
 
-                                                    <Mutation 
-                                                    mutation={UPDATE_COVER_LETTER_REDRAFT}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_ALL_COVER_LETTER_REDRAFT_FORMS,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >    
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader">Assigning...</div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                    {Item.status === "Pending Approval"?<button className = "pendingBtn">Pending Approval</button>:<Mutation 
+                                                        mutation={ASSIGN_SELF_REQUEST}
+                                                        onError={this.error} 
+                                                        onCompleted={data=>{
+                                                               this.assignSelf(Item.form_id,Item.package,Item.id)
+                                                        }}>        
+                                                    {(asignSelfRequest, { data,loading, error}) => (        
+                                                        <div className = "loader-wrapper">
+                                                            <div id="submittedSucces" className="SuccessTagForm">
+                                                                Success! Redirecting...
+                                                            </div>
+                                                            <form 
+                                                            onSubmit={e => {
+                                                                e.preventDefault();
+                                                                asignSelfRequest({ 
+                                                                  variables: {
+                                                                    expert_id: this.props.expert_id,
+                                                                    form_id:Item.form_id,
+                                                                    package:Item.package
+                                                                  }
+                                                                 });
+                                                             }}>
+                                                            <button  type = "submit" >Assign Self</button> 
+                                                                         
+                                                            </form>
+                                                            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                                             {error && <div className="FailedTagForm"> Connection error, please check network and try again.</div>}
+                                                    </div>
+                                                     )}
+
+                                                    </Mutation>}
                                                     
                                                     
                                                 </div>
@@ -258,39 +322,37 @@ render() {
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
                                                     {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
-                                                   <Mutation 
-                                                    mutation={UPDATE_COVER_LETTER_REVIEW_FORM}
-                                                    onError={this.error}>        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_ALL_COVER_LETTER_REVIEW_FORMS,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                   {Item.status === "Pending Approval"?<button className = "pendingBtn">Pending Approval</button>:<Mutation 
+                                                        mutation={ASSIGN_SELF_REQUEST}
+                                                        onError={this.error} 
+                                                        onCompleted={data=>{
+                                                               this.assignSelf(Item.form_id,Item.package,Item.id)
+                                                        }}>        
+                                                    {(asignSelfRequest, { data,loading, error}) => (        
+                                                        <div className = "loader-wrapper">
+                                                            <div id="submittedSucces" className="SuccessTagForm">
+                                                                Success! Redirecting...
+                                                            </div>
+                                                            <form 
+                                                            onSubmit={e => {
+                                                                e.preventDefault();
+                                                                asignSelfRequest({ 
+                                                                  variables: {
+                                                                    expert_id: this.props.expert_id,
+                                                                    form_id:Item.form_id,
+                                                                    package:Item.package
+                                                                  }
+                                                                 });
+                                                             }}>
+                                                            <button  type = "submit" >Assign Self</button> 
+                                                                         
+                                                            </form>
+                                                            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                                             {error && <div className="FailedTagForm"> Connection error, please check network and try again.</div>}
+                                                    </div>
+                                                     )}
+
+                                                    </Mutation>}
                                                     
                                                 </div>
                                             </div>
@@ -339,39 +401,37 @@ render() {
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
                                                     {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
-                                                    <Mutation 
-                                                    mutation={UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                    {Item.status === "Pending Approval"?<button className = "pendingBtn">Pending Approval</button>:<Mutation 
+                                                        mutation={ASSIGN_SELF_REQUEST}
+                                                        onError={this.error} 
+                                                        onCompleted={data=>{
+                                                               this.assignSelf(Item.form_id,Item.package,Item.id)
+                                                        }}>        
+                                                    {(asignSelfRequest, { data,loading, error}) => (        
+                                                        <div className = "loader-wrapper">
+                                                            <div id="submittedSucces" className="SuccessTagForm">
+                                                                Success! Redirecting...
+                                                            </div>
+                                                            <form 
+                                                            onSubmit={e => {
+                                                                e.preventDefault();
+                                                                asignSelfRequest({ 
+                                                                  variables: {
+                                                                    expert_id: this.props.expert_id,
+                                                                    form_id:Item.form_id,
+                                                                    package:Item.package
+                                                                  }
+                                                                 });
+                                                             }}>
+                                                            <button  type = "submit" >Assign Self</button> 
+                                                                         
+                                                            </form>
+                                                            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                                             {error && <div className="FailedTagForm"> Connection error, please check network and try again.</div>}
+                                                    </div>
+                                                     )}
+
+                                                    </Mutation>}
                                                     
                                                 </div>
                                             </div>
@@ -420,40 +480,37 @@ render() {
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
                                                     {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
-                                                    <Mutation 
-                                                    mutation={UPDATE_RESUME_REVIEW_FORM}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_ALL_RESUMME_REVIEW_FORMS,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
-                                                </Mutation>
+                                                    {Item.status === "Pending Approval"?<button className = "pendingBtn">Pending Approval</button>:<Mutation 
+                                                        mutation={ASSIGN_SELF_REQUEST}
+                                                        onError={this.error} 
+                                                        onCompleted={data=>{
+                                                               this.assignSelf(Item.form_id,Item.package,Item.id)
+                                                        }}>        
+                                                    {(asignSelfRequest, { data,loading, error}) => (        
+                                                        <div className = "loader-wrapper">
+                                                            <div id="submittedSucces" className="SuccessTagForm">
+                                                                Success! Redirecting...
+                                                            </div>
+                                                            <form 
+                                                            onSubmit={e => {
+                                                                e.preventDefault();
+                                                                asignSelfRequest({ 
+                                                                  variables: {
+                                                                    expert_id: this.props.expert_id,
+                                                                    form_id:Item.form_id,
+                                                                    package:Item.package
+                                                                  }
+                                                                 });
+                                                             }}>
+                                                            <button  type = "submit" >Assign Self</button> 
+                                                                         
+                                                            </form>
+                                                            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                                             {error && <div className="FailedTagForm"> Connection error, please check network and try again.</div>}
+                                                    </div>
+                                                     )}
+
+                                                    </Mutation>}
                                                 </div>
                                             </div>
                                         </div>
@@ -502,41 +559,37 @@ render() {
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package,Item.form_id)}>view</button>
                                                     {this.props.account_type === "Admin" ? <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>:""}
                                                     
-                                                    <Mutation 
-                                                    mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
-                                                    onError={this.error} 
-                                                    >        
-                                                        {(assignSelf, { data,loading, error}) => (        
-                                                            <div className = "loader-wrapper">
-                                                                <div id="submittedSucces" className="SuccessTagForm">
-                                                                    Applicaion Assigned Successfully...
-                                                                </div>
-                                                                <form 
-                                                                onSubmit={e => {
-                                                                    e.preventDefault();
-                                                                    assignSelf({ 
-                                                                         variables: {
-                                                                             id:Item.id,
-                                                                             has_expert:this.props.expert_id,
-                                                                             status:"Assigned"
-                                                                         },
-                                                                         refetchQueries:[
-                                                                            {
-                                                                                query:GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS,
-                                                                               
-                                                                            }]
-                                                                        });
-                                                                 }}
-                                                                >
-                                                                    <br />
-                                                                    <button type = "submit" >Assign Self</button>     
-                                                                </form>
-                                                                {loading && <div className = "loader"><div className = "loader">Assigning...</div></div>}
-                                                                 {error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
-                                                        </div>
-                                                         )}
+                                                    {Item.status === "Pending Approval"?<button className = "pendingBtn">Pending Approval</button>:<Mutation 
+                                                        mutation={ASSIGN_SELF_REQUEST}
+                                                        onError={this.error} 
+                                                        onCompleted={data=>{
+                                                               this.assignSelf(Item.form_id,Item.package,Item.id)
+                                                        }}>        
+                                                    {(asignSelfRequest, { data,loading, error}) => (        
+                                                        <div className = "loader-wrapper">
+                                                            <div id="submittedSucces" className="SuccessTagForm">
+                                                                Success! Redirecting...
+                                                            </div>
+                                                            <form 
+                                                            onSubmit={e => {
+                                                                e.preventDefault();
+                                                                asignSelfRequest({ 
+                                                                  variables: {
+                                                                    expert_id: this.props.expert_id,
+                                                                    form_id:Item.form_id,
+                                                                    package:Item.package
+                                                                  }
+                                                                 });
+                                                             }}>
+                                                            <button  type = "submit" >Assign Self</button> 
+                                                                         
+                                                            </form>
+                                                            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                                             {error && <div className="FailedTagForm"> Connection error, please check network and try again.</div>}
+                                                    </div>
+                                                     )}
 
-                                                </Mutation>
+                                                    </Mutation>}
                                                     
                                                 </div>
                                             </div>
@@ -689,6 +742,292 @@ render() {
             <div className = "detail_preview_modal_container">
                 <div className = "detail_preview_modal_container_inner">
                       <AssignExpertToApplicationGraduateStatementReview userID = {this.state.id} />
+                </div>
+            </div>
+            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+
+         <Modal 
+           isOpen={this.state.GraduateSchoolStatementReviewFormAR}
+           contentLabel="Minimal Modal Example"
+           style={defaultStyles}
+           ariaHideApp={false}
+        >
+            <div className = "detail_preview_modal_container">
+                <div className = "detail_preview_modal_container_inner">
+                      <Mutation 
+                            mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+                            onError={this.error} 
+                            onCompleted={data=>{
+                                   this.handleCloseModal()
+                            }}
+                            >        
+                        {(asignSelfRequest, { data,loading, error}) => (        
+                            <div className = "loader-wrapper">
+                                <div id="submittedSucces" className="SuccessTagForm-d">
+                                    Success! Redirecting...
+                                </div>
+                                <form 
+                                onSubmit={e => {
+                                    e.preventDefault();
+                                    asignSelfRequest({ 
+                                      variables: {
+                                        id: this.state.applicationID,
+                                        has_expert:this.props.expert_id,
+                                        status:"Assigned"
+
+                                      },
+                                      refetchQueries:[
+                                        {
+                                            query:GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS
+                                        }]
+                                     });
+                                 }}
+                                 className = "confirm_form">
+                                 <div className = "confim_assign"><img  src={confirm} alt="gradsuccess" /></div>
+                                 <h2>Confirm Request </h2>
+                                 <p>
+                                     Your request to assign self application will be sent to the admin,
+                                 your will get an email if your request is approved
+                                 </p>
+                                <button  type = "submit" >Confirm Request</button> 
+                                             
+                                </form>
+                                {loading && <div className = "loader-d"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                 {error && <div className="FailedTagForm-d"> Something went wrong, pease try again.</div>}
+                        </div>
+                         )}
+
+                        </Mutation>  
+                </div>
+            </div>
+            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+        <Modal 
+           isOpen={this.state.ResumeReviewFormAR}
+           contentLabel="Minimal Modal Example"
+           style={defaultStyles}
+           ariaHideApp={false}
+        >
+            <div className = "detail_preview_modal_container">
+                <div className = "detail_preview_modal_container_inner">
+                      <Mutation 
+                            mutation={UPDATE_RESUME_REVIEW_FORM}
+                            onError={this.error} 
+                            onCompleted={data=>{
+                                   this.handleCloseModal()
+                            }}
+                            >        
+                        {(asignSelfRequest, { data,loading, error}) => (        
+                            <div className = "loader-wrapper">
+                                <div id="submittedSucces" className="SuccessTagForm-d">
+                                    Success! Redirecting...
+                                </div>
+                                <form 
+                                onSubmit={e => {
+                                    e.preventDefault();
+                                    asignSelfRequest({ 
+                                      variables: {
+                                        id: this.state.applicationID,
+                                        has_expert:this.props.expert_id,
+                                        status:"Assigned"
+
+                                      },
+                                      refetchQueries:[
+                                        {
+                                            query:GET_ALL_RESUMME_REVIEW_FORMS
+                                        }]
+                                     });
+                                 }}
+                                 className = "confirm_form">
+                                 <div className = "confim_assign"><img  src={confirm} alt="gradsuccess" /></div>
+                                 <h2>Confirm Request </h2>
+                                 <p>
+                                     Your request to assign self application will be sent to the admin,
+                                 your will get an email if your request is approved
+                                 </p>
+                                <button  type = "submit" >Confirm Request</button> 
+                                             
+                                </form>
+                                {loading && <div className = "loader-d"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                 {error && <div className="FailedTagForm-d"> Something went wrong, pease try again.</div>}
+                        </div>
+                         )}
+
+                        </Mutation>  
+                </div>
+            </div>
+            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+
+        <Modal 
+           isOpen={this.state.GraduateSchoolEssayRedraftFormAR}
+           contentLabel="Minimal Modal Example"
+           style={defaultStyles}
+           ariaHideApp={false}
+        >
+            <div className = "detail_preview_modal_container">
+                <div className = "detail_preview_modal_container_inner">
+                      <Mutation 
+                            mutation={UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT}
+                            onError={this.error} 
+                            onCompleted={data=>{
+                                   this.handleCloseModal()
+                            }}
+                            >        
+                        {(asignSelfRequest, { data,loading, error}) => (        
+                            <div className = "loader-wrapper">
+                                <div id="submittedSucces" className="SuccessTagForm-d">
+                                    Success! Redirecting...
+                                </div>
+                                <form 
+                                onSubmit={e => {
+                                    e.preventDefault();
+                                    asignSelfRequest({ 
+                                      variables: {
+                                        id: this.state.applicationID,
+                                        has_expert:this.props.expert_id,
+                                        status:"Assigned"
+
+                                      },
+                                      refetchQueries:[
+                                        {
+                                            query:GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS
+                                        }]
+                                     });
+                                 }}
+                                 className = "confirm_form">
+                                 <div className = "confim_assign"><img  src={confirm} alt="gradsuccess" /></div>
+                                 <h2>Confirm Request </h2>
+                                 <p>
+                                     Your request to assign self application will be sent to the admin,
+                                 your will get an email if your request is approved
+                                 </p>
+                                <button  type = "submit" >Confirm Request</button> 
+                                             
+                                </form>
+                                {loading && <div className = "loader-d"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                 {error && <div className="FailedTagForm-d"> Something went wrong, pease try again.</div>}
+                        </div>
+                         )}
+
+                        </Mutation>  
+                </div>
+            </div>
+            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+
+
+        <Modal 
+           isOpen={this.state.CoverLetterReviewFormAR}
+           contentLabel="Minimal Modal Example"
+           style={defaultStyles}
+           ariaHideApp={false}
+        >
+            <div className = "detail_preview_modal_container">
+                <div className = "detail_preview_modal_container_inner">
+                      <Mutation 
+                            mutation={UPDATE_COVER_LETTER_REVIEW_FORM}
+                            onError={this.error} 
+                            onCompleted={data=>{
+                                   this.handleCloseModal()
+                            }}
+                            >        
+                        {(asignSelfRequest, { data,loading, error}) => (        
+                            <div className = "loader-wrapper">
+                                <div id="submittedSucces" className="SuccessTagForm-d">
+                                    Success! Redirecting...
+                                </div>
+                                <form 
+                                onSubmit={e => {
+                                    e.preventDefault();
+                                    asignSelfRequest({ 
+                                      variables: {
+                                        id: this.state.applicationID,
+                                        has_expert:this.props.expert_id,
+                                        status:"Assigned"
+
+                                      },
+                                      refetchQueries:[
+                                        {
+                                            query:GET_ALL_COVER_LETTER_REVIEW_FORMS
+                                        }]
+                                     });
+                                 }}
+                                 className = "confirm_form">
+                                 <div className = "confim_assign"><img  src={confirm} alt="gradsuccess" /></div>
+                                 <h2>Confirm Request </h2>
+                                 <p>
+                                     Your request to assign self application will be sent to the admin,
+                                     your will get an email if your request is approved
+                                 </p>
+                                <button  type = "submit" >Confirm Request</button> 
+                                             
+                                </form>
+                                {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                 {error && <div className="FailedTagForm-d"> Something went wrong, pease try again.</div>}
+                        </div>
+                         )}
+
+                        </Mutation>  
+                </div>
+            </div>
+            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+
+
+        <Modal 
+           isOpen={this.state.CoverLetterRedraftAR}
+           contentLabel="Minimal Modal Example"
+           style={defaultStyles}
+           ariaHideApp={false}
+        >
+            <div className = "detail_preview_modal_container">
+                <div className = "detail_preview_modal_container_inner">
+                      <Mutation 
+                            mutation={UPDATE_COVER_LETTER_REDRAFT}
+                            onError={this.error} 
+                            onCompleted={data=>{
+                                   this.handleCloseModal()
+                            }}
+                            >        
+                        {(asignSelfRequest, { data,loading, error}) => (        
+                            <div className = "loader-wrapper">
+                                <div id="submittedSucces" className="SuccessTagForm">
+                                    Success! Redirecting...
+                                </div>
+                                <form 
+                                onSubmit={e => {
+                                    e.preventDefault();
+                                    asignSelfRequest({ 
+                                      variables: {
+                                        id: this.state.applicationID,
+                                        has_expert:this.props.expert_id,
+                                        status:"Assigned"
+
+                                      },
+                                      refetchQueries:[
+                                        {
+                                            query:GET_ALL_COVER_LETTER_REDRAFT_FORMS
+                                        }]
+                                     });
+                                 }}
+                                 className = "confirm_form">
+                                 <div className = "confim_assign"><img  src={confirm} alt="gradsuccess" /></div>
+                                 <h2>Confirm Request </h2>
+                                 <p>
+                                     Your request to assign self application will be sent to the admin,
+                                     your will get an email if your request is approved
+                                 </p>
+                                <button  type = "submit" >Confirm Request</button> 
+                                             
+                                </form>
+                                {loading && <div className = "loader-d"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                                 {error && <div className="FailedTagForm-d"> Something went wrong, pease try again.</div>}
+                        </div>
+                         )}
+
+                        </Mutation>  
                 </div>
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>

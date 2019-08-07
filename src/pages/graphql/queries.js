@@ -539,3 +539,27 @@ export const GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM= gql`
 `;
 
 
+export const GET_ALL_REQUEST = gql`
+  query{
+    getAssignRequest{
+     expert_id
+  form_id
+  package
+  created_at
+    }
+  }
+`;
+
+export const GET_ASSIGN_REGUEST = gql`
+  query GetAssignRequest($form_id: String!) {
+    getAssignRequest(form_id:$form_id){
+      expert_id
+      form_id
+      package
+      created_at
+  }
+  }
+`;
+
+
+

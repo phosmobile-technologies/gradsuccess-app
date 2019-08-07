@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
+import ApproveDeclineApplicationGraduateReview from "../ApproveDeclineComponents/approveDeclineApplicationGraduateReview"
 
 
 
@@ -96,6 +97,7 @@ render() {
                     <div className="form_preview_inner">
                         <h3 className = "form-header" >Form Details </h3>
                         <ExpertInCharge id = {data.getGraduateSchoolStatementReviewForm.has_expert}/>
+                        {data.getGraduateSchoolStatementReviewForm.status === "Pending Approval"?<ApproveDeclineApplicationGraduateReview form_id = {data.getGraduateSchoolStatementReviewForm.form_id}/>:""}
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
                                 <small>Name:</small>
@@ -122,6 +124,8 @@ render() {
               );
             }}
         </Query>
+
+
       </div>
     )
 }

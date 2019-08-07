@@ -882,6 +882,64 @@ pre tt:after {
     animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
 }
 
+.SuccessTag-d {
+    font-family: "Poppins", sans-serif;
+    background-color: #19a99d;
+    width: 40%;
+    color: white;
+    text-align: left;
+    border-left: 2px solid #4a4a4a;
+    position: fixed;
+    top: 5%;
+    right: 0px;
+    color: white;
+    transition: 2s;
+    padding: 10px;
+    -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    display: none;
+}
+
+.SuccessTagForm-d{
+    background-color: lightgreen;
+    text-align: center;
+    padding: 7px;
+    border-radius: 30px;
+    width: 40%;
+    margin: auto;
+    color: white;
+    position: fixed;
+    top: 50px;
+    left: 40%;
+    z-index: 100000;
+    font-family: "Poppins", sans-serif;
+    -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    display: none;
+}
+
+.FailedTagForm-d {
+    background-color: red;
+    text-align: center;
+    padding: 7px;
+    border-radius: 30px;
+    width: 40%;
+    margin: auto;
+    color: black;
+    position: fixed;
+    top: 50px;
+    left: 40%;
+    z-index: 100000;
+    font-family: "Poppins", sans-serif;
+    -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+    animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+}
+
+
+
 @keyframes showSuccess {
     0% {
         opacity: 0;
@@ -1284,6 +1342,15 @@ pre tt:after {
 .loader-wrapper {
     position: relative;
 }
+.pendingBtn{
+  background-color: mediumspringgreen !important;
+  padding: 1px 20px !important;
+  cursor: inherit;
+}
+.pendingBtn:hover{
+  background-color: mediumspringgreen !important;
+  cursor: inherit;
+}
 
 .loader {
     width: 100%;
@@ -1297,7 +1364,18 @@ pre tt:after {
     text-align: center;
     font-family: "Poppins", sans-serif;
 }
-
+.loader-d {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2000000;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
 
 
 
@@ -1487,15 +1565,30 @@ progress {
 }
 
 .SuccessTagForm {
-
     width: 100%;
     top: 0px;
     left: 0%;
+    border-radius: 0px;
 }
 
 .FailedTagForm {
     width: 100%;
     top: 0px;
     left: 0%;
+    border-radius: 0px;
+}
+
+.SuccessTagForm-d {
+    width: 100%;
+    top: 0px;
+    left: 0%;
+    border-radius: 0px;
+}
+
+.FailedTagForm-d {
+    width: 100%;
+    top: 0px;
+    left: 0%;
+    border-radius: 0px;
 }
 }

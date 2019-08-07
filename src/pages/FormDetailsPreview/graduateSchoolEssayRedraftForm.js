@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import { GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM } from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
+import ApproveDeclineApplicationGraduateRedraft from "../ApproveDeclineComponents/approveDeclineApplicationGraduateRedraft"
 
 class Message extends Component {
     constructor(props) {
@@ -93,6 +94,7 @@ class Message extends Component {
                 <div className="form_preview_inner">
                     <h3 className = "form-header" >Form Details </h3>
                     <ExpertInCharge id = {data.getGraduateSchoolEssayRedraftForm.has_expert}/>
+                    {data.getGraduateSchoolEssayRedraftForm.status === "Pending Approval" && this.props.account_type === "Admin" ?<ApproveDeclineApplicationGraduateRedraft id = {data.getGraduateSchoolEssayRedraftForm.id} form_id = {data.getGraduateSchoolEssayRedraftForm.form_id}/>:""}
                     <div className="form_preview_col_1">
                         <div className="form_preview_fields">
                             <small>Name</small>

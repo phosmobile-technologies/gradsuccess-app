@@ -86,7 +86,6 @@ OpenApplicationDetails(formType,formID){
         [formType]:true
 
     })
-    console.log(formType);
 }
 
 handleCloseModal(){
@@ -149,7 +148,7 @@ upadateItemCount(plus){
 }
 
 assignSelf(form_id,application,id){
-    let url = "http://127.0.0.1:8000/api/sendEmail"
+    let url = "https://infinite-cove-53014.herokuapp.com/api/sendEmail"
     let data = {
         expert_id: this.props.expert_id,
         form_id:form_id,
@@ -611,7 +610,7 @@ render() {
         >
             <div className = "detail_preview_modal_container">
                 <div className = "detail_preview_modal_container_inner">
-                      <GraduateSchoolStatementReviewForm userID = {this.state.formID} />
+                      <GraduateSchoolStatementReviewForm userID = {this.state.formID} account_type = {this.props.account_type}/>
                 </div>
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
@@ -625,7 +624,7 @@ render() {
         >
             <div className = "detail_preview_modal_container">
                 <div className = "detail_preview_modal_container_inner">
-                      <CoverLetterRedraft userID = {this.state.formID} />
+                      <CoverLetterRedraft userID = {this.state.formID} account_type = {this.props.account_type}/>
                 </div>
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
@@ -639,7 +638,7 @@ render() {
         >
             <div className = "detail_preview_modal_container">
                 <div className = "detail_preview_modal_container_inner">
-                      <CoverLetterReviewForm userID = {this.state.formID} />
+                      <CoverLetterReviewForm userID = {this.state.formID} account_type = {this.props.account_type} />
                 </div>
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
@@ -653,7 +652,7 @@ render() {
         >
             <div className = "detail_preview_modal_container">
                 <div className = "detail_preview_modal_container_inner">
-                      <GraduateSchoolEssayRedraftForm userID = {this.state.formID} />
+                      <GraduateSchoolEssayRedraftForm userID = {this.state.formID} account_type = {this.props.account_type}/>
                 </div>
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
@@ -667,7 +666,7 @@ render() {
         >
             <div className = "detail_preview_modal_container">
                 <div className = "detail_preview_modal_container_inner">
-                      <ResumeReviewForm userID = {this.state.formID} />
+                      <ResumeReviewForm userID = {this.state.formID} account_type = {this.props.account_type}/>
                 </div>
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>

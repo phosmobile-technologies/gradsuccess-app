@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {COVER_LETTER_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
+import ApproveDeclineApplicationCoverLetterReview from "../ApproveDeclineComponents/approveDeclineApplicationCoverLetterReview"
 
 
 
@@ -101,7 +102,7 @@ render() {
                     <div className="form_preview_inner">
                         <h3 className = "form-header" >Form Details </h3>
                         <ExpertInCharge id = {data.getCoverLetterReview.has_expert}/>
-
+                        {data.getCoverLetterReview.status === "Pending Approval" && this.props.account_type === "Admin" ?<ApproveDeclineApplicationCoverLetterReview id ={data.getCoverLetterReview.id} form_id = {data.getCoverLetterReview.form_id}/>:""}
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
                                 <small>Name</small>

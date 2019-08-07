@@ -4,34 +4,36 @@ import loader from "../../images/loader.gif"
 import {GET_ASSIGN_REGUEST} from "../graphql/queries"
 import { Mutation } from 'react-apollo';
 
-import {UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../graphql/mutations';
+import {UPDATE_COVER_LETTER_REDRAFT} from '../graphql/mutations';
 import {GET_EXPERT} from '../graphql/queries';
+import {COVER_LETTER_REDRAFT} from '../graphql/queries';
 
 
 
-class approveDeclineApplicationGraduateReview extends Component {
+class approveDeclineApplicationCoverLetterRedraft extends Component {
     constructor(props) {
         super(props)
         this.state = {
            expert_id:"",
            form_id:"",
+           applicationID:"",
 
         }
         this.setRequestData = this.setRequestData.bind(this);
 }
   setRequestData(data){
-    let dataObj = data.getAssignRequest[0]
+     let dataObj = data.getAssignRequest[0]
     this.setState({
       expert_id:dataObj.expert_id,
       form_id:dataObj.form_id,
     })
   }
-  
+
 sendNotification(appStatus){
 
   if(appStatus === "Application Declined"){
 
-    let url = "https://infinite-cove-53014.herokuapp.comapi/sendDeclinedMail"
+    let url = "https://infinite-cove-53014.herokuapp.com/api/sendDeclinedMail"
     let data = {
         expert_id: this.state.expert_id
     }
@@ -79,11 +81,31 @@ sendNotification(appStatus){
 }
 
 
-
-
 render() {
     return(  
         <div>
+        <Query 
+            query={COVER_LETTER_REDRAFT}
+            variables={{ 
+                form_id:this.props.form_id
+            }}
+            onCompleted={(data)=>{
+              this.setState({
+                applicationID:data.getCoverLetterRedraft.id
+              })
+            }}
+            >
+                {({ loading, error, data }) => {
+                  if (loading) return (
+                    <div></div>
+                    )
+                  if (error) return <div>failed to load data</div>
+                  return (
+                    <div></div>
+                  );
+                }}
+          </Query>
+
         <Query 
         query={GET_ASSIGN_REGUEST}
         fetchPolicy = "no-cache"
@@ -128,7 +150,7 @@ render() {
 
                          <div className = "approve_decline_forms">
                         <Mutation 
-                            mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+                            mutation={UPDATE_COVER_LETTER_REDRAFT}
                             onError={this.error} 
                             onCompleted={data=>{
                                 this.sendNotification("Application Approved");
@@ -143,7 +165,7 @@ render() {
                                         e.preventDefault();
                                         approveRequest({ 
                                           variables: {
-                                            id: this.props.id,
+                                            id: this.state.applicationID,
                                             has_expert:this.state.expert_id,
                                             status:"Assigned"
 
@@ -159,7 +181,7 @@ render() {
                              )}
                               </Mutation>
                               <Mutation 
-                            mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+                            mutation={UPDATE_COVER_LETTER_REDRAFT}
                             onError={this.error} 
                             onCompleted={data=>{
                                 this.sendNotification("Application Declined");
@@ -204,4 +226,4 @@ render() {
     )
 }
 }
-export default approveDeclineApplicationGraduateReview
+export default approveDeclineApplicationCoverLetterRedraft

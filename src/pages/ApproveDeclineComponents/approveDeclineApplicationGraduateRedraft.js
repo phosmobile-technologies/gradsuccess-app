@@ -4,86 +4,108 @@ import loader from "../../images/loader.gif"
 import {GET_ASSIGN_REGUEST} from "../graphql/queries"
 import { Mutation } from 'react-apollo';
 
-import {UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../graphql/mutations';
+import {UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT} from '../graphql/mutations';
 import {GET_EXPERT} from '../graphql/queries';
+import {GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM} from '../graphql/queries';
 
 
 
-class approveDeclineApplicationGraduateReview extends Component {
+class approveDeclineApplicationGraduateRedraft extends Component {
     constructor(props) {
         super(props)
         this.state = {
            expert_id:"",
            form_id:"",
+           applicationID:"",
 
         }
         this.setRequestData = this.setRequestData.bind(this);
 }
   setRequestData(data){
-    let dataObj = data.getAssignRequest[0]
+     let dataObj = data.getAssignRequest[0]
     this.setState({
       expert_id:dataObj.expert_id,
       form_id:dataObj.form_id,
     })
   }
-  
-sendNotification(appStatus){
 
-  if(appStatus === "Application Declined"){
+  sendNotification(appStatus){
 
-    let url = "https://infinite-cove-53014.herokuapp.comapi/sendDeclinedMail"
-    let data = {
-        expert_id: this.state.expert_id
+    if(appStatus === "Application Declined"){
+
+      let url = "https://infinite-cove-53014.herokuapp.com/api/sendDeclinedMail"
+      let data = {
+          expert_id: this.state.expert_id
+      }
+        fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify(data)
+      }).then(function(response){
+          return response.text()
+      }).then((text)=>{
+        window.location.reload();
+      }).catch(function(error){
+         alert("Networks Error please try again, Later!");
+      })
+
+
+    }else if(appStatus === "Application Approved"){
+
+      let url = "https://infinite-cove-53014.herokuapp.com/api/sendApprovedMail"
+      let data = {
+          expert_id: this.state.expert_id,
+      }
+        fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify(data)
+      }).then(function(response){
+          return response.text()
+      }).then((text)=>{
+        window.location.reload();
+      }).catch(function(error){
+         alert("Networks Error please try again, Later!");
+      })
+
+    }else{
+      alert("Networks Error please try again, Later!");
     }
-      fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      method: "post",
-      body: JSON.stringify(data)
-    }).then(function(response){
-        return response.text()
-    }).then((text)=>{
-      window.location.reload();
-    }).catch(function(error){
-       alert("Networks Error please try again, Later!");
-    })
-
-
-  }else if(appStatus === "Application Approved"){
-
-    let url = "https://infinite-cove-53014.herokuapp.com/api/sendApprovedMail"
-    let data = {
-        expert_id: this.state.expert_id,
-    }
-      fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      method: "post",
-      body: JSON.stringify(data)
-    }).then(function(response){
-        return response.text()
-    }).then((text)=>{
-      window.location.reload();
-    }).catch(function(error){
-       alert("Networks Error please try again, Later!");
-    })
-
-  }else{
-    alert("Networks Error please try again, Later!");
-  }
 
 }
-
-
 
 
 render() {
     return(  
         <div>
+        <Query 
+            query={GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM}
+            variables={{ 
+                form_id:this.props.form_id
+            }}
+            onCompleted={(data)=>{
+              this.setState({
+                applicationID:data.getGraduateSchoolEssayRedraftForm.id
+              })
+            }}
+            >
+                {({ loading, error, data }) => {
+                  if (loading) return (
+                    <div></div>
+                    )
+                  if (error) return <div>failed to load data</div>
+                  return (
+                    <div></div>
+                  );
+                }}
+          </Query>
+
         <Query 
         query={GET_ASSIGN_REGUEST}
         fetchPolicy = "no-cache"
@@ -128,7 +150,7 @@ render() {
 
                          <div className = "approve_decline_forms">
                         <Mutation 
-                            mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+                            mutation={UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT}
                             onError={this.error} 
                             onCompleted={data=>{
                                 this.sendNotification("Application Approved");
@@ -143,7 +165,7 @@ render() {
                                         e.preventDefault();
                                         approveRequest({ 
                                           variables: {
-                                            id: this.props.id,
+                                            id: this.state.applicationID,
                                             has_expert:this.state.expert_id,
                                             status:"Assigned"
 
@@ -159,10 +181,10 @@ render() {
                              )}
                               </Mutation>
                               <Mutation 
-                            mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+                            mutation={UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT}
                             onError={this.error} 
                             onCompleted={data=>{
-                                this.sendNotification("Application Declined");
+                               this.sendNotification("Application Declined");
                             }}>    
                         {(declineRequest, { data,loading, error}) => (    
                               <div className = "loader-wrapper">
@@ -204,4 +226,4 @@ render() {
     )
 }
 }
-export default approveDeclineApplicationGraduateReview
+export default approveDeclineApplicationGraduateRedraft

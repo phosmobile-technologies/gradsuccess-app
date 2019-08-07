@@ -29,11 +29,29 @@ export default class assignExpertToApplication extends React.Component {
 			id:id
 		})
 	}
-	formSubmitted(data){
+	formSubmitted(data,id){
 		this.setState({
 			assignedSucess:true
 		})
 		setTimeout(function(){
+			let url = "https://infinite-cove-53014.herokuapp.com/api/applicationAssigned"
+		    let data = {
+		        expert_id: id
+		    }
+		      fetch(url, {
+		      headers: {
+		        "Content-Type": "application/json",
+		        "Accept": "application/json"
+		      },
+		      method: "post",
+		      body: JSON.stringify(data)
+		    }).then(function(response){
+		        return response.text()
+		    }).then((text)=>{
+		      window.location.reload();
+		    }).catch(function(error){
+		       alert("Networks Error please try again, Later!");
+		    })
 			window.location.reload();
 		},1000)
 	}
@@ -104,7 +122,7 @@ render() {
 				    mutation={UPDATE_COVER_LETTER_REVIEW_FORM}
 				    onError={this.error} 
 				    onCompleted={data=>{
-				       	this.formSubmitted(data)
+				       	this.formSubmitted(data,this.state.id)
 				    }}>		
 						{(createResumeReviewData, { data,loading, error}) => (		
 					        <div className = "loader-wrapper">

@@ -1317,4 +1317,48 @@ body{
     font-family: "Poppins", sans-serif;
     cursor: pointer;
 }
+.approve_wrapper{
+  width: 50%;
+  padding: 0px 50px;
+  margin-left: 50%;
+  font-size: 12px;
+  text-align: right;
+}
+.approve_wrapper_inner{
+
+}
+.approve_wrapper_inner form {
+  margin-top: 0px;
+}
+.approve_decline_forms{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.approve_decline_forms .declineBtn{
+  background-color: orangered;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 20px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.approve_decline_forms .approveBtn{
+  background: linear-gradient(45deg, green, lightgreen);
+  border: none;
+  color: white;
+  border-radius: 3px;
+  margin-right: 20px;
+  padding: 2px 20px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.approve_decline_forms .declineBtn:hover, .approve_decline_forms .approveBtn:hover{
+  opacity: 0.5
+} 
+
+  
 

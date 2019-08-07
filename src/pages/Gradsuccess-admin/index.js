@@ -180,9 +180,9 @@ class IndexPage extends Component {
                                     <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
                                     <div className="client_main_area_content_area">
                                         {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
-                                        {this.state.AssignedApplication && <AssignedApplication />}
-                                        {this.state.InProgressApplication && <InProgressApplication />}
-                                        {this.state.CompletedApplication && <CompletedApplication />}
+                                        {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} />}
+                                        {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} />}
+                                        {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
                                         {this.state.ExpertsComponent && <ExpertsComponent />}
                                         {this.state.AssignRequest && <AssignRequest />}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}

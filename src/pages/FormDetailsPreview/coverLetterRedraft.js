@@ -2,6 +2,7 @@ import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {COVER_LETTER_REDRAFT} from "../graphql/queries"
+import ApproveDeclineApplicationCoverLetterRedraft from "../ApproveDeclineComponents/approveDeclineApplicationCoverLetterRedraft"
 
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 
@@ -100,6 +101,7 @@ render() {
 
                     <h3 className = "form-header" >Form Details </h3>
                     <ExpertInCharge id = {data.getCoverLetterRedraft.has_expert}/>
+                    {data.getCoverLetterRedraft.status === "Pending Approval" && this.props.account_type === "Admin"?<ApproveDeclineApplicationCoverLetterRedraft id ={data.getCoverLetterRedraft.id} form_id = {data.getCoverLetterRedraft.form_id}/>:""}
                     <div className="form_preview_col_1">
                         <div className="form_preview_fields">
                             <small>Name</small>

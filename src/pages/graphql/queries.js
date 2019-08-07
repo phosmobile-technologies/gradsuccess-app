@@ -30,9 +30,22 @@ export const LOGGED_IN_USER = gql`
   }
 `;
 
+export const GET_EXPERT = gql`
+  query GetExpert($id: ID!){
+  getExpert(id:$id){
+    id
+    first_name
+    last_name
+    phone
+    email
+  }
+}
+`;
+
 export const COVER_LETTER_REVIEW_FORM = gql`
               query GetCoverLetterReviewForm($form_id: String!) {
                 getCoverLetterReview(form_id: $form_id) {
+                  id
                   name
                   industry_applied_for
                   summary_of_interest
@@ -50,6 +63,7 @@ export const COVER_LETTER_REVIEW_FORM = gql`
 export const RESUME_REVIEW_FORM = gql`
               query GetResumeReviewForm($form_id: String!) {
                 getResumeReviewForm(form_id: $form_id) {
+                  id
                   name
                   industry_applied_for  
                   summary_of_interest
@@ -67,6 +81,7 @@ export const RESUME_REVIEW_FORM = gql`
 export const GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
   query GetGraduateSchoolStatementReviewForm($form_id: String!) {
     getGraduateSchoolStatementReviewForm(form_id: $form_id) {
+        id
         name
         university_and_course_applied_for
         summary_of_interest
@@ -84,6 +99,7 @@ export const GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
 export const GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM = gql`
               query GetGraduateSchoolEssayRedraftForm($form_id: String!) {
                 getGraduateSchoolEssayRedraftForm(form_id: $form_id) {
+                    id
                     name 
                     phone 
                     employment_most_relevant_to_you_masters_application 
@@ -134,6 +150,7 @@ export const GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM = gql`
 export const COVER_LETTER_REDRAFT = gql`
   query GetCoverLetterRedraft($form_id: String!) {
     getCoverLetterRedraft(form_id: $form_id) {
+        id
         name 
         address 
         phone 

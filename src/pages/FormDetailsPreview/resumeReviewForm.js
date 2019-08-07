@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {RESUME_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
+import ApproveDeclineApplicationResumeReview from "../ApproveDeclineComponents/approveDeclineApplicationResumeReview"
 
 class ResumeReviewForm extends Component {
     constructor(props) {
@@ -95,6 +96,7 @@ render() {
                     <div className="form_preview_inner">
                         <h3 className = "form-header" >Form Details </h3>
                         <ExpertInCharge id = {data.getResumeReviewForm.has_expert}/>
+                        {data.getResumeReviewForm.status === "Pending Approval" && this.props.account_type === "Admin" ?<ApproveDeclineApplicationResumeReview id = {data.getResumeReviewForm.id} form_id = {data.getResumeReviewForm.form_id}/>:""}
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
                                 <small>Name</small>

@@ -52,7 +52,7 @@ class getExpertInCharge extends Component {
                 </div>:
                 <div className = "expert_in_charge_board">
                     <div>
-                        <p>Your Application is not Assigned yet</p>
+                        <p>Application is not Assigned yet</p>
                     </div>
                 </div>
                 }

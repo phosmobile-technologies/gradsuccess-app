@@ -46,7 +46,8 @@ class IndexPage extends Component {
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
             loggedIn:"",
-            client_id:null
+            client_id:null,
+            toggle:true
 
 
             
@@ -78,6 +79,7 @@ class IndexPage extends Component {
             client_id:client_id,
             currentComponent:"Conversation with " + client_name,
             LeaveAMessageComponent:true,
+            toggle:true
         })
     }
 
@@ -99,8 +101,16 @@ class IndexPage extends Component {
         this.setState({
             [Component]:true,
             currentComponent:currentComponent,
-            currentMenu:Component
+            currentMenu:Component,
+            toggle:true
         })
+    }
+
+        toggleMenu(){
+        this.setState({
+            toggle:!this.state.toggle
+        })
+    
     }
 
 
@@ -176,7 +186,7 @@ class IndexPage extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <MainLayout />
+                                    <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
                                     <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
                                     <div className="client_main_area_content_area">
                                         {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}

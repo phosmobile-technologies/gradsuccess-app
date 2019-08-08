@@ -60,6 +60,7 @@ class CVresume extends React.Component {
               border: "none",
               outline: "none",
               verticalAlign: "middle",
+
             }}
           >
             <button
@@ -88,12 +89,13 @@ class CVresume extends React.Component {
             </button>
           </div>
           <div
-            onClick={this.toggleTabs("redraft")}
+            // onClick={this.toggleTabs("redraft")}
             css={{
               height: "50px",
               width: "50%",
               border: "none",
               outline: "none",
+              position:"relative"
             }}
           >
             <button
@@ -105,10 +107,13 @@ class CVresume extends React.Component {
                 border: "none",
                 outline: "none",
                 verticalAlign: "middle",
-                cursor: this.state.redraftTab ? "default" : "pointer",
+                cursor:"help"
+                // cursor: this.state.redraftTab ? "default" : "pointer",
               }}
+              disabled
             >
               {" "}
+              <p className = "comming_soon_p">Comming soon</p>
               <h4
                 css={{
                   marginBottom: "0px",

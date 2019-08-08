@@ -9,6 +9,7 @@ import { GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS } from "../../graphql/queri
 import {GET_ALL_RESUMME_REVIEW_FORMS} from "../../graphql/queries"
 import Modal from "react-modal"
 import { Mutation } from 'react-apollo';
+import { SEND_MAIL } from "../../../api/sendMailEndpoint"
 
 
 import CoverLetterRedraft from "../../FormDetailsPreview/coverLetterRedraft"
@@ -148,7 +149,7 @@ upadateItemCount(plus){
 }
 
 assignSelf(form_id,application,id){
-    let url = "https://infinite-cove-53014.herokuapp.com/api/sendEmail"
+    let url = SEND_MAIL
     let data = {
         expert_id: this.props.expert_id,
         form_id:form_id,

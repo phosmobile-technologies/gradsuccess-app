@@ -52,6 +52,7 @@ class scholarshipCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
+          <div className = "comming_soon">Comming Soon!</div>
             <h1>Resume Redraft Plans</h1>
             <p>
               
@@ -106,6 +107,7 @@ class scholarshipCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
+          <div className = "comming_soon">Comming Soon!</div>
             <h1>Essay Redraft Plans</h1>
             <p>
               The Essay Redraft Plan is designed to boost your confidence going

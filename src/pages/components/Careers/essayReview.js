@@ -38,20 +38,18 @@ const mq = breakpoints.map(
                     color: '#19a99d'
                 }}> Essay Review Plans </h2>
                 <p> We are here to help at any stage of your essay writing process. The EssayReview service is best suited if you already have an essay that’s set to go and just needs some fine-tuning.</p>
-                <br/>
                 <p> Who is this service for? You, if you already have anEssay draft for:</p>
-                <ul>
+                <ul className = "content-ul">
                 <li>	Admission Statements </li>
                 <li>	Cover Letters </li>
                 <li>	Reference Letters. </li>
                 
                 </ul>
-                <br/> <br/>
                 <h2 css={{
                     color: '#19a99d'
                 }}> A Quick Glance at Our Essay Review Plans </h2>
                 <p > On this plan, we critically access the bigger story–Your assigned associate will assess your essays and check them for overall engagement. They will check if you have: </p>
-                <ul>
+                <ul className = "content-ul">
                 <li>	Satisfied the question. </li>
                 <li>	Outlined your thoughts clearly. </li>
                 <li>	Structured your essays in a logical flow. </li>
@@ -61,11 +59,10 @@ const mq = breakpoints.map(
                 <p> The associate then gives feedback and recommends areas of improvement. You take it from here by implementing suggestions and sending a revised draft back. </p>
                 <p> Evaluating between the Lines–Whilst our associates are keenly looking to see that your story connects on the surface, they also go deeper, focusing on the smaller details like clarity, spelling, formatting, sentence construction and variability. After this stage, the Associate sends you a final draft.</p>
                 <p> Your submission is now ready! </p>
-                <br/>
                 <h2 css={{
                     color: '#19a99d'
                 }}> Price </h2>
-                <p> *Regular turnaround is two business-days on each submission. Flash turnaround is one business-day on each submission.*</p>
+                <p> Regular turnaround is two business-days on each submission. Flash turnaround is one business-day on each submission.</p>
                 <br/> <br/>
 
                 <div css={{

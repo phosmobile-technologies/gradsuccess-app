@@ -71,11 +71,14 @@ class Scholarship extends React.Component {
             cursor: this.state.reviewTab ? "default" : "pointer",
           }}> <h4 css={{marginBottom: '0px', color: this.state.reviewTab ? 'white' : '#19a99d'}}> Essay Review</h4> </button>
         </div>
-        <div onClick={this.toggleTabs("redraft")} css={{
+        <div 
+        // onClick={this.toggleTabs("redraft")} 
+        css={{
           height: '50px',
           width: '50%',
           border: 'none',
-          outline: 'none'
+          outline: 'none',
+          position:"relative"
         }}>
           <button css={{
             height: '50px',
@@ -85,8 +88,11 @@ class Scholarship extends React.Component {
             border: 'none',
             outline: 'none',
             verticalAlign: 'middle',
-           cursor: this.state.redraftTab ? "default" : "pointer",
-          }}> <h4 css={{marginBottom: '0px', color: this.state.redraftTab ? 'white' : '#19a99d'}}> Essay Redraft </h4> </button>
+            cursor:"help"
+           // cursor: this.state.redraftTab ? "default" : "pointer",
+          }}
+          disabled
+          > <p className = "comming_soon_p">Comming soon</p><h4 css={{marginBottom: '0px', color: this.state.redraftTab ? 'white' : '#19a99d'}}> Essay Redraft </h4> </button>
         </div>
         </div>
         {this.state.reviewTab && <div> <EssayReview /> </div>}

@@ -32,7 +32,7 @@ class admissionCustomPackage extends Component {
               candidates looking to go past initial screening stages to actually
               clinch an offer.
               <br />
-              <Link to="/Admissions/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link to="/Admissions/cv-resume" activeStyle={{color: 'white'}} className="pad">More Details</Link>
               <br />
             </p>
             <div className="cu-container-inner">
@@ -52,12 +52,13 @@ class admissionCustomPackage extends Component {
           </div>
 
           <div className="cu-container">
+          <div className = "comming_soon">Comming Soon!</div>
             <h1>Resume Redraft Plans</h1>
             <p>
               This is a flat rate, comprehensive package – you will get the help
               you need for one resume.
               <br /> 
-              <Link to="/Admissions/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link to="/Admissions/cv-resume" activeStyle={{color: 'white'}} className="pad">More Details</Link>
               <br />
             </p>
             <div className="cu-container-inner">
@@ -85,7 +86,7 @@ class admissionCustomPackage extends Component {
               assess your essays and check them for overall engagement. They
               will check if you have:
               <br />
-             <Link to="/Admissions/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+             <Link to="/Admissions/essays" activeStyle={{color: 'white'}} className="pad">More Details</Link>
              <br />
             </p>
             <div className="cu-container-inner">
@@ -105,6 +106,7 @@ class admissionCustomPackage extends Component {
           </div>
 
           <div className="cu-container">
+          <div className = "comming_soon">Comming Soon!</div>
             <h1>Essay Redraft Plans</h1>
             <p>
               <h3> On our Essay redraft plan, you will get: </h3>
@@ -112,7 +114,7 @@ class admissionCustomPackage extends Component {
               The Essay Redraft Plan is designed to boost your confidence going
               into the most competitive application processes.
               <br />
-             <Link to="/Admissions/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+             <Link to="/Admissions/essays" activeStyle={{color: 'white'}} className="pad">More Details</Link>
              <br />
 
             </p>

@@ -74,7 +74,8 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
         <div
           css={{
             display: "flex",
-            fontFamily: "popins",
+            fontFamily: '"Poppins", "sans-serif"',
+            fontSize:"12px",
           }}
         >
           {" "}
@@ -84,6 +85,8 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
               textAlign: "right",
               paddingRight: "30px",
               color: "gray",
+              fontFamily: '"Poppins", "sans-serif"',
+              fontSize:"12px",
               [mq[2]]: {
                 paddingRight: "10px",
                 width: "100px"
@@ -94,7 +97,9 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
             Type:{" "}
           </span>{" "}
           <span css={{
-            width: "50%"
+            width: "50%",
+            fontFamily: '"Poppins", "sans-serif"',
+            fontSize:"12px",
           }}> {type} </span>
         </div>
 
@@ -102,7 +107,8 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
         <div
           css={{
             display: "flex",
-            fontFamily: "popins",
+            fontFamily: '"Poppins", "sans-serif"',
+            fontSize:"12px",
           }}
         >
           {" "}
@@ -112,6 +118,8 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
               textAlign: "right",
               paddingRight: "30px",
               color: "gray",
+              fontFamily: '"Poppins", "sans-serif"',
+              fontSize:"12px",
               [mq[2]]: {
                 paddingRight: "10px",
                 width: "100px"
@@ -122,7 +130,9 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
             Discipline:{" "}
           </span>{" "}
           <span  css={{
-            width: "50%"
+            width: "50%",
+            fontFamily: '"Poppins", "sans-serif"',
+            fontSize:"12px",
           }}> {discipline} </span>
         </div>
 

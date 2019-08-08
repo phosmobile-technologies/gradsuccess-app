@@ -8,6 +8,11 @@ import {UPDATE_COVER_LETTER_REDRAFT} from '../graphql/mutations';
 import {GET_EXPERT} from '../graphql/queries';
 import {COVER_LETTER_REDRAFT} from '../graphql/queries';
 
+import { APPROVED_MAIL } from "../../api/sendMailEndpoint"
+import { DECLINE_EMAIL } from "../../api/sendMailEndpoint"
+
+
+
 
 
 class approveDeclineApplicationCoverLetterRedraft extends Component {
@@ -33,7 +38,7 @@ sendNotification(appStatus){
 
   if(appStatus === "Application Declined"){
 
-    let url = "https://infinite-cove-53014.herokuapp.com/api/sendDeclinedMail"
+    let url = DECLINE_EMAIL
     let data = {
         expert_id: this.state.expert_id
     }
@@ -55,7 +60,7 @@ sendNotification(appStatus){
 
   }else if(appStatus === "Application Approved"){
 
-    let url = "https://infinite-cove-53014.herokuapp.com/api/sendApprovedMail"
+    let url = APPROVED_MAIL
     let data = {
         expert_id: this.state.expert_id,
     }

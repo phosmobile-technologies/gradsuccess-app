@@ -54,6 +54,7 @@ class IndexPage extends Component {
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
          this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
+         this.toggleMenu = this.toggleMenu.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -137,7 +138,7 @@ class IndexPage extends Component {
                     <div className = "main-content">
                             <div className = "client_main_area">
                                 <div className = "fixedHeader">
-                                    <div className = "client_main_area_menu">
+                                    <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
                                         <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
                                         <button 
                                             className = {this.state.currentMenu === "NewApplications"? "currentMenu":""} 

@@ -5,6 +5,7 @@ import { Mutation } from 'react-apollo';
 import {UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT} from '../../../graphql/mutations';
 
 import {GET_ALL_EXPERTS} from "../../../graphql/queries"
+import { APPLICATION_ASSIGNED } from "../../../../api/sendMailEndpoint"
 
 export default class assignExpertToApplication extends React.Component {
 
@@ -35,7 +36,7 @@ export default class assignExpertToApplication extends React.Component {
 		})
 		
 		setTimeout(function(){
-			let url = "https://infinite-cove-53014.herokuapp.com/api/applicationAssigned"
+			let url = APPLICATION_ASSIGNED
 		    let data = {
 		        expert_id:id
 		    }

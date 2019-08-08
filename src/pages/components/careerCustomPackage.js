@@ -53,6 +53,7 @@ class careerCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
+          <div className = "comming_soon">Comming Soon!</div>
             <h1>Resume Redraft Plans</h1>
             <p>
               <h3> On our Essay redraft plan, you will get: </h3>
@@ -107,6 +108,7 @@ class careerCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
+          <div className = "comming_soon">Comming Soon!</div>
             <h1>Essay Redraft Plans</h1>
             <p>
               <br />

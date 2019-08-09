@@ -223,7 +223,7 @@ constructor(props) {
 				                />         
 				            </form>
 				            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
-	                 		{error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+	                 		{error && <div className="FailedTagForm"> Email already Exists</div>}
 			        </div>
 			         )}
 

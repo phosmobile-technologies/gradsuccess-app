@@ -51,7 +51,8 @@ class Contact extends React.Component {
           }}
         >
           <div css={{
-            textAlign:"center"
+            textAlign:"center",
+            minHeight: '430px',
           }}>
             <p>No item in cart</p>
           </div>

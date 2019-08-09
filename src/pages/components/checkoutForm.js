@@ -209,7 +209,7 @@ export default class checkoutForm extends Component {
 							
 						</form>
 						{loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
-						{error && <div className="FailedTagForm">Failed!... Something is not right</div>}
+						{error && <div className="FailedTagForm">Email Already Exists.</div>}
 					</div>
 					)}
 					</Mutation>

@@ -51,12 +51,7 @@ export default class uploadMessageFile extends React.Component {
 	          
 	          
 	          <form
-	          	style = {{
-	          		marginTop:'0px',
-	          		position: 'absolute',
-				    width: '60%',
-				    left:' 20%'
-	          	}}
+	   
 	            onSubmit={e => {
 	            e.preventDefault();
 	            sendMessage({
@@ -84,7 +79,7 @@ export default class uploadMessageFile extends React.Component {
 	            });
 	            }}
 	            encType="multipart/form-data"
-	            className = "chat_form">
+	            className = "chat_form leave_a_message_form">
 	            
 	            <input  style = {{width: "100%",backgroundColor:"white"}} name = "chat_message" id = "chat_message" placeholder = "Add a caption" onChange = {this.handleSendMessage}></input>
 				<button type = "submit" disabled = {this.state.typedText===""?true:false}>

@@ -15,7 +15,6 @@ import LogoutForm from "../components/Forms/logoutForm"
 import MainLayout from "../components/ExpertAccountComponents/mainLayout"
 import { LOGGED_IN_USER } from "../graphql/queries"
 import ExpertClients from "./getExpertClients"
-import AssignRequest from "./assignRequest"
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import discouted from "../../images/logo.png"
 
@@ -41,7 +40,6 @@ class IndexPage extends Component {
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
-            AssignRequest:false,
             LeaveAMessageComponent:false,
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
@@ -69,7 +67,6 @@ class IndexPage extends Component {
        this.setState({
             NewApplications:false,
             AssignedApplication:false,
-            AssignRequest:false,
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
@@ -92,7 +89,6 @@ class IndexPage extends Component {
         this.setState({
             NewApplications:false,
             AssignedApplication:false,
-            AssignRequest:false,
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
@@ -169,13 +165,6 @@ class IndexPage extends Component {
                                         </button>
 
                                         <button 
-                                            className = {this.state.currentMenu === "AssignRequest" ? "currentMenu":""} 
-                                            name = "Completed Applications" 
-                                            id = "AssignRequest" 
-                                            onClick = {this.handleDisplayComponent}>App Assign Requests 
-                                        </button>
-
-                                        <button 
                                             className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
                                             name = "Experts List" 
                                             id = "ExpertsComponent" 
@@ -195,7 +184,6 @@ class IndexPage extends Component {
                                         {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} />}
                                         {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
                                         {this.state.ExpertsComponent && <ExpertsComponent />}
-                                        {this.state.AssignRequest && <AssignRequest />}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
                                     </div>
                                      <Footer />

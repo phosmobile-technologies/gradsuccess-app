@@ -62,6 +62,13 @@ export default class resumeReviewForm extends React.Component {
         this.setState({
           form_submit_success:true
         })
+      }
+
+    componentWillUnmount() {
+      if(this.state.form_submit_success){
+        localStorage.removeItem("yshKSMCis129_#&NISis");
+      }else{
+      }
 
     }
 

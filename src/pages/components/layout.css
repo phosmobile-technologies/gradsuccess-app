@@ -1300,9 +1300,8 @@ pre tt:after {
         grid-template-columns: 1fr;
     }
     .co-inner {
-        grid-column: 1;
-        grid-template-columns: 1fr;
-        grid-gap: 5px;
+        display: flex;
+        flex-direction: column-reverse;
     }
     .row {
         grid-gap: 5px;
@@ -1591,7 +1590,13 @@ progress {
     width: 100%;
     top: 0%;
 }
-
+.cart-footer{
+    display: flex;
+    justify-content: flex-end;
+}
+.cart-footer div{
+    margin-right: 15px
+}
 .SuccessTagForm {
     width: 100%;
     top: 0px;
@@ -1618,5 +1623,44 @@ progress {
     top: 0px;
     left: 0%;
     border-radius: 0px;
+}
+
+.checkout-button {
+    width: 100%;
+    margin-top: 10px;
+   
+}
+.submit-details {
+    width: 100%;
+    margin-left: 0px;
+}
+.cartStyle button {
+    width: 100%;
+    margin-top: 0px;
+}
+.paymentDetails {
+    padding: 0px;
+    text-align: center;
+}
+
+.paymentGateway {
+    display: flex;
+    justify-content: center;
+}
+.paymentGateway img{
+    width: 100px;
+}
+.assign_expert_container_inner{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding:0px;
+}
+.assign_form input{
+    text-align: center;
+}
+.assign_form{
+    background-color: #f9f9f9;
+    padding: 10px
 }
 }

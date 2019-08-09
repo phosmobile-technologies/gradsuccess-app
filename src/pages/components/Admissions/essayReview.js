@@ -76,13 +76,13 @@ const mq = breakpoints.map(
                         flexDirection: 'column'
                     }
                 }}>
-                <PriceBox   text="STANDARD" price="N7,500"  
+                <PriceBox   text="STANDARD" price="N15,000"  
                 form="graduateSchoolStatementReviewForm" 
                 itemDescription = 'Essay Review (Graduate School Essay - STANDARD)'/>     
                 <div css={{ width: '50px'}}> </div>
                 <PriceBox text="FLASH PRICE" 
                 form="graduateSchoolStatementReviewForm" 
-                price="N15,000"  
+                price="N20,000"  
                 itemDescription = 'Essay Review (Graduate School Essay - FLASH PRICE)' />
                 </div>
             </div>

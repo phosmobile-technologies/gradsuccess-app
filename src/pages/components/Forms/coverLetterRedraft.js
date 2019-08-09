@@ -158,6 +158,13 @@ export default class resumeReviewForm extends React.Component {
                 document.getElementById('submitBtn').style.opacity = '1'
             })
     }
+    componentWillUnmount() {
+      if(this.state.form_submit_success){
+        localStorage.removeItem("yshKSMCis129_#&NISis");
+      }else{
+      }
+
+    }
     render() {
       if(!this.state.form_submit_success){
         return (

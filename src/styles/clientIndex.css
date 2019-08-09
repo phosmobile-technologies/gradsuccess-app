@@ -541,6 +541,7 @@ body{
   .assign_success_board{
     background-color: white;
     text-align: center;
+    font-family: "Poppins", sans-serif;
     padding: 50px;
     color: rgb(25, 169, 157);
   }
@@ -697,7 +698,6 @@ body{
     background-color: #19a99d;
     border: none;
     align-items: center;
-    box-shadow: 2px 2px 2px 2px #ccc;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
   
@@ -1139,6 +1139,12 @@ body{
 .loginModal {
     margin-top: 25vh !important;
 }
+.leave_a_message_form{
+  margin-top:'0px';
+  position: 'absolute';
+  width: '60%';
+  left:' 20%'
+}
 
 @media only screen and (max-width: 500px) {
     .d-menu-container-mobile{
@@ -1268,7 +1274,42 @@ body{
 .loginModal {
     margin-top: 10vh !important;
 }
+ .assign_success_board{
+    padding:10px;
+    font-size: 14px;
+  }
+  .approve_wrapper {
+    width: 100%;
+    margin-left: 0%;
+  }
+  .approve_wrapper p{
+    padding-bottom: 10px
+  }
+  .terms_services {
+    width: 100%;
+    margin: auto;
+    text-align: inherit;
+    font-size: 12px;
+    padding: 10px;
+    padding-top: 10px;
+}
+.chat_component{
+  width: 100%;
+  padding-right: 0px;
+}
+.chat_form {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.uploadedImage {
+    width: 100%;
+    margin-top: 50px;
+}
 
+.leave_a_message_form{
+  width: '100%';
+  left:' 0%'
+}
 }
 
 

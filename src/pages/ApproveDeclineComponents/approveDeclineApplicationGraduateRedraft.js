@@ -25,7 +25,7 @@ class approveDeclineApplicationGraduateRedraft extends Component {
         this.setRequestData = this.setRequestData.bind(this);
 }
   setRequestData(data){
-     let dataObj = data.getAssignRequest[0]
+     let dataObj = data.getAssignRequest.pop()
     this.setState({
       expert_id:dataObj.expert_id,
       form_id:dataObj.form_id,

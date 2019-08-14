@@ -157,8 +157,8 @@ class IndexPage extends React.Component {
           title="Apply With Confidence"
           text="Send out your applications knowing they are the very best they can be. Our review and redraft experts can’t wait to meet you!"
         />
-        <UniDivider />
         <Steps />
+        <UniDivider />
         <FeaturedTestimonial openModal={this.onOpenModal} />
         <BigCountCTA openModals={this.onOpenModal} />
         <Modal

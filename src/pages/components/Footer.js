@@ -255,7 +255,7 @@ handleCloseModal(){
   
 
     <div css={{width: '70%',
-  margin: '0 auto', paddingBottom: '10px',color:'white',fontFamily: '"Poppins", "sans-serif"'}}>
+  margin: '0 auto', paddingBottom: '10px',color:'white',fontFamily: '"Lato", "sans-serif"'}}>
     © {new Date().getFullYear()}, Built By 
     <a href="https://www.phosmobile.org"> PhosMobile</a>
     </div>

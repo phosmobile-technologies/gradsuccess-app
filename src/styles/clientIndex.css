@@ -1,5 +1,5 @@
 body{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   width: 100%;
 }
 
@@ -299,7 +299,7 @@ body{
 .client_main_area_menu button{
   background-color: transparent;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 14px;
 }
 .form-header{
@@ -310,7 +310,7 @@ body{
 .client_main_area_menu button{
   background-color: transparent;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 12px;
   text-align: left;
   padding: 10px;
@@ -367,25 +367,25 @@ body{
 }
 
 .form_preview_fields small{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   color: black;
 }
 
 .form_preview_fields p {
     font-size: 14px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     color: black;
     font-weight: 550;
 
 }
 
 .form_preview_fields ul li{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 12px;
   list-style: none;
 }
 .logoutBtn{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   background: transparent;
   font-size: 12px;
   border:none;
@@ -409,7 +409,7 @@ body{
     margin-bottom: 20px;
 }
 .client_expert_listing_main span{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 9px;
   font-weight: 100;
 }
@@ -422,7 +422,7 @@ body{
 }
 
 .client_expert_listing_btn_wrapper button{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   padding:0px 5px;
   margin-right: 10px;
   border: none;
@@ -437,12 +437,12 @@ body{
 }
 
 .client_expert_listing_btn_wrapper span{
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     color: darkred;
 }
 
 .client_expert_listing_main h4{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   margin-bottom: 0px !important;
   text-transform: capitalize;
   font-size: 20px;
@@ -527,7 +527,7 @@ body{
     color:red;
   }
   .name_key{
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     padding: 10px;
   }
   .assign_form{
@@ -541,7 +541,7 @@ body{
   .assign_success_board{
     background-color: white;
     text-align: center;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     padding: 50px;
     color: rgb(25, 169, 157);
   }
@@ -549,7 +549,7 @@ body{
     display: none;
   }
   .form-header-main{
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     text-align: center;
     text-align: left;
     color: white;
@@ -575,7 +575,7 @@ body{
     padding-right: 50px;
   }
   .expert_in_charge_board h4{
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     color: black;
     border-bottom: 1px solid #ccc;
     font-size: 14px;
@@ -663,7 +663,7 @@ body{
 .time-right {
   float: right;
   color: darkgreen;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   padding-left: 10px;
   font-size: 9px;
 
@@ -686,7 +686,7 @@ body{
   color: black;
   border: none;
   padding: 5px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   border: 1px solid #19a99d;
   width: 80%;
 
@@ -698,7 +698,7 @@ body{
     background-color: #19a99d;
     border: none;
     align-items: center;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     cursor: pointer;
   
 }
@@ -713,7 +713,7 @@ body{
   border-bottom: 1px solid #ccc;
 }
 .message_sent_notification{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   position: absolute;
   background-color: green;
   padding: 3px 40px;
@@ -728,7 +728,7 @@ body{
 }
 
 .sending_message_notification{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   position: absolute;
   bottom: 105%;
   padding: 3px 40px;
@@ -736,7 +736,7 @@ body{
   border-radius: 3px;
 }
 .sending_message_notification2{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   position: absolute;
   bottom: 105%;
   padding: 3px 40px;
@@ -873,7 +873,7 @@ body{
 }
 
 .no_item{
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
     width: 100%;
     min-height: 400px;
     display: flex;
@@ -936,7 +936,7 @@ body{
     margin: auto;
     border: none;
     background-color: #19a99d;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     color: white;
     padding: 3px;
     border-radius: 3px;
@@ -949,7 +949,7 @@ body{
     background: linear-gradient(360deg, rgb(5, 110, 101),#47dcbc);
     align-items: center;
     justify-content: space-around;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     color: white;
     border-radius: 3px;
     margin: auto;
@@ -1094,7 +1094,7 @@ body{
     cursor: pointer;
     font-size: 14px;
     background: transparent;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 .cart {
     width: 70px;
@@ -1152,7 +1152,7 @@ body{
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   transition: 0.5s; 
   font-size: 12px;
 }
@@ -1178,12 +1178,12 @@ body{
     margin-top: 30px;
   }
   .terms_services ol,.footer_addresss{
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     font-size: 12px
   }
 
   .content-ul{
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     padding-left: 30px;
   }
 .modal_wrapper{
@@ -1401,7 +1401,7 @@ body{
     margin-top: 20px;
     padding: 5px;
     border: none;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lato", sans-serif;
     cursor: pointer;
 }
 .approve_wrapper{
@@ -1428,7 +1428,7 @@ body{
   border: none;
   border-radius: 3px;
   padding: 2px 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   cursor: pointer;
 }
 
@@ -1439,7 +1439,7 @@ body{
   border-radius: 3px;
   margin-right: 20px;
   padding: 2px 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   cursor: pointer;
 }
 

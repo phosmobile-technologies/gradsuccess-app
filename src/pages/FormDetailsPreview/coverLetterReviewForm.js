@@ -4,7 +4,7 @@ import loader from "../../images/loader.gif"
 import {COVER_LETTER_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationCoverLetterReview from "../ApproveDeclineComponents/approveDeclineApplicationCoverLetterReview"
-
+import CompleteApplication from "../Client-dashboard/completeApplication";
 
 
 
@@ -118,7 +118,13 @@ render() {
                                 <p>{data.getCoverLetterReview.summary_of_interest}</p>
                             </div>
                             <br />
+                             <div className = "btn_wrapper">
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl}> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                            
+                            {this.props.account_type === "Client" && data.getCoverLetterReview.status === "Assigned"? 
+                              <CompleteApplication />:
+                              ""}
+                             </div>
                             <div className = "spacing">
                                 
                             </div>

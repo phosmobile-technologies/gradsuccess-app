@@ -1,10 +1,7 @@
 import React from "react"
 import { jsx, css } from "@emotion/core"
-import pic1 from "../../images/uni1.png"
-import pic2 from "../../images/uni2.png"
-import pic3 from "../../images/uni3.png"
-import pic4 from "../../images/uni4.png"
-import pic5 from "../../images/uni5.png"
+import excited from "../../images/excited-heart.png"
+
 
 const ImgStyle = {
   transform: "scale(0.7,0.7)",
@@ -33,17 +30,24 @@ class UniDivider extends React.Component {
           padding: "0 5em",
         }}
       >
-        <img src={pic1} alt="Goldman Sachs logo" css={ImgStyle} />
-        <img src={pic2} alt="Oxford University logo" css={ImgStyle} />
-        {this.state.windowWidth > 500 && (
-          <img src={pic3} alt="Durham University logo" css={ImgStyle} />
-        )}
-        {this.state.windowWidth > 500 && (
-          <img src={pic4} alt="Hult logo" css={ImgStyle} />
-        )}
-        {this.state.windowWidth > 500 && (
-          <img src={pic5} alt="Notthingham University logo" css={ImgStyle} />
-        )}
+
+       <div className = "Uni-divider">
+         <div className = "Uni-divider-image-section">
+           <div className = "excited-img-container"><img src = {excited} /></div>
+           <div>
+             <h1>Our clients get addmitted</h1>
+                <p><i>into these schools</i></p>
+           </div>
+         </div>
+         <div className = "sliding-text">
+           <ul>
+             <li>Goldman Sachs <span>/</span></li>
+             <li>Oxford University <span>/</span></li>
+             <li>Hult <span>/</span></li>
+             <li>Notthingham University <span>/</span></li>
+           </ul>
+       </div>
+      </div>
       </div>
     )
   }

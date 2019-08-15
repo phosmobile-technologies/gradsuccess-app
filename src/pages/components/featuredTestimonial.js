@@ -5,6 +5,7 @@ import Modal from "react-responsive-modal"
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import eightYears from "../../images/8years.jpeg"
+import AppRating from "./apprating"
 
 
 const EightYearsURL = `url(${eightYears})`
@@ -35,6 +36,9 @@ class FeaturedTestimonial extends React.Component {
 constructor(props) {
     super(props)
     this.openModal = this.openModal.bind(this)
+    this.state = {
+      rateValue:4.5
+    }
   }
     
   openModal() {
@@ -67,9 +71,13 @@ constructor(props) {
             }
         }}>
             <p>
-                I never expected getting an admission to an ivy league school to be so professional and straight-forward. GradSuccess team really did all of the heavy lifting allowing me align my thoughts and clearly lay out my goals, I was pleasantly surprised at the end of the process.
+                  Being successful at earning a place with an International Business School is a challenging experience, but GradSuccess really assisted me with the application process through its professional and timely reviews of my essays and resume at affordable prices. 
+                  I will definitely recommend GradSuccess to prospective applicants
             </p>
-            <h4>Damilola Kosibote</h4>
+            <br />
+            <hr />
+            <h4>Babajide</h4>
+            <AppRating ratingValue = {this.state.rateValue} />
         </div>
 
         <div css={ImgDivStyles}>

@@ -1583,6 +1583,91 @@ progress {
     transform: rotate(-10deg);
 }
 
+.Uni-divider{
+    width: 80%;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.Uni-divider-image-section{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+    margin-bottom: 30px
+}
+.Uni-divider-image-section h1{
+    color: #00a99d;
+    margin-bottom: 0px;
+}
+.Uni-divider-image-section p{
+    font-weight: bold;
+    line-height: 22px;
+    font-size: 22px
+}
+
+.excited-img-container{
+    width: 50%;
+    margin-left: 50%;
+}
+
+.sliding-text{
+    overflow: hidden;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    padding-top: 0px;
+}
+.sliding-text ul {
+    list-style: none;
+    margin-bottom: 0px;
+    position: absolute;
+    width: 135%;
+    -webkit-animation: slideLeft 15s ease-in-out 0s infinite reverse;  /* Safari 4.0 - 8.0 */
+    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+    animation: slideLeft 15s ease-in-out 0s infinite reverse;
+    animation-fill-mode: forwards;
+}
+.sliding-text ul li{
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0px 20px;
+    font-family: "Poppins", sans-serif;
+
+}
+.sliding-text ul li span{
+    color: yellow;
+    margin-left: 10px;
+}
+
+div.slide-left p {
+  
+}
+
+@-webkit-keyframes slideLeft {
+   0% {
+    left: -140% 
+  }
+  100%{
+    left: 100%
+  }
+}
+@keyframes slideLeft {
+  0% {
+    left: -136%
+  }
+  100%{
+    left: 100%
+  }
+}
+.ratingDiv{
+    display: flex;  
+}
+.ratingDiv p{
+    margin-right:20px;
+}
+
 
 
 @media only screen and (max-width: 500px) {

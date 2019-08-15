@@ -5,6 +5,7 @@ import {COVER_LETTER_REDRAFT} from "../graphql/queries"
 import ApproveDeclineApplicationCoverLetterRedraft from "../ApproveDeclineComponents/approveDeclineApplicationCoverLetterRedraft"
 
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
+import CompleteApplication from "../Client-dashboard/completeApplication";
 
 
 
@@ -284,7 +285,12 @@ render() {
                         </div>
 
                          <br />
+                              <div className = "btn_wrapper">
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                            {this.props.account_type === "Client" && data.getCoverLetterRedraft.status === "Assigned"? 
+                              <CompleteApplication />:
+                              ""}
+                             </div>
                             <div className = "spacing">
                                 
                         </div>

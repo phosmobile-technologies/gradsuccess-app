@@ -22,27 +22,27 @@ class Account extends Component {
 render() {
     if(this.props.table === "coverLetterRedraft"){
         return(
-            <CoverLetterRedraft userID = {this.props.userID}/>
+            <CoverLetterRedraft userID = {this.props.userID} account_type = {this.props.account_type}/>
         )
     }
     else if(this.props.table === "coverLetterReviewForm"){
        return(
-            <CoverLetterReviewForm userID = {this.props.userID}/>
+            <CoverLetterReviewForm userID = {this.props.userID} account_type = {this.props.account_type}/>
         )
     }
     else if(this.props.table === "graduateSchoolEssayRedraftForm"){
         return(
-            <GraduateSchoolEssayRedraftForm userID = {this.props.userID}/>
+            <GraduateSchoolEssayRedraftForm userID = {this.props.userID} account_type = {this.props.account_type}/>
         )
     }
     else if(this.props.table === "graduateSchoolStatementReviewForm"){
         return(
-            <GraduateSchoolStatementReviewForm userID = {this.props.userID}/>
+            <GraduateSchoolStatementReviewForm userID = {this.props.userID} account_type = {this.props.account_type}/>
         )
     }
     else{
         return(
-            <ResumeReviewForm userID = {this.props.userID}/>
+            <ResumeReviewForm userID = {this.props.userID} account_type = {this.props.account_type}/>
         )
     }
 }

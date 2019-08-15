@@ -3,11 +3,8 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
-import ApproveDeclineApplicationGraduateReview from "../ApproveDeclineComponents/approveDeclineApplicationGraduateReview"
-
-
-
-
+import ApproveDeclineApplicationGraduateReview from "../ApproveDeclineComponents/approveDeclineApplicationGraduateReview";
+import CompleteApplication from "../Client-dashboard/completeApplication";
 
 class GraduateSchoolEssayRedraftForm extends Component {
     constructor(props) {
@@ -97,6 +94,7 @@ render() {
                     <div className="form_preview_inner">
                         <h3 className = "form-header" >Form Details </h3>
                         <ExpertInCharge id = {data.getGraduateSchoolStatementReviewForm.has_expert}/>
+                        
                         {data.getGraduateSchoolStatementReviewForm.status === "Pending Approval" && this.props.account_type === "Admin" ?<ApproveDeclineApplicationGraduateReview id = {data.getGraduateSchoolStatementReviewForm.id} form_id = {data.getGraduateSchoolStatementReviewForm.form_id}/>:""}
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
@@ -113,7 +111,12 @@ render() {
                                 <p>{data.getGraduateSchoolStatementReviewForm.summary_of_interest}</p>
                             </div>
                              <br />
-                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                             <div className = "btn_wrapper">
+                              {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                               {this.props.account_type === "Client" && data.getGraduateSchoolStatementReviewForm.status === "Assigned"? 
+                              <CompleteApplication />:
+                              ""}
+                             </div>
                             <div className = "spacing">
                                 
                             </div>

@@ -4,6 +4,7 @@ import loader from "../../images/loader.gif"
 import {RESUME_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationResumeReview from "../ApproveDeclineComponents/approveDeclineApplicationResumeReview"
+import CompleteApplication from "../Client-dashboard/completeApplication";
 
 class ResumeReviewForm extends Component {
     constructor(props) {
@@ -112,7 +113,12 @@ render() {
                                 <p>{data.getResumeReviewForm.summary_of_interest}</p>
                             </div>
                              <br />
+                              <div className = "btn_wrapper">
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
+                              {this.props.account_type === "Client" && data.getResumeReviewForm.status === "Assigned"? 
+                              <CompleteApplication />:
+                              ""}
+                             </div>
                             <div className = "spacing">
                             </div>
                         </div>

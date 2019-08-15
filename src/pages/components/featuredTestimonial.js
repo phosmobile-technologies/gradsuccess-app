@@ -5,7 +5,7 @@ import Modal from "react-responsive-modal"
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import eightYears from "../../images/8years.jpeg"
-import AppRating from "./apprating"
+import AppRating from "./appRating"
 
 
 const EightYearsURL = `url(${eightYears})`

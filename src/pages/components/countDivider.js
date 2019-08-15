@@ -45,7 +45,7 @@ const CountDivider = () => (
           css={{
             color: "white",
             fontSize: "20px",
-            fontFamily: '"Poppins", sans-serif',
+            fontFamily: '"Lato", sans-serif',
           }}
         >
           {" "}
@@ -78,7 +78,7 @@ const CountDivider = () => (
           css={{
             color: "white",
             fontSize: "20px",
-            fontFamily: '"Poppins", sans-serif',
+            fontFamily: '"Lato", sans-serif',
           }}
         >
           {" "}
@@ -110,7 +110,7 @@ const CountDivider = () => (
           css={{
             color: "white",
             fontSize: "20px",
-            fontFamily: '"Poppins", sans-serif',
+            fontFamily: '"Lato", sans-serif',
           }}
         >
           <p> Successful Clients </p>{" "}

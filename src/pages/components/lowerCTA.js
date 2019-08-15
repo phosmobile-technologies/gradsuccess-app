@@ -37,7 +37,7 @@ constructor(props) {
         <div><h4 css={{
             color: 'white',
             fontWeight: '500',
-            fontFamily: '"Poppins", sans-serif'
+            fontFamily: '"Lato", sans-serif'
         }}> CV REDRAFTS <span css={slash}> / </span> 
         ESSAY REDRAFTS <span css={slash}> / </span> 
         CV REVIEWS <span css={slash}> / </span> 
@@ -56,7 +56,7 @@ constructor(props) {
             outline: 'none',
             background: 'none',
             color: 'white',
-            fontFamily: '"Poppins", sans-serif',
+            fontFamily: '"Lato", sans-serif',
             textDecoration: 'none',
             cursor: 'pointer'
         }}>   Learn More </button> </Link> </div>
@@ -73,7 +73,7 @@ const BigButtonStyles = {
   background: "yellow",
   border: "none",
   margin: "0px auto",
-  fontFamily: `"Poppins", sans-serif`,
+  fontFamily: `"Lato", sans-serif`,
   fontWeight: "700",
   cursor: "pointer",
   textShadow: "1px 1px 3px rgba(0,0,0,0.2)",

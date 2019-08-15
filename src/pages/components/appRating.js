@@ -17,14 +17,13 @@ class AppRating extends Component {
   }
 
     render() {
-        const { rating } = this.state;
 	    return (                
 	      <div className = "ratingDiv">
 	        <p>Rating:</p>
 	        <StarRatingComponent 
 	          name="rate1" 
 	          starCount={5}
-	          value={rating}
+	          value={this.state.rating}
 	          onStarClick={this.onStarClick.bind(this)}
 	        />
 	      </div>

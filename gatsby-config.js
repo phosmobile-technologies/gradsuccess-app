@@ -37,7 +37,7 @@ module.exports = {
         // This is the field under which it's accessible
         fieldName: "Gradsuccess",
         // URL to query from
-        url: "http://localhost:8000/graphql",
+        url: "https://infinite-cove-53014.herokuapp.com/graphql",
       },
     },
 

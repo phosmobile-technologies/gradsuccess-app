@@ -19,7 +19,7 @@ const PriceBox = ({text, price,itemDescription,form}) => (
         <h2 css={{
             marginBottom: '5px',
             fontWeight: 'bolder',
-            fontFamily: 'Lato'
+            fontFamily: 'Poppins'
         }}>{text}</h2>
         <div css={{
             border: '0.5px solid #19a99d',
@@ -31,7 +31,7 @@ const PriceBox = ({text, price,itemDescription,form}) => (
             marginBottom: '20px',
             color: "#19a99d",
             fontWeight: 'bolder',
-            fontFamily: 'Lato'
+            fontFamily: 'Poppins'
         }}>{price}</h3>
         <PryButton text="ADD TO CART" price = {price}  form = {form} itemDescription = {itemDescription} onClick = {null}/>
     </div>

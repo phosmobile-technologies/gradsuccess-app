@@ -42,7 +42,7 @@ const SmallButtonStyles = {
   background: "yellow",
   border: "none",
   margin: "0px auto",
-  fontFamily: `"Lato", sans-serif`,
+  fontFamily: `"Poppins", sans-serif`,
   fontWeight: "700",
   cursor: "pointer",
   textShadow: "1px 1px 3px rgba(0,0,0,0.2)",

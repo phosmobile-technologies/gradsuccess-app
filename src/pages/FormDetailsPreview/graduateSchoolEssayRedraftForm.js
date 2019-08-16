@@ -4,7 +4,8 @@ import loader from "../../images/loader.gif"
 import { GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM } from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationGraduateRedraft from "../ApproveDeclineComponents/approveDeclineApplicationGraduateRedraft"
-import CompleteApplication from "../Client-dashboard/completeApplication";
+import CompleteRateGraduateStatementRedraft from "../CompleteRateComponent/completeRateGraduateStatementRedraft";
+import GetApplicationRating from "./getApplicationRating";
 
 class Message extends Component {
     constructor(props) {
@@ -259,9 +260,16 @@ class Message extends Component {
                              <div className = "btn_wrapper">
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl}> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                                 {this.props.account_type === "Client" && data.getGraduateSchoolEssayRedraftForm.status === "Assigned"? 
-                              <CompleteApplication />:
+                              <CompleteRateGraduateStatementRedraft 
+                              form_id = {data.getGraduateSchoolEssayRedraftForm.form_id}
+                              applicationID = {data.getGraduateSchoolEssayRedraftForm.id} 
+                              expert_id = {data.getGraduateSchoolEssayRedraftForm.has_expert}
+                              appStatus = {data.getGraduateSchoolEssayRedraftForm.completed}
+                              />:
                               ""}
-                             </div>      
+                             </div>
+                              {data.getGraduateSchoolEssayRedraftForm.completed?
+                               <GetApplicationRating form_id = {data.getGraduateSchoolEssayRedraftForm.form_id}/>:""} 
                             <div className = "spacing">
                                 
                             </div>

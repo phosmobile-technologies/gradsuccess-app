@@ -4,7 +4,8 @@ import loader from "../../images/loader.gif"
 import {COVER_LETTER_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationCoverLetterReview from "../ApproveDeclineComponents/approveDeclineApplicationCoverLetterReview"
-import CompleteApplication from "../Client-dashboard/completeApplication";
+import CompleteRateCoverLetterReview from "../CompleteRateComponent/completeRateCoverLetterReview";
+import GetApplicationRating from "./getApplicationRating";
 
 
 
@@ -122,9 +123,16 @@ render() {
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl}> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                             
                             {this.props.account_type === "Client" && data.getCoverLetterReview.status === "Assigned"? 
-                              <CompleteApplication />:
+                              <CompleteRateCoverLetterReview 
+                              form_id = {data.getCoverLetterReview.form_id}
+                              applicationID = {data.getCoverLetterReview.id} 
+                              expert_id = {data.getCoverLetterReview.has_expert} 
+                              appStatus = {data.getCoverLetterReview.completed}
+                              />:
                               ""}
                              </div>
+                              {data.getCoverLetterReview.completed?
+                               <GetApplicationRating form_id = {data.getCoverLetterReview.form_id}/>:""}
                             <div className = "spacing">
                                 
                             </div>

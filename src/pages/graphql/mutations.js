@@ -506,6 +506,76 @@ export const CREATE_MESSAGE = gql`
 `;
 
 
+
+export const MARK_COMPLETE_RESUME_REVIEW_FORM = gql`
+    mutation MarkCompleteResumeReviewForm(
+    $id: ID!,
+	$completed:Boolean
+	){
+		markCompleteResumeReviewForm(
+			id:$id,
+			completed:$completed
+			){
+			name
+		}
+	}
+`;
+
+export const MARK_COMPLETE_COVER_LETTER_REVIEW_FORM = gql`
+    mutation MarkCompleteCoverLetterReviewForm(
+    $id: ID!,
+	$completed:Boolean
+	){
+		markCompleteCoverLetterReviewForm(
+			id:$id,
+			completed:$completed
+			){
+			name
+		}
+	}
+`;
+export const MARK_COMPLETE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
+    mutation MarkCompleteGraduateSchoolStatementReviewForm(
+    $id: ID!,
+	$completed:Boolean
+	){
+		markCompleteGraduateSchoolStatementReviewForm(
+			id:$id,
+			completed:$completed
+			){
+			name
+		}
+	}
+`;
+export const MARK_COMPLETE_COVER_LETTER_REDRAFT = gql`
+    mutation MarkCompleteCoverLetterRedraft(
+    $id: ID!,
+	$completed:Boolean
+	){
+		markCompleteCoverLetterRedraft(
+			id:$id,
+			completed:$completed
+			){
+			name
+		}
+	}
+`;
+export const MARK_COMPLETE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
+    mutation MarkCompleteGraduateSchoolEssayRedraftForm(
+    $id: ID!,
+	$completed:Boolean
+	){
+		markCompleteGraduateSchoolEssayRedraftForm(
+			id:$id,
+			completed:$completed
+			){
+			name
+		}
+	}
+`;
+
+
+
 export default class mutations extends React.Component {
 
 

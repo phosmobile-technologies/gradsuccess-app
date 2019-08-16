@@ -1,15 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700");
 
 @import url("https://fonts.googleapis.com/css?family=Aleo:400,700");
 
 html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -55,7 +55,7 @@ template {
 a {
     background-color: transparent;
     text-decoration: none;
-    font-family: "Lato";
+    font-family: "Poppins";
     color: #47dcbc;
     -webkit-text-decoration-skip: objects;
 }
@@ -86,7 +86,7 @@ dfn {
 }
 
 .cartStyle button {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #39807b;
     color: white;
     width: 40%;
@@ -467,7 +467,7 @@ p {
     padding-right: 0;
     padding-top: 0;
     margin-bottom: 0rem;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 figure {
@@ -777,7 +777,7 @@ pre tt:after {
 .cart-body,
 .cart-footer {
     padding: 20px;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .cart-header-wrapper {
@@ -827,7 +827,7 @@ pre tt:after {
 }
 
 .SuccessTag {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #19a99d;
     width: 40%;
     color: white;
@@ -857,7 +857,7 @@ pre tt:after {
     top: 50px;
     left: 10%;
     z-index: 100000;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
@@ -876,14 +876,14 @@ pre tt:after {
     top: 50px;
     left: 10%;
     z-index: 100000;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
 }
 
 .SuccessTag-d {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #19a99d;
     width: 40%;
     color: white;
@@ -913,7 +913,7 @@ pre tt:after {
     top: 50px;
     left: 40%;
     z-index: 100000;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
@@ -932,7 +932,7 @@ pre tt:after {
     top: 50px;
     left: 40%;
     z-index: 100000;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
     animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
@@ -967,7 +967,7 @@ pre tt:after {
 }
 
 .details-side-bar {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     box-shadow: 0px 0px 5px 1px #ccc;
     padding: 10px;
     background-color: whitesmoke;
@@ -1017,7 +1017,7 @@ pre tt:after {
 
 .row input,
 .row-full input {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     width: 100%;
     border: none;
     border-bottom: 1px solid black;
@@ -1046,7 +1046,7 @@ pre tt:after {
 
 .c-btn {
     margin: 0px auto;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #39807b;
     color: white;
     width: 30%;
@@ -1197,7 +1197,7 @@ pre tt:after {
 }
 
 .expert-form span, .detail-form span {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     padding-bottom: 5px;
 }
@@ -1209,7 +1209,7 @@ pre tt:after {
     border: 1px solid #ccc;
     box-shadow: 0px 0px 10px 1px #f9f9f9 inset;
     font-size: 14px;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     padding: 10px;
 }
 
@@ -1238,7 +1238,7 @@ pre tt:after {
     margin: auto;
     border: none;
     background-color: #19a99d;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: white;
     margin-left: 25%;
     padding: 6px;
@@ -1251,7 +1251,7 @@ pre tt:after {
 }
 
 .selectibleList {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-top: 50px;
 }
 
@@ -1362,7 +1362,7 @@ pre tt:after {
     background-color: rgba(255, 255, 255, 0.7);
     color: white;
     text-align: center;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 .loader-d {
     width: 100%;
@@ -1374,7 +1374,7 @@ pre tt:after {
     background-color: transparent;
     color: white;
     text-align: center;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 
@@ -1389,7 +1389,7 @@ pre tt:after {
     background-color: rgba(255, 255, 255, 0.7);
     color: white;
     text-align: center;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .loader-img {
@@ -1411,7 +1411,7 @@ pre tt:after {
 .loader h1{
     color: black;
     font-size: 12px;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 
@@ -1436,7 +1436,7 @@ pre tt:after {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: bolder;
 }
 
@@ -1452,7 +1452,7 @@ pre tt:after {
 
 .output_label {
     color: #1c584b;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
 }
 
@@ -1474,7 +1474,7 @@ progress {
 }
 
 .progressBar {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     display: flex;
     align-items: baseline;
 }
@@ -1506,7 +1506,7 @@ progress {
 }
 
 .forgot_password {
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: transparent;
     color: white;
     font-size: 12px;
@@ -1519,13 +1519,13 @@ progress {
 
 .emptyCart {
     margin: 20px auto;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     min-height: 400px;
 }
 
 .paymentDetails {
     list-style: none;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
     padding: 30px;
 }
@@ -1534,7 +1534,7 @@ progress {
     background-color: #f9f9f9;
     padding: 20px;
     margin: 10px;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .passwordCard h1 {
@@ -1568,7 +1568,7 @@ progress {
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: white;
 }
 
@@ -1621,10 +1621,10 @@ progress {
     list-style: none;
     margin-bottom: 0px;
     position: absolute;
-    width: 135%;
-    -webkit-animation: slideLeft 15s ease-in-out 0s infinite reverse;  /* Safari 4.0 - 8.0 */
+    width: 195%;
+    -webkit-animation: slideLeft 45s ease-in-out 0s infinite reverse;  /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-    animation: slideLeft 15s ease-in-out 0s infinite reverse;
+    animation: slideLeft 45s ease-in-out 0s infinite reverse;
     animation-fill-mode: forwards;
 }
 .sliding-text ul li{
@@ -1647,7 +1647,7 @@ div.slide-left p {
 
 @-webkit-keyframes slideLeft {
    0% {
-    left: -140% 
+    left: -196% 
   }
   100%{
     left: 100%
@@ -1655,7 +1655,7 @@ div.slide-left p {
 }
 @keyframes slideLeft {
   0% {
-    left: -136%
+    left: -191%
   }
   100%{
     left: 100%

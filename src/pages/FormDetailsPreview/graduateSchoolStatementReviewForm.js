@@ -4,7 +4,8 @@ import loader from "../../images/loader.gif"
 import {GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationGraduateReview from "../ApproveDeclineComponents/approveDeclineApplicationGraduateReview";
-import CompleteApplication from "../Client-dashboard/completeApplication";
+import CompleteRateGraduateStatementReview from "../CompleteRateComponent/completeRateGraduateStatementReview";
+import GetApplicationRating from "./getApplicationRating";
 
 class GraduateSchoolEssayRedraftForm extends Component {
     constructor(props) {
@@ -114,14 +115,20 @@ render() {
                              <div className = "btn_wrapper">
                               {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                                {this.props.account_type === "Client" && data.getGraduateSchoolStatementReviewForm.status === "Assigned"? 
-                              <CompleteApplication />:
+                              <CompleteRateGraduateStatementReview 
+                              form_id = {data.getGraduateSchoolStatementReviewForm.form_id} 
+                              applicationID = {data.getGraduateSchoolStatementReviewForm.id} 
+                              expert_id = {data.getGraduateSchoolStatementReviewForm.has_expert} 
+                              appStatus = {data.getGraduateSchoolStatementReviewForm.completed}/>:
                               ""}
                              </div>
+                             {data.getGraduateSchoolStatementReviewForm.completed?
+                               <GetApplicationRating form_id = {data.getGraduateSchoolStatementReviewForm.form_id}/>:""}
                             <div className = "spacing">
                                 
                             </div>
                         </div>
-                        
+                    
                     </div>
                 </div>
               );

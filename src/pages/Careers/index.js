@@ -25,7 +25,7 @@ const inputTab = {
   background: "white",
   outline: "none",
   border: "none",
-  fontFamily: "Lato",
+  fontFamily: "poppins",
   textIndent: "10px",
 }
 
@@ -33,7 +33,7 @@ const steps = {
   textAlign: "center",
   color: "#19a99d",
   marginBottom: "10px",
-  fontFamily: "Lato",
+  fontFamily: "poppins",
   fontWeight: "bolder",
 }
 
@@ -76,7 +76,7 @@ class Search extends React.Component {
       >
         <h2
           css={{
-            fontFamily: "Lato",
+            fontFamily: "poppins",
             textAlign: "center",
           }}
         >

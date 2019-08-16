@@ -20,7 +20,7 @@ const inputTab = {
   background: "white",
   outline: "none",
   border: "none",
-  fontFamily: "Lato",
+  fontFamily: "poppins",
   textIndent: "10px",
 }
 
@@ -28,7 +28,7 @@ const steps = {
   textAlign: "center",
   color: "#19a99d",
   marginBottom: "10px",
-  fontFamily: "Lato",
+  fontFamily: "poppins",
   fontWeight: "bolder",
 }
 
@@ -96,7 +96,7 @@ class Search extends React.Component {
       >
         <h2
           css={{
-            fontFamily: "Lato",
+            fontFamily: "poppins",
             textAlign: "center",
           }}
         >
@@ -167,9 +167,20 @@ class AboutUs extends React.Component {
         <AboutBox first={text3} second={text4} />
         {/* Breaker */}
         <FeaturedTestimonial openModal={this.onOpenModal} />
-        <AboutBox first={"Our Commitment"} second={`Dear Client,
+        <AboutBox first={"CEO’s Charge"} second={`Dear Client,
         
-        GradSuccess affords you expert assistance on some of your most important graduate school and professional ambitions. In the last 10 years, we have leveraged top-notch excellence of our associate pool made up of professionals from some of the most elite institutions to assist young graduates and professionals achieve the finest quality admission statements, CVs and cover letters. When you choose GradSuccess, you will be assigned your own consultant with values founded on three unbroken principles : understanding, proactiveness and professionalism, all geared towards providing the highest quality work. With a rigid and disciplined culture, we are set out to tread a new path in the career and academic consultancy space, and we are not going to rest on our oars. We will continue to build on our successes with our clients, creating a resilient and truly transformational partnership in the process.`} />
+        GradSuccess is an ambitious and innovative firm with an innovative array of services. Capitalizing on the
+unique range of our portfolios, we are set out to provide high-level value for the clients we work with.
+From dealings with graduates, mid-career and experienced professionals over the last half-decade, we
+have been able to hone the skills and expertise to deliver the best quality improvement services for such
+things as CVs, Cover Letters and associated essays.
+Our excellence henceforth is founded on three unbroken principles and engrafted values: understanding,
+proactiveness and professionalism. With a rigid and disciplined culture, we are set out to tread a new
+path in the career and academic consultancy space.
+We are on course in establishing a rapidly advancing company that fully caters to the vision of an
+innovative and evolving consultancy business. Yet we are not going to rest on our oars, and will continue
+to build on our successes first with the business, and then with our clients, creating a resilient and truly
+transformational organization in the process.`} />
         <div css={{
           background: 'white',
           padding: '2em'
@@ -177,7 +188,7 @@ class AboutUs extends React.Component {
           <div
             css={{
               textAlign: "center",
-              fontFamily: "Lato",
+              fontFamily: "poppins",
               fontSize: "2em",
               fontWeight: "bolder",
               marginBottom: '1em'

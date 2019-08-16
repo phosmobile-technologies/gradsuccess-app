@@ -54,7 +54,6 @@ OpenApplicationDetails(formType,formID){
         [formType]:true
 
     })
-    console.log(formType);
 }
 
 handleCloseModal(){

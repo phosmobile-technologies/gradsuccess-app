@@ -4,7 +4,8 @@ import loader from "../../images/loader.gif"
 import {RESUME_REVIEW_FORM} from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationResumeReview from "../ApproveDeclineComponents/approveDeclineApplicationResumeReview"
-import CompleteApplication from "../Client-dashboard/completeApplication";
+import CompleteRateResumeReview from "../CompleteRateComponent/completeRateResumeReview";
+import GetApplicationRating from "./getApplicationRating";
 
 class ResumeReviewForm extends Component {
     constructor(props) {
@@ -116,9 +117,16 @@ render() {
                               <div className = "btn_wrapper">
                             {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl} > Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
                               {this.props.account_type === "Client" && data.getResumeReviewForm.status === "Assigned"? 
-                              <CompleteApplication />:
+                              <CompleteRateResumeReview 
+                              form_id = {data.getResumeReviewForm.form_id} 
+                              applicationID = {data.getResumeReviewForm.id} 
+                              expert_id = {data.getResumeReviewForm.has_expert}
+                              appStatus = {data.getResumeReviewForm.completed}
+                              />:
                               ""}
                              </div>
+                              {data.getResumeReviewForm.completed?
+                               <GetApplicationRating form_id = {data.getResumeReviewForm.form_id}/>:""}
                             <div className = "spacing">
                             </div>
                         </div>

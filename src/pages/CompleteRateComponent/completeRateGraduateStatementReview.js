@@ -4,8 +4,9 @@ import confirm from "../../images/email.png"
 import { Mutation } from 'react-apollo';
 import loader from "../../images/loader.gif"
 import StarRatingComponent from 'react-star-rating-component';
+import { APPLICATION_REVIEW } from "../../api/sendMailEndpoint"
 
-import {UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../graphql/mutations';
+import {MARK_COMPLETE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../graphql/mutations';
 
 const defaultStyles = {
   content : {
@@ -17,18 +18,20 @@ const defaultStyles = {
   }
 };
 
-class CompleteApplication extends Component {
+class CompleteRateGraduateReview extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
         	openModal:false,
-        	rating:1
+        	rating:1,
+        	app_comment:""
         }
         this.handleOpenModal = this.handleOpenModal.bind(this)
         this.handleCloseModal = this.handleCloseModal.bind(this)
         this.onStarClick = this.onStarClick.bind(this)
         this.handleFormInput = this.handleFormInput.bind(this)
+        this.completedRatingProcess = this.completedRatingProcess.bind(this)
     }
     handleOpenModal(){
     	this.setState({
@@ -41,20 +44,71 @@ class CompleteApplication extends Component {
     	})
     }
 
+    completedRatingProcess(){
+    	let url = APPLICATION_REVIEW
+	    let data = {
+	        expert_id: this.props.expert_id,
+	        form_id:this.props.form_id,
+	        rating: this.state.rating,
+	        comment:this.state.app_comment
+	    }
+	      fetch(url, {
+	      headers: {
+	        "Content-Type": "application/json",
+	        "Accept": "application/json"
+	      },
+	      method: "post",
+	      body: JSON.stringify(data)
+	    }).then(function(response){
+	        return response.text()
+	    }).then((text)=>{
+	    	document.getElementById("submittedSucces").style.display = "block"
+	    	setTimeout(()=>{
+		          if (document.getElementById("submittedSucces") != null) {
+		            document.getElementById("submittedSucces").style.display = "none"
+		            this.handleCloseModal();
+		            window.location.reload();
+		          }
+		    }, 2000)
+
+	    }).catch(function(error){
+	        console.log(error);
+	    })
+
+	    
+    }
+
      onStarClick(nextValue, prevValue, name) {
     	this.setState({
     		rating:nextValue
     	})
 	  }
-	  handleFormInput(){
-	  	console.log('comment')
+	  handleFormInput(event){
+	  	const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        })
 	  }
 
 
     render() {
         return (
         	<div className = "loader-wrapper">
-            <button type = "button"   className = "completeBtn" onClick = {()=>this.handleOpenModal()}> Mark as complete </button>
+        	<div id="submittedSucces" className="SuccessTagForm-d">
+                Thank you for your review...
+            </div>
+            {!this.props.appStatus?
+            <button 
+            type = "button"   
+            className = "completeBtn"
+            onClick = {()=>this.handleOpenModal()}>Mark as Complete
+            </button>:
+            <button 
+            type = "button"   
+            className = "applicationCompletedBtn" 
+            >Application has been completed
+            </button>
+        	}
 
                 <Modal 
 		           isOpen={this.state.openModal}
@@ -65,27 +119,22 @@ class CompleteApplication extends Component {
 		            <div className = "detail_preview_modal_container">
 		                <div className = "detail_preview_modal_container_inner">
 		                      <Mutation 
-		                            mutation={UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
+		                            mutation={MARK_COMPLETE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
 		                            onError={this.error} 
 		                            onCompleted={data=>{
-		                                   this.handleCloseModal();
-		                                   window.location.reload()
+		                                   this.completedRatingProcess();
+		                                  
 		                            }}
 		                            >        
-		                        {(asignSelfRequest, { data,loading, error}) => (        
+		                        {(markComplete, { data,loading, error}) => (        
 		                            <div className = "loader-wrapper">
-		                                <div id="submittedSucces" className="SuccessTagForm-d">
-		                                    Success! Redirecting...
-		                                </div>
 		                                <form 
 		                                onSubmit={e => {
 		                                    e.preventDefault();
-		                                    asignSelfRequest({ 
+		                                    markComplete({ 
 		                                      variables: {
-		                                        id: this.state.applicationID,
-		                                        has_expert:"0",
-		                                        status:"Pending Approval"
-
+		                                        id: this.props.applicationID,
+		                                        completed:true
 		                                      }
 		                                 })}}
 		                                 className = "confirm_form">
@@ -103,8 +152,8 @@ class CompleteApplication extends Component {
 				                            <div className="row-full comment_input">
 				                              <textarea type="text"  
 				                              placeholder="Leave a comment"   
-				                              id = "leave_a_comment" 
-				                              name = "leave_a_comment"  
+				                              id = "app_comment" 
+				                              name = "app_comment"  
 				                              onChange = {this.handleFormInput}
 				                              rows = '4'>
 				                              </textarea>
@@ -113,7 +162,7 @@ class CompleteApplication extends Component {
 		                                <button  type = "submit" >Save</button> 
 		                                             
 		                                </form>
-		                                {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+		                                {loading && <img className="loader-img" src={loader} alt="gradsuccess" />}
 		                                 {error && <div className="FailedTagForm-d"> Something went wrong, pease try again.</div>}
 		                        </div>
 		                         )}
@@ -129,4 +178,4 @@ class CompleteApplication extends Component {
     }
 }
 
-export default CompleteApplication;
+export default CompleteRateGraduateReview;

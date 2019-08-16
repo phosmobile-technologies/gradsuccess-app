@@ -5,3 +5,4 @@ export const APPLICATION_ASSIGNED = 'https://infinite-cove-53014.herokuapp.com/a
 
 
 
+export const APPLICATION_REVIEW = 'https://infinite-cove-53014.herokuapp.com/api/applicationReview'

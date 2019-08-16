@@ -35,16 +35,17 @@ class UniDivider extends React.Component {
          <div className = "Uni-divider-image-section">
            <div className = "excited-img-container"><img src = {excited} /></div>
            <div>
-             <h1>Our clients get addmitted</h1>
-                <p><i>into these schools</i></p>
+             <h1>Our clients get offers from</h1>
+                <p><i>into these</i></p>
            </div>
          </div>
          <div className = "sliding-text">
            <ul>
+             <li>MIB <span>/</span></li>
              <li>Goldman Sachs <span>/</span></li>
              <li>Oxford University <span>/</span></li>
-             <li>Hult <span>/</span></li>
-             <li>Notthingham University <span>/</span></li>
+             <li>Hult International Business School<span>/</span></li>
+             <li>Notthingham University</li>
            </ul>
        </div>
       </div>

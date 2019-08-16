@@ -74,7 +74,7 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
         <div
           css={{
             display: "flex",
-            fontFamily: '"Lato", "sans-serif"',
+            fontFamily: '"Poppins", "sans-serif"',
             fontSize:"12px",
           }}
         >
@@ -85,7 +85,7 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
               textAlign: "right",
               paddingRight: "30px",
               color: "gray",
-              fontFamily: '"Lato", "sans-serif"',
+              fontFamily: '"Poppins", "sans-serif"',
               fontSize:"12px",
               [mq[2]]: {
                 paddingRight: "10px",
@@ -98,7 +98,7 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
           </span>{" "}
           <span css={{
             width: "50%",
-            fontFamily: '"Lato", "sans-serif"',
+            fontFamily: '"Poppins", "sans-serif"',
             fontSize:"12px",
           }}> {type} </span>
         </div>
@@ -107,7 +107,7 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
         <div
           css={{
             display: "flex",
-            fontFamily: '"Lato", "sans-serif"',
+            fontFamily: '"Poppins", "sans-serif"',
             fontSize:"12px",
           }}
         >
@@ -118,7 +118,7 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
               textAlign: "right",
               paddingRight: "30px",
               color: "gray",
-              fontFamily: '"Lato", "sans-serif"',
+              fontFamily: '"Poppins", "sans-serif"',
               fontSize:"12px",
               [mq[2]]: {
                 paddingRight: "10px",
@@ -131,7 +131,7 @@ const SampleEssays = ({read, essay, type, discipline, downloadPdf, fileName}) =>
           </span>{" "}
           <span  css={{
             width: "50%",
-            fontFamily: '"Lato", "sans-serif"',
+            fontFamily: '"Poppins", "sans-serif"',
             fontSize:"12px",
           }}> {discipline} </span>
         </div>

@@ -578,5 +578,17 @@ export const GET_ASSIGN_REGUEST = gql`
   }
 `;
 
+export const GET_APPLICATION_REVIEW = gql`
+  query GetApplicationReview($form_id: String!) {
+  applicationReview(form_id:$form_id){
+    expert_id
+    form_id
+    rating
+    comment
+    
+  }
+}
+`;
+
 
 

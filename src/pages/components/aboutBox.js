@@ -24,7 +24,7 @@ const AboutBox = ({ first, second }) => (
       css={{
         display: "flex",
         margin: "100px 15%",
-        fontFamily: "Lato",
+        fontFamily: "poppins",
         [mq[2]]: {
           flexWrap: "wrap",
         },

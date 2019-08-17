@@ -17,9 +17,7 @@ import { LOGGED_IN_USER } from "../graphql/queries"
 import ExpertClients from "./getExpertClients"
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import discouted from "../../images/logo.png"
-
-
-
+import ChangePassword from "../components/Forms/changePassword"
 
 const customStyles = {
   content : {
@@ -31,6 +29,17 @@ const customStyles = {
   }
 };
 
+const defaultStyles = {
+  content : {
+    top                   : '0%',
+    left                  : '0%',
+    width                 : '100%',
+    height                : '100%',
+    backgroundColor       : 'rgba(17, 153, 146, 0.3)'
+  }
+};
+
+
 class IndexPage extends Component {
     constructor(props) {
         super(props)
@@ -39,6 +48,7 @@ class IndexPage extends Component {
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
+            changePassword:false,
             ExpertsComponent:false,
             LeaveAMessageComponent:false,
             currentComponent:"New Applications",
@@ -53,6 +63,7 @@ class IndexPage extends Component {
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
          this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
          this.toggleMenu = this.toggleMenu.bind(this);
+         this.handleCloseModal = this.handleCloseModal.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -70,7 +81,8 @@ class IndexPage extends Component {
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
-            LeaveAMessageComponent:false
+            LeaveAMessageComponent:false,
+            changePassword:false,
         })
 
         this.setState({
@@ -79,6 +91,13 @@ class IndexPage extends Component {
             LeaveAMessageComponent:true,
             toggle:true
         })
+    }
+     handleCloseModal () {
+        this.setState({ 
+            showModal: false,
+            changePassword:false,
+            NewApplications:true,
+        });
     }
 
 
@@ -92,6 +111,7 @@ class IndexPage extends Component {
             InProgressApplication:false,
             CompletedApplication:false,
             ExpertsComponent:false,
+            changePassword:false,
             LeaveAMessageComponent:false
         })
 
@@ -163,6 +183,11 @@ class IndexPage extends Component {
                                             id = "CompletedApplication" 
                                             onClick = {this.handleDisplayComponent}>Completed Applications
                                         </button>
+                                        <button 
+                                            className = {this.state.currentMenu === "changePassword"? "currentMenu":""}
+                                            id = "changePassword" 
+                                            onClick = {this.handleDisplayComponent}>Change Password
+                                        </button>
 
                                         <button 
                                             className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
@@ -190,9 +215,17 @@ class IndexPage extends Component {
                                 </div>
                             </div>
                         </div>
-               
-                   
-               </div>
+                        <div>
+                            <Modal 
+                            isOpen={this.state.changePassword}
+                            contentLabel="Minimal Modal Example"
+                            style={defaultStyles}
+                            ariaHideApp={false}>
+                                <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
+                                <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+                            </Modal>
+                        </div>                           
+                   </div>
                     }
                 </div>
                     );

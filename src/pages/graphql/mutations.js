@@ -31,7 +31,7 @@ export const LOGOUT = gql`
 
 
 export const FORGOT_PASSWORD = gql`
-    mutation login(
+    mutation ForgotPassword(
     $email: String!,
 	){
 		forgotPassword(
@@ -574,7 +574,23 @@ export const MARK_COMPLETE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 	}
 `;
 
-
+export const UPDATE_PASSWORD = gql`
+    mutation UpdatePassword(
+    $id: ID!,	
+	$password:String!
+	){
+		updatePassword(
+			id:$id,
+			password:$password
+			){
+			first_name
+		    last_name
+		    phone
+		    account_type
+		    package
+		}
+	}
+`;
 
 export default class mutations extends React.Component {
 

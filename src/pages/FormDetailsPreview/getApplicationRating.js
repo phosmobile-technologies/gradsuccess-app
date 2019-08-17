@@ -36,7 +36,7 @@ class AppRating extends Component {
       			        <StarRatingComponent 
       			          name="rate1" 
       			          starCount={5}
-      			          value={data.applicationReview.rating}
+      			          value={Number(data.applicationReview.rating)}
       			          onStarClick={this.onStarClick.bind(this)}
       			        />
     			      	</div>

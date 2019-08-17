@@ -14,6 +14,7 @@ import LogoutForm from "../components/Forms/logoutForm"
 import MainLayout from "../components/ExpertAccountComponents/mainLayout"
 import { LOGGED_IN_USER } from "../graphql/queries"
 import ExpertClients from "./getExpertClients"
+import ChangePassword from "../components/Forms/changePassword"
 
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import discouted from "../../images/logo.png"
@@ -31,6 +32,17 @@ const customStyles = {
   }
 };
 
+const defaultStyles = {
+  content : {
+    top                   : '0%',
+    left                  : '0%',
+    width                 : '100%',
+    height                : '100%',
+    backgroundColor       : 'rgba(17, 153, 146, 0.3)'
+  }
+};
+
+
 class IndexPage extends Component {
     constructor(props) {
         super(props)
@@ -38,13 +50,15 @@ class IndexPage extends Component {
             NewApplications:true,
             AssignedApplication:false,
             InProgressApplication:false,
+            changePassword:false,
             CompletedApplication:false,
             LeaveAMessageComponent:false,
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
             loggedIn:"",
             client_id:null,
-            toggle:true
+            toggle:true,
+            changePassword:false
 
 
             
@@ -52,6 +66,7 @@ class IndexPage extends Component {
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
          this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
          this.toggleMenu = this.toggleMenu.bind(this);
+         this.handleCloseModal = this.handleCloseModal.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -68,7 +83,8 @@ class IndexPage extends Component {
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
-            LeaveAMessageComponent:false
+            LeaveAMessageComponent:false,
+            changePassword:false
         })
 
         this.setState({
@@ -79,6 +95,13 @@ class IndexPage extends Component {
         })
     }
 
+    handleCloseModal () {
+          this.setState({ 
+              showModal: false,
+              changePassword:false,
+              NewApplications:true,
+          });
+    }
 
     handleDisplayComponent(event){
         let Component =  event.target.id;
@@ -89,7 +112,8 @@ class IndexPage extends Component {
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
-            LeaveAMessageComponent:false
+            LeaveAMessageComponent:false,
+            changePassword:false
         })
 
         this.setState({
@@ -159,6 +183,11 @@ class IndexPage extends Component {
                                             id = "CompletedApplication" 
                                             onClick = {this.handleDisplayComponent}>Completed Applications
                                         </button>
+                                        <button 
+                                            className = {this.state.currentMenu === "changePassword"? "currentMenu":""}
+                                            id = "changePassword" 
+                                            onClick = {this.handleDisplayComponent}>Change Password
+                                        </button>
                                         <LogoutForm />
 
                                           <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} closeMenu = {this.toggleMenu}/>
@@ -177,7 +206,16 @@ class IndexPage extends Component {
                                 </div>
                             </div>
                         </div>
-               
+                       <div>
+                          <Modal 
+                             isOpen={this.state.changePassword}
+                             contentLabel="Minimal Modal Example"
+                             style={defaultStyles}
+                             ariaHideApp={false}>
+                             <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
+                              <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+                          </Modal>
+                        </div>
                    
                </div>
                     }

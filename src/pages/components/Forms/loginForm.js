@@ -17,10 +17,12 @@ constructor(props) {
 	        email:null,
 	        password:null,
 	      },
-	      forgotPassword:false
+	      forgotPassword:false,
+	      message:""
 	}
 	this.handleFormInput = this.handleFormInput.bind(this);
 	this.handleForgotPassword = this.handleForgotPassword.bind(this);
+	this.formSubmitted = this.formSubmitted.bind(this);
 }
 
  handleFormInput(event){
@@ -34,21 +36,10 @@ constructor(props) {
 }
 
     formSubmitted(data){
-    document.getElementById("submittedSucces").style.display = "block"
-        setTimeout(function() {
-          if (document.getElementById("submittedSucces") != null) {
-            document.getElementById("submittedSucces").style.display = "none"
-          }
-    }, 2000)
-    localStorage.setItem(AUTH_TOKEN, data.login.access_token)
-
-    if(data.login.user.account_type === "Client"){
-    	window.location = '/Client-dashboard'
-    }else if(data.login.user.account_type === "Expert"){
-    	window.location = '/Expert-dashboard'
-    }else{
-       	window.location = '/Gradsuccess-admin'
-    }
+		this.setState({
+			message:data.forgotPassword.message
+		})
+	    document.getElementById("submittedSucces").style.display = "block"
     }
   
 
@@ -74,14 +65,16 @@ constructor(props) {
 				    }}>		
 				{(loginForm, { data,loading, error}) => (		
 			        <div className = "loader-wrapper">
-			        	<div id="submittedSucces" className="SuccessTagForm">
-			                Success! Your Details was submitted...
+			        	<div id="submittedSucces" className="passwordSent">
+			                {this.state.message}
 			            </div>
 			            <form 
 			            onSubmit={e => {
 		                    e.preventDefault();
-		                    loginForm({ 
-		                      variables: this.state.data
+		                    loginForm({
+		                      variables: {
+		                      	email:this.state.data.email
+		                      }
 		                     });
 		                 }}
 			            className = "checkout-form-container">
@@ -101,7 +94,7 @@ constructor(props) {
 			                <input type = "submit" className = "submit-details" value = "Get Email" />         
 			            </form>
 			            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
-                 		{error && <div className="FailedTagForm"> Please provide valid Credentials</div>}
+                 		{error && <div className="FailedTagForm"> Please try again error connecting...</div>}
 		        </div>
 		         )}
 

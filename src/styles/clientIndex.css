@@ -52,7 +52,6 @@ body{
   padding-top: 10px;
 }
 
-
 .logo-image-mobile{
  background-color: white;
 }
@@ -1509,4 +1508,12 @@ body{
 .applicationReview p{
   font-size: 14px;
   padding: 0px;
+}
+.passwordSent{
+  background: linear-gradient(45deg, green, #47dcbc);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  display: none;
 }

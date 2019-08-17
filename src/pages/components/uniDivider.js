@@ -36,7 +36,7 @@ class UniDivider extends React.Component {
            <div className = "excited-img-container"><img src = {excited} /></div>
            <div>
              <h1>Our clients get offers from</h1>
-                <p><i>into these</i></p>
+                <p><i>from these</i></p>
            </div>
          </div>
          <div className = "sliding-text">

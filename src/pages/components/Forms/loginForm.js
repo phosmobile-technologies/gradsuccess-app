@@ -23,6 +23,7 @@ constructor(props) {
 	this.handleFormInput = this.handleFormInput.bind(this);
 	this.handleForgotPassword = this.handleForgotPassword.bind(this);
 	this.formSubmitted = this.formSubmitted.bind(this);
+	this.forgotSubmitted = this.forgotSubmitted.bind(this);
 }
 
  handleFormInput(event){
@@ -35,11 +36,30 @@ constructor(props) {
     }))
 }
 
-    formSubmitted(data){
+    forgotSubmitted(data){
 		this.setState({
 			message:data.forgotPassword.message
 		})
 	    document.getElementById("submittedSucces").style.display = "block"
+    }
+
+
+    formSubmitted(data){
+    document.getElementById("submittedSucces").style.display = "block"
+        setTimeout(function() {
+          if (document.getElementById("submittedSucces") != null) {
+            document.getElementById("submittedSucces").style.display = "none"
+          }
+    }, 2000)
+    localStorage.setItem(AUTH_TOKEN, data.login.access_token)
+
+    if(data.login.user.account_type === "Client"){
+    	window.location = '/Client-dashboard'
+    }else if(data.login.user.account_type === "Expert"){
+    	window.location = '/Expert-dashboard'
+    }else{
+       	window.location = '/Gradsuccess-admin'
+    }
     }
   
 
@@ -61,7 +81,7 @@ constructor(props) {
 				    mutation={FORGOT_PASSWORD}
 				    onError={this.error} 
 				    onCompleted={data=>{
-				       	this.formSubmitted(data)
+				       	this.forgotSubmitted(data)
 				    }}>		
 				{(loginForm, { data,loading, error}) => (		
 			        <div className = "loader-wrapper">
@@ -91,7 +111,7 @@ constructor(props) {
 	                   		 </div>
 	                   		 
 			                <br />
-			                <input type = "submit" className = "submit-details" value = "Get Email" />         
+			                <input type = "submit" className = "submit-details" value = "Submit" />         
 			            </form>
 			            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
                  		{error && <div className="FailedTagForm"> Please try again error connecting...</div>}

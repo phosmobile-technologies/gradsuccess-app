@@ -46,7 +46,7 @@ class WhyChooseUs extends React.Component {
     </h2>
     <div
       css={{
-        width: "80%",
+        width: "70%",
         margin: "0 auto",
         display: "flex",
         justifyContent: "space-around",
@@ -78,7 +78,7 @@ class WhyChooseUs extends React.Component {
         display: 'flex',
         margin: '0 auto',
         justifyContent: 'center',
-        marginTop: '3em'
+        marginTop: '0em'
     }}> <span  onClick={this.openModal}>
       <PryButton text="Get Started"/> </span>
     </div>

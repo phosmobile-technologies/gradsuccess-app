@@ -14,7 +14,7 @@ const inputStyle = {
   fontSize: "20px",
   borderBottom: "1px solid gray",
   width: "45%",
-  fontFamily: "poppins",
+  fontFamily: 'Lato',
   marginBottom: "70px",
 }
 
@@ -32,7 +32,7 @@ const button = {
   justifySelf: "center",
   color: "#111",
   fontWeight: "bold",
-  fontFamily: "poppins",
+  fontFamily: 'Lato',
   margin: "0px auto",
   cursor: "pointer",
   ":hover": {

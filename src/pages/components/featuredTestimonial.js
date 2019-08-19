@@ -84,7 +84,8 @@ constructor(props) {
             <h1 css={{
                 fontSize: '1.3em',
                 lineHeight: '1.4em',
-                textAlign: 'center'
+                textAlign: 'center',
+                fontFamily: 'Lato',
             }}>Over 8 years of helping applicants fulfill their dreams.</h1>
             <div onClick={this.openModal}>
             <button css={BigButtonStyles}>Work With An Expert</button>

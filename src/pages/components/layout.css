@@ -1617,9 +1617,9 @@ progress {
     margin-bottom: 0px;
     position: absolute;
     width: 195%;
-    -webkit-animation: slideLeft 45s ease-in-out 0s infinite reverse;  /* Safari 4.0 - 8.0 */
+    -webkit-animation: slideLeft 30s ease-in-out 0s infinite reverse;  /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-    animation: slideLeft 45s ease-in-out 0s infinite reverse;
+    animation: slideLeft 30s ease-in-out 0s infinite reverse;
     animation-fill-mode: forwards;
 }
 .sliding-text ul li{

@@ -24,7 +24,7 @@ const DivStyles = {
 
 const TextStyles = {
   fontSize: "14px",
-  textAlign: 'justify',
+  textAlign: 'center',
   textJustify: 'inter-word',
 }
 

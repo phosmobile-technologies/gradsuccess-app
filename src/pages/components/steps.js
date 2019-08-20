@@ -18,7 +18,8 @@ const ImgStyles = {
 const DivStyles = {
   padding: "1em",
   flex: 1,
-  minWidth: '200px'
+  minWidth: '200px',
+  textAlign:'center'
 }
 
 const TextStyles = {

@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
 import { CREATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
+import { SAVE_RESET_PASSWORD } from "../../../api/sendMailEndpoint"
 import loader from "../../../images/loader.gif"
 
 export default class resumeReviewForm extends React.Component {
@@ -15,12 +16,14 @@ export default class resumeReviewForm extends React.Component {
       },
       password_verified: true,
       account_created: false,
+      message:""
     }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleForgotPassword = this.handleForgotPassword.bind(this)
     this.verifyPassword = this.verifyPassword.bind(this)
     this.verifyConfirmPassword = this.verifyConfirmPassword.bind(this)
     this.storePassword = this.storePassword.bind(this)
+    this.resetPassword = this.resetPassword.bind(this)
   }
 
   handleFormInput(event) {
@@ -33,16 +36,42 @@ export default class resumeReviewForm extends React.Component {
     }))
   }
 
-  formSubmitted(data) {
-    document.getElementById("submittedSucces").style.display = "block"
-    setTimeout(function() {
-      if (document.getElementById("submittedSucces") != null) {
-        document.getElementById("submittedSucces").style.display = "none"
+  resetPassword() {
+    document.getElementById("loaderImage").style.display = "block"
+    let url = SAVE_RESET_PASSWORD
+      let emailAddress = {
+          email: this.state.data.email,
+          password:this.state.data.password,
       }
-    }, 2000)
-    this.setState({
-      account_created: true,
-    })
+        fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify(emailAddress)
+      }).then(function(response){
+          return response.text()
+      }).then((text)=>{
+         if(text === "failed"){
+           this.setState({
+              message:text
+           })
+           document.getElementById("submittedSucces").style.display = "flex";
+           document.getElementById("loaderImage").style.display = "none"
+         }else{
+            this.setState({
+              account_created: true,
+              message:text,
+            })
+
+            document.getElementById("loaderImage").style.display = "none"
+         }
+       
+        console.log(text);
+      }).catch(function(error){
+          console.log(error);
+      })    
   }
 
   handleForgotPassword() {
@@ -99,11 +128,11 @@ export default class resumeReviewForm extends React.Component {
         <div>
           <div className="thank-you">
             <div className="thank-you-inner-left">
-              <h1>
-                Thank You <i>!</i>
+              <h1 className = "resteH1">
+                {this.state.message}
               </h1>
               <div>
-                <p>Your Account was successfully Created, </p>
+                <p></p>
               </div>
             </div>
 
@@ -113,27 +142,14 @@ export default class resumeReviewForm extends React.Component {
       )
     } else {
       return (
-        <div>
+        <div loader-wrapper>
+        <div className = "loader" id = "loaderImage"><img className="loader-img" src={loader} alt="gradsuccess" /></div>
           <div className="expert-form">
-            <Mutation
-              mutation={CREATE_CLIENT_ACCOUNT}
-              onError={this.error}
-              onCompleted={data => {
-                this.formSubmitted(data)
-              }}
-            >
-              {(createExpertAccount, { data, loading, error }) => (
                 <div className="loader-wrapper">
-                  <div id="submittedSucces" className="SuccessTagForm">
-                    Success! Account Create Successfully...
+                  <div id="submittedSucces" className="FailedTagFormReset">
+                    {this.state.message}
                   </div>
                   <form
-                    onSubmit={e => {
-                      e.preventDefault()
-                      createExpertAccount({
-                        variables: this.state.data,
-                      })
-                    }}
                     className="checkout-form-container"
                   >
                     <h3 className="form-header">Password Reset</h3>
@@ -181,31 +197,18 @@ export default class resumeReviewForm extends React.Component {
 
                     <br />
                     <input
-                      type="submit"
+                      type="button"
                       className="submit-details"
-                      value="Register"
+                      value="Submit"
                       css={{
                         opacity: this.state.password_verified ? "0.3" : "1",
                       }}
                       disabled={this.state.password_verified}
+                      onClick= {this.resetPassword}
                     />
                   </form>
-                  {loading && (
-                    <div className="loader">
-                      <img
-                        className="loader-img"
-                        src={loader}
-                        alt="gradsuccess"
-                      />
-                    </div>
-                  )}
-                  {error && (
-                    <div className="FailedTagForm"> Password reset failed, please try again</div>
-                  )}
-                </div>
-              )}
-            </Mutation>
-          </div>
+        </div>
+        </div>
         </div>
       )
     }

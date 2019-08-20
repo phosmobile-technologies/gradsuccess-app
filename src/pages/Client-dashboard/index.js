@@ -134,7 +134,7 @@ class IndexPage extends Component {
                 <div>
                     {data.me.account_type === "Expert"?
                         <NotFoundPage />
-                        :<div>
+                        :<div className = "main-content-wrapper">
                             <div className = "main-content">
                                 <div className = "client_main_area">
                                     <div className = "fixedHeader">

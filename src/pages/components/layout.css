@@ -727,6 +727,7 @@ pre tt:after {
     content: "";
 }
 
+
 @media only screen and (max-width: 480px) {
     html {
         font-size: 100%;
@@ -1160,6 +1161,7 @@ pre tt:after {
     grid-template-columns: 5fr 4fr;
     grid-gap: 20px;
     width: 90%;
+    max-width: 1050px;
     margin: auto;
     background-color: white;
     box-shadow:0px 0px 15px rgba(0,0,0,0.1);
@@ -1585,14 +1587,20 @@ progress {
     margin-bottom: 60px;
 }
 .Uni-divider-image-section{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 30px;
-    margin-bottom: 30px
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0px
+}
+.Uni-divider-image-section img {
+    margin-bottom: -20px;
+    width:100px;
 }
 .Uni-divider-image-section h1{
     color: #00a99d;
-    margin-bottom: 0px;
+    margin-bottom: 15px;
+
 }
 .Uni-divider-image-section p{
     font-weight: bold;
@@ -1601,8 +1609,7 @@ progress {
 }
 
 .excited-img-container{
-    width: 50%;
-    margin-left: 50%;
+    
 }
 
 .sliding-text{
@@ -1617,13 +1624,13 @@ progress {
     margin-bottom: 0px;
     position: absolute;
     width: 195%;
-    -webkit-animation: slideLeft 30s ease-in-out 0s infinite reverse;  /* Safari 4.0 - 8.0 */
+    -webkit-animation: slideLeft 30s none 0s infinite;  /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-    animation: slideLeft 30s ease-in-out 0s infinite reverse;
+    animation: slideLeft 30s none 0s infinite;
     animation-fill-mode: forwards;
 }
 .sliding-text ul li{
-    font-size: 25px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: bold;
     display: inline-block;
@@ -1743,4 +1750,62 @@ div.slide-left p {
     background-color: #f9f9f9;
     padding: 10px
 }
+.Uni-divider{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.Uni-divider-image-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0px
+}
+.Uni-divider-image-section img {
+    margin-bottom: -20px;
+    width:60px;
+}
+.Uni-divider-image-section h1{
+    color: #00a99d;
+    margin-bottom: 15px;
+    font-size: 23px
+
+}
+.Uni-divider-image-section p{
+    font-size: 14px
+}
+.sliding-text{
+    overflow: hidden;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    padding-top: 0px;
+}
+.sliding-text ul {
+    width: 310%;
+    -webkit-animation: slideLeft 20s none 0s infinite ;  /* Safari 4.0 - 8.0 */
+    animation: slideLeft 20s none 0s infinite ;
+}
+.sliding-text ul li{
+    font-size: 14px;
+}
+@-webkit-keyframes slideLeft {
+   0% {
+    left: -310%
+  }
+  100%{
+    left: 100%
+  }
+}
+@keyframes slideLeft {
+  0% {
+    left: 0%
+  }
+  100%{
+    left: -100%
+  }
+}
+
+
 }

@@ -27,7 +27,7 @@ class UniDivider extends React.Component {
           justifyContent: "space-around",
           alignContent: "center",
           background: "white",
-          padding: "0 5em",
+          
         }}
       >
 
@@ -43,7 +43,6 @@ class UniDivider extends React.Component {
          </div>
          <div className = "sliding-text">
            <ul>
-             <li>MIB <span>/</span></li>
              <li>Goldman Sachs <span>/</span></li>
              <li>Oxford University <span>/</span></li>
              <li>Hult International Business School<span>/</span></li>

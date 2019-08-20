@@ -8,18 +8,13 @@ import { GET_ALL_COVER_LETTER_REVIEW_FORMS} from "../../graphql/queries"
 import { GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS } from "../../graphql/queries"
 import { GET_ALL_RESUMME_REVIEW_FORMS } from "../../graphql/queries"
 import { SEND_MAIL } from "../../../api/sendMailEndpoint"
-
-
 import Modal from "react-modal"
 import { Mutation } from 'react-apollo';
-
-
 import CoverLetterRedraft from "../../FormDetailsPreview/coverLetterRedraft"
 import CoverLetterReviewForm from "../../FormDetailsPreview/coverLetterReviewForm"
 import GraduateSchoolEssayRedraftForm from "../../FormDetailsPreview/graduateSchoolEssayRedraftForm"
 import GraduateSchoolStatementReviewForm from "../../FormDetailsPreview/graduateSchoolStatementReviewForm"
 import ResumeReviewForm from "../../FormDetailsPreview/resumeReviewForm"
-
 import {UPDATE_RESUME_REVIEW_FORM} from '../../graphql/mutations';
 import {UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from '../../graphql/mutations';
 import {UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT} from '../../graphql/mutations';
@@ -145,8 +140,6 @@ assignSelf(form_id,application,id){
     }).catch(function(error){
         console.log(error);
     })
-    
-
 }
 
 

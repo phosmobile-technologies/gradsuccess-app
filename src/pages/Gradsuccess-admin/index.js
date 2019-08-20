@@ -131,121 +131,120 @@ class IndexPage extends Component {
     }
 
 
-    render() {
-          if (this.state.loggedIn != "") {
-            return (
-                 <Query query={LOGGED_IN_USER}>
-                    {({ loading, error, data }) => {
-                    if (loading) return (
-                    <div className = "loader">
-                        <div className="loader_client_account">
-                            <img  src={loader} alt="gradsuccess" />
-                            <h1>Just a moment...</h1>
-                        </div>
-                    </div>
-                    )
-                if (error) return `Error! ${error.message}`;
-                return (
-                <div>
-                    {data.me.account_type === "Client"?
-                        <NotFoundPage />
-                        :<div>
-                    
+render() {
+      if (this.state.loggedIn != "") {
+        return (
+         <Query query={LOGGED_IN_USER}>
+            {({ loading, error, data }) => {
+            if (loading) return (
+            <div className = "loader">
+                <div className="loader_client_account">
+                    <img  src={loader} alt="gradsuccess" />
+                    <h1>Just a moment...</h1>
+                </div>
+            </div>
+            )
+        if (error) return `Error! ${error.message}`;
+        return (
+        <div>
+            {data.me.account_type === "Client"?
+                <NotFoundPage />
+                :<div className = "main-content-wrapper">
                     <div className = "main-content">
-                            <div className = "client_main_area">
-                                <div className = "fixedHeader">
-                                    <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
-                                        <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
-                                        <button 
-                                            className = {this.state.currentMenu === "NewApplications"? "currentMenu":""} 
-                                            name = "New Applications" 
-                                            id = "NewApplications" 
-                                            onClick = {this.handleDisplayComponent}>New Applications
-                                        </button>
+                        <div className = "client_main_area">
+                            <div className = "fixedHeader">
+                                <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
+                                    <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
+                                    <button 
+                                        className = {this.state.currentMenu === "NewApplications"? "currentMenu":""} 
+                                        name = "New Applications" 
+                                        id = "NewApplications" 
+                                        onClick = {this.handleDisplayComponent}>New Applications
+                                    </button>
 
-                                        <button 
-                                            className = {this.state.currentMenu === "AssignedApplication" ? "currentMenu":""} 
-                                            name = "Assigned Applications" 
-                                            id = "AssignedApplication" 
-                                            onClick = {this.handleDisplayComponent}>Assigned Applications
-                                        </button>
+                                    <button 
+                                        className = {this.state.currentMenu === "AssignedApplication" ? "currentMenu":""} 
+                                        name = "Assigned Applications" 
+                                        id = "AssignedApplication" 
+                                        onClick = {this.handleDisplayComponent}>Assigned Applications
+                                    </button>
 
-                                        <button 
-                                            className = {this.state.currentMenu === "InProgressApplication" ? "currentMenu":""} 
-                                            name = "In Progress Applications" 
-                                            id = "InProgressApplication" 
-                                            onClick = {this.handleDisplayComponent}>In Progress Applications
-                                        </button>
+                                    <button 
+                                        className = {this.state.currentMenu === "InProgressApplication" ? "currentMenu":""} 
+                                        name = "In Progress Applications" 
+                                        id = "InProgressApplication" 
+                                        onClick = {this.handleDisplayComponent}>In Progress Applications
+                                    </button>
 
-                                        <button 
-                                            className = {this.state.currentMenu === "CompletedApplication" ? "currentMenu":""} 
-                                            name = "Completed Applications" 
-                                            id = "CompletedApplication" 
-                                            onClick = {this.handleDisplayComponent}>Completed Applications
-                                        </button>
-                                        <button 
-                                            className = {this.state.currentMenu === "changePassword"? "currentMenu":""}
-                                            id = "changePassword" 
-                                            onClick = {this.handleDisplayComponent}>Change Password
-                                        </button>
+                                    <button 
+                                        className = {this.state.currentMenu === "CompletedApplication" ? "currentMenu":""} 
+                                        name = "Completed Applications" 
+                                        id = "CompletedApplication" 
+                                        onClick = {this.handleDisplayComponent}>Completed Applications
+                                    </button>
+                                    <button 
+                                        className = {this.state.currentMenu === "changePassword"? "currentMenu":""}
+                                        id = "changePassword" 
+                                        onClick = {this.handleDisplayComponent}>Change Password
+                                    </button>
 
-                                        <button 
-                                            className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
-                                            name = "Experts List" 
-                                            id = "ExpertsComponent" 
-                                            onClick = {this.handleDisplayComponent}>Experts
-                                        </button>
-                                        <LogoutForm />
+                                    <button 
+                                        className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
+                                        name = "Experts List" 
+                                        id = "ExpertsComponent" 
+                                        onClick = {this.handleDisplayComponent}>Experts
+                                    </button>
+                                    <LogoutForm />
 
-                                          <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
-                                    <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
-                                    <div className="client_main_area_content_area">
-                                        {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
-                                        {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} />}
-                                        {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} />}
-                                        {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
-                                        {this.state.ExpertsComponent && <ExpertsComponent />}
-                                        {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
-                                    </div>
-                                     <Footer />
+                                      <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>
                                 </div>
                             </div>
+                            <div>
+                                <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
+                                <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
+                                <div className="client_main_area_content_area">
+                                    {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
+                                    {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} />}
+                                    {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} />}
+                                    {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
+                                    {this.state.ExpertsComponent && <ExpertsComponent />}
+                                    {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
+                                </div>
+                                 <Footer />
+                            </div>
                         </div>
-                        <div>
-                            <Modal 
-                            isOpen={this.state.changePassword}
-                            contentLabel="Minimal Modal Example"
-                            style={defaultStyles}
-                            ariaHideApp={false}>
-                                <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
-                                <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-                            </Modal>
-                        </div>                           
-                   </div>
-                    }
-                </div>
-                    );
-                    }}
-                </Query>
-            );
-            } else {
-            return (
-                <div>
+                    </div>
+                    <div>
                         <Modal 
-                           isOpen={this.state.showModal}
-                           contentLabel="Minimal Modal Example"
-                           style={customStyles}
-                           ariaHideApp={false}
-                        >
-                          <LoginForm />
+                        isOpen={this.state.changePassword}
+                        contentLabel="Minimal Modal Example"
+                        style={defaultStyles}
+                        ariaHideApp={false}>
+                            <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
+                            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
                         </Modal>
-                </div>
-            )
-        }
+                    </div>                           
+                   </div>
+            }
+        </div>
+            );
+            }}
+    </Query>
+        );
+        } else {
+        return (
+            <div>
+                    <Modal 
+                       isOpen={this.state.showModal}
+                       contentLabel="Minimal Modal Example"
+                       style={customStyles}
+                       ariaHideApp={false}
+                    >
+                      <LoginForm />
+                    </Modal>
+            </div>
+        )
     }
+}
 }
 export default IndexPage

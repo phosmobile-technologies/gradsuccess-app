@@ -76,7 +76,7 @@ constructor(props) {
             </p>
             <br />
             <hr />
-            <h4>Babajide</h4>
+            <h4>Babajide, MIB</h4>
             <AppRating ratingValue = {this.state.rateValue} />
         </div>
 

@@ -181,37 +181,7 @@ We are on course in establishing a rapidly advancing company that fully caters t
 innovative and evolving consultancy business. Yet we are not going to rest on our oars, and will continue
 to build on our successes first with the business, and then with our clients, creating a resilient and truly
 transformational organization in the process.`} />
-        <div css={{
-          background: 'white',
-          padding: '2em'
-        }}>
-          <div
-            css={{
-              textAlign: "center",
-              fontFamily: 'Lato', 
-              fontSize: "2em",
-              fontWeight: "bolder",
-              marginBottom: '1em'
-            }}
-          >
-            {" "}
-            Meet the Team{" "}
-          </div>
-          <div
-            css={{
-              display: "flex",
-              margin: "0px auto",
-              justifyContent: "center",
-              [mq[2]]: {
-                flexWrap: "wrap",
-              },
-            }}
-          >
-            <Team imgUrl={dan} jobTitle="Founder" name="Daniel Ukasoanya" />
-            <Team imgUrl={dan} jobTitle="Co Founder" name="David Ubanyi" />
-          </div>
-        </div>
-
+      
         {/*Modal popup*/}
         <Modal
         open={open}

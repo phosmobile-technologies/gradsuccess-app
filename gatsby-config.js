@@ -45,13 +45,6 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // 'gatsby-plugin-offline',
     {
-      resolve: "gatsby-plugin-page-progress",
-      options: {
-        includePaths: [],
-        excludePaths: ["/"],
-      },
-    },
-    {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         // Setting a color is optional.

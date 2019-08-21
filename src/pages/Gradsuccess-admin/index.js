@@ -201,7 +201,6 @@ render() {
                             </div>
                             <div>
                                 <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
-                                <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
                                 <div className="client_main_area_content_area">
                                     {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
                                     {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} />}

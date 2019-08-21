@@ -236,13 +236,18 @@ export default class leaveAMessageForm extends React.Component {
 										  	}
 
 										  	<p>{messageInstance.message_body}</p>
-										  	<span className="time-right">{messageInstance.client_name}</span>
-										  	<span className="time-right">{messageInstance.created_at}</span>
+										  	<div className= "msg_spec">
+										  		<span className="time-right">{messageInstance.client_name}</span>
+										  		<span className="time-right">{messageInstance.created_at}</span>
+										  	</div>
+										  	
 										</div>:
 										<div className="container lighter" id = {messageInstance.client_name === this.props.sender?"coloured":"uncoloured"} key  = {index}>
 										  	<p>{messageInstance.message_body}</p>
-										  	<span className="time-right">{messageInstance.client_name}</span>
-										  	<span className="time-right">{messageInstance.created_at}</span>
+										  	<div className= "msg_spec">
+											  	<span className="time-right">{messageInstance.client_name}</span>
+											  	<span className="time-right">{messageInstance.created_at}</span>
+										  	</div>
 										</div>
 										}
 									</div>

@@ -637,14 +637,9 @@ body{
   }
 
   .container {
-    padding: 10px;
-    margin: 10px 10px;
-    color: white;
+    padding: 0px;
     font-size: 12px;
-    box-shadow: 0px 0px 11px 0px rgba(0,0,0,.1);
-
 }
-/* Darker chat container */
 
 .lighter {
   color: black;
@@ -652,13 +647,23 @@ body{
 } 
 
 #uncoloured {
-  color: black;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
   border: none;
 }
+.msg_spec{
+  line-height: 0px;
+}
+
+#uncoloured .msg_spec{
+  display: flex; 
+}
+
 #coloured {
-  color: black;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
   border: none;
 }
 
@@ -668,25 +673,37 @@ body{
 }
 
 #coloured p{
-  display: flex;
+  display: inline-block;
+  padding: 0px;
   justify-content: flex-end;
-  background-color: white;
+  color: orangered;
+  line-height: 16px;
+  text-align: right;
+  padding: 20px;
+  font-size: 14px;
 }
 #uncoloured p{
   display: inline-block;
-  background-color: #3dfcec;
+  padding: 0px;
+  justify-content: flex-end;
+  color: black;
+  line-height: 16px;
+  text-align: left;
+  padding: 20px;
+  font-size: 14px;
 }
 
 .chat_component{
-  width: 90%;
+  width: 100%;
   margin: auto;
-  padding-right: 50px;
-  max-height: 410px;
-  min-height: 410px;
+  min-height: 75vh;
+  max-height: 75vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
+  margin-bottom: 20px;
 }
+
 .chat_component {
     -ms-overflow-style: none;  
     scrollbar-width: none; 
@@ -725,9 +742,14 @@ body{
 }
 
 .chat_form{
-    display: flex;
-    margin-bottom: 0px;
-    margin-top: 50px;
+  display: grid;
+  grid-template-columns: 17fr 1fr 4fr;
+  margin-bottom: 0px;
+  background: white;
+  padding: 2px;
+  outline: transparent;
+  border-radius: 100px;
+  border: 1px solid #19a99d;
 
 }
 .chat_form input{
@@ -736,19 +758,21 @@ body{
   border: none;
   padding: 5px;
   font-family: 'Lato', sans-serif;
-  border: 1px solid #19a99d;
   width: 80%;
 
 }
 .chat_form button{
   display: flex;
-    color: white;
-    font-size: 12px;
-    background-color: #19a99d;
-    border: none;
-    align-items: center;
-    font-family: 'Lato', sans-serif;
-    cursor: pointer;
+  color: white;
+  justify-content: space-around;
+  font-size: 12px;
+  background-color: #19a99d;
+  border: none;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  border-radius: 100px;
+  padding: 0px;
   
 }
 
@@ -839,7 +863,7 @@ body{
   background-color: #056e65;
   min-width: 100px;
   z-index: 1;
-  right: -160px;
+  right: -153px;
   top: 0px;
   color: white;
 }

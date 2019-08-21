@@ -1,7 +1,7 @@
 import { React, Component } from 'react';
 import Layout from "./components/layout";
 
-import ExpertRegistrationForm from "./components/Forms/expertRegistrationForm"
+import ProfileImageUpload from "./components/Forms/profileImageUpload"
 
 
 
@@ -25,13 +25,15 @@ export default class ApplicationDetail extends Component {
                   }}
                     >
                    <div className = "content">
-                       <ExpertRegistrationForm />
+                       <ProfileImageUpload />
                     </div>
                 </div>
         </Layout>
 
            
         )
-	}
-	}
-	
+  }
+  }
+  
+
+

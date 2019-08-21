@@ -1173,6 +1173,7 @@ pre tt:after {
     margin: auto;
     background-color: white;
     box-shadow:0px 0px 15px rgba(0,0,0,0.1);
+    min-height: 400px;
 }
 
 
@@ -1624,9 +1625,9 @@ progress {
     margin-bottom: 0px;
     position: absolute;
     width: 195%;
-    -webkit-animation: slideLeft 30s none 0s infinite;  /* Safari 4.0 - 8.0 */
+    -webkit-animation: slideLeft 30s linear 0s infinite;  /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-    animation: slideLeft 30s none 0s infinite;
+    animation: slideLeft 30s linear 0s infinite;
     animation-fill-mode: forwards;
 }
 .sliding-text ul li{
@@ -1784,8 +1785,8 @@ div.slide-left p {
 }
 .sliding-text ul {
     width: 310%;
-    -webkit-animation: slideLeft 20s none 0s infinite ;  /* Safari 4.0 - 8.0 */
-    animation: slideLeft 20s none 0s infinite ;
+    -webkit-animation: slideLeft 20s linear  0s infinite ;  /* Safari 4.0 - 8.0 */
+    animation: slideLeft 20s linear  0s infinite ;
 }
 .sliding-text ul li{
     font-size: 14px;

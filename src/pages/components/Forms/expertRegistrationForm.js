@@ -46,9 +46,8 @@ export default class resumeReviewForm extends React.Component {
         document.getElementById("submittedSucces").style.display = "none"
       }
     }, 2000)
-    this.setState({
-      account_created: true,
-    })
+      window.location = '/upload-profile-image'
+    
   }
 
   handleForgotPassword() {

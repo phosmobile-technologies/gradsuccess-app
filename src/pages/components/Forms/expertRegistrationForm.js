@@ -40,6 +40,7 @@ export default class resumeReviewForm extends React.Component {
   }
 
   formSubmitted(data) {
+    localStorage.setItem("prfileId", data);
     document.getElementById("submittedSucces").style.display = "block"
     setTimeout(function() {
       if (document.getElementById("submittedSucces") != null) {
@@ -47,7 +48,6 @@ export default class resumeReviewForm extends React.Component {
       }
     }, 2000)
       window.location = '/upload-profile-image'
-    
   }
 
   handleForgotPassword() {

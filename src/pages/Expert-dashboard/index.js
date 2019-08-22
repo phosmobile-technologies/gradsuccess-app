@@ -189,16 +189,14 @@ class IndexPage extends Component {
                                             onClick = {this.handleDisplayComponent}>Change Password
                                         </button>
                                         <LogoutForm />
-
-                                          <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} closeMenu = {this.toggleMenu}/>
                                     </div>
                                 </div>
                                 <div>
                                     <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
                                     <div className="client_main_area_content_area">
                                         {this.state.NewApplications && <NewApplications  expert_id = {data.me.id}  account_type = {data.me.account_type}/>}
-                                        {this.state.AssignedApplication && <AssignedApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
-                                        {this.state.InProgressApplication && <InProgressApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
+                                        {this.state.AssignedApplication && <AssignedApplication expert_id = {data.me.id} account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
+                                        {this.state.InProgressApplication && <InProgressApplication expert_id = {data.me.id} account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
                                         {this.state.CompletedApplication && <CompletedApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
                                     </div>

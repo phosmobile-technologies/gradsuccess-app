@@ -6,6 +6,7 @@ import gql from "graphql-tag"
 import { CREATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
 import loader from "../../../images/loader.gif"
 import defaultImage from "../../../images/default_profile_img.png"
+import { SAVE_PROFILE_IMAGE } from "../../../api/sendMailEndpoint"
 
 export default class resumeReviewForm extends React.Component {
   constructor(props) {
@@ -62,6 +63,35 @@ _onChange(event){
             console.log(err)
         },
         function complete() {
+          let url = SAVE_PROFILE_IMAGE
+          let data = {
+              profileID:localStorage,
+              imageRef: fileRef,
+          }
+            fetch(url, {
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            method: "post",
+            body: JSON.stringify(data)
+          }).then(function(response){
+              return response.text()
+          }).then((text)=>{
+            console.log(text)
+            document.getElementById("submittedSucces").style.display = "block"
+            setTimeout(()=>{
+                  if (document.getElementById("submittedSucces") != null) {
+                    document.getElementById("submittedSucces").style.display = "none"
+                    this.props.closeModal();
+                  }
+            }, 2000)
+
+          }).catch(function(error){
+              console.log(error);
+          })
+
+
             document.getElementById("submittedSucces").style.display = "none"
             document.getElementById("accountCreated").style.display = "block";
             setTimeout(function() {

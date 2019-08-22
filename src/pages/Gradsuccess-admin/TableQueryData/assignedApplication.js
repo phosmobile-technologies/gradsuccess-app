@@ -113,8 +113,9 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    
+                                                    <button onClick={() => this.props.handleDisplayMessagingComponent(Item.form_id, Item.name)}>message</button>
                                                 </div>
+                                                 
                                             </div>
                                         </div>
                                     )}
@@ -160,7 +161,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    
+                                                    <button onClick={() => this.props.handleDisplayMessagingComponent(Item.form_id, Item.name)}>message</button>
                                                     
                                                 </div>
                                             </div>
@@ -208,7 +209,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    
+                                                    <button onClick={() => this.props.handleDisplayMessagingComponent(Item.form_id, Item.name)}>message</button>
                                                     
                                                 </div>
                                             </div>
@@ -256,7 +257,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                   
+                                                    <button onClick={() => this.props.handleDisplayMessagingComponent(Item.form_id, Item.name)}>message</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -303,7 +304,7 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package,Item.form_id)}>view</button>
-                                                    
+                                                    <button onClick={() => this.props.handleDisplayMessagingComponent(Item.form_id, Item.name)}>message</button>
                                                     
                                                 </div>
                                             </div>
@@ -372,7 +373,6 @@ render() {
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
         </Modal>
-
         <Modal 
            isOpen={this.state.resumeReviewForm}
            contentLabel="Minimal Modal Example"

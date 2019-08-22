@@ -778,7 +778,7 @@ body{
   color: white;
   justify-content: space-around;
   font-size: 12px;
-  background-color: #19a99d;
+  background-color: white;
   border: none;
   align-items: center;
   font-family: 'Lato', sans-serif;
@@ -786,6 +786,10 @@ body{
   border-radius: 100px;
   padding: 0px;
   
+}
+
+.chat_form button:hover{
+  background-color: white;
 }
 
 .chat_form img{
@@ -1019,13 +1023,13 @@ body{
 
 #attLabel{
   width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #19a99d;
-    cursor: pointer;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
   }
 
   #attLabel img{

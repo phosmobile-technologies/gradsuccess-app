@@ -196,15 +196,15 @@ render() {
                                     </button>
                                     <LogoutForm />
 
-                                      <ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>
+                                      {/*<ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>*/}
                                 </div>
                             </div>
                             <div>
                                 <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
                                 <div className="client_main_area_content_area">
                                     {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
-                                    {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} />}
-                                    {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} />}
+                                    {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} />}
+                                    {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
                                     {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
                                     {this.state.ExpertsComponent && <ExpertsComponent />}
                                     {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}

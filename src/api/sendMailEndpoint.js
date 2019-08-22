@@ -8,4 +8,5 @@ export const APPLICATION_ASSIGNED = 'https://infinite-cove-53014.herokuapp.com/a
 export const APPLICATION_REVIEW = 'https://infinite-cove-53014.herokuapp.com/api/applicationReview'
 export const PASSWORD_CHANGE = 'https://infinite-cove-53014.herokuapp.com/api/changePassword'
 export const PASSWORD_RESET = 'https://infinite-cove-53014.herokuapp.com/api/resetForgottenPassword'
-export const SAVE_RESET_PASSWORD = 'http://127.0.0.1:8000/api/saveResetPassword'
+export const SAVE_RESET_PASSWORD = 'https://infinite-cove-53014.herokuapp.com/api/saveResetPassword'
+export const SAVE_PROFILE_IMAGE = 'https://infinite-cove-53014.herokuapp.com/api/saveProfileImage'

@@ -202,7 +202,9 @@ class IndexPage extends Component {
                                         {this.state.CompletedApplication && <CompletedApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
                                     </div>
+                                    <div className = "footer-hide">
                                      <Footer />
+                                     </div>
                                 </div>
                             </div>
                         </div>

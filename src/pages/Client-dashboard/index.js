@@ -157,11 +157,6 @@ class IndexPage extends Component {
                                             </button>
                                             <LogoutForm />
                                         </div>
-                                        <div className = "hamburger-menu" onClick = {this.toggleMenu}>
-                                          <div className = "stroke-1"></div>
-                                          <div className = "stroke-2"></div>
-                                          <div className = "stroke-3"></div>
-                                    </div>
                                     </div>
 
                                     <div>
@@ -170,7 +165,9 @@ class IndexPage extends Component {
                                             {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id} account_type = {data.me.account_type}/>}
                                             {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.form_id} sender = {data.me.first_name +" "+ data.me.last_name}/>}
                                         </div>
+                                        <div className = "footer-hide">
                                         <Footer />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

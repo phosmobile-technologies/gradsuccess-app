@@ -20,7 +20,9 @@ class Message extends Component {
           <div className = "main-content"> 
                   <p>Message</p>
           </div>
-          <Footer />
+          <div className = "footer-hide">
+            <Footer />
+          </div>
       </div>
     )
   }

@@ -22,9 +22,9 @@ export default class resumeReviewForm extends React.Component {
   }
 
 _onChange(event){
-    this.setState({
-      file: URL.createObjectURL(event.target.files[0])
-    })
+  this.setState({
+    file: URL.createObjectURL(event.target.files[0])
+  })
 }
 
 
@@ -123,7 +123,7 @@ _onChange(event){
                      </div>
                     <input
                       type="button"
-                      className="submit-details"
+                      className="upload-p"
                       value="Save"
                       disabled={this.state.file ===""}
                       onClick = {this.onChange}

@@ -1674,7 +1674,23 @@ div.slide-left p {
 
 
 @media only screen and (max-width: 500px) {
-    .SuccessTag {
+.thank-you {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-gap: 40px;
+}
+.thank-you-inner-left{
+    text-align: justify;
+}
+
+.thank-you span {
+    padding: 0px;
+    text-align: left;
+}
+.thank-you h1{
+    text-align: center;
+}
+.SuccessTag {
     width: 100%;
     top: 0%;
 }
@@ -1806,6 +1822,10 @@ div.slide-left p {
   100%{
     left: -100%
   }
+}
+
+.expert-form{
+  width: 100%
 }
 
 

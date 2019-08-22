@@ -1545,11 +1545,6 @@ body{
     .logo-image{
       display: none;
     }
-
-    .d-menu-container{
-      display: none;
-    }
-
     .hamburger-menu{
       display: block;
     }
@@ -1711,6 +1706,7 @@ body{
 .uploadImg{
   width: 90%;
 }
+
 }
 
 

@@ -1670,10 +1670,13 @@ div.slide-left p {
 .ratingDiv p{
     margin-right:20px;
 }
-
-
-
 @media only screen and (max-width: 500px) {
+#uploader{
+  width: 100%;
+}
+.file_upload_label{
+  width: 100%;
+}
 .thank-you {
     width: 100%;
     grid-template-columns: 1fr;

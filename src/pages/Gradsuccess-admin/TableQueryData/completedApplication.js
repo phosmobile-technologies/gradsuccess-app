@@ -71,6 +71,8 @@ upadateItemCount(plus){
     this.setState({
         itemCount:this.state.itemCount+plus
     })
+
+    console.log(this.state.itemCount);
 }
 
 

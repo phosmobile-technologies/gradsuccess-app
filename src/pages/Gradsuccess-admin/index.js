@@ -200,7 +200,7 @@ render() {
                                 </div>
                             </div>
                             <div>
-                                <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
+                                <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email}/>
                                 <div className="client_main_area_content_area">
                                     {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
                                     {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} />}
@@ -221,7 +221,7 @@ render() {
                         contentLabel="Minimal Modal Example"
                         style={defaultStyles}
                         ariaHideApp={false}>
-                            <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
+                            <ChangePassword   id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
                             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
                         </Modal>
                     </div>                           

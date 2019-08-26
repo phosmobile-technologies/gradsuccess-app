@@ -21,7 +21,11 @@ export default class resumeReviewForm extends React.Component {
     this.onChange = this.onChange.bind(this);
     this._onChange = this._onChange.bind(this)
   }
-
+  componentDidMount(){
+    if(localStorage.getItem('profileID') === undefined){
+      window.location = "/"
+    }
+  }
 _onChange(event){
   this.setState({
     file: URL.createObjectURL(event.target.files[0])
@@ -65,7 +69,7 @@ _onChange(event){
         function complete() {
           let url = SAVE_PROFILE_IMAGE
           let data = {
-              profileID:localStorage,
+              profileID:localStorage.getItem("profileID"),
               imageRef: fileRef,
           }
             fetch(url, {
@@ -78,40 +82,23 @@ _onChange(event){
           }).then(function(response){
               return response.text()
           }).then((text)=>{
-            console.log(text)
-            document.getElementById("submittedSucces").style.display = "block"
-            setTimeout(()=>{
-                  if (document.getElementById("submittedSucces") != null) {
-                    document.getElementById("submittedSucces").style.display = "none"
-                    this.props.closeModal();
-                  }
-            }, 2000)
+            document.getElementById("submittedSucces").style.display = "none"
+              document.getElementById("accountCreated").style.display = "block";
+              setTimeout(function() {
+                  localStorage.removeItem('profileID');
+                 window.location = "/"
+          }, 5000)
 
           }).catch(function(error){
               console.log(error);
           })
 
 
-            document.getElementById("submittedSucces").style.display = "none"
-            document.getElementById("accountCreated").style.display = "block";
-            setTimeout(function() {
-           		window.location = "/"
-		    }, 5000)
+
 		      
         })
     }
   render() {
-    if (this.state.account_created) {
-      return (
-        <div>
-          <div className="thank-you">
-            <div className="thank-you-inner-left">
-              
-            </div>
-          </div>
-        </div>
-      )
-    } else {
       return (
         <div>
           <div className="expert-form">
@@ -163,6 +150,5 @@ _onChange(event){
           </div>
         </div>
       )
-    }
   }
 }

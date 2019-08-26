@@ -97,7 +97,7 @@ render() {
                 )
               if (error) return <div>failed to load data</div>
               return (
-                 <div className="form_preview">
+                 <div className="form_preview form_preview_solid_bg">
 
                 <div className="form_preview_inner">
 

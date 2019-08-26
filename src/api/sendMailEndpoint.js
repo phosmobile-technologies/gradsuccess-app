@@ -10,3 +10,6 @@ export const PASSWORD_CHANGE = 'https://infinite-cove-53014.herokuapp.com/api/ch
 export const PASSWORD_RESET = 'https://infinite-cove-53014.herokuapp.com/api/resetForgottenPassword'
 export const SAVE_RESET_PASSWORD = 'https://infinite-cove-53014.herokuapp.com/api/saveResetPassword'
 export const SAVE_PROFILE_IMAGE = 'https://infinite-cove-53014.herokuapp.com/api/saveProfileImage'
+export const PROFILE_IMAGE_REF = 'https://infinite-cove-53014.herokuapp.com/api/getExpertProfileImageRef'
+
+export const EXPERT_AVERAGE_RATING = 'https://infinite-cove-53014.herokuapp.com/api/expertAverageRating'

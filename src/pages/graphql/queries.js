@@ -22,13 +22,28 @@ export const LOGGED_IN_USER = gql`
       first_name
       last_name
       phone
-	    form_id
-	    package
-	    email
+      form_id
+      package
+      email
       account_type
   	}
   }
 `;
+
+export const GET_USER = gql`
+              query GetUser($id: ID!) {
+                user(id: $id) {
+                  id
+                  first_name
+                  last_name
+                  phone
+                  form_id
+                  package
+                  email
+                  account_type
+                }
+              }
+            `;
 
 export const GET_EXPERT = gql`
   query GetExpert($id: ID!){

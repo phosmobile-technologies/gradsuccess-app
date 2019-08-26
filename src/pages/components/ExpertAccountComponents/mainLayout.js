@@ -10,17 +10,11 @@ import displayPicture from "../../../images/dan.jpeg"
 
 //Men icon
 
-import helpIcon from "../../../images/icons/help.png"
-import messageIcon from "../../../images/icons/message.png"
-import notificationsIcon from "../../../images/icons/notifications.png"
 import settingIcon from "../../../images/icons/setting.png"
 
 
 // Dropdown menu import
 import Settings from './settings'
-import RecentMessages from './recentMessages'
-import Support from './support'
-import Notifications from './notifications'
 
 
 
@@ -28,43 +22,17 @@ export default class mainLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNotificationMenu:false,
-      showMessagesMenu:false,
-      showSupportMenu:false,
       showSettings:false
     };  
+     this.handleDropDownMenu = this.handleDropDownMenu.bind(this);
   }
 
-  handleDropDownMenu(type){
-    if(type === "Notifications"){
-      this.setState({
-        showNotificationMenu:!this.state.showNotificationMenu,
-        showMessagesMenu:false,
-        showSupportMenu:false,
-        showSettings:false
-      })
-    }else if(type === "Messages"){
-      this.setState({
-        showMessagesMenu:!this.state.showMessagesMenu,
-        showNotificationMenu:false,
-        showSupportMenu:false,
-        showSettings:false
-      })
-    }else if(type === "Support"){
-      this.setState({
-        showSupportMenu:!this.state.showSupportMenu,
-        showMessagesMenu:false,
-        showNotificationMenu:false,
-        showSettings:false
-      })
-    }else{
+  handleDropDownMenu(){
       this.setState({
         showSettings:!this.state.showSettings,
-        showMessagesMenu:false,
-        showSupportMenu:false,
-        showNotificationMenu:false
+        
       })
-    }
+    
   }
 
 
@@ -83,10 +51,7 @@ export default class mainLayout extends Component {
                   <div className = "stroke-2"></div>
                   <div className = "stroke-3"></div>
                 </div>
-                <img  onClick={this.handleDropDownMenu.bind(this,"Notifications")} src={notificationsIcon} alt="Logo" />
-                <img onClick={this.handleDropDownMenu.bind(this,"Messages")} src={messageIcon} alt="Logo" />
-                <img  onClick={this.handleDropDownMenu.bind(this,"Support")} src={helpIcon} alt="Logo" />
-                <img  onClick={this.handleDropDownMenu.bind(this,"Settings")} src={settingIcon} alt="Logo" />
+                <img  onClick={this.handleDropDownMenu.bind()} src={settingIcon} alt="Logo" />
             </div>
          </div>
 
@@ -95,11 +60,8 @@ export default class mainLayout extends Component {
           <div>
              
          </div>
-          { this.state.showNotificationMenu && <Notifications /> }
-          { this.state.showMessagesMenu && <RecentMessages /> }
-          { this.state.showSupportMenu && <Support /> }
-          { this.state.showSettings && <Settings /> }
 
+          { this.state.showSettings && <Settings  email = {this.props.email} accountName = {this.props.accountName} id = {this.props.id} changePassword = {this.props.changePassword} handleDropDownMenu = {this.handleDropDownMenu}/> }
       </div>
     )
   }

@@ -40,7 +40,7 @@ export default class resumeReviewForm extends React.Component {
   }
 
   formSubmitted(data) {
-    localStorage.setItem("prfileId", data);
+    localStorage.setItem("profileID", data.createClientAcccount.id);
     document.getElementById("submittedSucces").style.display = "block"
     setTimeout(function() {
       if (document.getElementById("submittedSucces") != null) {

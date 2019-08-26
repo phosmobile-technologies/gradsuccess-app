@@ -192,7 +192,7 @@ class IndexPage extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <MainLayout changePassword = {this.handleDisplayComponent} currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu}/>
+                                     <MainLayout changePassword = {this.handleDisplayComponent} currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email}/>
                                     <div className="client_main_area_content_area">
                                         {this.state.NewApplications && <NewApplications  expert_id = {data.me.id}  account_type = {data.me.account_type}/>}
                                         {this.state.AssignedApplication && <AssignedApplication expert_id = {data.me.id} account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}

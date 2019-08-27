@@ -148,7 +148,7 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Get expert help with your applications"
-          text="Have you written your application with the fear of not getting accepted?. Let’s help you Review your application and get you into that dream school or career. 
+          text="Have you written your application with the fear of not getting accepted? Let’s help you review your application and get you into that dream school or career. 
 "
           button="Get Started"
           imgUrl={bgURL}
@@ -156,7 +156,7 @@ class IndexPage extends React.Component {
         />
         <TitleAndText
           title="Apply With Confidence"
-          text="Send out your applications knowing they are the very best they can be. Our review and redraft experts can’t wait to meet you!"
+          text="Have the best application that will make you easily noticeable from the rest of the rivalry."
         />
         <UniDivider />
         <Steps />

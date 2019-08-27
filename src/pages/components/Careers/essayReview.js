@@ -39,7 +39,7 @@ const mq = breakpoints.map(
                 }}> Essay Review Plans </h2>
                <p> We are here to help at any stage of your essay writing process. The EssayReview service is best suited if you already have an essay that’s set to go and just needs some fine-tuning.</p>
                
-                <p> Who is this service for? this service is for you, if you already have anEssay draft for:</p>
+                <p> Who is this service for? this service is for you, if you already have an essay draft for:</p>
                 <ul className = "content-ul">
                 <li>    Admission Statements </li>
                 <li>    Cover Letters </li>

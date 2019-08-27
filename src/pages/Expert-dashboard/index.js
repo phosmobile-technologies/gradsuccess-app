@@ -3,7 +3,6 @@ import Modal from "react-modal"
 import { Query } from "react-apollo";
 import LoginForm from "../components/Forms/loginForm"
 import Footer from '../components/Footer'
-import RegisteredAccount from './registeredExperts'
 import loader from "../../images/loader.gif"
 import NewApplications from "./TableQueryData/newApplications"
 import AssignedApplication from "./TableQueryData/assignedApplication"

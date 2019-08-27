@@ -27,7 +27,7 @@ class admissionCustomPackage extends Component {
           <div className="cu-container">
             <h1>Resume Review Plans</h1>
             <p>
-              For all things recruitment, career fairs and admissions, the
+              For recruitments, career fairs and admissions, the
               resume is a powerful tool which can be a deal-breaker for
               candidates looking to go past initial screening stages to actually
               clinch an offer.

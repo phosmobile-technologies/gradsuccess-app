@@ -31,7 +31,7 @@ const PackageCards = ({ service }) => (
     <PackageCardElement
       imgUrl={packageImg}
       title="Custom Packages"
-      text="Purchase our complete package and watch us do our magic"
+      text="Purchase our custom package and see us turn your dreams into a reality"
       custom = "true"
       buttonUrl={`${service}/complete-packages`}
     />

@@ -49,7 +49,7 @@ const mq = breakpoints.map(
                 <h2 css={{
                     color: '#19a99d'
                 }}> Price </h2>
-                <p> Regular turnaround is three business-days on each submission. Flash turnaround is one business-day on each submission. </p>
+                <p> Our Regular turnaround is two business-days on each submission, while our Flash turnaround is one business-day on each submission. </p>
                 
                 <br/> <br/>
             

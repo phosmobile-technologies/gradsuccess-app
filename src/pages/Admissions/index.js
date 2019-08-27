@@ -139,19 +139,13 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Welcome to the Admissions Center"
-          text="The math is simple. More applicants are applying for the same number of spots. Let's help you get into top schools around the world, stress free!"
+          text="There is a lot of competition, and your desired spot is not exempted. If your application doesn’t fit in with the required standards of your career or school, you will most likely end up being rejected. We don’t want this to happen, this is why we are here to help you get into top schools around the world, stress free!"
           imgUrl={addBgURL}
           openModal={this.onOpenModal}
         />
         <TitleAndText
           title="Admissions Have Never Been This Exciting"
-          text="University admissions is a daunting process, from personal statements, reference
-            letters and several certificating tests (IELTS, GMAT &amp; GMAT to name a few), there’s
-            so much involved. 
-            At GradSuccess, we have expertise in preparing our clients for the most competitive
-            universities. Through our novel array of packages we are able to provide our clients
-            with cutting-edge services ranging from reviews, redrafts and one-on-one coaching
-            about preferred options."
+          text="University admissions is a daunting process, from personal statements, reference letters and several certificating tests (IELTS, GMAT & GMAT to name a few), there’s so much involved.  At GradSuccess, we have expertise in preparing our clients for the most competitive universities. Through our novel array of packages we are able to provide our clients with cutting-edge services ranging from reviews, redrafts and one-on-one coaching about preferred options. "
         />
         <PackageCards service="Admissions" />
         <UniDivider />

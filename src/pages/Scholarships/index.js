@@ -139,13 +139,13 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Welcome to the Scholarship Center"
-          text="Getting world class education shouldn't mean breaking the bank because we are committed to helping you get the best scholarship offers."
+          text="We understand the financial trauma when it comes to applying to a top school, this is why we are committed to helping you get the best scholarship offers."
           imgUrl={scholarBgURL}
           openModal={this.onOpenModal}
         />
         <TitleAndText
           title="One more step to the funding you need"
-          text="GradSuccess, we know what it’s like to do everything right and actually get rewarded with a decent offer, only to be faced with the dilemma of unavailable funding. Through years of working with several clients we have figured what funding opportunities you can be considering and have even developed the expertise to write essays that can help you secure these. Take a leap forward with GradSuccess!"
+          text="we know what it’s like to do everything right and actually get rewarded with a decent offer, only to be faced with the dilemma of unavailable funding. Through years of working with several clients we have figured the funding opportunities you can be considering and have even developed the expertise to write essays that can help you secure these. Take a leap forward with GradSuccess!"
         />
         <PackageCards service="Scholarships" />
         <UniDivider />

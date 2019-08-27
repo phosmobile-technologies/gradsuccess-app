@@ -43,14 +43,13 @@ const Steps = () => (
       <h4
         css={{
           margin: "7px 0",
+          textTransform: "capitalize"
         }}
       >
-        Let's know your needs
+        Don't Hesitate to Engage us
       </h4>
       <p css={TextStyles}>
-        Your advancement in career or academia is of interest to us. We have
-        garnered the skills to fine-tune your essays and resumes for the best
-        results so don't hesitate to engage us.
+        Talk to us about your needs. We are most concerned about your advancement in career or academia, and for this reason, we have equipped ourselves with the skills needed to fine-tune your essays and resumes for the best results.
       </p>
     </div>
     <div css={DivStyles}>

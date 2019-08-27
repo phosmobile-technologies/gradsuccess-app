@@ -38,23 +38,11 @@ const breakpoints = [375, 576, 768]
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const text1 = "About Us"
-const text2 = `We are a top-tier consulting firm positioned to assist ambitious, forward looking
-  graduates and midlevel to experienced career people to attain their short-term and long-
-  term objectives. At Admission Success you are the focus. We are positioned to help you
-  from the moment you embark on your first internship, through graduation and unto your
-  first job. We will guide you with those important cover letters and graduate school
-  essays, and refine your résumés to get results. From the instant you place your request
-  with us, you are rest-assured of a job well done.`
+const text2 = `We are a top-tier consulting firm positioned to assist ambitious, forward looking graduates, and career people to attain their short-term and long- term objectives. At GradSuccess you are the focus. We are positioned to help you from the moment you embark on your first internship, through graduation and unto your first job. We will guide you with those important cover letters and graduate school essays, and refine your résumés to get results. From the instant you place your request with us, you are rest-assured of a job well done.
+`
 const text3 = "History"
-const text4 = `In 2013, Admission Success was formed as a tutorial club for final year students at
-Covenant University in 2013. Initially, the group which was called Club 340 at the time
-was devoted to tutoring it's members, some of the highest performing students across
-the set, for aptitude tests (such as McKinsey's PST), and popular graduate school
-exams like the GRE and GMAT. Since 2013, Admission Success has expanded its
-services cover clients outside of the university space. Previously focus was on
-candidates at undergraduate or graduate school level, but this has since evolved to
-include entry-level to experienced professionals looking to advance careers with a new
-role or by attaining a second degree.`
+const text4 = `In 2013, GradSuccess was formed as a tutorial club for final year students at Covenant University in 2013. Initially, the group which was called Club 340 at the time was devoted to tutoring it's members, some of the highest performing students across the set, for aptitude tests (such as McKinsey's PST), and popular graduate school exams like the GRE and GMAT. Since 2013, GradSuccess has expanded its services cover clients outside of the university space. Previously, our focus was on candidates at undergraduate or graduate school level, but this has since evolved to include entry-level to experienced professionals looking to advance careers with a new role or by attaining a second degree.
+`
 
 
 class Search extends React.Component {

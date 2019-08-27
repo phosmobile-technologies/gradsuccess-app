@@ -37,17 +37,16 @@ const mq = breakpoints.map(
                 <h2 css={{
                     color: '#19a99d'
                 }}> Resume Review Plans </h2>
-                <p> For all things recruitment, career fairs and admissions, the resume is a powerful tool which can be a deal-breaker for candidates looking to go past initial screening stages to actually clinch an offer. This is no surprise because with initial glances averaging 6 seconds, impressions are already being made by admission panellists, HR personnel and even the computer bot who will be perusing these one-pagers.</p>
+               <p> For recruitments, career fairs and admissions, the resume is a powerful tool which can be a deal-breaker for candidates looking to go past initial screening stages to actually clinch an offer. This is no surprise because with initial glances averaging 6 seconds, impressions are already being made by admission panellists, HR personnel and even the computer bot who will be perusing these one-pagers.</p>
+                <p> If you really want to stand out in today’s competitive climes, your Resume should be outstanding, precise, and engaging altogether.</p>
+                <p> <b>Who is this service for? This service is for You, if you already have a resume draft.</b> </p>
                 
-                <p> Hence, for every candidate who really wants to stand out in today’s competitive climes, the Resume should be outstanding, precise, and engaging altogether.</p>
-               
-                <p> <b>Who is this service for? You, if you already have a resume draft.</b> </p>
                 <h2 css={{
                     color: '#19a99d'
                 }}> Our Resume Review Plan in Two Steps </h2>
-                <p> <b>First:</b> Assess the content of your resume, help you highlight key experiences/achievements </p>
-                <p> <b>Second:</b> Suggest additional information you can include to bolster the quality of your resume.  </p>
-                <p> This service is provided on an hourly basis – you get as much or as little editing as you need after meeting our one-hour minimum charge. </p>
+                <p> <b>First:</b>  We will Assess the content of your resume to help you highlight key experiences/achievements </p>
+                <p> <b>Second:</b>  At this stage, we Suggest additional information you can include to boost the quality of your resume. Here, you get as much or as little editing as you need after meeting our one-hour minimum charge.
+ </p>
                 
                 <h2 css={{
                     color: '#19a99d'
@@ -62,7 +61,7 @@ const mq = breakpoints.map(
                 <h2 css={{
                     color: '#19a99d'
                 }}> Price </h2>
-                <p> Regular turnaround is two business-days on each submission. Flash turnaround is one business-day on each submission.</p>
+                <p> Our Regular turnaround is two business-days on each submission, while our Flash turnaround is one business-day on each submission.</p>
                 <br/> <br/>
 
                 <div css={{

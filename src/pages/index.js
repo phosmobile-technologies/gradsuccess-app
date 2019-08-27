@@ -148,7 +148,8 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Get expert help with your applications"
-          text="We help young graduates and career people achieve their long and short academic and professional goals"
+          text="Have you written your application with the fear of not getting accepted?. Let’s help you Review your application and get you into that dream school or career. 
+"
           button="Get Started"
           imgUrl={bgURL}
           openModal={this.onOpenModal}

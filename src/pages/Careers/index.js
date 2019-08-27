@@ -139,13 +139,13 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Welcome to the Career Center"
-          text="We understand your career means a lot to you, that's because we are have what it takes to give your career a big boost"
+          text="We understand your career means a lot to you, for this reason we are here to give your career a big boost."
           imgUrl={careersBgURL}
           openModal={this.onOpenModal}
         />
         <TitleAndText
           title="We think your Career could use a lift"
-          text="From application letters to CVs, to reference letters we know the essentials you need to land that next job. So we have spent the last half decade honing the skills needed to ensure our clients have the very best application packages. We can be your partner on your next career move"
+          text="From application letters to CVs, to reference letters we know the essentials you need to land that next job. So we have spent the last half decade honing the skills needed to ensure our clients have the very best application packages. Let’s be your partner on your next career move"
         />
         <PackageCards service="Careers" />
         <UniDivider />

@@ -145,7 +145,7 @@ class IndexPage extends React.Component {
         />
         <TitleAndText
           title="One More Step to The Funding You Need"
-          text="We know what it’s like to do everything right and actually get rewarded with a decent offer, only to be faced with the dilemma of unavailable funding. Through years of working with several clients we have figured the funding opportunities you can be considering and have even developed the expertise to write essays that can help you secure these. Take a leap forward with GradSuccess!"
+          text="We know what it’s like to do everything right and get rewarded with a decent offer, only to be faced with the dilemma of unavailable funding. Through years of working with several clients we have figured the funding opportunities you can be considering and have even developed the expertise to write essays that can help you secure these. Take a leap forward with GradSuccess!"
         />
         <PackageCards service="Scholarships" />
         <UniDivider />

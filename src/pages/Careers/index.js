@@ -144,8 +144,8 @@ class IndexPage extends React.Component {
           openModal={this.onOpenModal}
         />
         <TitleAndText
-          title="We think your Career could use a lift"
-          text="From application letters to CVs, to reference letters we know the essentials you need to land that next job. So we have spent the last half decade honing the skills needed to ensure our clients have the very best application packages. Let’s be your partner on your next career move"
+          title="We Think Your Career Could Use a Lift"
+          text="From application letters to CVs, to reference letters we know the essentials you need to land that next job. So we have spent the last half decade honing the skills needed to ensure our clients have the very best application packages. Let’s be your partner on your next career move."
         />
         <PackageCards service="Careers" />
         <UniDivider />

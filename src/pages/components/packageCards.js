@@ -25,20 +25,20 @@ const PackageCards = ({ service }) => (
     <PackageCardElement
       imgUrl={resume}
       title="CV/Resume"
-      text="Let's help you pull off a killer CV that would instantly get you hired"
+      text="Let's help you pull off a killer CV that would instantly get you hired."
       buttonUrl={`${service}/cv-resume`}
     />
     <PackageCardElement
       imgUrl={packageImg}
       title="Custom Packages"
-      text="Purchase our custom package and see us turn your dreams into a reality"
+      text="Purchase our custom package and see us turn your dreams into a reality."
       custom = "true"
       buttonUrl={`${service}/complete-packages`}
     />
     <PackageCardElement
       imgUrl={addResumeBg}
       title="Essays"
-      text="Your Essay is your reflection, let's guide your brush"
+      text="Your Essay is your reflection, let's guide your brush."
       buttonUrl={`${service}/essays`}
     />
   </div>

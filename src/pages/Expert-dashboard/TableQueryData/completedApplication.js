@@ -84,7 +84,7 @@ render() {
         >
             {({ loading, error, data }) => {
              if (loading) return (
-                <div className = "loader">
+                <div className = "loaderOR">
                     <div className="loader_main_content">
                         <img  src={loader} alt="gradsuccess" />
                         <h1>Loading...</h1>

@@ -14,12 +14,11 @@ import MainLayout from "../components/ExpertAccountComponents/mainLayout"
 import { LOGGED_IN_USER } from "../graphql/queries"
 import ExpertClients from "./getExpertClients"
 import ChangePassword from "../components/Forms/changePassword"
+import EditProfile from "../components/Forms/editProfile"
+import UpdateProfileImage from "../components/Forms/updateProfileImage"
 
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import discouted from "../../images/logo.png"
-
-
-
 
 const customStyles = {
   content : {
@@ -57,7 +56,9 @@ class IndexPage extends Component {
             loggedIn:"",
             client_id:null,
             toggle:true,
-            changePassword:false
+            changePassword:false,
+            editProfile:false,
+            updateProfileImage:false
 
 
             
@@ -66,6 +67,7 @@ class IndexPage extends Component {
          this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
          this.toggleMenu = this.toggleMenu.bind(this);
          this.handleCloseModal = this.handleCloseModal.bind(this);
+         this.showEditComponent = this.showEditComponent.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -130,6 +132,10 @@ class IndexPage extends Component {
     
     }
 
+    showEditComponent(func){
+        console.log(func)
+    }
+
     render() {
           if (this.state.loggedIn != "") {
             return (
@@ -191,13 +197,17 @@ class IndexPage extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                     <MainLayout changePassword = {this.handleDisplayComponent} currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email}/>
+                                    <MainLayout  currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email} showEditComponent = {this.showEditComponent}/>
                                     <div className="client_main_area_content_area">
                                         {this.state.NewApplications && <NewApplications  expert_id = {data.me.id}  account_type = {data.me.account_type}/>}
                                         {this.state.AssignedApplication && <AssignedApplication expert_id = {data.me.id} account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
                                         {this.state.InProgressApplication && <InProgressApplication expert_id = {data.me.id} account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
                                         {this.state.CompletedApplication && <CompletedApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
+
+                                        {this.state.editProfile && <EditProfile  id = {this.state.client_id}/>}
+
+                                        {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
                                     </div>
                                     <div className = "footer-hide">
                                      <Footer />

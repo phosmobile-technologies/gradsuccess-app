@@ -19,6 +19,9 @@ import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import discouted from "../../images/logo.png"
 import ChangePassword from "../components/Forms/changePassword"
 
+import EditProfile from "../components/Forms/editProfile"
+import UpdateProfileImage from "../components/Forms/updateProfileImage"
+
 const customStyles = {
   content : {
     top                   : '0%',
@@ -51,25 +54,24 @@ class IndexPage extends Component {
             changePassword:false,
             ExpertsComponent:false,
             LeaveAMessageComponent:false,
+            editProfile:false,
+            updateProfileImage:false,
             currentComponent:"New Applications",
             currentMenu:"NewApplications",
             loggedIn:"",
             client_id:null,
             toggle:true
-
-
-            
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
          this.handleDisplayMessagingComponent = this.handleDisplayMessagingComponent.bind(this);
          this.toggleMenu = this.toggleMenu.bind(this);
          this.handleCloseModal = this.handleCloseModal.bind(this);
+         this.showEditComponent = this.showEditComponent.bind(this);
     }
     componentDidMount(){
         this.setState({
             loggedIn:localStorage.getItem('auth-token') || ""
         })
-
         if (this.state.loggedIn === "") {
            this.setState({ showModal: true });
         }
@@ -84,7 +86,6 @@ class IndexPage extends Component {
             LeaveAMessageComponent:false,
             changePassword:false,
         })
-
         this.setState({
             client_id:client_id,
             currentComponent:"Conversation with " + client_name,
@@ -99,8 +100,6 @@ class IndexPage extends Component {
             NewApplications:true,
         });
     }
-
-
     handleDisplayComponent(event){
         let Component =  event.target.id;
         let currentComponent =  event.target.name;
@@ -127,7 +126,22 @@ class IndexPage extends Component {
         this.setState({
             toggle:!this.state.toggle
         })
-    
+    }
+
+    showEditComponent(func){
+        this.setState({
+            NewApplications:false,
+            AssignedApplication:false,
+            InProgressApplication:false,
+            CompletedApplication:false,
+            changePassword:false,
+            ExpertsComponent:false,
+            LeaveAMessageComponent:false,
+            editProfile:false,
+            updateProfileImage:false,
+            [func]:true,
+            toggle:false
+        })
     }
 
 
@@ -200,7 +214,8 @@ render() {
                                 </div>
                             </div>
                             <div>
-                                <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email}/>
+                            <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email} 
+                                showEditComponent = {this.showEditComponent}/>
                                 <div className="client_main_area_content_area">
                                     {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
                                     {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} />}
@@ -208,6 +223,9 @@ render() {
                                     {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
                                     {this.state.ExpertsComponent && <ExpertsComponent />}
                                     {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
+                                    {this.state.editProfile && <EditProfile  id = {this.state.client_id}/>}
+
+                                        {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
                                 </div>
                                 <div className = "footer-hide">
                                  <Footer />

@@ -158,142 +158,17 @@ body{
 }
 
 
-.recentMessages .not-item{
-  color: white;
-  background-color: rgba(256,256,256,0.2);
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-} 
-
-.notifications .not-item:hover{
-  background-color: rgba(256,256,256,0.4);
-}
-
- .recentMessages .not-item h5{
-  color: #ccc;
-  font-weight: bold;
-}
-
-.recentMessages .not-item p{
-  font-size: 12px;
-  line-height: 12px;
-  margin-top: 0px;
-}
-.recentMessages span{
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-
 .settings{
   background-color: white;
 }
-.settings .not-item{
-  color: #00a99d;
-  padding: 10px;
-  margin-bottom: 10px;
 
-}
-
-.settings .not-item:hover{
-  color: #47dcbc;
-}
-
- .settings .not-item a{
-  color: black;
-  font-weight: bold;
-  font-size: 13px;
-
-}
-.settings .not-item a:hover{
-  opacity: 0.5;
-  transition: 0.3;
-  
-}
-
-.settings .not-item p{
-  font-size: 12px;
-  line-height: 12px;
-  margin-top: 0px;
-  color: black;
-}
-.settings span{
-  color: black;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-
-
-
-
-.support{
-  background-color: white;
-}
-
-.support .not-item{
-  color: black;
-  padding: 10px;
-  margin-bottom: 10px;
-
-}
-
-
- .support .not-item h5{
-  color: black;
-  font-weight: bold;
-}
-
-.support .not-item p{
-  font-size: 12px;
-  line-height: 12px;
-  margin-top: 0px;
-  color: #00a99d;
-}
-
-.support span{
-  color: black;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-
-
-.notifications{
-  background-color: #00766e;
-}
-
-.notifications .not-item{
-  color: white;
-  background-color: rgba(256,256,256,0.2);
-  padding: 10px;
+.not-item button{
+  background-color: transparent;
+  border: none;
   margin-bottom: 10px;
   cursor: pointer;
-
-}
-
-.notifications .not-item:hover{
-  background-color: rgba(256,256,256,0.4);
-}
-
- .notifications .not-item h5{
-  color: #ccc;
-  font-weight: bold;
-}
-
-.notifications .not-item p{
-  font-size: 12px;
-  line-height: 12px;
-  margin-top: 0px;
-}
-.notifications span{
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-}
-
+  font-family: 'Lato', sans-serif;
+} 
 
 .client_main_area{
   display: grid;

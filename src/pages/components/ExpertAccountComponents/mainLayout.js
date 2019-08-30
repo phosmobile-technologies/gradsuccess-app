@@ -165,7 +165,7 @@ componentDidMount(){
                     <button onClick = {()=>this.handleComponents("editProfile")}>Edit Profile</button>
                   </div>
                   <div className = "not-item">
-                    <button onClick = {()=>this.handleComponents("updateProfileImage")} >UpdateProfileImage Profle Image</button>
+                    <button onClick = {()=>this.handleComponents("updateProfileImage")} >Update Profle Image</button>
                   </div>
                 </div>
                 <div className = "drop-down-main-bottom">

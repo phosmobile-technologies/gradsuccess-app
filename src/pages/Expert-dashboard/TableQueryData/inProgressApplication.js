@@ -1,5 +1,6 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
+import emptyFolder from "../../../images/folder.svg"
 import loader from "../../../images/loader.gif"
 import {GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../../graphql/queries"
 import {GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT} from "../../graphql/queries"
@@ -67,10 +68,14 @@ handleCloseModal(){
 
     })   
 }
-upadateItemCount(plus){
-    this.setState({
-        itemCount:this.state.itemCount+plus
-    })
+upadateItemCount(list){
+    list.forEach((eachApp)=>{
+    if(eachApp.status === "Assigned"){
+        this.setState({
+            itemCount:this.state.itemCount+1
+        })
+    }
+});   
 }
 
 
@@ -82,7 +87,7 @@ render() {
             <Query 
         query={GET_EXPERT_CLIENTS_COVER_LETTER_REDRAFT}
         variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterRedraft.length)}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterRedraft)}
         fetchPolicy = "no-cache"
 
         >
@@ -128,7 +133,7 @@ render() {
         <Query 
         query={GET_EXPERT_CLIENTS_COVER_LETTER_REVIEW}
         variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterReview.length)}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsCoverLetterReview)}
         fetchPolicy = "no-cache"
 
         >
@@ -174,7 +179,7 @@ render() {
         <Query 
         query={GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM}
         variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolEssayRedraftForm.length)}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolEssayRedraftForm)}
         fetchPolicy = "no-cache"
 
         >
@@ -220,7 +225,7 @@ render() {
         <Query 
         query={GET_EXPERT_CLIENTS_RESUME_REVIEW_FORM}
         variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsResumeReviewForm.length)}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsResumeReviewForm)}
         fetchPolicy = "no-cache"
 
         >
@@ -265,7 +270,7 @@ render() {
         <Query 
         query={GET_EXPERT_CLIENTS_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
         variables={{ has_expert:this.props.expert_id }}
-        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolStatementReviewForm.length)}
+        onCompleted={data => this.upadateItemCount(data.getExpertClientsGraduateSchoolStatementReviewForm)}
         fetchPolicy = "no-cache"
 
         >
@@ -309,7 +314,10 @@ render() {
             }}
         </Query>
 
-        {this.state.itemCount ===0? <div className = "no_item">No in-progress application</div>:""}
+        {this.state.itemCount ===0? <div className = "no_item">
+            <img  src={emptyFolder} alt="gradsuccess" />
+            <p>No new application</p>
+        </div>:""}
 
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}

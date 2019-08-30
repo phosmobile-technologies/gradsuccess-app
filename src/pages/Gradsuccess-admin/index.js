@@ -85,6 +85,8 @@ class IndexPage extends Component {
             ExpertsComponent:false,
             LeaveAMessageComponent:false,
             changePassword:false,
+            editProfile:false,
+            updateProfileImage:false,
         })
         this.setState({
             client_id:client_id,
@@ -111,7 +113,9 @@ class IndexPage extends Component {
             CompletedApplication:false,
             ExpertsComponent:false,
             changePassword:false,
-            LeaveAMessageComponent:false
+            LeaveAMessageComponent:false,
+            editProfile:false,
+            updateProfileImage:false,
         })
 
         this.setState({
@@ -223,9 +227,8 @@ render() {
                                     {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
                                     {this.state.ExpertsComponent && <ExpertsComponent />}
                                     {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
-                                    {this.state.editProfile && <EditProfile  id = {this.state.client_id}/>}
-
-                                        {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
+                                    {this.state.editProfile && <EditProfile  id = {this.state.client_id} data = {data}/>}
+                                    {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
                                 </div>
                                 <div className = "footer-hide">
                                  <Footer />

@@ -150,6 +150,7 @@ export default class EditProfile extends React.Component {
                             required
                             placeholder="First name"
                             onChange={this.handleFormInput}
+                            value = {data.me.first_name}
                             id="first_name"
                             autoComplete="false"
                             name="first_name"
@@ -161,6 +162,7 @@ export default class EditProfile extends React.Component {
                             required
                             placeholder="Last name"
                             onChange={this.handleFormInput}
+                            value = {data.me.last_name}
                             id="last_name"
                             autoComplete="false"
                             name="last_name"
@@ -174,6 +176,7 @@ export default class EditProfile extends React.Component {
                           placeholder="Email Address"
                           id="email"
                           name="email"
+                          value = {data.me.email}
                           required
                           autoComplete="false"
                           onChange={this.handleFormInput}
@@ -184,48 +187,30 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="Phone"
+                            value = {data.me.phone}
                             onChange={this.handleFormInput}
                             id="phone"
                             name="phone"
                           />
                         </div>
-                      </div>
-                      <input
-                        type="password"
-                        placeholder="Password"
-                        id="password"
-                        name="password"
-                        autoComplete="false"
-                        onChange={this.verifyPassword}
-                        required
-                        onBlur={this.storePassword}
-                      />
-                      <span id="password_info" className="password_info">
-                        provide atleast 8 character password e.g ERe203_sj
-                      </span>
 
-                      <input
-                        type="password"
-                        placeholder="Comfirm Password"
-                        id="confirm_password"
-                        autoComplete="false"
-                        name="confirm_password"
-                        required
-                        onChange={this.verifyConfirmPassword}
-                      />
-                      <span id="password_info_c" className="password_info">
-                        password mismatch!
-                      </span>
+                        <div className="row-full">
+                                    
+                                    <textarea type="text"
+                                    placeholder="More Details"
+                                    id = "more_details"
+                                    name = "more_details"
+                                    rows = '4' onChange = {this.handleFormInput} required>
+                                    </textarea>
+                                </div>
+                      </div>
                     </div>
 
                     <br />
                     <input
                       type="submit"
                       className="submit-details"
-                      value="Register"
-                      css={{
-                        opacity: this.state.password_verified ? "0.3" : "1",
-                      }}
+                      value="Update"
                       disabled={this.state.password_verified}
                     />
                   </form>

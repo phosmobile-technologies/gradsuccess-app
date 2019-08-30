@@ -2,6 +2,7 @@ import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../../images/loader.gif"
 import confirm from "../../../images/email.png"
+import emptyFolder from "../../../images/folder.svg"
 import { GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS} from "../../graphql/queries"
 import { GET_ALL_COVER_LETTER_REDRAFT_FORMS} from "../../graphql/queries"
 import { GET_ALL_COVER_LETTER_REVIEW_FORMS} from "../../graphql/queries"
@@ -86,10 +87,14 @@ handleCloseModal(){
 
     })   
 }
-upadateItemCount(plus){
-    this.setState({
-        itemCount:this.state.itemCount+plus
-    })
+upadateItemCount(list){
+    list.forEach((eachApp)=>{
+    if(eachApp.status !== "Assigned"){
+        this.setState({
+            itemCount:this.state.itemCount+1
+        })
+    }
+});   
 }
 
 assignSelf(form_id,application,id){
@@ -149,7 +154,7 @@ render() {
         <div>
             <Query 
         query={GET_ALL_COVER_LETTER_REDRAFT_FORMS}
-        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterRedraft.length)}
+        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterRedraft)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -226,7 +231,7 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_COVER_LETTER_REVIEW_FORMS}
-        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterReview.length)}
+        onCompleted={data => this.upadateItemCount(data.getAllCoverLetterReview)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -300,7 +305,7 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS}
-        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolEssayRedraftForm.length)}
+        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolEssayRedraftForm)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -375,7 +380,7 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_RESUMME_REVIEW_FORMS}
-        onCompleted={data => this.upadateItemCount(data.getAllResumeReviewForm.length)}
+        onCompleted={data => this.upadateItemCount(data.getAllResumeReviewForm)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -448,7 +453,7 @@ render() {
         </Query>
         <Query 
         query={GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS}
-        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolStatementReviewForm.length)}
+        onCompleted={data => this.upadateItemCount(data.getAllGraduateSchoolStatementReviewForm)}
         fetchPolicy = "no-cache"
         >
             {({ loading, error, data }) => {
@@ -520,7 +525,10 @@ render() {
               );
             }}
         </Query>
-        {this.state.itemCount ===0? <div className = "no_item">No new application</div>:""}
+        {this.state.itemCount ===0? <div className = "no_item">
+            <img  src={emptyFolder} alt="gradsuccess" />
+            <p>No new application</p>
+        </div>:""}
 
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}

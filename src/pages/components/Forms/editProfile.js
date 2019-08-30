@@ -8,14 +8,13 @@ import loader from "../../../images/loader.gif"
 export default class EditProfile extends React.Component {
   constructor(props) {
     super(props)
-    const {id,first_name,last_name,email,phone} = this.props.data
     this.state = {
       data:{
-           id:id,
-           first_name:first_name,
-           last_name:last_name,
-           email:email,
-           phone:phone,
+           id:this.props.id,
+           first_name:this.props.first_name,
+           last_name:this.props.last_name,
+           email:this.props.email,
+           phone:this.props.phone,
       },
       password_verified: true,
       account_created: false,

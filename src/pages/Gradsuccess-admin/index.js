@@ -227,7 +227,12 @@ render() {
                                     {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
                                     {this.state.ExpertsComponent && <ExpertsComponent />}
                                     {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
-                                    {this.state.editProfile && <EditProfile  id = {this.state.client_id} data = {data.me}/>}
+                                    {this.state.editProfile && <EditProfile  
+                                        first_name = {data.me.first_name}
+                                        last_name = {data.me.last_name}
+                                        email = {data.me.email}
+                                        phone = {data.me.phone}
+                                        id = {data.me.id}/>}
                                     {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
                                 </div>
                                 <div className = "footer-hide">

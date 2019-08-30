@@ -13,3 +13,4 @@ export const SAVE_PROFILE_IMAGE = 'https://infinite-cove-53014.herokuapp.com/api
 export const PROFILE_IMAGE_REF = 'https://infinite-cove-53014.herokuapp.com/api/getExpertProfileImageRef'
 
 export const EXPERT_AVERAGE_RATING = 'https://infinite-cove-53014.herokuapp.com/api/expertAverageRating'
+export const UPDATE_PROFILE_IMAGE = 'https://infinite-cove-53014.herokuapp.com/api/updateProfileImage'

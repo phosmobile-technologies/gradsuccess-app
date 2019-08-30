@@ -209,7 +209,7 @@ class IndexPage extends Component {
                                         {this.state.CompletedApplication && <CompletedApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
 
-                                        {this.state.editProfile && <EditProfile  id = {this.state.client_id} data = {data}/>}
+                                        {this.state.editProfile && <EditProfile  id = {this.state.client_id} data = {data.me}/>}
 
                                         {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
                                     </div>

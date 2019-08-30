@@ -6,7 +6,7 @@ import gql from "graphql-tag"
 import { CREATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
 import loader from "../../../images/loader.gif"
 import defaultImage from "../../../images/default_profile_img.png"
-import { SAVE_PROFILE_IMAGE } from "../../../api/sendMailEndpoint"
+import { UPDATE_PROFILE_IMAGE } from "../../../api/sendMailEndpoint"
 
 export default class UploadProfileImage extends React.Component {
   constructor(props) {
@@ -35,6 +35,7 @@ _onChange(event){
 
   onChange(e) {
   	document.getElementById("submittedSucces").style.display = "block"
+    const id = this.props.id
     const firebase = require("firebase")
 
       	const config = {
@@ -67,9 +68,9 @@ _onChange(event){
             console.log(err)
         },
         function complete() {
-          let url = SAVE_PROFILE_IMAGE
+          let url = UPDATE_PROFILE_IMAGE
           let data = {
-              profileID:localStorage.getItem("profileID"),
+              profileID:id,
               imageRef: fileRef,
           }
             fetch(url, {
@@ -82,13 +83,12 @@ _onChange(event){
           }).then(function(response){
               return response.text()
           }).then((text)=>{
-            document.getElementById("submittedSucces").style.display = "none"
+              document.getElementById("submittedSucces").style.display = "none"
               document.getElementById("accountCreated").style.display = "block";
               setTimeout(function() {
                   localStorage.removeItem('profileID');
-                 window.location = "/"
-          }, 5000)
-
+                 window.location.reload()
+          }, 2000)
           }).catch(function(error){
               console.log(error);
           })
@@ -114,7 +114,7 @@ _onChange(event){
             
                   <div id = "accountCreated">
                   	<div>
-	                	<p>Your Account was successfully Created,</p>
+	                	<p>Profile image was updated successfully,</p>
 	              	</div>
                   </div>
                   <form className="checkout-form-container"

@@ -1175,6 +1175,9 @@ pre tt:after {
     box-shadow:0px 0px 15px rgba(0,0,0,0.1);
     min-height: 400px;
 }
+.expert-form-extend{
+    width: 80% !important;
+}
 
 
 .expert-form li,.detail-form p {

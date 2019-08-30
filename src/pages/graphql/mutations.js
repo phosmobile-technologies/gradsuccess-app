@@ -45,7 +45,7 @@ export const FORGOT_PASSWORD = gql`
 `;
 
 export const CREATE_CLIENT_ACCOUNT = gql`
-    mutation CreateResumeReviewForm(
+    mutation CreateClientAcccount(
     $first_name:String!,
     $last_name:String!,
     $phone:String!,
@@ -65,6 +65,24 @@ export const CREATE_CLIENT_ACCOUNT = gql`
 		    account_type:$account_type
 				  ){
 				    id
+		}
+	}
+`;
+export const UPDATE_CLIENT_ACCOUNT = gql`
+    mutation UpdateClientAcccount(
+    $id:ID!,
+    $first_name:String!,
+    $last_name:String!,
+    $phone:String!,
+    $email: String!){
+		 updateClientAcccount(
+	 		id:$id,
+		    first_name:$first_name
+		    last_name:$last_name
+		    phone:$phone
+		    email:$email
+				  ){
+		   id
 		}
 	}
 `;

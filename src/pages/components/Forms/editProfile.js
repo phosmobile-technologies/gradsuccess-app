@@ -2,25 +2,24 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
-import { CREATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
+import { UPDATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
 import loader from "../../../images/loader.gif"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
     super(props)
+    const {id,first_name,last_name,email,phone} = this.props.data.me
     this.state = {
-      data: {
-        first_name: "",
-        last_name: "",
-        phone: "",
-        form_id: "null",
-        package: "null",
-        email: "",
-        password: "",
-        account_type: "Expert",
+      data:{
+           id:id,
+           first_name:first_name,
+           last_name:last_name,
+           email:email,
+           phone:phone,
       },
       password_verified: true,
       account_created: false,
+      moredetails:""
     }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleForgotPassword = this.handleForgotPassword.bind(this)
@@ -37,17 +36,17 @@ export default class EditProfile extends React.Component {
         [name]: value,
       },
     }))
+
+    console.log(this.state);
   }
 
   formSubmitted(data) {
-    localStorage.setItem("profileID", data.createClientAcccount.id);
-    document.getElementById("submittedSucces").style.display = "block"
+    this.setState({
+         account_created:true
+    })
     setTimeout(function() {
-      if (document.getElementById("submittedSucces") != null) {
-        document.getElementById("submittedSucces").style.display = "none"
-      }
+      window.location.reload()
     }, 2000)
-      window.location = '/upload-profile-image'
   }
 
   handleForgotPassword() {
@@ -102,16 +101,15 @@ export default class EditProfile extends React.Component {
     if (this.state.account_created) {
       return (
         <div>
-          <div className="thank-you">
-            <div className="thank-you-inner-left">
+          <div className="account-updated">
+            <div >
               <h1>
-                Thank You <i>!</i>
+                Account Updated <i>!</i>
               </h1>
               <div>
-                <p>Your Account was successfully Created, </p>
+                <p>Your Account was successfully updated </p>
               </div>
             </div>
-
             <div></div>
           </div>
         </div>
@@ -119,9 +117,9 @@ export default class EditProfile extends React.Component {
     } else {
       return (
         <div>
-          <div className="expert-form">
+          <div className="expert-form expert-form-extend">
             <Mutation
-              mutation={CREATE_CLIENT_ACCOUNT}
+              mutation={UPDATE_CLIENT_ACCOUNT}
               onError={this.error}
               onCompleted={data => {
                 this.formSubmitted(data)
@@ -141,7 +139,7 @@ export default class EditProfile extends React.Component {
                     }}
                     className="checkout-form-container"
                   >
-                    <h3 className="form-header">Apply As Expert</h3>
+                    <h3 className="form-header">Update Profile</h3>
                     <div className="row-full">
                       <div className="row">
                         <div className="col">
@@ -150,7 +148,7 @@ export default class EditProfile extends React.Component {
                             required
                             placeholder="First name"
                             onChange={this.handleFormInput}
-                            value = {data.me.first_name}
+                            value = {this.state.data.first_name}
                             id="first_name"
                             autoComplete="false"
                             name="first_name"
@@ -162,7 +160,7 @@ export default class EditProfile extends React.Component {
                             required
                             placeholder="Last name"
                             onChange={this.handleFormInput}
-                            value = {data.me.last_name}
+                            value = {this.state.data.last_name}
                             id="last_name"
                             autoComplete="false"
                             name="last_name"
@@ -176,7 +174,7 @@ export default class EditProfile extends React.Component {
                           placeholder="Email Address"
                           id="email"
                           name="email"
-                          value = {data.me.email}
+                          value = {this.state.data.email}
                           required
                           autoComplete="false"
                           onChange={this.handleFormInput}
@@ -187,23 +185,21 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="Phone"
-                            value = {data.me.phone}
+                            value = {this.state.data.phone}
                             onChange={this.handleFormInput}
                             id="phone"
                             name="phone"
                           />
                         </div>
-
-                        <div className="row-full">
-                                    
-                                    <textarea type="text"
-                                    placeholder="More Details"
-                                    id = "more_details"
-                                    name = "more_details"
-                                    rows = '4' onChange = {this.handleFormInput} required>
-                                    </textarea>
-                                </div>
                       </div>
+                      <div className="row-full">        
+                              <textarea type="text"
+                               placeholder="More Details"
+                               id = "more_details"
+                               name = "more_details"
+                               rows = '4' onChange = {this.handleFormInput} >
+                              </textarea>
+                        </div>
                     </div>
 
                     <br />
@@ -211,7 +207,6 @@ export default class EditProfile extends React.Component {
                       type="submit"
                       className="submit-details"
                       value="Update"
-                      disabled={this.state.password_verified}
                     />
                   </form>
                   {loading && (

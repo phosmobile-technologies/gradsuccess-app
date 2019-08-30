@@ -1510,6 +1510,20 @@ body{
 .form-div img{
   margin-bottom: 0px
 }
+.account-updated{
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account-updated h1{
+  font-family: 'Lato', sans-serif;
+  font-size: 35px;
+  color:cadetblue
+}
 
 @media only screen and (max-width: 500px) {
     .loginBtn {

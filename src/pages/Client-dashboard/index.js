@@ -10,6 +10,8 @@ import AccountInfo from "./account"
 import LoginForm from "../components/Forms/loginForm"
 import ChangePassword from "../components/Forms/changePassword"
 import LogoutForm from "../components/Forms/logoutForm"
+import EditProfile from "../components/Forms/editProfile"
+import UpdateProfileImage from "../components/Forms/updateProfileImage"
 
 import NotFoundPage from "../401"
 
@@ -45,10 +47,10 @@ class IndexPage extends Component {
         this.state = {
             loggedIn: "",
             leaveAMessage:false,
-            leaveAComplain:false,
             changePassword:false,
-            changeCV:false,
             accountInfo:true,
+            updateProfileImage:false,
+            editProfile:false,
             showModal:false,
             currentMenu:"accountInfo",
             toggle:true,
@@ -62,6 +64,7 @@ class IndexPage extends Component {
         this.toggleMenu = this.toggleMenu.bind(this);
          this.handleCloseModal = this.handleCloseModal.bind(this)
          this.handleFormInput = this.handleFormInput.bind(this)
+         this.showEditComponent = this.showEditComponent.bind(this);
     }
     componentDidMount(){
         this.setState({
@@ -86,7 +89,8 @@ class IndexPage extends Component {
        this.setState({
             leaveAMessage:false,
             leaveAComplain:false,
-            changeCV:false,
+            editProfile:false,
+            updateProfileImage:false,
             accountInfo:false,
             changePassword:false
        })
@@ -106,15 +110,26 @@ class IndexPage extends Component {
     }
 
 
-     handleFormInput(event){
-    const {name,value} = event.target;
-    this.setState(prevState =>({
-      data:{
-        ...prevState.data,
-        [name]:value
-      }
-    }))
-}
+    handleFormInput(event){
+        const {name,value} = event.target;
+        this.setState(prevState =>({
+          data:{
+            ...prevState.data,
+            [name]:value
+          }
+        }))
+    }
+
+    showEditComponent(func){
+        this.setState({
+            leaveAMessage:false,
+            changePassword:false,
+            accountInfo:false,
+            updateProfileImage:false,
+            editProfile:false,
+            [func]:true,
+        })
+    }
 
     render() {
         if (this.state.loggedIn != "") {
@@ -160,26 +175,28 @@ class IndexPage extends Component {
                                     </div>
 
                                     <div>
-                                        <MainLayout  currentComponent = {this.state.currentMenu} toggleMenu = {this.toggleMenu}/>
+                                        <MainLayout  currentComponent = {this.state.currentMenu} toggleMenu = {this.toggleMenu} id  = {data.me.id}  accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email} showEditComponent = {this.showEditComponent}/>
                                         <div className="client_main_area_content_area">
                                             {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id} account_type = {data.me.account_type}/>}
                                             {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.form_id} sender = {data.me.first_name +" "+ data.me.last_name}/>}
+                                            {this.state.changePassword &&  <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>}
+
+                                            {this.state.editProfile && <EditProfile  
+                                            first_name = {data.me.first_name}
+                                            last_name = {data.me.last_name}
+                                            email = {data.me.email}
+                                            phone = {data.me.phone}
+                                            id = {data.me.id}/>}
+                                            {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
+
+
+
                                         </div>
                                         <div className = "footer-hide">
                                         <Footer />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                              <Modal 
-                                 isOpen={this.state.changePassword}
-                                 contentLabel="Minimal Modal Example"
-                                 style={defaultStyles}
-                                 ariaHideApp={false}>
-                                 <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
-                                  <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-                              </Modal>
                             </div>
                         </div>
                     }

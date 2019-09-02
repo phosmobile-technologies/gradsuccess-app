@@ -311,7 +311,7 @@ render() {
 
         {this.state.itemCount ===0 ? <div className = "no_item">
             <img  src={emptyFolder} alt="gradsuccess" />
-            <p>No new application</p>
+            <p>No assigned application</p>
         </div>:""}
 
         <Modal 

@@ -212,7 +212,7 @@ export default class leaveAMessageForm extends React.Component {
 		              return (
 		                	<div>
 		                	{data.getClientMessages.length === 0?
-	                		 	<div>
+	                		 	<div className = "no_message">
 								  	<p>No Conversation!.</p>
 								</div>:
 			                	<div>
@@ -314,7 +314,6 @@ export default class leaveAMessageForm extends React.Component {
 
 						<button type = "submit" disabled = {this.state.typedText===""?true:false}>
 							<img  src={sendIcon} alt="Logo" /> 
-							<span className = "sendMessage">Send Message</span>
 						</button>
                     
                   </form>

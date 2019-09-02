@@ -102,8 +102,8 @@ passwordChanged(){
 }
 render() {
 	return (
-		<div className = "detail_preview_modal_container">
-	        <div className = "detail_preview_modal_container_inner">
+		<div className = "confirm_password">
+	        <div className = "confirm_password_inner">
 	              <Mutation 
 	                    mutation={UPDATE_PASSWORD}
 	                    onError={this.error}
@@ -126,7 +126,7 @@ render() {
 	                                password:this.state.data.new_password
 	                              }
 	                         })}}
-	                         className = "confirm_form">
+	                         className = "confirm_form change_password_form">
 	                         <h4 className = "completeAppMTitle">Change Password</h4>
 	                         <br />
 	                            <div className="row-full comment_input">

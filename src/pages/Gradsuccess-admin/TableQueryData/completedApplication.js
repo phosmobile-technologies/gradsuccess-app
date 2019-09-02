@@ -320,7 +320,7 @@ render() {
         </Query>
         {this.state.itemCount ===0? <div className = "no_item">
             <img  src={emptyFolder} alt="gradsuccess" />
-            <p>No new application</p>
+            <p>No completed application</p>
         </div>:""}
         <Modal 
            isOpen={this.state.graduateSchoolStatementReviewForm}

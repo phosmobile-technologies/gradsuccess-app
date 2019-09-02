@@ -137,7 +137,18 @@ class IndexPage extends Component {
     }
 
     showEditComponent(func){
-        console.log(func)
+        this.setState({
+            NewApplications:false,
+            AssignedApplication:false,
+            InProgressApplication:false,
+            CompletedApplication:false,
+            changePassword:false,
+            ExpertsComponent:false,
+            LeaveAMessageComponent:false,
+            editProfile:false,
+            updateProfileImage:false,
+            [func]:true,
+        })
     }
 
     render() {
@@ -208,6 +219,7 @@ class IndexPage extends Component {
                                         {this.state.InProgressApplication && <InProgressApplication expert_id = {data.me.id} account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
                                         {this.state.CompletedApplication && <CompletedApplication expert_id = {data.me.id} account_type = {data.me.account_type}/>}
                                         {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
+                                        {this.state.changePassword && <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>}
 
                                         {this.state.editProfile && <EditProfile  
                                             first_name = {data.me.first_name}
@@ -225,17 +237,6 @@ class IndexPage extends Component {
                                 </div>
                             </div>
                         </div>
-                       <div>
-                          <Modal 
-                             isOpen={this.state.changePassword}
-                             contentLabel="Minimal Modal Example"
-                             style={defaultStyles}
-                             ariaHideApp={false}>
-                             <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>
-                              <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-                          </Modal>
-                        </div>
-                   
                </div>
                     }
                 </div>

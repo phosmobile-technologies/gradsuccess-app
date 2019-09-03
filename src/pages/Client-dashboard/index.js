@@ -74,6 +74,49 @@ class IndexPage extends Component {
         if (this.state.loggedIn === "") {
            this.setState({ showModal: true });
         }
+        const currentc = localStorage.getItem('currentC')
+        if(localStorage.hasOwnProperty('currentC')){
+            this.setState({
+                leaveAMessage:false,
+                changePassword:false,
+                accountInfo:false,
+                updateProfileImage:false,
+                editProfile:false,
+                currentMenu:currentc,
+                [currentc]:true
+            })
+
+            switch(currentc){
+                case "leaveAMessage":{
+                    this.setState({
+                        currentComponent:"Messages"
+                    })
+                    break
+                }
+                case "changePassword":{
+                    this.setState({
+                        currentComponent:"Change Password"
+                    })
+                    break
+                }
+                case "accountInfo":{
+                    this.setState({
+                        currentComponent:"Account Details"
+                    })
+                    break
+                }
+                default:{
+                    this.setState({
+                        currentComponent:"Account Details"
+                    })
+                }
+            }
+        }else{
+            this.setState({
+                accountInfo:true,
+            })
+        }
+        
     }
      handleCloseModal () {
           this.setState({ 
@@ -81,14 +124,14 @@ class IndexPage extends Component {
               changePassword:false,
               accountInfo:true,
           });
+    
     }
 
     handleDisplayComponent(event){
        let Component =  event.target.id;
-
+       localStorage.setItem("currentC",Component);
        this.setState({
             leaveAMessage:false,
-            leaveAComplain:false,
             editProfile:false,
             updateProfileImage:false,
             accountInfo:false,
@@ -121,6 +164,7 @@ class IndexPage extends Component {
     }
 
     showEditComponent(func){
+        localStorage.setItem("currentC",func);
         this.setState({
             leaveAMessage:false,
             changePassword:false,
@@ -188,9 +232,6 @@ class IndexPage extends Component {
                                             phone = {data.me.phone}
                                             id = {data.me.id}/>}
                                             {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
-
-
-
                                         </div>
                                         <div className = "footer-hide">
                                         <Footer />

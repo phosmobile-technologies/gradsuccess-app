@@ -77,8 +77,75 @@ class IndexPage extends Component {
         if (this.state.loggedIn === "") {
            this.setState({ showModal: true });
         }
+
+        const currentc = localStorage.getItem('currentC')
+        if(localStorage.hasOwnProperty('currentC')){
+            if(currentc === "LeaveAMessageComponent"){
+                this.handleDisplayMessagingComponent(localStorage.getItem('clientI'),localStorage.getItem('clientN'));
+            }else{
+            this.setState({
+                NewApplications:false,
+                AssignedApplication:false,
+                InProgressApplication:false,
+                CompletedApplication:false,
+                LeaveAMessageComponent:false,
+                changePassword:false,
+                editProfile:false,
+                updateProfileImage:false,
+                currentMenu:currentc,
+                [currentc]:true
+            })
+            }
+
+            switch(currentc){
+                case "NewApplications":{
+                    this.setState({
+                        currentComponent:"New Applications"
+                    })
+                    break
+                }
+                case "AssignedApplication":{
+                    this.setState({
+                        currentComponent:"Assigned Applications"
+                    })
+                    break
+                }
+                case "InProgressApplication":{
+                    this.setState({
+                        currentComponent:"Applications in Progress"
+                    })
+                    break
+                }
+                case "CompletedApplication":{
+                    this.setState({
+                        currentComponent:"Completed Application"
+                    })
+                    break
+                }
+                case "LeaveAMessageComponent":{
+                    this.setState({
+                        currentComponent:"Message"
+                    })
+                    break
+                }
+                default:{
+                    this.setState({
+                        currentComponent:"New Applications"
+                    })
+                }
+            }
+        }else{
+            this.setState({
+                NewApplications:true,
+            })
+        }
+
+
     }
     handleDisplayMessagingComponent(client_id,client_name){
+        localStorage.setItem("currentC","LeaveAMessageComponent");
+        localStorage.setItem("clientI",client_id);
+        localStorage.setItem("clientN",client_name);
        this.setState({
             NewApplications:false,
             AssignedApplication:false,
@@ -110,6 +177,8 @@ class IndexPage extends Component {
         let Component =  event.target.id;
         let currentComponent =  event.target.name;
 
+        localStorage.setItem("currentC",Component);
+
         this.setState({
             NewApplications:false,
             AssignedApplication:false,
@@ -137,13 +206,13 @@ class IndexPage extends Component {
     }
 
     showEditComponent(func){
+        localStorage.setItem("currentC",func);
         this.setState({
             NewApplications:false,
             AssignedApplication:false,
             InProgressApplication:false,
             CompletedApplication:false,
             changePassword:false,
-            ExpertsComponent:false,
             LeaveAMessageComponent:false,
             editProfile:false,
             updateProfileImage:false,

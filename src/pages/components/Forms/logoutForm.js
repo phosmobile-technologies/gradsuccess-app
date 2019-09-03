@@ -19,6 +19,10 @@ constructor(props) {
 
     logoutCompleted(data){
     	localStorage.removeItem(AUTH_TOKEN)
+    	localStorage.removeItem('clientI')
+    	localStorage.removeItem('clientN')
+    	localStorage.removeItem('currentC')
+    	localStorage.removeItem('chat_state')
 	    window.location = '/'
 	}
 	render() {

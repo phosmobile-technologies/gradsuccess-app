@@ -49,7 +49,7 @@ class Blogging extends Component {
                <div class="blog__content">
                   <div class="blog_preview">
                      <h2 class="blog__title">${shortenText(item.title, 0, 30)+ '...'}</h2>
-                     <p class="blog__intro">${'...' + shortenText(toText(item.content),60, 300)+ '...'}</p>
+                     <p class="blog__intro">${shortenText(toText(item.content),0, 300) + '...'}</p>
                   </div>
                   <hr>
                   <div class="blog__info">
@@ -72,7 +72,7 @@ render() {
         <Layout>
             <SEO title="Blog" />
             <div className = "unauthorized blog-body">
-               <h2>Recent Posts:</h2>
+               <h2 className = "blog-header-text">Recent Posts:</h2>
                <hr />
             <div className = "blog__slider"></div>
             </div>

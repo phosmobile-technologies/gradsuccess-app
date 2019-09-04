@@ -816,17 +816,23 @@ padding-top: 10px;
     justify-content: flex-end;
     font-size: 14px;
     padding-right: 20px;
+    align-items: center;
 }
 .blog__info a{
     padding-right: 20px;
 }
 .blog__info .cBtn{
     background-color: #47dcbc;
-    color: black;
-    padding: 0px 30px;
+    padding: 5px 30px;
+    border-radius: 3px;
+    color: white;
 }
 .blog__info .cBtn:hover{
     opacity: 0.5;
+}
+.blog-header-text{
+    text-align: left;
+    font-size: 20px;
 }
 /**/
 

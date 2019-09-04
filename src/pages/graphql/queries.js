@@ -605,5 +605,14 @@ export const GET_APPLICATION_REVIEW = gql`
 }
 `;
 
-
-
+export const BLOG_POSTS = gql`
+ query {
+  allMediumUser {
+    edges {
+      node {
+        name
+      }
+    }
+  }
+}
+`;

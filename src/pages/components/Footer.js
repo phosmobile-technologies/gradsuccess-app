@@ -191,6 +191,7 @@ handleCloseModal(){
             id = "ClientTermOfService" 
             className = "footerBtn"
             onClick = {this.handleDisplayComponent}>Client Terms of Service</button>
+            <span css={slash}> / </span>
             <button
             name = "faq" 
             id = "faq" 

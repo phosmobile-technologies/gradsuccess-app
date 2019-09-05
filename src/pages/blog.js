@@ -48,7 +48,7 @@ class Blogging extends Component {
                <img src="${item.thumbnail}" class="blog__topImg"></img>
                <div class="blog__content">
                   <div class="blog_preview">
-                     <h2 class="blog__title">${shortenText(item.title, 0, 30)+ '...'}</h2>
+                     <h2 class="blog__title">${item.title}</h2>
                      <p class="blog__intro">${shortenText(toText(item.content),0, 300) + '...'}</p>
                   </div>
                   <hr>

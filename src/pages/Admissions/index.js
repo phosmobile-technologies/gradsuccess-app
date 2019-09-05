@@ -139,7 +139,6 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Welcome to the Admissions Center"
-          text="There is a lot of competition going on, and your desired spot is not exempted. If your application doesn’t fit in with the required standards of your career or school, you will most likely end up being rejected. We don’t want this to happen, this is why we are here to help you get into top schools around the world, stress-free!"
           imgUrl={addBgURL}
           openModal={this.onOpenModal}
         />

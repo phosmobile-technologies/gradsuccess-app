@@ -64,7 +64,7 @@ const mq = breakpoints.map(
                 <h2 css={{
                     color: '#19a99d'
                 }}> Price</h2>
-                <p> Our Regular turnaround is two business-days on each submission, while our Flash turnaround is one business-day on each submission.</p>
+                <p> Our Regular turnaround is 3-5 business-days on each submission, while our Flash turnaround is 1-2 business-day on each submission.</p>
                 <br/> <br/>
 
                 <div css={{
@@ -76,9 +76,9 @@ const mq = breakpoints.map(
                         flexDirection: 'column'
                     }
                 }}>
-                <PriceBox   text="STANDARD" price="N15,000"  form="coverLetterReviewForm" itemDescription = 'Essay Review (Graduate School Essay - STANDARD)'/>     
+                <PriceBox   text="STANDARD" price="N18,500"  form="coverLetterReviewForm" itemDescription = 'Essay Review (Graduate School Essay - STANDARD)'/>     
                 <div css={{ width: '50px'}}> </div>
-                <PriceBox text="FLASH PRICE" form="coverLetterReviewForm" price="N20,000"  itemDescription = 'Essay Review (Graduate School Essay - FLASH PRICE)' />
+                <PriceBox text="FLASH PRICE" form="coverLetterReviewForm" price="N25,000"  itemDescription = 'Essay Review (Graduate School Essay - FLASH PRICE)' />
                 </div>
             </div>
             {/* End  */}

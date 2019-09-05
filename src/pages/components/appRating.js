@@ -19,7 +19,7 @@ class AppRating extends Component {
     render() {
 	    return (                
 	      <div className = "ratingDiv">
-	        <p>Rating:</p>
+	        <p>Rating: {this.state.rating}/5 </p>
 	        <StarRatingComponent 
 	          name="rate1" 
 	          starCount={5}

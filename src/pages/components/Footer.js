@@ -5,6 +5,7 @@ import React from "react"
 
 import Disclaimer from "../../utils/Disclaimer"
 import ClientTermsOfService from "../../utils/clientTermsOfService"
+import FAQ from "../../utils/faq"
 import GradSuccessWebsiteTerms from "../../utils/gradSuccessWebsiteTerms"
 import PrivacyGradSuccess from "../../utils/privacyGradSuccess"
 
@@ -51,6 +52,7 @@ export default class resumeReviewForm extends React.Component {
       WebsiteTermOfUse:false,
       Disclaimer:false,
       ClientTermOfService:false,
+      faq:false
     }
 this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
 this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -65,6 +67,7 @@ handleDisplayComponent(event){
       WebsiteTermOfUse:false,
       Disclaimer:false,
       ClientTermOfService:false,
+      faq:false
   })
 
   this.setState({
@@ -81,6 +84,7 @@ handleCloseModal(){
         WebsiteTermOfUse:false,
         Disclaimer:false,
         ClientTermOfService:false,
+        faq:false
 
     })   
 }
@@ -187,6 +191,11 @@ handleCloseModal(){
             id = "ClientTermOfService" 
             className = "footerBtn"
             onClick = {this.handleDisplayComponent}>Client Terms of Service</button>
+            <button
+            name = "faq" 
+            id = "faq" 
+            className = "footerBtn"
+            onClick = {this.handleDisplayComponent}>FAQ</button>
         </div>
         <br /> <br />
         <div  css={{color: '#ccc'}} className= "footer_addresss">
@@ -299,6 +308,17 @@ handleCloseModal(){
          style={defaultStyles}
          ariaHideApp={false}>
                       <ClientTermsOfService/>
+              
+            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+      </div>
+      <div className = "modal_wrapper">
+        <Modal 
+         isOpen={this.state.faq}
+         contentLabel="Minimal Modal Example"
+         style={defaultStyles}
+         ariaHideApp={false}>
+                      <FAQ />
               
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
         </Modal>

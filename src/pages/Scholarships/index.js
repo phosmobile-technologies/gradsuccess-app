@@ -139,7 +139,6 @@ class IndexPage extends React.Component {
         <SEO title="Home" keywords={[`success`, `application`, `university`]} />
         <HomeHero
           title="Welcome to the Scholarship Center"
-          text="We understand the financial trauma when it comes to applying to a top school, this is why we are committed to helping you get the best scholarship offers."
           imgUrl={scholarBgURL}
           openModal={this.onOpenModal}
         />

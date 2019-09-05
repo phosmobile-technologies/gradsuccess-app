@@ -1,3 +1,4 @@
+
 import { React, Component } from "react"
 
 class clientTermsOfService extends Component {
@@ -64,3 +65,4 @@ render() {
 }
 }
 export default clientTermsOfService
+

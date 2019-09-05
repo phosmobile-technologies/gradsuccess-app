@@ -29,7 +29,7 @@ const ImgDivStyles = css({
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '400px',
-    minWidth: 'auto'
+    minWidth: 'auto',
 })
 
 class FeaturedTestimonial extends React.Component {
@@ -50,34 +50,51 @@ constructor(props) {
     <div css={{
         display: 'flex',
         background: 'white',
-        padding: '4em 10em',
         [mq[2]]: {
             flexWrap: 'wrap',
             padding: '40px 20px',
             margin: '5px',
-            textAlign: 'center'
+            textAlign: 'center',
+            marginBottom: '27em'
         }
     }}>
     <div css={{
         display: 'flex',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        width:'80%',
+        margin:'auto',
+        marginTop:'40px',
+        marginBottom:'40px',
     }}>
         <div css={{
             flex: 1,
-            padding: '3em 5em 3em 0',
             alignSelf: 'center',
+            overflow: 'hidden',
+            position:'relative',
+            height: '100%',
             [mq[2]]: {
                 padding: '15px'
             }
         }}>
+          <div className="item-1">
             <p>
                   Being successful at earning a place with an International Business School is a challenging experience, but GradSuccess really assisted me with the application process through its professional and timely reviews of my essays and resume at affordable prices. 
                   I will definitely recommend GradSuccess to prospective applicants
             </p>
             <br />
             <hr />
-            <h4>Babajide, MIB</h4>
-            <AppRating ratingValue = {this.state.rateValue} />
+            <h4>Babajide, MIB, Hult international business school</h4>
+            <AppRating ratingValue = {4} />
+          </div>
+
+          <div className="item-2"> 
+            <p>
+                  I got accepted to Robison's College of Business's MBA program. Thank you for being a part of the application process. Your help in developing my essay strategy, reviewing my resume and GRE waiver leter went a long way. My application wouldn't have gone so smoothly without you. Thank you again for your help.
+            </p>
+            <br />
+            <hr />
+            <h4>Bukola, M.A Andrew Young School of Policy Studies, Georgia State University </h4>
+            <AppRating ratingValue = {4.5} /></div>
         </div>
 
         <div css={ImgDivStyles}>

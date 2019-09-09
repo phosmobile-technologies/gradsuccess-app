@@ -1544,6 +1544,13 @@ font-family: 'Lato', sans-serif;
 font-size: 35px;
 color:cadetblue
 }
+.faq span{
+    color: #00a99d;
+    font-weight: bold;
+}
+.faq li{
+    list-style: none;
+}
 
 @media only screen and (max-width: 500px) {
 .loginBtn {

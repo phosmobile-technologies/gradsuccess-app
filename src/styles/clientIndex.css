@@ -1773,6 +1773,53 @@ justify-content: space-evenly;
 	width: 100%;
 }
 
+
+
+.blog-body{
+    width: 100% !important;
+}
+
+
+.blog__post{
+    display: flex;
+    flex-direction: column;
+}
+.blog_preview{
+    padding-left: 4px;
+}
+.blog__title{
+    margin-top: 0px;
+    margin-bottom: 5px
+}
+.blog__info a{
+    padding-right: 4px;
+}
+.blog__post img{
+    width: 100%;
+}
+.blog__info .cBtn{
+    background-color: #47dcbc;
+    padding: 5px 20px;
+    border-radius: 3px;
+    color: white;
+}
+.blog__info .cBtn:hover{
+    opacity: 0.5;
+}
+.blog-header-text{
+    font-size: 20px;
+}
+
+.blog__content{
+    padding: 0px;
+}
+.blog__post a{
+    width: 100%;
+}
+
+
+
+
 }
 
 

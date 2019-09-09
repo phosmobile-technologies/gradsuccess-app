@@ -10,7 +10,7 @@ export default class checkoutForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            key: "pk_test_33a9728f0c72c40804064e98287220d2353d2083", //PAYSTACK PUBLIC KEY
+            key: "pk_test_54178ff803144d4be6b17fd55e811288d4a20ddf", //PAYSTACK PUBLIC KEY
             amount: 100000, //equals NGN100,
             success: false,
             password: "",

@@ -54,7 +54,7 @@ class Blogging extends Component {
                   <hr>
                   <div class="blog__info">
                      <span class="blog__date">${shortenText(item.pubDate,0 ,10)}</span>
-                     <a class = "cBtn" target = "_blank" href="${item.link}">Continue read...</a>
+                     <a class = "cBtn" target = "_blank" href="${item.link}">Continue reading...</a>
                   </div>
                </div>
             <a/>

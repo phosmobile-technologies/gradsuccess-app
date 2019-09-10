@@ -34,12 +34,6 @@ export default class checkoutForm extends Component {
     }
 
     componentDidMount() {
-        localStorage.getItem('payment_successful');
-        if(localStorage.hasOwnProperty('payment_successful')){
-            this.setState({
-                success:'success'
-            })
-        }
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
         var string_length = 8;
         var randomstring = '';
@@ -116,7 +110,6 @@ export default class checkoutForm extends Component {
             localStorage.removeItem("ItemsInCart");
             localStorage.removeItem("CheckoutAmount");
                 },4000)
-            localStorage.setItem('payment_successful',true)
         }).catch(function(error){
         alert("Networks Error please try again, Later!");
         

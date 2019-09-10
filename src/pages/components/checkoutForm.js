@@ -6,11 +6,14 @@ import { CREATE_CLIENT_ACCOUNT } from '../graphql/mutations';
 import loader from "../../images/loader.gif"
 import PaystackButton from 'react-paystack';
 
+
+import { SAVE_CLIENT_DETAILS } from "../../api/sendMailEndpoint"
+
 export default class checkoutForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            key: "pk_live_a2e85558692cca93f4693bc3a2c7b21b78a53ace", //PAYSTACK PUBLIC KEY
+            key: "pk_test_54178ff803144d4be6b17fd55e811288d4a20ddf", //PAYSTACK PUBLIC KEY
             amount: 100000, //equals NGN100,
             success: false,
             password: "",
@@ -20,6 +23,8 @@ export default class checkoutForm extends Component {
             phone: '',
             account_type:'Client',
             submitForm: true,
+            notVerified:true,
+            mcs:1
         }
         this.handleForm = this.handleForm.bind(this)
         this.verifyFormSubmit = this.verifyFormSubmit.bind(this)
@@ -29,6 +34,12 @@ export default class checkoutForm extends Component {
     }
 
     componentDidMount() {
+        localStorage.getItem('payment_successful');
+        if(localStorage.hasOwnProperty('payment_successful')){
+            this.setState({
+                success:'success'
+            })
+        }
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
         var string_length = 8;
         var randomstring = '';
@@ -52,22 +63,68 @@ export default class checkoutForm extends Component {
 
     handleForm(e) {
         const {name, value} = e.target
-        this.setState(prevState =>({
-            ...prevState.data,
-            [name]:value
-        }))
+
+        this.setState({
+            [name]:value,
+        }, () => {
+            this.verify(); 
+        });
+    }
+
+
+    verify(){
+        if(this.state.first_name !== '' &&
+        this.state.last_name !== '' &&
+        this.state.email !== '' &&
+        this.state.phone !== ''){       
+            this.setState({
+                notVerified:false,
+                
+            })
+        }
     }
 
     paystackPaymentSuccess(response){
-        this.setState({
-            success: "success"
+
+        let url = SAVE_CLIENT_DETAILS
+        let data = {
+            first_name:this.state.first_name,
+            last_name:this.state.last_name,
+            phone:this.state.phone,
+            form_id:localStorage.getItem('form_id') || "no form",
+            package:localStorage.getItem('package') || "no form",
+            email:this.state.email,
+            password:this.state.password,
+            account_type:"Client"
+        }
+        fetch(url, {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify(data)
+        }).then(function(response){
+            return response.text()
+        }).then((text)=>{
+            this.setState({
+                success: "success"
+            })
+            localStorage.setItem("yshKSMCis129_#&NISis", this.state.password);
+            setTimeout(function(){
+            window.location = '/Application-details'
+            localStorage.removeItem("ItemsInCart");
+            localStorage.removeItem("CheckoutAmount");
+                },4000)
+            localStorage.setItem('payment_successful',true)
+        }).catch(function(error){
+        alert("Networks Error please try again, Later!");
+        
         })
-        localStorage.setItem("yshKSMCis129_#&NISis", this.state.password);
-        setTimeout(function(){
-        window.location = '/Application-details'
-        localStorage.removeItem("ItemsInCart");
-        localStorage.removeItem("CheckoutAmount");
-            },4000)
+
+
+
+        
     }
 
     close = () => {
@@ -84,6 +141,8 @@ export default class checkoutForm extends Component {
     }
 
     formSubmitted(data) {
+
+        document.getElementsByClassName("pButton").click();
         document.getElementById("submittedSucces").style.display = "block"
         setTimeout(function() {
             if (document.getElementById("submittedSucces") != null) {
@@ -94,7 +153,6 @@ export default class checkoutForm extends Component {
             success: "checkout"
         })
     }
-
     render() {
         if (this.state.success === "success") {
             return (
@@ -130,21 +188,21 @@ export default class checkoutForm extends Component {
                 					<li><strong>Phone Number: </strong>  <i>{this.state.phone}</i></li>
                 				</ul>
                 				<div>
-                					<div className = "cartStyle">
-                						<PaystackButton
-                							text="Proceed to payment"
-                							className= ""
-                							callback={this.paystackPaymentSuccess}
-                							close={this.close}
-                							disabled={false}/*disable payment button*/
-                							embed={false} /*payment embed in your app instead of a pop up*/
-                							reference={this.getReference()}
-                							email={this.state.email}
-                							amount={this.state.amount}
-                							paystackkey={this.state.key}
-                							tag="button"/*it can be button or a or input tag */
-                							/>
-                					</div>
+                                <div className = "cartStyle">
+                                    <PaystackButton
+                                        text="Proceed to payment"
+                                        className= ""
+                                        callback={this.paystackPaymentSuccess}
+                                        close={this.close}
+                                        disabled={true}/*disable payment button*/
+                                        embed={false} /*payment embed in your app instead of a pop up*/
+                                        reference={this.getReference()}
+                                        email={this.state.email}
+                                        amount={this.state.amount}
+                                        paystackkey={this.state.key}
+                                        tag="button"/*it can be button or a or input tag */
+                                        />
+                                </div>
                 						
                 				</div>
                 				</div>
@@ -204,10 +262,23 @@ export default class checkoutForm extends Component {
 							<div className="row-full">
 								<input type="email" required  placeholder="Email Address" onChange = {this.handleForm}   id = "email" name = "email"/>
 							</div>
-							<br />
-							<input type = "submit" className = "submit-details" value = "Proceed to payment"/>
-							
 						</form>
+                            <div className = "cartStyle" id = {this.state.notVerified?'notActive':''}>
+                                <PaystackButton
+                                    text="Proceed to payment"
+                                    className= "pButton"
+                                    callback={this.paystackPaymentSuccess}
+                                    close={this.close}
+                                    disabled={this.state.notVerified}/*disable payment button*/
+                                    embed={false} /*payment embed in your app instead of a pop up*/
+                                    reference={this.getReference()}
+                                    email={this.state.email}
+                                    amount={this.state.amount}
+                                    paystackkey={this.state.key}
+                                    tag="button"/*it can be button or a or input tag */
+                                    />
+                            </div>
+                        
 						{loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
 						{error && <div className="FailedTagForm">Email Already Exists.</div>}
 					</div>

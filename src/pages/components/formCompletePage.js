@@ -26,6 +26,7 @@ export default class formCompletePage extends React.Component {
 	}
 
 	componentDidMount(){
+
 		this.setState({
 			password:localStorage.getItem("yshKSMCis129_#&NISis")
 		})
@@ -37,7 +38,13 @@ export default class formCompletePage extends React.Component {
 	}
 	handleCloseModal () {
         this.setState({ showModal: false });
-    }
+	}
+	componentWillUnmount(){
+		localStorage.removeItem('form_id');
+		localStorage.removeItem('package');
+		localStorage.removeItem('yshKSMCis129_#&NISis');
+		localStorage.removeItem('payment_successful');
+	}
 
 	render() {
 		return (

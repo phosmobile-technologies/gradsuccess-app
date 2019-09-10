@@ -44,6 +44,12 @@ export default class resumeReviewForm extends React.Component {
     }
 
 componentDidMount() {
+  localStorage.getItem('payment_successful');
+      if(localStorage.hasOwnProperty('payment_successful')){
+        this.setState({
+          form_submit_success:true
+        })
+      }
         this.setState(prevState => ({
             data: {
                 ...prevState.data,
@@ -57,6 +63,7 @@ componentDidMount() {
 
     formSubmitted() {
         document.getElementById("submittedSucces").style.display = "block"
+        localStorage.setItem('payment_successful',true)
 
         setTimeout(function() {
             if (document.getElementById("submittedSucces") != null) {

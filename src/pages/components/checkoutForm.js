@@ -34,6 +34,7 @@ export default class checkoutForm extends Component {
     }
 
     componentDidMount() {
+        
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
         var string_length = 8;
         var randomstring = '';

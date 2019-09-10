@@ -81,6 +81,12 @@ export default class resumeReviewForm extends React.Component {
         }
     }
     componentDidMount() {
+      localStorage.getItem('payment_successful');
+      if(localStorage.hasOwnProperty('payment_successful')){
+        this.setState({
+          form_submit_success:true
+        })
+      }
         document.getElementById('submitBtn').disabled = true;
         document.getElementById('submitBtn').style.opacity = '0.5'
         this.setState(prevState => ({
@@ -93,6 +99,7 @@ export default class resumeReviewForm extends React.Component {
     }
     formSubmitted() {
         document.getElementById("submittedSucces").style.display = "block"
+        localStorage.setItem('payment_successful',true)
 
         setTimeout(function() {
             if (document.getElementById("submittedSucces") != null) {

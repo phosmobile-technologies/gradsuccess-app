@@ -89,7 +89,7 @@ constructor(props) {
 
           <div className="item-2"> 
             <p>
-                  I got accepted to Robison's College of Business's MBA program. Thank you for being a part of the application process. Your help in developing my essay strategy, reviewing my resume and GRE waiver leter went a long way. My application wouldn't have gone so smoothly without you. Thank you again for your help.
+                  I got accepted to Robison's College of Business's MBA program. Thank you for being a part of the application process. Your help in developing my essay strategy, reviewing my resume and GRE waiver letter went a long way. My application wouldn't have gone so smoothly without you. Thank you again for your help.
             </p>
             <br />
             <hr />

@@ -89,6 +89,8 @@ export default class itemInCart extends Component {
       return {
         totalAmount:
           preState.totalAmount + Number(num.Price.replace(/\D/g, "")),
+          cApplied:true
+
       }
     })
   }

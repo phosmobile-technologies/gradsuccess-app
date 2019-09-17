@@ -1,8 +1,8 @@
 import React, { Component } from "react"
-import PropTypes from "prop-types"
 import SingleCartItem from "./SingleCartItem"
 import { Link } from "gatsby"
 import discouted from "../../images/10-discount.ico"
+import { COUPON } from "../../api/couponCode"
 
 export default class itemInCart extends Component {
   constructor(props) {
@@ -13,12 +13,74 @@ export default class itemInCart extends Component {
       totalAmount: 0,
       discountedAmount: 0,
       cartItem: 0,
-      ItemInCar:null
+      ItemInCar:null,
+      hasCoupon: false,
+      coupon: "",
+      couponError: false,
+      couponAplied: false,
+      cApplied: true,
+      applyingCoupon:false
 
     }
 
     this.DeleteItem = this.DeleteItem.bind(this)
     this.addFormLS = this.addFormLS.bind(this)
+    this.showCoupon = this.showCoupon.bind(this)
+    this.applyCoupon = this.applyCoupon.bind(this)
+    this.handleForm = this.handleForm.bind(this)
+  }
+
+  handleForm(e) {
+    const { name, value } = e.target
+    this.setState(
+      {
+        [name]: value,
+      }
+    )
+  }
+  applyCoupon() {
+    this.setState({
+        applyingCoupon:true
+    })
+    setTimeout(()=>{
+        if (this.state.coupon === " ") {
+            this.setState({
+              couponMessage: "Coupon code can not be empty",
+              couponError: true,
+              applyingCoupon:false
+            })
+          } else if (COUPON.code !== this.state.coupon) {
+            this.setState({
+              couponMessage: "Sorry, coupon has expired.",
+              couponError: true,
+              applyingCoupon:false
+            })
+          } else {
+            const discounttedAmount = (this.state.totalAmount / 100) * COUPON.discount
+            const newAmount = this.state.totalAmount - discounttedAmount
+            this.setState({
+              couponError: false,
+              couponAplied: true,
+              applyingCoupon:false,
+              discountedAmount:newAmount,
+              cApplied:false
+            })
+
+
+            setTimeout(()=>{
+              this.setState({
+                couponAplied:false
+              })
+            }, 10000)
+          }
+    },2000)
+    
+  }
+
+  showCoupon() {
+    this.setState({
+      hasCoupon: !this.state.hasCoupon,
+    })
   }
 
   reCalcTotal = num => {
@@ -62,6 +124,7 @@ export default class itemInCart extends Component {
     }else{
       let _item = localStorage.getItem("ItemsInCart")
       let cartItem = JSON.parse(localStorage.getItem("ItemsInCart")) || []
+      let couponApplied = localStorage.getItem("couponApplied")
 
       if (_item) {
         _item = JSON.parse(_item)
@@ -183,7 +246,13 @@ export default class itemInCart extends Component {
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </span>
+                      {this.state.couponAplied && (
+                        <div className="couponAplied">
+                          Coupon Applied.
+                        </div>
+                      )}
                     </div>
+
                   )}
 
                   {this.state.cartItem < 3 && (
@@ -196,10 +265,55 @@ export default class itemInCart extends Component {
                       </span>
                     </div>
                   )}
+
+                  
                 </div>
+                {this.state.cApplied && (
+                          <div className="couponWrapper">
+                            <button
+                              className="couponBtn"
+                              type="button"
+                              onClick={this.showCoupon}
+                            >
+                              I have Coupon code
+                            </button>
+
+                            {this.state.couponError && (
+                              <div className="couponError">
+                                {this.state.couponMessage}
+                              </div>
+                            )}
+                            
+
+                            {this.state.hasCoupon && (
+                              <div className="couponDiv">
+                                <input
+                                  type="text"
+                                  name="coupon"
+                                  id="coupon"
+                                  placeholder="Your Coupon"
+                                  onChange={this.handleForm}
+                                />{" "}
+                                <button
+                                  type="button"
+                                  onClick={this.applyCoupon}
+                                >
+                                  {this.state.applyingCoupon ? (
+                                   "Applying"
+                                  ) : (
+                                    "Apply"
+                                  )}
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
               </div>
             </div>
+            
+            
             <div className="btn-wrap">
+              
               <Link to="/Checkout">
                 <button className="checkout-button">Checkout</button>
               </Link>

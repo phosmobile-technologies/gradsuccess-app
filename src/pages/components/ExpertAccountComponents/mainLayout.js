@@ -61,7 +61,7 @@ componentDidMount(){
               this.downloadUploadedFile(text)
           }
         }).catch(function(error){
-            console.log(error);
+            console.log("failed");
         })
     }
 
@@ -112,7 +112,6 @@ componentDidMount(){
               break;
          }
 
-         console.log(error)
         });
     }
 

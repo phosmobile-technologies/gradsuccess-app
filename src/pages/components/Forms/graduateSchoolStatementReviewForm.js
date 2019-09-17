@@ -106,7 +106,6 @@ componentDidMount() {
                 "curriculum_vitae": fileRef
             }
         }))
-        console.log(this.state.data)
         var storageRef = firebase.storage().ref(fileRef)
         var task = storageRef.put(file)
         task.on('state_changed',

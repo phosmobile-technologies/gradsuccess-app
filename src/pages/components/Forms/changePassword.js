@@ -85,7 +85,6 @@ passwordChanged(){
 	    }).then(function(response){
 	        return response.text()
 	    }).then((text)=>{
-	    	console.log(text)
 	    	document.getElementById("submittedSucces").style.display = "block"
 	    	setTimeout(()=>{
 		          if (document.getElementById("submittedSucces") != null) {
@@ -95,7 +94,6 @@ passwordChanged(){
 		    }, 2000)
 
 	    }).catch(function(error){
-	        console.log(error);
 	    })
 
 

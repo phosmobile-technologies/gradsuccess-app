@@ -46,7 +46,6 @@ class Header extends React.Component {
     this.setState({
       toggle: !this.state.toggle
     })
-    console.log("clicked" + this.state.toggle)
   }
 
   handleOpenModal () {

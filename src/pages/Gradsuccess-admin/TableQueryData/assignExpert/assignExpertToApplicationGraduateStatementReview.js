@@ -51,7 +51,7 @@ export default class assignExpertToApplication extends React.Component {
 		    }).then((text)=>{
 		      window.location.reload();
 		    }).catch(function(error){
-		       console.log(error);
+		       
 		    })
 			window.location.reload();
 		},1000)

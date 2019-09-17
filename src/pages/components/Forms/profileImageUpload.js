@@ -64,7 +64,7 @@ _onChange(event){
             //
         },
         function error(err) {
-            console.log(err)
+            alert("failed to update profile...pls try again")
         },
         function complete() {
           let url = SAVE_PROFILE_IMAGE
@@ -90,7 +90,7 @@ _onChange(event){
           }, 5000)
 
           }).catch(function(error){
-              console.log(error);
+              
           })
 
 

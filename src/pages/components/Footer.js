@@ -73,8 +73,6 @@ handleDisplayComponent(event){
   this.setState({
       [Component]:true,
   })
-
-  console.log(Component)
     }
 
 

@@ -61,7 +61,6 @@ class registeredExperts extends Component {
         }).then((text)=>{
             this.downloadUploadedFile(id,text)
         }).catch(function(error){
-            console.log(error);
         })
     }
 
@@ -112,7 +111,6 @@ class registeredExperts extends Component {
               break;
          }
 
-         console.log(error)
         });
     }
 

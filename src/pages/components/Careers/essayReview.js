@@ -20,11 +20,6 @@ const mq = breakpoints.map(
     }
 
 
-    handleAddfunc(item){
-        console.log('products',item);
-    }
-
-
     render() {
       return (
         <div>

@@ -16,9 +16,6 @@ class CompletePack extends Component {
     super(props)
   }
 
-  handleAddfunc(item) {
-    console.log("products", item)
-  }
 
   render() {
     return (

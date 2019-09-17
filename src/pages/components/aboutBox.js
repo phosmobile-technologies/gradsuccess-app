@@ -24,7 +24,7 @@ const AboutBox = ({ first, second }) => (
       css={{
         display: "flex",
         margin: "100px 15%",
-        fontFamily: 'Lato',
+        fontFamily: "Lato",
         [mq[2]]: {
           flexWrap: "wrap",
         },
@@ -32,10 +32,7 @@ const AboutBox = ({ first, second }) => (
     >
       <div css={styleLeft}> {first} </div>
 
-      <div css={styleRight}>
-        {" "}
-        {second}
-      </div>
+      <div css={styleRight}> {second}</div>
     </div>
   </div>
 )

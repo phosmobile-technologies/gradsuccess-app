@@ -111,8 +111,6 @@ componentDidMount(){
               })
               break;
          }
-
-         console.log(error)
         });
     }
 

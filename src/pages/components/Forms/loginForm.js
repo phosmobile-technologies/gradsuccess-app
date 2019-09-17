@@ -71,7 +71,7 @@ constructor(props) {
 	    	document.getElementById("loaderImage").style.display = "none"
 	    	document.getElementById("submittedSucces").style.display = "flex"	   
 	    }).catch(function(error){
-	        console.log(error);
+	        alert("password reset failed")
 	    })    }
 
     formSubmitted(data){

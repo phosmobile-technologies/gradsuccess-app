@@ -19,12 +19,6 @@ const mq = breakpoints.map(
         super(props)
     }
 
-
-    handleAddfunc(item){
-        console.log('products',item);
-    }
-
-
     render() {
       return (
         <div>

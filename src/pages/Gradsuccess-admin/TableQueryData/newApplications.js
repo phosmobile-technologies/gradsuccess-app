@@ -199,7 +199,6 @@ assignSelf(form_id,application,id){
         }
 
     }).catch(function(error){
-        console.log(error);
     })
     
 

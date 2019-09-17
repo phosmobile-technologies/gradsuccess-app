@@ -39,7 +39,6 @@ export default class settings extends React.Component {
             	this.downloadUploadedFile(text)
         	}
         }).catch(function(error){
-            console.log(error);
         })
     }
 
@@ -89,8 +88,6 @@ export default class settings extends React.Component {
               })
               break;
          }
-
-         console.log(error)
         });
     }
 

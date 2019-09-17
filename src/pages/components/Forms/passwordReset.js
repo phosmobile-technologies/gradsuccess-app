@@ -68,9 +68,8 @@ export default class resumeReviewForm extends React.Component {
             document.getElementById("loaderImage").style.display = "none"
          }
        
-        console.log(text);
       }).catch(function(error){
-          console.log(error);
+          alert("password reset failed")
       })    
   }
 

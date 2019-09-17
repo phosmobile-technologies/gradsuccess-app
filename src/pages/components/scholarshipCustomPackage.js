@@ -15,10 +15,6 @@ class scholarshipCustomPackage extends Component {
   constructor(props) {
     super(props)
   }
-
-  handleAddfunc(item) {
-    console.log("products", item)
-  }
   render() {
     return (
       <div>

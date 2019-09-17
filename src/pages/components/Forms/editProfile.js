@@ -36,7 +36,6 @@ export default class EditProfile extends React.Component {
       },
     }))
 
-    console.log(this.state);
   }
 
   formSubmitted(data) {

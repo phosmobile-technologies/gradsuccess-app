@@ -17,7 +17,6 @@ export default class ItemSummary extends Component {
   }
 
   addFormLS = (num)=>{
-
     let amt = 0
   	let _items = this.state.Items
   	_items.push(num);

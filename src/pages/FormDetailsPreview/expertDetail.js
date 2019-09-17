@@ -34,7 +34,6 @@ componentDidMount(){
             expertRating:text
         })
     }).catch(function(error){
-        console.log(error);
     })
 }
 

@@ -65,7 +65,7 @@ _onChange(event){
             //
         },
         function error(err) {
-            console.log(err)
+            alert("profile image update failed")
         },
         function complete() {
           let url = UPDATE_PROFILE_IMAGE
@@ -90,7 +90,6 @@ _onChange(event){
                  window.location.reload()
           }, 2000)
           }).catch(function(error){
-              console.log(error);
           })
 
 

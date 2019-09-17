@@ -16,10 +16,6 @@ class careerCustomPackage extends Component {
     super(props)
   }
 
-  handleAddfunc(item) {
-    console.log("products", item)
-  }
-
   render() {
     return (
       <div>
@@ -32,7 +28,7 @@ class careerCustomPackage extends Component {
               critically access the bigger story–Your assigned associate will
               assess your essays and check them for overall engagement.
               <br />
-             <Link to="/Careers/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link to="/Careers/cv-resume" activeStyle={{ color: 'white' }} className="pad">More Detais</Link>
               <br />
             </p>
             <div class="cu-container-inner">
@@ -53,7 +49,7 @@ class careerCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
-          <div className = "comming_soon">Comming Soon!</div>
+            <div className="comming_soon">Comming Soon!</div>
             <h1>Resume Redraft Plans</h1>
             <p>
               <h3> On our Essay redraft plan, you will get: </h3>
@@ -61,7 +57,7 @@ class careerCustomPackage extends Component {
               The Essay Redraft Plan is designed to boost your confidence going
               into the most competitive application processes.
               <br />
-              <Link to="/Careers/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link to="/Careers/cv-resume" activeStyle={{ color: 'white' }} className="pad">More Detais</Link>
               <br />
             </p>
             <div class="cu-container-inner">
@@ -88,7 +84,7 @@ class careerCustomPackage extends Component {
               critically access the bigger story–Your assigned associate will
               assess your essays and check them for overall engagement.
               <br />
-              <Link to="/Careers/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link to="/Careers/essays" activeStyle={{ color: 'white' }} className="pad">More Detais</Link>
               <br />
             </p>
             <div class="cu-container-inner">
@@ -108,14 +104,14 @@ class careerCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
-          <div className = "comming_soon">Comming Soon!</div>
+            <div className="comming_soon">Comming Soon!</div>
             <h1>Essay Redraft Plans</h1>
             <p>
               <br />
               The Essay Redraft Plan is designed to boost your confidence going
               into the most competitive application processes.
               <br />
-              <Link to="/Careers/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link to="/Careers/essays" activeStyle={{ color: 'white' }} className="pad">More Detais</Link>
               <br />
             </p>
             <div class="cu-container-inner">

@@ -173,7 +173,6 @@ export default class leaveAMessageForm extends React.Component {
 		        
 	        }).catch((error) => {
 
-	         console.log(error)
 	        });
             })
 

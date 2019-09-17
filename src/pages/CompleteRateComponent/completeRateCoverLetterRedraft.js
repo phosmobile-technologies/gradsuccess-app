@@ -73,7 +73,7 @@ class CompleteRateGraduateReview extends Component {
 		    }, 2000)
 
 	    }).catch(function(error){
-	        console.log(error);
+	        alert("failed complete.... please try again")
 	    })
 
 	    

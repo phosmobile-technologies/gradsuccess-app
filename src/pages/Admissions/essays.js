@@ -22,11 +22,9 @@ class EssaysPage extends React.Component {
   }
   toggleTabs = arg => e => {
     if (arg === "review") {
-      console.log("here at review")
       this.setState({ reviewTab: true, redraftTab: false })
     }
     if (arg === "redraft") {
-      console.log("here at redraft")
       this.setState({ reviewTab: false, redraftTab: true })
     }
   }

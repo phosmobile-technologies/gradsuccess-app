@@ -63,6 +63,7 @@ export default class itemInCart extends Component {
               couponAplied: true,
               applyingCoupon:false,
               discountedAmount:newAmount,
+              totalAmount:newAmount,
               cApplied:false
             })
 
@@ -263,6 +264,11 @@ export default class itemInCart extends Component {
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </span>
+                      {this.state.couponAplied && (
+                        <div className="couponAplied">
+                          Coupon Applied.
+                        </div>
+                      )}
                     </div>
                   )}
 

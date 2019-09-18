@@ -83,13 +83,13 @@ export default class resumeReviewForm extends React.Component {
         const firebase = require("firebase")
 
         const config = {
-          apiKey: 'AIzaSyB9uwinxn9jEKUmcz0_7rxgLDycAeGO2Fk',
-          authDomain: 'gradsuccess-6c883.firebaseapp.com',
-          databaseURL: 'https://gradsuccess-6c883.firebaseio.com',
-          projectId: 'gradsuccess-6c883',
-          storageBucket: 'gs://gradsuccess-6c883.appspot.com/',
-          messagingSenderId: '153907721792',
-          appID:"1:153907721792:web:ff681e47886cdbb7"
+          apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+          authDomain: "gradsuccess.firebaseapp.com",
+          databaseURL: "https://gradsuccess.firebaseio.com",
+          projectId: "gradsuccess",
+          storageBucket: "gradsuccess.appspot.com",
+          messagingSenderId: "1038128602103",
+          appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
         }
         if (!firebase.apps.length) {
            firebase.initializeApp(config)

@@ -119,6 +119,19 @@ export default class AssociateDetails extends React.Component {
       
     } = this.props
 
+    const {
+      highest_ranked_university_attended,
+      qualification_at_university,
+      employment,
+      scholarships_and_awards,
+      graduating_grade,
+      gre_score,
+      gmat_score,
+      ielts,
+      uni_transcript,
+      cv
+    } = values
+
     return (
       <div>
         <h3 className="form-header expert-form-header">Apply As Expert</h3>
@@ -154,7 +167,7 @@ export default class AssociateDetails extends React.Component {
                   id="highest_ranked_university_attended"
                   autoComplete="false"
                   name="highest_ranked_university_attended"
-                  value={values.highest_ranked_university_attended}
+                  value={highest_ranked_university_attended}
                 />
                 <input
                   type="text"
@@ -164,7 +177,7 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   autoComplete="false"
                   name="qualification_at_university"
-                  value={values.qualification_at_university}
+                  value={qualification_at_university}
                 />
               </div>
 
@@ -177,7 +190,7 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   autoComplete="false"
                   onChange={handleFormInput}
-                  value={values.employment}
+                  value={employment}
                 />
 
                 <div className="col">
@@ -188,7 +201,7 @@ export default class AssociateDetails extends React.Component {
                     id="scholarships_and_awards"
                     name="scholarships_and_awards"
                     autoComplete="false"
-                    value={values.scholarships_and_awards}
+                    value={scholarships_and_awards}
                   />
                 </div>
               </div>
@@ -199,7 +212,7 @@ export default class AssociateDetails extends React.Component {
                 name="graduating_grade"
                 autoComplete="false"
                 onChange={handleFormInput}
-                value={values.graduating_grade}
+                value={graduating_grade}
               />
 
               <input
@@ -209,7 +222,7 @@ export default class AssociateDetails extends React.Component {
                 autoComplete="false"
                 name="gre_score"
                 onChange={handleFormInput}
-                value={values.gre_score}
+                value={gre_score}
               />
 
               <input
@@ -219,7 +232,7 @@ export default class AssociateDetails extends React.Component {
                 name="gmat_score"
                 autoComplete="false"
                 onChange={handleFormInput}
-                value={values.gmat_score}
+                value={gmat_score}
               />
               <input
                 type="text"
@@ -227,7 +240,7 @@ export default class AssociateDetails extends React.Component {
                 id="ielts"
                 autoComplete="false"
                 name="ielts"
-                value={values.ielts}
+                value={ielts}
                 onChange={handleFormInput}
               />
             </div>
@@ -250,22 +263,22 @@ export default class AssociateDetails extends React.Component {
               <img src={upoadAttachment} />
 
               <label htmlFor="university_transcripts">
-                {values.uni_transcript === ""
+                {uni_transcript === ""
                   ? "Upload University Transcript"
                   : "Change"}
               </label>
               <img src={loading} id="ut_upload" />
-              <p>{values.uni_transcript}</p>
+              <p>{uni_transcript}</p>
             </div>
 
             <div className="expert_reg_upload_label">
               <img src={upoadAttachment} />
 
               <label htmlFor="curriculum_vitae">
-                {values.cv === "" ? "Upload CV" : "Change"}
+                {cv === "" ? "Upload CV" : "Change"}
               </label>
               <img src={loading} id="cv_upload" />
-              <p>{values.cv}</p>
+              <p>{cv}</p>
             </div>
             <div>
               <input
@@ -279,7 +292,7 @@ export default class AssociateDetails extends React.Component {
                 className="submit-details-prev"
                 value="Next"
                 onClick={nextStep}
-                disabled={values.cv === "" && values.uni_transcript === " "}
+                disabled={cv === "" && uni_transcript === " "}
               />
             </div>
           </form>

@@ -1170,10 +1170,11 @@ pre tt:after {
 .expert-form {
   display: grid;
   grid-template-columns: 1fr;
-  width: 60%;
+  width: 100%;
+  max-width: 1000px;
   margin: auto;
   background-color: white;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   min-height: 400px;
 }
 .expert-form-extend {
@@ -1276,6 +1277,10 @@ pre tt:after {
 
 .form-header {
   padding-top: 30px;
+}
+
+.expert-form-header {
+  text-align: center
 }
 /*@media only screen and (max-width: 480px) {
 
@@ -1725,9 +1730,81 @@ div.slide-left p {
 .couponImg{
     width: 30px;
 }
+.multi-step-wrapper{
+  width: 100%;
+}
+.multi-step-wrapper ul{
+  display: flex;
+    justify-content: space-around;
+}
+.multi-step-wrapper ul li{
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+.multi-step-wrapper ul li h3{
+  margin-bottom: 0px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.multi-step-wrapper ul li p{
+  font-weight: bold
+}
+
+.first-step{
+  border-bottom: 1px solid #00a99d !important;
+}
+.first-step h3{
+  border: 1px solid #00a99d !important;
+  color: #00a99d;
+}
+.first-step p{
+  color: #00a99d;
+}
+
+.first-step-filled{
+  opacity: 0.3
+}
+
+.second-step{
+  border-bottom: 1px solid #00a99d !important;
+}
+.second-step h3{
+  border: 1px solid #00a99d !important;
+  color: #00a99d;
+}
+.second-step p{
+  color: #00a99d;
+}
+
+.second-step-filled{
+  opacity: 0.3
+}
+
+.third-step{
+  border-bottom: 1px solid #00a99d !important;
+}
+.third-step h3{
+  border: 1px solid #00a99d !important;
+  color: #00a99d;
+}
+.third-step p{
+  color: #00a99d;
+}
+
 
 @media only screen and (max-width: 500px) {
-    
   #uploader {
     width: 100%;
   }

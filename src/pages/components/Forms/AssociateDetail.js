@@ -112,25 +112,11 @@ export default class AssociateDetails extends React.Component {
 
   render() {
     const {
-      values,
       handleFormInput,
       nextStep,
       prevStep,
       
     } = this.props
-
-    const {
-      highest_ranked_university_attended,
-      qualification_at_university,
-      employment,
-      scholarships_and_awards,
-      graduating_grade,
-      gre_score,
-      gmat_score,
-      ielts,
-      uni_transcript,
-      cv
-    } = values
 
     return (
       <div>
@@ -167,7 +153,7 @@ export default class AssociateDetails extends React.Component {
                   id="highest_ranked_university_attended"
                   autoComplete="false"
                   name="highest_ranked_university_attended"
-                  value={highest_ranked_university_attended}
+                  value={this.props.highest_ranked_university_attended}
                 />
                 <input
                   type="text"
@@ -177,7 +163,7 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   autoComplete="false"
                   name="qualification_at_university"
-                  value={qualification_at_university}
+                  value={this.props.qualification_at_university}
                 />
               </div>
 
@@ -190,7 +176,7 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   autoComplete="false"
                   onChange={handleFormInput}
-                  value={employment}
+                  value={this.props.employment}
                 />
 
                 <div className="col">
@@ -201,7 +187,7 @@ export default class AssociateDetails extends React.Component {
                     id="scholarships_and_awards"
                     name="scholarships_and_awards"
                     autoComplete="false"
-                    value={scholarships_and_awards}
+                    value={this.props.scholarships_and_awards}
                   />
                 </div>
               </div>
@@ -212,7 +198,7 @@ export default class AssociateDetails extends React.Component {
                 name="graduating_grade"
                 autoComplete="false"
                 onChange={handleFormInput}
-                value={graduating_grade}
+                value={this.props.graduating_grade}
               />
 
               <input
@@ -222,7 +208,7 @@ export default class AssociateDetails extends React.Component {
                 autoComplete="false"
                 name="gre_score"
                 onChange={handleFormInput}
-                value={gre_score}
+                value={this.props.gre_score}
               />
 
               <input
@@ -232,7 +218,7 @@ export default class AssociateDetails extends React.Component {
                 name="gmat_score"
                 autoComplete="false"
                 onChange={handleFormInput}
-                value={gmat_score}
+                value={this.props.gmat_score}
               />
               <input
                 type="text"
@@ -240,7 +226,7 @@ export default class AssociateDetails extends React.Component {
                 id="ielts"
                 autoComplete="false"
                 name="ielts"
-                value={ielts}
+                value={this.props.ielts}
                 onChange={handleFormInput}
               />
             </div>
@@ -268,7 +254,7 @@ export default class AssociateDetails extends React.Component {
                   : "Change"}
               </label>
               <img src={loading} id="ut_upload" />
-              <p>{uni_transcript}</p>
+              <p>{this.props.uni_transcript}</p>
             </div>
 
             <div className="expert_reg_upload_label">
@@ -278,7 +264,7 @@ export default class AssociateDetails extends React.Component {
                 {cv === "" ? "Upload CV" : "Change"}
               </label>
               <img src={loading} id="cv_upload" />
-              <p>{cv}</p>
+              <p>{this.props.cv}</p>
             </div>
             <div>
               <input

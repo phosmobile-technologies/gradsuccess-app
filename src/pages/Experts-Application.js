@@ -368,7 +368,15 @@ export default class ApplicationDetail extends Component {
                                  verifyConfirmPassword={
                                    this.verifyConfirmPassword
                                  }
-                                 values={basicDetails}
+                                 first_name = {first_name}
+                                 last_name = {last_name}
+                                 phone = {phone}
+                                 form_id = {form_id}
+                                 app_package = {app_package}
+                                 email = {email}
+                                 password = {password}
+                                 account_type = {account_type}
+                                 password_verified = {password_verified}
                                  saveImageRef={this.saveImageRef}
                                />
                              </div>
@@ -393,7 +401,18 @@ export default class ApplicationDetail extends Component {
                                    this.handleUniversityTranscript
                                  }
                                  handleCVUpload={this.handleCVUpload}
-                                 values={educationalDetails}
+                                 highest_ranked_university_attended = {highest_ranked_university_attended}
+                                 qualification_at_university = {qualification_at_university}
+                                 employment = {employment}
+                                 scholarships_and_awards = {scholarships_and_awards}
+                                 graduating_grade = {graduating_grade}
+                                 gre_score = {gre_score}
+                                 gmat_score = {gmat_score}
+                                 ielts = {ielts}
+                                 university_transcripts = {university_transcripts}
+                                 curriculum_vitae = {curriculum_vitae}
+                                 uni_transcript = {uni_transcript}
+                                 cv = {cv}
                                  saveImageRef={this.saveImageRef}
                                />
                              </div>
@@ -414,7 +433,9 @@ export default class ApplicationDetail extends Component {
                                  nextStep={this.nextStep}
                                  prevStep={this.prevStep}
                                  handleProfileFileUpload={this._onChange}
-                                 values={profileIMageUpload}
+                                 imageUrl= {imageUrl}
+                                 file= {file}
+                                 profileImageRef= {profileImageRef}
                                  saveImageRef={this.saveImageRef}
                                />
                              </div>

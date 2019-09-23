@@ -9,7 +9,6 @@ export default class ExpertBasicInfo extends React.Component {
                 
                  render() {
                    const {
-                     values,
                      handleFormInput,
                      nextStep,
                      verifyPassword,
@@ -55,7 +54,7 @@ export default class ExpertBasicInfo extends React.Component {
                                    id="first_name"
                                    autoComplete="false"
                                    name="first_name"
-                                   value={values.first_name}
+                                   value={this.props.first_name}
                                  />
                                </div>
                                <div className="col">
@@ -67,7 +66,7 @@ export default class ExpertBasicInfo extends React.Component {
                                    id="last_name"
                                    autoComplete="false"
                                    name="last_name"
-                                   value={values.last_name}
+                                   value={this.props.last_name}
                                  />
                                </div>
                              </div>
@@ -81,7 +80,7 @@ export default class ExpertBasicInfo extends React.Component {
                                  required
                                  autoComplete="false"
                                  onChange={handleFormInput}
-                                 value={values.email}
+                                 value={this.props.email}
                                />
 
                                <div className="col">
@@ -92,7 +91,7 @@ export default class ExpertBasicInfo extends React.Component {
                                    onChange={handleFormInput}
                                    id="phone"
                                    name="phone"
-                                   value={values.phone}
+                                   value={this.props.phone}
                                  />
                                </div>
                              </div>
@@ -119,7 +118,7 @@ export default class ExpertBasicInfo extends React.Component {
                                name="confirm_password"
                                required
                                onChange={verifyConfirmPassword}
-                               value={values.confirm_password}
+                               value={this.props.confirm_password}
                              />
                              <span
                                id="password_info_c"
@@ -135,7 +134,7 @@ export default class ExpertBasicInfo extends React.Component {
                                type="button"
                                className="submit-details-next"
                                value="Previous"
-                               onClick = {values.next}
+                               onClick = {this.props.next}
                              /> */}
                              <input
                                type="button"

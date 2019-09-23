@@ -249,7 +249,7 @@ export default class AssociateDetails extends React.Component {
               <img src={upoadAttachment} />
 
               <label htmlFor="university_transcripts">
-                {uni_transcript === ""
+                {this.props.uni_transcript === ""
                   ? "Upload University Transcript"
                   : "Change"}
               </label>
@@ -261,7 +261,7 @@ export default class AssociateDetails extends React.Component {
               <img src={upoadAttachment} />
 
               <label htmlFor="curriculum_vitae">
-                {cv === "" ? "Upload CV" : "Change"}
+                {this.props.cv === "" ? "Upload CV" : "Change"}
               </label>
               <img src={loading} id="cv_upload" />
               <p>{this.props.cv}</p>
@@ -278,7 +278,7 @@ export default class AssociateDetails extends React.Component {
                 className="submit-details-prev"
                 value="Next"
                 onClick={nextStep}
-                disabled={cv === "" && uni_transcript === " "}
+                disabled={this.props.cv === "" && this.props.uni_transcript === " "}
               />
             </div>
           </form>

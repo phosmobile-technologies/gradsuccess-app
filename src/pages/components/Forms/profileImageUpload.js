@@ -12,7 +12,6 @@ export default class resumeReviewForm extends React.Component {
   
                  render() {
                   const {
-                    values,
                     nextStep,
                     prevStep,
                     handleProfileFileUpload
@@ -56,17 +55,17 @@ export default class resumeReviewForm extends React.Component {
 
                            <div
                              className={
-                               values.file !== ""
+                               this.props.file !== ""
                                  ? "uploadImg"
                                  : "hide-upload-img"
                              }
                            >
-                             <img src={values.file} />
+                             <img src={this.props.file} />
                              <label htmlFor="file">change</label>
                            </div>
                            <div
                              className="p-image"
-                             id={values.file !== "" ? "hide-d-img" : ""}
+                             id={this.props.file !== "" ? "hide-d-img" : ""}
                            >
                              <div>
                                <img id="previewimg" src={defaultImage} />

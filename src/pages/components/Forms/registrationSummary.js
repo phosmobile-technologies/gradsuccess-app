@@ -33,14 +33,14 @@ export default class ExpertBasicInfo extends React.Component {
                     e.preventDefault()
                     createExpertAccount({
                       variables: {
-                        first_name:basicDetail.first_name,
-                        last_name:basicDetail.last_name,
-                        phone:basicDetail.phone,
-                        form_id:basicDetail.form_id,
-                        package:basicDetail.app_package,
-                        email:basicDetail.email,
-                        password:basicDetail.password,
-                        account_type:basicDetail.account_type
+                        first_name:this.props.first_name,
+                        last_name:this.props.last_name,
+                        phone:this.props.phone,
+                        form_id:this.props.form_id,
+                        package:this.props.app_package,
+                        email:this.props.email,
+                        password:this.props.password,
+                        account_type:this.props.account_type
                       },
                     })
                   }}
@@ -72,7 +72,7 @@ export default class ExpertBasicInfo extends React.Component {
                   <div className="row-full">
                     <div className="col">
                       <div className="summary-profile-image">
-                        <img src={profileImage.file} />
+                        <img src={this.props.file} />
                       </div>
                     </div>
                   </div>
@@ -80,25 +80,25 @@ export default class ExpertBasicInfo extends React.Component {
                     <div className="col">
                       <div>
                         <label>First Name</label>
-                        <p>{basicDetail.first_name}</p>
+                        <p>{this.props.first_name}</p>
                       </div>
                     </div>
                     <div>
                       <div>
                         <label>Last Name</label>
-                        <p>{basicDetail.last_name}</p>
+                        <p>{this.props.last_name}</p>
                       </div>
                     </div>
                     <div className="col">
                       <div>
                         <label>Phone</label>
-                        <p>{basicDetail.phone}</p>
+                        <p>{this.props.phone}</p>
                       </div>
                     </div>
                     <div className="col">
                       <div>
                         <label>Email</label>
-                        <p>{basicDetail.email}</p>
+                        <p>{this.props.email}</p>
                       </div>
                     </div>
                   </div>
@@ -111,7 +111,7 @@ export default class ExpertBasicInfo extends React.Component {
                           <label>Highest Ranked University Attended</label>
                           <p>
                             {
-                              educationalDetail.highest_ranked_university_attended
+                              this.props.highest_ranked_university_attended
                             }
                           </p>
                         </div>
@@ -121,7 +121,7 @@ export default class ExpertBasicInfo extends React.Component {
                           <div>
                             <label>University Qualification</label>
                             <p>
-                              {educationalDetail.qualification_at_university}
+                              {this.props.qualification_at_university}
                             </p>
                           </div>
                         </div>
@@ -132,54 +132,54 @@ export default class ExpertBasicInfo extends React.Component {
                       <div>
                         <div>
                           <label>Employment</label>
-                          <p>{educationalDetail.employment}</p>
+                          <p>{this.props.employment}</p>
                         </div>
                       </div>
                       <div className="col">
                         <div>
                           <label>Scholarships and Awards</label>
-                          <p>{educationalDetail.scholarships_and_awards}</p>
+                          <p>{this.props.scholarships_and_awards}</p>
                         </div>
                       </div>
 
                       <div>
                         <div>
                           <label>Graduating Grade</label>
-                          <p>{educationalDetail.graduating_grade}</p>
+                          <p>{this.props.graduating_grade}</p>
                         </div>
                       </div>
 
                       <div className="col">
                         <div>
                           <label>GRE Score</label>
-                          <p>{educationalDetail.gre_score}</p>
+                          <p>{this.props.gre_score}</p>
                         </div>
                       </div>
 
                       <div className="col">
                         <div>
                           <label>GMAT score</label>
-                          <p>{educationalDetail.gmat_score}</p>
+                          <p>{this.props.gmat_score}</p>
                         </div>
                       </div>
 
                       <div className="col">
                         <div>
                           <label>IELTs</label>
-                          <p>{educationalDetail.ielts}</p>
+                          <p>{this.props.ielts}</p>
                         </div>
                       </div>
 
                       <div className="col">
                         <div>
                           <label>University Transcript</label>
-                          <p>{educationalDetail.uni_transcript}</p>
+                          <p>{this.props.uni_transcript}</p>
                         </div>
                       </div>
                       <div className="col">
                         <div>
                           <label>Curicullum Vitae</label>
-                          <p>{educationalDetail.cv}</p>
+                          <p>{this.props.cv}</p>
                         </div>
                       </div>
                     </div>

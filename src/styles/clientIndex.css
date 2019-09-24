@@ -333,6 +333,29 @@ justify-content: space-between;
     font-size: 14px;
     display: block;
 }
+.submit-details-next{
+    background-color: #00a99d;
+    color: white;
+    border: none;
+    margin-right: 20px;
+    padding: 4px 15px;
+    cursor: pointer;
+}
+.submit-details-prev{
+    background-color: orangered;
+    color: white;
+    border: none;
+    margin-right: 20px;
+    padding: 4px 15px;
+    cursor: pointer;
+    transition: .3s
+}
+.submit-details-prev:hover{
+    color: red;
+}
+.submit-details-next:hover{
+    color: #47dcbc
+}
 
 .form_preview_fields p {
 font-size: 15px;

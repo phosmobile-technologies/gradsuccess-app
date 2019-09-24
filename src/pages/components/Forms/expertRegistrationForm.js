@@ -140,12 +140,23 @@ export default class ExpertBasicInfo extends React.Component {
                                type="button"
                                className="submit-details-prev"
                                value="Next"
-                               //  css={{
-                               //    opacity: this.state.password_verified
-                               //      ? "0.3"
-                               //      : "1",
-                               //  }}
-                               //  disabled={this.state.password_verified}
+                                css={{
+                                  opacity: this.props.password_verified ||
+                                    this.props.first_name === "" ||
+                                    this.props.last_name === "" ||
+                                    this.props.email === "" ||
+                                    this.props.phone === ""
+                                    ? "0.3" 
+                                    : "1",
+                                }}
+                                disabled={
+                                  this.props.password_verified ||
+                                  this.props.first_name === "" ||
+                                  this.props.last_name === "" ||
+                                  this.props.email === "" ||
+                                  this.props.phone === ""
+
+                                }
                                onClick={nextStep}
                              />
                            </div>

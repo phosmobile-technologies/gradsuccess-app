@@ -278,7 +278,33 @@ export default class AssociateDetails extends React.Component {
                 className="submit-details-prev"
                 value="Next"
                 onClick={nextStep}
-                disabled={this.props.cv === "" && this.props.uni_transcript === " "}
+                css={{
+                  opacity: 
+                    this.props.cv === "" ||
+                    this.props.highest_ranked_university_attended === "" ||
+                    this.props.qualification_at_university === "" ||
+                    this.props.employment === "" ||
+                    this.props.scholarships_and_awards === "" ||
+                    this.props.graduating_grade === "" ||
+                    this.props.gre_score === "" === "" ||
+                    this.props.gmat_score === "" ||
+                    this.props.ielts === "" ||
+                    this.props.uni_transcript === ""
+                    ? "0.3"
+                    : "1",
+                }}
+                disabled={
+                  this.props.cv === "" || 
+                  this.props.uni_transcript === "" ||
+                  this.props.highest_ranked_university_attended === "" ||
+                  this.props.qualification_at_university === "" ||
+                  this.props.employment === "" ||
+                  this.props.scholarships_and_awards === "" ||
+                  this.props.graduating_grade === "" ||
+                  this.props.gre_score === "" === "" ||
+                  this.props.gmat_score === "" ||
+                  this.props.ielts === ""
+                }
               />
             </div>
           </form>

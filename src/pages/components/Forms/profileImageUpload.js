@@ -89,6 +89,12 @@ export default class resumeReviewForm extends React.Component {
                                className="submit-details-prev"
                                value="Save and Continue"
                                onClick={nextStep}
+                               css={{
+                                 opacity: this.props.file === ""
+                                   ? "0.3"
+                                   : "1",
+                               }}
+                               disabled={this.props.file === ""}
                              />
                            </div>
                          </form>

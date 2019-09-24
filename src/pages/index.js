@@ -117,7 +117,6 @@ class Search extends React.Component {
           <option value=""> What do you need help with? </option>
           <option value="essays"> Essay Review </option>
           <option value="cv-resume"> CV Redraft</option>
-          <option value="complete-packages"> Complete Packages </option>
         </select>
       </div>
     )

@@ -1654,6 +1654,11 @@ color:cadetblue
     flex-direction: column;
     background-color: #f9f9f9;
 }
+.content-suc-inner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .content-suc button{
     color: 00a99d;
     border: none;

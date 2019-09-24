@@ -18,7 +18,9 @@ class Contact extends React.Component {
         
           <HomeHero
             title="Contact Us"
-            text="We’d love to hear what you are working on. Drop a note here and we’ll get back to you within 24 hours."
+            text="“We are happy to assist with any enquiries regarding
+our services. Feel free to send a message and one of our associates would get back to
+you within 24 hours"
             imgUrl={contactBgURL}
             openModal={this.onOpenModal}
           />

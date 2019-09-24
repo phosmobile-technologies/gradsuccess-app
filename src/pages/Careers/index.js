@@ -159,7 +159,8 @@ class IndexPage extends React.Component {
           essay="CV for Health Industry"
           type="Review"
           discipline="Chemistry major switching to Health Industry. Has background in banking and project management"
-          pdfURL=""
+          pdfURL={CareersFile}
+          downloadPdf={CareersFile}
         />
 
         {/*Modal popup*/}

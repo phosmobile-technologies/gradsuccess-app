@@ -159,7 +159,9 @@ class IndexPage extends React.Component {
           essay="Masters in Biomedical Engineering Application Statement to GIT"
           type="Review"
           discipline="B.Eng. Biomedical Engineering Undergraduate "
-          pdfURL=""
+          pdfURL={ScholarshipsFile}
+          downloadPdf={ScholarshipsFile}
+          
         />
 
         {/*Modal popup*/}

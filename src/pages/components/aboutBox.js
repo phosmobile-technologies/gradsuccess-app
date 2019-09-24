@@ -16,22 +16,23 @@ const styleLeft = {
 
 const styleRight = {
   background: "",
-  minWidth: "60%",
+  minWidth: "70%",
 }
-const AboutBox = ({ first, second }) => (
+const AboutBox = ({ first, second, third }) => (
   <div>
     <div
       css={{
-        display: "flex",
         margin: "100px 15%",
         fontFamily: "Lato",
+        textAlign:"left",
         [mq[2]]: {
           flexWrap: "wrap",
         },
       }}
     >
-      <div css={styleLeft}> {first} </div>
-
+      <div css={styleRight}> <strong>{first}</strong></div>
+      <div css={styleRight}> <strong>{third}</strong></div>
+      <br />
       <div css={styleRight}> {second}</div>
     </div>
   </div>

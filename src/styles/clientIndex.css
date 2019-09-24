@@ -319,19 +319,29 @@ justify-content: space-between;
 }
 
 .form_preview_fields{
-padding: 10px 70px
+    padding: 10px 70px;
+    width: 50%;
+    display: inline-block;
 }
 
 .form_preview_fields small{
-font-family: 'Lato', sans-serif;
-color: black;
+    font-family: 'Lato', sans-serif;
+    color: black;
+}
+.form_preview_fields a{
+    color: #00766e;
+    font-size: 14px;
+    display: block;
 }
 
 .form_preview_fields p {
-font-size: 14px;
+font-size: 15px;
+
 font-family: 'Lato', sans-serif;
+
 color: black;
-font-weight: 550;
+
+font-weight: bold;
 
 }
 

@@ -29,8 +29,12 @@ class ExpertDetail extends Component {
                 ielts:"",
                 university_transcripts:"",
                 curriculum_vitae:""
-            }
+            },
+            university_transcripts:"",
+            curriculum_vitae:""
         }
+
+        this.downloadUploadedFile = this.downloadUploadedFile.bind(this)
     }
 
 
@@ -59,6 +63,32 @@ componentDidMount(){
 
 onStarClick(nextValue, prevValue, name) {
 }
+
+
+    downloadUploadedFile(target, downloadRef) {
+        const firebase = require("firebase")
+        const config = {
+            apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+            authDomain: "gradsuccess.firebaseapp.com",
+            databaseURL: "https://gradsuccess.firebaseio.com",
+            projectId: "gradsuccess",
+            storageBucket: "gradsuccess.appspot.com",
+            messagingSenderId: "1038128602103",
+            appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
+        }
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+        var storageRef = firebase.storage().ref(downloadRef)
+
+        storageRef.getDownloadURL().then((url) => {
+            this.setState({
+                [target]: url
+            })
+        }).catch((error) => {
+
+        });
+    }
 
 render() {
     return(  
@@ -112,6 +142,9 @@ render() {
                         curriculum_vitae: data.getExpertDetail.curriculum_vitae
                     }
                 })
+
+                this.downloadUploadedFile("university_transcripts",data.getExpertDetail.university_transcripts);
+                this.downloadUploadedFile("curriculum_vitae",data.getExpertDetail.curriculum_vitae);
             }}
 
         >
@@ -196,11 +229,11 @@ render() {
                             </div>
                             <div className="form_preview_fields">
                                 <small>University Trabscript:</small>
-                                <a href={this.state.userDetail.university_transcripts}>Download</a>
+                                <a href={this.state.university_transcripts} >Download</a>
                             </div>
                             <div className="form_preview_fields">
                                 <small>Curricullum Vitae:</small>
-                                <a href={this.state.userDetail.curriculum_vitae} >Download</a>
+                                <a href = {this.state.curriculum_vitae} >Download</a>
                             </div>
 
 

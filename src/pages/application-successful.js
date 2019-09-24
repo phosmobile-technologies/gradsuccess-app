@@ -51,10 +51,8 @@ export default class ApplicationSuccefful extends Component {
                     }}
                 >
                     <div className="content-suc">
-                        <div>
-                            <h4>Acount Successfull created</h4>
-                            <button onClick={this.handleOpenModal}>Login</button>
-                        </div>
+                        <h4>Acount Successfully created</h4>
+                        <button onClick={this.handleOpenModal}>Login</button>
                     </div>
                 </div>
             </Layout>

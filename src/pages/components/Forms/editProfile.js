@@ -1,9 +1,10 @@
 import React from "react"
-import { graphql } from "gatsby"
 import { Mutation } from "react-apollo"
-import gql from "graphql-tag"
 import { UPDATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
 import loader from "../../../images/loader.gif"
+import { Query } from "react-apollo";
+import { GET_EXPERT_DETAIL } from "../../graphql/queries"
+import { UPDATE_EXPERT_DETAILS } from "../../../api/sendMailEndpoint"
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -18,13 +19,24 @@ export default class EditProfile extends React.Component {
       },
       password_verified: true,
       account_created: false,
-      moredetails:""
+      moredetails:"",
+      educational_details: {
+        expert_id: "",
+        highest_ranked_university_attended: "",
+        qualification_at_university: "",
+        employment: "",
+        scholarships_and_awards: "",
+        graduating_grade: "",
+        gre_score: "",
+        gmat_score: "",
+        ielts: "",
+        university_transcripts: "",
+        curriculum_vitae: ""
+      }
     }
     this.handleFormInput = this.handleFormInput.bind(this)
-    this.handleForgotPassword = this.handleForgotPassword.bind(this)
-    this.verifyPassword = this.verifyPassword.bind(this)
-    this.verifyConfirmPassword = this.verifyConfirmPassword.bind(this)
-    this.storePassword = this.storePassword.bind(this)
+    this.updateExpertsDetails = this.updateExpertsDetails.bind(this)
+    this.handleFormAssociateEducationalInfo = this.handleFormAssociateEducationalInfo.bind(this)
   }
 
   handleFormInput(event) {
@@ -38,62 +50,70 @@ export default class EditProfile extends React.Component {
 
   }
 
+  updateExpertsDetails(id) {
+    let url = UPDATE_EXPERT_DETAILS
+    let data = {
+      expert_id: id,
+      highest_ranked_university_attended: this.state
+        .educational_details
+        .highest_ranked_university_attended,
+      qualification_at_university: this.state
+        .educational_details.qualification_at_university,
+      employment: this.state.educational_details.employment,
+      scholarships_and_awards: this.state.educational_details
+        .scholarships_and_awards,
+      graduating_grade: this.state.educational_details
+        .graduating_grade,
+      gre_score: this.state.educational_details.gre_score,
+      gmat_score: this.state.educational_details.gmat_score,
+      ielts: this.state.educational_details.ielts,
+      university_transcripts: this.state.educational_details.university_transcripts,
+      curriculum_vitae: this.state.educational_details.curriculum_vitae
+
+    }
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "post",
+      body: JSON.stringify(data),
+    })
+      .then(function (response) {
+        return response.text()
+      })
+      .then(text => {
+        alert(text);
+      })
+      .catch(function (error) {
+        alert("Networks Error please try again, Later!")
+      })
+
+  }
+
+   handleFormAssociateEducationalInfo(event) {
+    const { name, value } = event.target
+    this.setState(prevState => ({
+      educational_details: {
+        ...prevState.educational_details,
+        [name]: value,
+      },
+    }))
+
+  }
+
   formSubmitted(data) {
     this.setState({
          account_created:true
     })
+    this.updateExpertsDetails(this.state.data.id);
     setTimeout(function() {
       window.location.reload()
     }, 2000)
   }
 
-  handleForgotPassword() {
-    this.setState({
-      forgotPassword: !this.state.forgotPassword,
-    })
-  }
-  verifyPassword(event) {
-    const { name, value } = event.target
-    const password_info = document.getElementById("password_info")
-    // When the user starts to type something inside the password field
-    // Validate length
-    if (value.length >= 8) {
-      password_info.style.display = "none"
-    } else {
-      password_info.style.display = "block"
-      this.setState({
-        password_verified: true,
-      })
-    }
-  }
 
-  storePassword(event) {
-    const { name, value } = event.target
-    this.setState(prevState => ({
-      data: {
-        ...prevState.data,
-        [name]: value,
-      },
-    }))
-  }
 
-  verifyConfirmPassword(event) {
-    const { value } = event.target
-    const password_info_c = document.getElementById("password_info_c")
-    // When the user starts to type something inside the password field
-    // Validate length
-    if (value != this.state.data.password) {
-      this.setState({
-        password_verified: true,
-      })
-      password_info_c.style.display = "block"
-    } else {
-      password_info_c.style.display = "none"
-      this.setState({
-        password_verified: false,
-      })
-    }
-  }
 
   render() {
     if (this.state.account_created) {
@@ -115,6 +135,46 @@ export default class EditProfile extends React.Component {
     } else {
       return (
         <div>
+          <Query
+            query={GET_EXPERT_DETAIL}
+            variables={{ expert_id: this.props.id }}
+            onCompleted={data => {
+              this.setState({
+                educational_details: {
+                  expert_id: data.getExpertDetail.expert_id,
+                  highest_ranked_university_attended: data.getExpertDetail.highest_ranked_university_attended,
+                  qualification_at_university: data.getExpertDetail.qualification_at_university,
+                  employment: data.getExpertDetail.employment,
+                  scholarships_and_awards: data.getExpertDetail.scholarships_and_awards,
+                  graduating_grade: data.getExpertDetail.graduating_grade,
+                  gre_score: data.getExpertDetail.gre_score,
+                  gmat_score: data.getExpertDetail.gmat_score,
+                  ielts: data.getExpertDetail.ielts,
+                  university_transcripts: data.getExpertDetail.university_transcripts,
+                  curriculum_vitae: data.getExpertDetail.curriculum_vitae
+                }
+              })
+
+
+            }}
+
+          >
+            {({ loading, error, data }) => {
+              if (loading) return (
+                <div className="loader">
+                  <div className="loader_main_content">
+                    <img src={loader} alt="gradsuccess" />
+                    <h1>just a moment...</h1>
+                  </div>
+                </div>
+              )
+              if (error) return <div>failed to load data</div>
+              return (
+                <div></div>
+              );
+            }}
+          </Query>
+
           <div className="expert-form expert-form-extend">
             <Mutation
               mutation={UPDATE_CLIENT_ACCOUNT}
@@ -189,15 +249,119 @@ export default class EditProfile extends React.Component {
                             name="phone"
                           />
                         </div>
-                      </div>
-                      <div className="row-full">        
-                              <textarea type="text"
-                               placeholder="More Details"
-                               id = "more_details"
-                               name = "more_details"
-                               rows = '4' onChange = {this.handleFormInput} >
-                              </textarea>
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="Highest Ranked University Attended"
+                            value={this.state.educational_details.highest_ranked_university_attended}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="highest_ranked_university_attended"
+                            name="highest_ranked_university_attended"
+                          />
                         </div>
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="University Qualification"
+                            value={this.state.educational_details.qualification_at_university}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="qualification_at_university"
+                            name="qualification_at_university"
+                          />
+                        </div>
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="Employment"
+                            value={this.state.educational_details.employment}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="employment"
+                            name="employment"
+                          />
+                        </div>
+
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="Scholarships and Awards"
+                            value={this.state.educational_details.scholarships_and_awards}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="scholarships_and_awards"
+                            name="scholarships_and_awards"
+                          />
+                        </div>
+
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="Graduating Grade"
+                            value={this.state.educational_details.graduating_grade}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="graduating_grade"
+                            name="graduating_grade"
+                          />
+                        </div>  
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="GRE Score"
+                            value={this.state.educational_details.gre_score}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="gre_score"
+                            name="gre_score"
+                          />
+                        </div>
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="GMAT score"
+                            value={this.state.educational_details.gmat_score}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="gmat_score"
+                            name="gmat_score"
+                          />
+                        </div>
+                        <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="IELTs"
+                            value={this.state.educational_details.ielts}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="ielts"
+                            name="ielts"
+                          />
+                        </div>
+                        {/* <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="University Trabscript"
+                            value={this.state.educational_details.university_transcripts}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="phone"
+                            name="phone"
+                          /> */}
+                        {/* </div> */}
+                        {/* <div className="col">
+                          <input
+                            type="text"
+                            required
+                            placeholder="Curricullum Vitae"
+                            value={this.state.educational_details.curriculum_vitae}
+                            onChange={this.handleFormAssociateEducationalInfo}
+                            id="phone"
+                            name="phone"
+                          /> */}
+                        {/* </div> */}
+                      </div>
                     </div>
 
                     <br />

@@ -15,3 +15,6 @@ export const UPDATE_PROFILE_IMAGE = 'https://infinite-cove-53014.herokuapp.com/a
 
 export const SAVE_CLIENT_DETAILS = 'https://infinite-cove-53014.herokuapp.com/api/saveClientDetail'
 export const SAVE_EXPERT_DETAILS = "https://infinite-cove-53014.herokuapp.com/api/saveExpertDetail"
+
+
+export const UPDATE_EXPERT_DETAILS = "https://infinite-cove-53014.herokuapp.com/api/updateExpertDetail"

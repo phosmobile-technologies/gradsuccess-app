@@ -13,7 +13,6 @@ const styleLeft = {
     height: "50px",
   },
 }
-
 const styleRight = {
   background: "",
   minWidth: "70%",

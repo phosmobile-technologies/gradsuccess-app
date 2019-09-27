@@ -6,7 +6,7 @@ import Image from "./logoImage"
 import cartImage from "../../images/cart.png"
 import Modal from "react-modal"
 import LoginForm from "./Forms/loginForm"
-
+import PromotionBanner from "./promotionBanner"
 
 const breakpoints = [375, 576, 768 ]
 
@@ -87,6 +87,7 @@ class Header extends React.Component {
     // let name = this.state.isToggle ? "mkRed" : null;
     return (
   <header>
+        <PromotionBanner />
       {/* Logo Area */}
     <div>
       <Modal 
@@ -144,9 +145,9 @@ class Header extends React.Component {
         }}>Admissions</Link>
         <Link to="/Careers" activeStyle={{color: 'white'}} className="pad">Job/Careers</Link>
         <Link to="/Scholarships" activeStyle={{color: 'white'}} className="pad">Scholarships</Link>
-        <Link to="about-us" activeStyle={{color: 'white'}} className="pad">About Us</Link>
-        <Link to="blog" activeStyle={{color: 'white'}} className="pad">Blog</Link>
-        <Link to="Contact" activeStyle={{color: 'white'}} className="pad">Contact</Link>
+        <Link to="/about-us" activeStyle={{color: 'white'}} className="pad">About Us</Link>
+        <Link to="/blog" activeStyle={{ color: 'white' }} className="pad">Blog</Link>
+        <Link to="/Contact" activeStyle={{color: 'white'}} className="pad">Contact</Link>
       </ul>
 
         <div className = "cart_wrapper">

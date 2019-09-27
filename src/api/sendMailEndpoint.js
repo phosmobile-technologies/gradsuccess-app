@@ -18,3 +18,6 @@ export const SAVE_EXPERT_DETAILS = "https://infinite-cove-53014.herokuapp.com/ap
 
 
 export const UPDATE_EXPERT_DETAILS = "https://infinite-cove-53014.herokuapp.com/api/updateExpertDetail"
+
+export const EXPERT_DETAIL = "https://infinite-cove-53014.herokuapp.com/api/expertDetail"
+export const EXPERT_INFO = "https://infinite-cove-53014.herokuapp.com/api/expertInfo"

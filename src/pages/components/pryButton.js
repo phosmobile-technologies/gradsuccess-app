@@ -76,7 +76,11 @@ class PryButton extends React.Component {
         }, 2000)
 
         var counter = document.getElementById("counter").innerHTML
-        var counter = parseInt(counter, 10) + 1
+        if (counter === "") {
+          var counter = 0 + 1
+        } else {
+          var counter = parseInt(counter, 10) + 1
+        }
         document.getElementById("counter").innerHTML = counter
       }
     }

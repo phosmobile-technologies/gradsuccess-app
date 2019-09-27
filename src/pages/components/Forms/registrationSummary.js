@@ -33,14 +33,14 @@ export default class ExpertBasicInfo extends React.Component {
                     e.preventDefault()
                     createExpertAccount({
                       variables: {
-                        first_name:this.props.first_name,
-                        last_name:this.props.last_name,
-                        phone:this.props.phone,
-                        form_id:this.props.form_id,
-                        package:this.props.app_package,
-                        email:this.props.email,
-                        password:this.props.password,
-                        account_type:this.props.account_type
+                        first_name: this.props.first_name,
+                        last_name: this.props.last_name,
+                        phone: this.props.phone,
+                        form_id: this.props.form_id,
+                        package: this.props.app_package,
+                        email: this.props.email,
+                        password: this.props.password,
+                        account_type: this.props.account_type,
                       },
                     })
                   }}
@@ -62,8 +62,12 @@ export default class ExpertBasicInfo extends React.Component {
                         <h3>3</h3>
                         <p>Profile Image</p>
                       </li>
-                      <li className="second-step">
+                      <li className="first-step-filled">
                         <h3>4</h3>
+                        <p>Bio Format</p>
+                      </li>
+                      <li className="second-step">
+                        <h3>5</h3>
                         <p>Summary</p>
                       </li>
                     </ul>
@@ -109,20 +113,14 @@ export default class ExpertBasicInfo extends React.Component {
                       <div className="col">
                         <div>
                           <label>Highest Ranked University Attended</label>
-                          <p>
-                            {
-                              this.props.highest_ranked_university_attended
-                            }
-                          </p>
+                          <p>{this.props.highest_ranked_university_attended}</p>
                         </div>
                       </div>
                       <div className="col">
                         <div>
                           <div>
                             <label>University Qualification</label>
-                            <p>
-                              {this.props.qualification_at_university}
-                            </p>
+                            <p>{this.props.qualification_at_university}</p>
                           </div>
                         </div>
                       </div>
@@ -131,10 +129,38 @@ export default class ExpertBasicInfo extends React.Component {
                     <div className="row">
                       <div>
                         <div>
+                          <label>Bait ( Short description of bio):</label>
+                          <p>{this.props.bio_bait}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <label>Where clients have come from:</label>
+                          <p>{this.props.where_client_from}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <label>
+                            What jobs or opportunities have clients secured:
+                          </label>
+                          <p>{this.props.what_jobs_client}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <label>What should clients reach you for?</label>
+                          <p>{this.props.client_reach_you_for}</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div>
                           <label>Employment</label>
                           <p>{this.props.employment}</p>
                         </div>
                       </div>
+
                       <div className="col">
                         <div>
                           <label>Scholarships and Awards</label>
@@ -200,15 +226,7 @@ export default class ExpertBasicInfo extends React.Component {
                     />
                   </div>
                 </form>
-                {loading && (
-                  <div className="loader">
-                    <img
-                      className="loader-img"
-                      src={loader}
-                      alt="gradsuccess"
-                    />
-                  </div>
-                )}
+                {loading && <div></div>}
                 {error && (
                   <div className="FailedTagForm"> Email already Exists</div>
                 )}

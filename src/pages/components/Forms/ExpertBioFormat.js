@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
 import { CREATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
@@ -113,15 +113,15 @@ export default class AssociateDetails extends React.Component {
                   <p>Associate Detail</p>
                 </li>
 
-                <li className="second-step">
+                <li className="first-step-filled">
                   <h3>2</h3>
                   <p>Educational Background</p>
                 </li>
-                <li>
+                <li className="first-step-filled">
                   <h3>3</h3>
                   <p>Profile Image</p>
                 </li>
-                <li>
+                <li className="second-step">
                   <h3>4</h3>
                   <p>Bio Format</p>
                 </li>
@@ -131,158 +131,120 @@ export default class AssociateDetails extends React.Component {
                 </li>
               </ul>
             </div>
+
             <div className="row-full">
-              <div className="row">
-                <input
+              <div className="row-full">
+                <label>
+                  <b>Bait ( Short description of bio):</b>
+                </label>
+                <small>
+                  <i>
+                    for example“Chevening scholarship, MAM at Yale, MPH at the
+                    Harvard, Teach forNigeria fellowship– find out how Daniel’s
+                    clients secured suchdiverse and rewarding opportunities and
+                    offers)”
+                  </i>
+                </small>
+                <textarea
                   type="text"
-                  placeholder="Highest Ranked University Attended"
-                  onChange={handleFormInput}
-                  id="highest_ranked_university_attended"
-                  autoComplete="false"
-                  name="highest_ranked_university_attended"
-                  value={this.props.highest_ranked_university_attended}
-                />
+                  id="bio_bait"
+                  name="bio_bait"
+                  rows="4"
+                  onChange={this.props.handleFormInput}
+                  value={this.props.bio_bait}
+                  required
+                ></textarea>
+              </div>
+              <br />
+              <br />
+              <br />
+
+              <div className="row-full">
+                <label>
+                  <b>Where clients have come from:</b>
+                </label>
+                <small>
+                  <i>(backgrounds, engineering or lawor medical students?) </i>
+                </small>
                 <input
+                  placeholder="Where clients have come from"
                   type="text"
-                  placeholder="University Qualification"
-                  onChange={handleFormInput}
-                  id="qualification_at_university"
+                  id="where_client_from"
+                  name="where_client_from"
                   autoComplete="false"
                   autoComplete="false"
-                  name="qualification_at_university"
-                  value={this.props.qualification_at_university}
+                  onChange={this.props.handleFormInput}
+                  value={this.props.where_client_from}
                 />
               </div>
-
-              <div className="row">
+              <br />
+              <br />
+              <br />
+              <div className="row-full">
+                <label>
+                  <b>What jobs or opportunities have clients secured:</b>
+                </label>
+                <small>
+                  <i>(e.g. admitted to Stanford, job at Google) </i>
+                </small>
                 <input
+                  placeholder="What   jobs   or   opportunities   have   clients   secured:"
                   type="text"
-                  placeholder="Employment"
-                  id="employment"
-                  name="employment"
+                  id="what_jobs_client"
+                  name="what_jobs_client"
                   autoComplete="false"
                   autoComplete="false"
-                  onChange={handleFormInput}
-                  value={this.props.employment}
+                  onChange={this.props.handleFormInput}
+                  value={this.props.what_jobs_client}
                 />
-
-                <div className="col">
-                  <input
-                    type="text"
-                    placeholder="Scholarships and Awards"
-                    onChange={handleFormInput}
-                    id="scholarships_and_awards"
-                    name="scholarships_and_awards"
-                    autoComplete="false"
-                    value={this.props.scholarships_and_awards}
-                  />
-                </div>
               </div>
-              <input
-                type="text"
-                placeholder="Graduating Grade"
-                id="graduating_grade"
-                name="graduating_grade"
-                autoComplete="false"
-                onChange={handleFormInput}
-                value={this.props.graduating_grade}
-              />
-
-              <input
-                type="text"
-                placeholder="GRE Score"
-                id="gre_score"
-                autoComplete="false"
-                name="gre_score"
-                onChange={handleFormInput}
-                value={this.props.gre_score}
-              />
-
-              <input
-                type="text"
-                placeholder="GMAT score"
-                id="gmat_score"
-                name="gmat_score"
-                autoComplete="false"
-                onChange={handleFormInput}
-                value={this.props.gmat_score}
-              />
-              <input
-                type="text"
-                placeholder="IELTs"
-                id="ielts"
-                autoComplete="false"
-                name="ielts"
-                value={this.props.ielts}
-                onChange={handleFormInput}
-              />
+              <br />
+              <br />
+              <br />
+              <div className="row-full">
+                <label>
+                  <b>What should clients reach you for? </b>
+                </label>
+                <small>
+                  <i>CV and Admission statements? Cover letters only? All?</i>
+                </small>
+                <input
+                  placeholder="What should clients reach you for?"
+                  type="text"
+                  id="client_reach_you_for"
+                  name="client_reach_you_for"
+                  autoComplete="false"
+                  autoComplete="false"
+                  onChange={this.props.handleFormInput}
+                  value={this.props.client_reach_you_for}
+                />
+              </div>
+              <br />
+              <br />
+              <br />
             </div>
+
+            <label>
+              See this <Link to="/">page</Link> for current live samples of
+              other associate’s profiles
+            </label>
+            <br />
+            <br />
+
             <input
-              type="file"
-              name="university_transcripts"
-              id="university_transcripts"
-              className="file_upload"
-              onChange={this.handleTranscriptUpload}
+              type="button"
+              className="submit-details-next"
+              value="Previous"
+              onClick={prevStep}
             />
             <input
-              type="file"
-              name="curriculum_vitae"
-              id="curriculum_vitae"
-              className="file_upload"
-              onChange={this.handleCVUpload}
-            />
-
-            <div className="expert_reg_upload_label">
-              <img src={upoadAttachment} />
-
-              <label htmlFor="university_transcripts">
-                {this.props.uni_transcript === ""
-                  ? "Upload University Transcript"
-                  : "Change"}
-              </label>
-              <img src={loading} id="ut_upload" />
-              <p>{this.props.uni_transcript}</p>
-            </div>
-
-            <div className="expert_reg_upload_label">
-              <img src={upoadAttachment} />
-
-              <label htmlFor="curriculum_vitae">
-                {this.props.cv === "" ? "Upload CV" : "Change"}
-              </label>
-              <img src={loading} id="cv_upload" />
-              <p>{this.props.cv}</p>
-            </div>
-            <div>
-              <input
-                type="button"
-                className="submit-details-next"
-                value="Previous"
-                onClick={prevStep}
-              />
-              <input
-                type="button"
-                className="submit-details-prev"
-                value="Next"
-                onClick={nextStep}
-                css={{
-                  opacity:
-                    // this.props.cv === "" ||
-                    this.props.highest_ranked_university_attended === "" ||
-                    this.props.qualification_at_university === "" ||
-                    this.props.employment === "" ||
-                    this.props.scholarships_and_awards === "" ||
-                    this.props.graduating_grade === "" ||
-                    (this.props.gre_score === "") === "" ||
-                    this.props.gmat_score === "" ||
-                    this.props.ielts === ""
-                      ? // this.props.uni_transcript === ""
-                        "0.3"
-                      : "1",
-                }}
-                disabled={
-                  // this.props.cv === "" ||
-                  // this.props.uni_transcript === "" ||
+              type="button"
+              className="submit-details-prev"
+              value="Next"
+              onClick={nextStep}
+              css={{
+                opacity:
+                  this.props.cv === "" ||
                   this.props.highest_ranked_university_attended === "" ||
                   this.props.qualification_at_university === "" ||
                   this.props.employment === "" ||
@@ -290,10 +252,24 @@ export default class AssociateDetails extends React.Component {
                   this.props.graduating_grade === "" ||
                   (this.props.gre_score === "") === "" ||
                   this.props.gmat_score === "" ||
-                  this.props.ielts === ""
-                }
-              />
-            </div>
+                  this.props.ielts === "" ||
+                  this.props.uni_transcript === ""
+                    ? "0.3"
+                    : "1",
+              }}
+              disabled={
+                this.props.cv === "" ||
+                this.props.uni_transcript === "" ||
+                this.props.highest_ranked_university_attended === "" ||
+                this.props.qualification_at_university === "" ||
+                this.props.employment === "" ||
+                this.props.scholarships_and_awards === "" ||
+                this.props.graduating_grade === "" ||
+                (this.props.gre_score === "") === "" ||
+                this.props.gmat_score === "" ||
+                this.props.ielts === ""
+              }
+            />
           </form>
         </div>
       </div>

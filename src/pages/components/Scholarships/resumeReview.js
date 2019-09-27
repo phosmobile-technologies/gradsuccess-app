@@ -40,7 +40,7 @@ const mq = breakpoints.map(
                   <p> <b>Who is this service for? This service is for you if you already have a resume draft.</b> </p>
                   <h2 css={{
                       color: '#19a99d'
-                  }}> Our Resume Review Plan in Two Steps </h2>
+                  }}> Our Resume Review Plan in Three Steps </h2>
                   <p> <b>Step 1: </b> We will evaluate your CV for strengths and weaknesses and provide an Initial Aggregate Score (IAS) to show how suited and aligned your current CV is for your prospective application.</p>
                   <p> <b>Step 2:</b>  We will assess your resume to help you highlight key achievements by providing feedback across 5 main areas;
                 </p>

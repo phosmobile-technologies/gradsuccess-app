@@ -38,7 +38,7 @@ const mq = breakpoints.map(
                   <p> <b>Who is this service for? This service is for you if you already have a resume draft.</b> </p>
                   <h2 css={{
                       color: '#19a99d'
-                  }}> Our Resume Review Plan in Two Steps </h2>
+                  }}> Our Resume Review Plan in Three Steps </h2>
                   <p> <b>Step 1: </b> We will evaluate your CV for strengths and weaknesses and provide an Initial Aggregate Score (IAS) to show how suited and aligned your current CV is for your prospective application.</p>
                   <p> <b>Step 2:</b>  We will assess your resume to help you highlight key achievements by providing feedback across 5 main areas;
                 </p>
@@ -78,9 +78,9 @@ const mq = breakpoints.map(
                         flexDirection: 'column'
                     }
                 }}>
-                <PriceBox   text="STANDARD" price="N10,000"  form = "graduateSchoolStatementReviewForm" itemDescription = 'Resume Review (STANDARD)'/>     
+                <PriceBox   text="STANDARD" price="N10,000"  form = "coverLetterReviewForm" itemDescription = 'Resume Review (STANDARD)'/>     
                 <div css={{ width: '50px'}}> </div>
-                <PriceBox text="FLASH PRICE" form = "graduateSchoolStatementReviewForm" price="N15,000"  itemDescription = 'Resume Review (FLASH PRICE)' />
+                <PriceBox text="FLASH PRICE" form = "coverLetterReviewForm" price="N15,000"  itemDescription = 'Resume Review (FLASH PRICE)' />
                 </div>
             </div>
             {/* End  */}

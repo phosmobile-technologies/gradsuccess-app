@@ -39,6 +39,10 @@ export default class ExpertBasicInfo extends React.Component {
                                </li>
                                <li>
                                  <h3>4</h3>
+                                 <p>Bio Format</p>
+                               </li>
+                               <li>
+                                 <h3>5</h3>
                                  <p>Summary</p>
                                </li>
                              </ul>

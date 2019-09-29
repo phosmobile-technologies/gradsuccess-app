@@ -51,8 +51,8 @@ export default class ApplicationDetail extends Component {
       cv: "",
       uni_transcript_file: "",
       cv_file: "",
-      uni_transcript_ref: "null",
-      cv_ref: "null",
+      uni_transcript_ref: "",
+      cv_ref: "",
     }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleEducationalBgInput = this.handleEducationalBgInput.bind(
@@ -132,7 +132,6 @@ export default class ApplicationDetail extends Component {
         return response.text()
       })
       .then(text => {
-        alert(text)
         window.location = '/application-successful'
         
       })

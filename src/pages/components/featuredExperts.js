@@ -78,12 +78,7 @@ export default class FeaturedExperts extends Component {
                        {({ loading, error, data }) => {
                          if (loading)
                            return (
-                             <div className="loader">
-                               <div className="loader_main_content">
-                                 <img src={loader} alt="gradsuccess" />
-                                 <h1>Loading...</h1>
-                               </div>
-                             </div>
+                             <div></div>
                            )
                          if (error) return <div>failed to load data</div>
                          return (

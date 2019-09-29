@@ -267,7 +267,7 @@ export default class AssociateDetails extends React.Component {
                 this.props.graduating_grade === "" ||
                 (this.props.gre_score === "") === "" ||
                 this.props.gmat_score === "" ||
-                this.props.ielts === ""
+                this.props.ielts === "" 
               }
             />
           </form>

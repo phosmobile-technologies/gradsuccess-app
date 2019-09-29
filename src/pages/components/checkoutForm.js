@@ -116,9 +116,10 @@ export default class checkoutForm extends Component {
         })
         localStorage.setItem("yshKSMCis129_#&NISis", this.state.password)
         setTimeout(function() {
-          window.location = "/Application-details"
           localStorage.removeItem("ItemsInCart")
           localStorage.removeItem("CheckoutAmount")
+          window.location = "/Application-details"
+          
         }, 4000)
       })
       .catch(function(error) {

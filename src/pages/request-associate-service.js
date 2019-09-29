@@ -9,14 +9,23 @@ export default class ExpertSpecificApplication extends Component {
     constructor(props){
         super(props)
         this.state = {
+            id: ""
         }
     }
 
+    componentDidMount(){
+        this.setState({
+          id:this.props.location.state.id
+        })
+        console.log(this.props.location.state.id)
+        
+        
+    }
   render() {
     return (
       <Layout>
         <SEO title="Request Associate Service" keywords={[`success`, `application`, `university`]} />
-        <ExpertSpecificRequest />
+        <ExpertSpecificRequest  id = {this.state.id}/>
       </Layout>
     );
   }

@@ -100,10 +100,13 @@ export default class ApplicationDetail extends Component {
     let url = SAVE_EXPERT_DETAILS
     let data = {
       expert_id: id,
-      highest_ranked_university_attended: this.state.educational_details.highest_ranked_university_attended,
-      qualification_at_university: this.state.educational_details.qualification_at_university,
+      highest_ranked_university_attended: this.state.educational_details
+        .highest_ranked_university_attended,
+      qualification_at_university: this.state.educational_details
+        .qualification_at_university,
       employment: this.state.educational_details.employment,
-      scholarships_and_awards: this.state.educational_details.scholarships_and_awards,
+      scholarships_and_awards: this.state.educational_details
+        .scholarships_and_awards,
       graduating_grade: this.state.educational_details.graduating_grade,
       gre_score: this.state.educational_details.gre_score,
       gmat_score: this.state.educational_details.gmat_score,
@@ -114,7 +117,8 @@ export default class ApplicationDetail extends Component {
       where_client_from: this.state.educational_details.where_client_from,
       what_jobs_client: this.state.educational_details.what_jobs_client,
       client_reach_you_for: this.state.educational_details.client_reach_you_for,
-      profile_image_ref: this.state.profileImageRef
+      profile_image_ref: this.state.profileImageRef,
+      user_name: this.state.data.last_name + " " + this.state.data.first_name,
     }
     fetch(url, {
       headers: {
@@ -176,19 +180,19 @@ export default class ApplicationDetail extends Component {
   onChange(file, id) {
     document.getElementById("expert_loader").style.display = "flex";
     let saveExpert = this.saveExpertsDetails
-    // const firebase = require("firebase")
-    // const config = {
-    //   apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
-    //   authDomain: "gradsuccess.firebaseapp.com",
-    //   databaseURL: "https://gradsuccess.firebaseio.com",
-    //   projectId: "gradsuccess",
-    //   storageBucket: "gradsuccess.appspot.com",
-    //   messagingSenderId: "1038128602103",
-    //   appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
-    // }
-    // if (!firebase.apps.length) {
-    //   firebase.initializeApp(config)
-    // }
+    const firebase = require("firebase")
+    const config = {
+      apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+      authDomain: "gradsuccess.firebaseapp.com",
+      databaseURL: "https://gradsuccess.firebaseio.com",
+      projectId: "gradsuccess",
+      storageBucket: "gradsuccess.appspot.com",
+      messagingSenderId: "1038128602103",
+      appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
+    }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
     let imageName = "Expert_upload"
     let timeSubmitted = new Date().getTime()
     let fileRef =
@@ -201,17 +205,17 @@ export default class ApplicationDetail extends Component {
     this.setState(prevState => ({
       "profileImageRef": fileRef,
     }))
-    // var storageRef = firebase.storage().ref(fileRef)
-    // var task = storageRef.put(file)
-    // task.on(
-    //   "state_changed",
-    //   function progress(snapshot) {
-    //     //
-    //   },
-    //   function error(err) {
-    //     alert("failed to update profile...pls try again")
-    //   },
-    //   function complete() {
+    var storageRef = firebase.storage().ref(fileRef)
+    var task = storageRef.put(file)
+    task.on(
+      "state_changed",
+      function progress(snapshot) {
+        //
+      },
+      function error(err) {
+        alert("failed to update profile...pls try again")
+      },
+      function complete() {
 
         let url = SAVE_PROFILE_IMAGE
         let data = {
@@ -233,9 +237,9 @@ export default class ApplicationDetail extends Component {
             saveExpert(id)
           })
           .catch(function (error) { })
-    //   }
+      }
 
-    // )
+    )
   }
 
 

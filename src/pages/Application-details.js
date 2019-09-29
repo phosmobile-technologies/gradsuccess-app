@@ -22,8 +22,6 @@ export default class ApplicationDetail extends Component {
     }
 
     componentDidMount(){
-      
-      
         if(localStorage.getItem("yshKSMCis129_#&NISis") === null){
             window.location = '/';
         }else{

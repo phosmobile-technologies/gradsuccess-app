@@ -1,61 +1,134 @@
 import React, { Component } from 'react';
-import img1 from "../../images/resume.png"
-import img2 from "../../images/man.jpg"
-import img3 from "../../images/dan.jpeg"
-import img4 from "../../images/dan.jpeg"
 import {Link} from 'gatsby';
+import { Query } from "react-apollo"
+import {GET_EXPERT_DETAIL_BAIT} from "../graphql/queries"
+import loader from "../../images/loader.gif"
 
 
 export default class FeaturedExperts extends Component {
-    
-  render() {
-      const id = 20;
-    return (
-      <div className ="featured-experts"> 
-            <h2>Meet Your Admissions Guide</h2>
-            <div className="featured-experts-inner">
-                <div className="featured-experts-single">
-                    <div className ="img-div">
-                    <img src={img1} />
-                    </div>
-                    <div className="summary-div">
-                        <p> Try to imagine this: your company has an innovative product for the market, surrounded by your company are clients, surrounded by these clients are competitors, let’s assume a reasonable percentage of these clients are not satisfied by competitors’ products;  </p>
-                        <Link to='/request-associate-service' state={{ id: 1 }}>get your CV treated by John Phillips</Link>
-                    </div>
-              </div>
-                <div className="featured-experts-single">
-                    <div className="img-div">
-                        <img src={img2} />
-                    </div>
-                    <div className="summary-div">
-                        <p> Try to imagine this: your company has an innovative product for the market, surrounded by your company are clients, surrounded by these clients are competitors, let’s assume a reasonable percentage of these clients are not satisfied by competitors’ </p>
-                        <Link to='/request-associate-service' state={{ id: 2 }}>get your CV treated by Fasonu Cole</Link>
-                    </div>
-                </div>
-                <div className="featured-experts-single">
-                    <div className="img-div">
-                        <img src={img3} />
-                    </div>
-                    <div className="summary-div">
-                        <p> Try to imagine this: your company has an innovative product for the market, surrounded by your company are clients, surrounded by these clients are competitors, let’s assume a reasonable percentage of these clients are not satisfied by competitors’   </p>
-                        <Link to='/request-associate-service' state={{ id: 3 }}>get your CV treated by Ashley Jones</Link>
-                    </div>
-                </div>
-                <div className="featured-experts-single">
-                    <div className="img-div">
-                        <img src={img4} />
-                    </div>
-                    <div className="summary-div">
-                        <p>surrounded by your company are clients, surrounded by these clients are competitors, let’s assume a reasonable percentage of these clients are not satisfied by competitors’ products; now, what you’re trying to do is to penetrate</p>
-                        <Link to='/request-associate-service' state={{ id: 4 }}>get your CV treated by Iwuchuckwu Silva</Link>
-                    </div>
-                </div>
-          </div>
-      </div>
-    
-    );
-  }
-}
+                 constructor(props) {
+                   super(props)
+                   this.state = {
+                     open: false,
+                     expertID: "",
+                     showExpertDetail: false,
+                     profileImage: "",
+                   }
+                   this.downloadUploadedFile = this.downloadUploadedFile.bind(
+                     this
+                   )
+                 }
+
+
+                 downloadUploadedFile(id, downloadRef) {
+                   const firebase = require("firebase")
+                   const config = {
+                     apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+                     authDomain: "gradsuccess.firebaseapp.com",
+                     databaseURL: "https://gradsuccess.firebaseio.com",
+                     projectId: "gradsuccess",
+                     storageBucket: "gradsuccess.appspot.com",
+                     messagingSenderId: "1038128602103",
+                     appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
+                   }
+                   if (!firebase.apps.length) {
+                     firebase.initializeApp(config)
+                   }
+                   var storageRef = firebase.storage().ref(downloadRef)
+
+                   storageRef
+                     .getDownloadURL()
+                     .then(url => {
+                       this.setState({
+                         [id]: url,
+                       })
+                     })
+                     .catch(error => {
+                       switch (error.code) {
+                         case "storage/object-not-found":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+
+                         case "storage/unauthorized":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+
+                         case "storage/canceled":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+
+                         case "storage/unknown":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+                       }
+                     })
+                 }
+                 render() {
+                   const id = 20
+                   return (
+                     <Query query={GET_EXPERT_DETAIL_BAIT}>
+                       {({ loading, error, data }) => {
+                         if (loading)
+                           return (
+                             <div className="loader">
+                               <div className="loader_main_content">
+                                 <img src={loader} alt="gradsuccess" />
+                                 <h1>Loading...</h1>
+                               </div>
+                             </div>
+                           )
+                         if (error) return <div>failed to load data</div>
+                         return (
+                           <div>
+                             {data.allExpertDetail === null ? (
+                               <div className="client_expert_listing_main_expert">
+                                 <h4>No Item Available</h4>
+                               </div>
+                             ) : (
+                               <div className="featured-experts">
+                                 <h2>Meet Your Admissions Guide</h2>
+                                 <div className="featured-experts-inner">
+                                   {data.allExpertDetail.map(
+                                     (Expert, index) => (
+                                       <div className="featured-experts-single">
+                                         {this.downloadUploadedFile(
+                                           Expert.id,
+                                           Expert.profile_image_ref
+                                         )}
+                                         <div className="img-div">
+                                           <img src={this.state[Expert.id]} />
+                                         </div>
+                                         <div className="summary-div">
+                                           <p>{Expert.bio_bait}</p>
+                                           <Link
+                                             to="/request-associate-service"
+                                             state={{ id: Expert.expert_id }}
+                                           >
+                                             get your CV treated by{" "}
+                                             {Expert.user_name}
+                                           </Link>
+                                         </div>
+                                       </div>
+                                     )
+                                   )}
+                                 </div>
+                               </div>
+                             )}
+                           </div>
+                         )
+                       }}
+                     </Query>
+                   )
+                 }
+               }
 
 
    

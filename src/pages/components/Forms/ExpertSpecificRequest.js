@@ -1,11 +1,14 @@
 import React from "react"
 import ThankYou from "../formCompletePage"
-import img1 from "../../../images/dan.jpeg"
+import { SINGLE_EXPERT_DETAIL_BAIT } from "../../graphql/queries"
+import { Query } from "react-apollo"
+import loader from "../../../images/loader.gif"
 
 export default class resumeReviewForm extends React.Component {
                  constructor(props) {
                    super(props)
                    this.state = {
+                     user_name:"",
                      itemInCart: {},
                      packages: {
                        AdmissionResumeReviewStandard: {
@@ -80,6 +83,9 @@ export default class resumeReviewForm extends React.Component {
                    this.getItem = this.getItem.bind(this)
                    this.removeItem = this.removeItem.bind(this)
                    this.submitRequest = this.submitRequest.bind(this)
+                   this.downloadUploadedFile = this.downloadUploadedFile.bind(
+                     this
+                   )
                  }
 
                  componentDidMount() {
@@ -117,18 +123,17 @@ export default class resumeReviewForm extends React.Component {
                    let p = this.state.packages[packageForm]
                    let letExists = this.state.itemInCart[packageForm]
 
-                     let NewItemsList = this.state.itemInCart
-                     delete NewItemsList[packageForm]
+                   let NewItemsList = this.state.itemInCart
+                   delete NewItemsList[packageForm]
 
-                     this.setState(
-                       {
-                         itemInCart: NewItemsList,
-                       },
-                       () => {
-                         document.getElementById(packageForm).checked = false
-                       }
-                     )
-                   
+                   this.setState(
+                     {
+                       itemInCart: NewItemsList,
+                     },
+                     () => {
+                       document.getElementById(packageForm).checked = false
+                     }
+                   )
                  }
 
                  submitRequest() {
@@ -176,7 +181,60 @@ export default class resumeReviewForm extends React.Component {
                        document.getElementById("counter").innerHTML = counter
                      }
                    })
-                   window.location = "/Cart"
+                    localStorage.setItem("targeted",this.props.id)
+                    window.location = "/Cart"
+                 }
+
+                 downloadUploadedFile(id, downloadRef) {
+                   const firebase = require("firebase")
+                   const config = {
+                     apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+                     authDomain: "gradsuccess.firebaseapp.com",
+                     databaseURL: "https://gradsuccess.firebaseio.com",
+                     projectId: "gradsuccess",
+                     storageBucket: "gradsuccess.appspot.com",
+                     messagingSenderId: "1038128602103",
+                     appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
+                   }
+                   if (!firebase.apps.length) {
+                     firebase.initializeApp(config)
+                   }
+                   var storageRef = firebase.storage().ref(downloadRef)
+
+                   storageRef
+                     .getDownloadURL()
+                     .then(url => {
+                       this.setState({
+                         [id]: url,
+                       })
+                     })
+                     .catch(error => {
+                       switch (error.code) {
+                         case "storage/object-not-found":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+
+                         case "storage/unauthorized":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+
+                         case "storage/canceled":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+
+                         case "storage/unknown":
+                           this.setState({
+                             fileNotAvailable: true,
+                           })
+                           break
+                       }
+                     })
                  }
 
                  render() {
@@ -184,26 +242,66 @@ export default class resumeReviewForm extends React.Component {
                      return (
                        <div>
                          <div className="expert-specific-wrapper">
-                           <div className="featured-experts-single expert-spe ">
-                             <div className="img-div">
-                               <img src={img1} />
-                             </div>
-                             <div className="summary-div">
-                               <p>
-                                 {" "}
-                                 Try to imagine this: your company has an
-                                 innovative product for the market, surrounded
-                                 by your company are clients, surrounded by
-                                 these clients are competitors, let’s assume a
-                                 reasonable percentage of these clients are not
-                                 satisfied by competitors’ products;{" "}
-                               </p>
-                             </div>
-                           </div>
+                           <Query
+                             query={SINGLE_EXPERT_DETAIL_BAIT}
+                             variables={{ expert_id: this.props.id }}
+                             onCompleted={data => {
+                               this.setState({
+                                user_name:data.getExpertDetail.user_name
+                               })
+                             }}
+                           >
+                             {({ loading, error, data }) => {
+                               if (loading)
+                                 return (
+                                   <div className="loader">
+                                     <div className="loader_main_content">
+                                       <img src={loader} alt="gradsuccess" />
+                                       <h1>Loading...</h1>
+                                     </div>
+                                   </div>
+                                 )
+                               if (error) return <div>failed to load data</div>
+                               return (
+                                 <div>
+                                   {data.getExpertDetail === null ? (
+                                     <div className="client_expert_listing_main_expert">
+                                       <h4></h4>
+                                     </div>
+                                   ) : (
+                                     <div>
+                                       <div className="featured-experts-single expert-spe ">
+                                         {this.downloadUploadedFile(
+                                           data.getExpertDetail.id,
+                                           data.getExpertDetail
+                                             .profile_image_ref
+                                         )}
+                                         <div className="img-div">
+                                           <img
+                                             src={
+                                               this.state[
+                                                 data.getExpertDetail.id
+                                               ]
+                                             }
+                                           />
+                                         </div>
+                                         <div className="summary-div">
+                                           <h2>
+                                             {data.getExpertDetail.user_name}
+                                           </h2>
+                                           <p>
+                                             {data.getExpertDetail.bio_bait}
+                                           </p>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   )}
+                                 </div>
+                               )
+                             }}
+                           </Query>
 
-                           <h2>
-                             How Can John Phillips Help You? 
-                           </h2>
+                           <h2>How Can {this.state.user_name} Help You?</h2>
                            <div className="expert-specific-request">
                              <form className="form">
                                <div className="admission-listing">

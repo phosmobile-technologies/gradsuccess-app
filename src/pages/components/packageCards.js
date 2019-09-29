@@ -12,10 +12,10 @@ const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 const PackageCards = ({ service }) => (
   <div
     css={{
-      width: "80%",
+      width: "35%",
       display: "flex",
       alignContent: "center",
-      justifyContent: "space-around",
+      justifyContent: "space-evenly",
       margin: "1em auto 4em",
       [mq[2]]: {
         flexDirection: "column",
@@ -27,13 +27,6 @@ const PackageCards = ({ service }) => (
       title="CV/Resume"
       text="Let's help you pull off a killer CV that would instantly get you hired."
       buttonUrl={`${service}/cv-resume`}
-    />
-    <PackageCardElement
-      imgUrl={packageImg}
-      title="Custom Packages"
-      text="Purchase our custom package and see us turn your dreams into a reality."
-      custom = "true"
-      buttonUrl={`${service}/complete-packages`}
     />
     <PackageCardElement
       imgUrl={addResumeBg}

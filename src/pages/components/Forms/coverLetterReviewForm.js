@@ -42,19 +42,27 @@ export default class resumeReviewForm extends React.Component {
     }
 
     componentDidMount() {
-      localStorage.getItem('payment_successful');
+      if (localStorage.hasOwnProperty("targeted")){
+        this.setState(prevState => ({
+          data: {
+            ...prevState.data,
+            has_expert: localStorage.getItem("targeted"),
+          },
+        }))
+      }
+        localStorage.getItem("payment_successful")
       if(localStorage.hasOwnProperty('payment_successful')){
         this.setState({
           form_submit_success:true
         })
       }
-        this.setState(prevState => ({
-            data: {
-                ...prevState.data,
-                form_id: localStorage.getItem("form_id")
-            }
+      this.setState(prevState => ({
+          data: {
+              ...prevState.data,
+              form_id: localStorage.getItem("form_id")
+          }
 
-        }))
+      }))
     }
 
     formSubmitted() {
@@ -74,6 +82,7 @@ export default class resumeReviewForm extends React.Component {
     componentWillUnmount() {
       if(this.state.form_submit_success){
         localStorage.removeItem("yshKSMCis129_#&NISis");
+        localStorage.removeItem("targeted")
       }else{
       }
 

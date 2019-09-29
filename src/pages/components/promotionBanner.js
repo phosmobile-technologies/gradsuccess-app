@@ -12,9 +12,15 @@ export default class PromotionBanner extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      document.getElementById("promotionBannerWrapper").style.height = "50vh"
-    }, 5000)
+    if (localStorage.hasOwnProperty("showPromo")) {
+      
+    }else{
+      setTimeout(() => {
+        document.getElementById("promotionBannerWrapper").style.height = "50vh"
+        localStorage.setItem("showPromo",true)
+      }, 5000)
+    }
+    
   }
   render() {
     return (

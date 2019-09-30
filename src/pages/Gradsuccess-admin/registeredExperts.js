@@ -148,7 +148,7 @@ class registeredExperts extends Component {
                               className="client_expert_listing_main_inner"
                             >
                               {this.downloadUploadedFile(
-                                Expert.id,
+                                Expert.expert_id,
                                 Expert.profile_image_ref
                               )}
                               <div className="profile-hover-overleaf">
@@ -164,7 +164,7 @@ class registeredExperts extends Component {
                               <div className="client_expert_listing_main_expert">
                                 <div>
                                   <div className="profile-wrapper">
-                                    <img src={this.state[Expert.id]} />
+                                    <img src={this.state[Expert.expert_id]} />
                                   </div>
                                   <div className="profile-detail">
                                     <h4>

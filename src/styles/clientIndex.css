@@ -397,6 +397,7 @@ list-style: none;
 
 .form_preview_solid_bg{
 background-color: white;
+padding-bottom: 50px;
 }
 
 .logoutBtn{

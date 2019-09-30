@@ -1621,9 +1621,6 @@ progress {
   font-size: 22px;
 }
 
-.excited-img-container {
-}
-
 .sliding-text {
   overflow: hidden;
   padding: 30px;
@@ -1654,78 +1651,64 @@ progress {
   margin-left: 10px;
 }
 .promotion-banner-wrapper {
-  position: fixed;
   bottom: 0px;
-  width: 20%;
-  height: 0vh;
+  width: 100%;
   left: 0px;
   display: flex;
   background-color: #00a99d;
   justify-content: center;
   justify-items: center;
-  z-index: 2000;
   overflow: hidden;
   transition: 1s;
   transition-timing-function: ease-out;
 }
-.clossPromo {
-  position: absolute;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  color: white;
-  font-size: 12px;
-  top: 10px;
-  cursor: pointer;
-  font-family: "Lato", sans-serif;
-}
-.clossPromo:hover {
-  opacity: 0.5;
-}
+
 
 .promotion-banner {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  width: 100%;
+  justify-content: space-evenly;
 }
-
 .promotion-banner h2 {
-  font-size: 40px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
   margin: 0px;
   text-align: center;
+  font-size: 25px;
 }
 
 .promotion-per {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: yellow;
+  justify-content: center;
 }
 .promotion-banner h3 {
-  font-size: 18px;
-  padding: 20px;
+  font-size: 16px;
   text-align: center;
+  justify-content: center;
   color: white;
+  margin-bottom: 0px;
+  padding: 5px;
 }
 .promotion-banner h1 {
-  font-size: 80px;
   margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 25px;
+  margin-right: 25px;
 }
 .promotion-banner span {
   color: yellow;
 }
 
 .promotion-banner p {
-  padding: 20px;
   text-align: center;
   margin: 0px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @-webkit-keyframes slideLeft {
@@ -1900,12 +1883,12 @@ progress {
   flex-wrap: wrap;
 }
 .featured-experts-single {
-  width: 45%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 46%;
+  display: grid;
   margin-bottom: 30px;
-  margin-left: 40px;
+  grid-template-columns: 2fr 7fr;
+  grid-gap: 30px;
+  margin-left: 20px;
 }
 .img-div {
   width: 150px;
@@ -1922,8 +1905,7 @@ progress {
 }
 
 .summary-div {
-  width: 70%;
-  margin-left: 50px;
+  margin-top: 20px;
 }
 .summary-div p {
   font-size: 14px;
@@ -1960,6 +1942,7 @@ progress {
   transition: color 200ms ease-in;
   font-family: "Lato", sans-serif;
   overflow: hidden;
+  font-size: 16px;
 }
 .expert-specific-request .inputGroup label:before {
   width: 10px;
@@ -2044,8 +2027,8 @@ progress {
 .scholarships-listing {
   width: 100%;
   background-color: white;
-  padding: 50px;
-  margin: 50px;
+  padding: 50px 0px;
+  margin: 25px 0px;
 }
 .expert-spe {
   margin: auto;
@@ -2156,6 +2139,7 @@ progress {
   cursor: pointer;
   margin-top: 30px;
   transition: 0.3s;
+  font-family: "Lato", sans-serif;
 }
 
 .selectItemsBtn:hover{
@@ -2163,8 +2147,126 @@ progress {
   color: white;
 }
 
+@media only screen and (max-width: 1100px) {
+  .expert-specific-wrapper{
+    width: 97%;
+  }
+}
 
+@media only screen and (max-width: 819px) {
+  .listing-grouping {
+      width: 45%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .promotion-banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .promotion-banner-wrapper{
+    width: 100%;
+  }
+  .promotion-per{
+        padding-top: 20px;
+  }
+  .promotion-banner h1{
+    font-size: 30px;
+    margin-top: 0px;
+}
+.promotion-banner h2{
+  padding-bottom: 0px;
+  margin: 0px;
+  text-align: center;
+}
+.promotion-banner h3{
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  width: 70%;
+  margin: auto;
+}
+
+  .featured-experts-single{
+    flex-direction: column;
+  }
+  .summary-div{
+    width: 90%;
+    margin-left: 0px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .expert-specific-wrapper{
+    width: 100%;
+  }
+  .expert-specific-wrapper h2{
+    width: 90%;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .admission-listing-inner,
+.career-listing-inner,
+.scholarships-listing-inner {
+  flex-direction: column;
+}
+.expert-specific-request .form{
+  padding: 0px;
+}
+
+.admission-listing, .career-listing, .scholarships-listing{
+  width: 100%;
+  background-color: white;
+  padding: 10px 0px;
+  margin: 0px;
+  border-top: 20px solid black;
+  padding-top: 50px;
+}
+.listing-grouping h4{
+  margin-left: 20px;
+}
+.expert-specific-request .inputGroup label{
+  width: 90%;
+  margin: auto
+}
+.listing-grouping{
+  width: 100%;
+  margin: auto;
+}
+.selectItems-wrapper{
+   width: 100%;
+    padding: 5px;
+    margin-top: 0px;
+}
+.selectItems{
+  width: 100%;
+}
+.featured-experts h2{
+  margin-bottom: 50px;
+  margin-top: -50px;
+  text-align: center;
+}
+.featured-experts-inner{
+  width: 100%;
+
+}
+.featured-experts-single{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-left: 00px;
+  margin-top: 20px;
+}
+}
 @media only screen and (max-width: 500px) {
+  
   .promotion-banner-wrapper{
     width: 100%;
   }

@@ -2,9 +2,9 @@ import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import Modal from "react-modal"
-import {GET_ALL_EXPERTS} from "../graphql/queries"
+import { GET_EXPERT_DETAIL_BAIT } from "../graphql/queries"
 import ExpertDetail from "../FormDetailsPreview/expertDetail"
-import {PROFILE_IMAGE_REF} from "../../api/sendMailEndpoint"
+import { PROFILE_IMAGE_REF } from "../../api/sendMailEndpoint"
 
 const defaultStyles = {
   content : {
@@ -116,77 +116,94 @@ class registeredExperts extends Component {
 
 
     render() {
-        return(
-            <div>
-                <Query 
-                query={GET_ALL_EXPERTS}
-                variables={{ account_type:"Expert" }}
-                >
-                    {({ loading, error, data }) => {
-                     if (loading) return (
-                        <div className = "loader">
-                            <div className="loader_main_content">
-                                <img  src={loader} alt="gradsuccess" />
-                                <h1>Loading...</h1>
-                            </div>
-                        </div>
-                        )
-                      if (error) return <div>failed to load data</div>
-                      return (
-                    
-                            <div className="form_preview_inner">
-                                <div className="form_preview_col_1">
-
-                                    {data.getExperts === null ?
-                                            <div className = "client_expert_listing_main_expert">
-                                                <h4>No Item Available</h4>
-                                            </div>:
-                                            <div className = "client_expert_listing_main_wrapper">
-                                            {data.getExperts.map((Expert,index) =>
-                                                <div key = {index} className = "client_expert_listing_main_inner">
-                                                {this.displayProfleImage(Expert.id)}
-                                                <div className = "profile-hover-overleaf">
-                                                    <button className = "declineBtn" onClick = {()=>this.handleOpenModal(Expert.id)}>View</button>
-                                                </div>
-                                                    <div className = "client_expert_listing_main_expert" >
-                                                        <div>
-                                                            <div className = "profile-wrapper">
-                                                                <img  src = {this.state[Expert.id]} />
-                                                            </div>
-                                                            <div className = "profile-detail">
-                                                                <h4>{Expert.first_name + " " + Expert.last_name}</h4>
-                                                                <p>{Expert.phone}</p>
-                                                                <p>{Expert.email}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )}
-                                            </div>
-                                        }
-                                    
-                                </div>
-                            </div>
-                      
-                      );
-                    }}
-                </Query>
-
-                <Modal 
-                   isOpen={this.state.showExpertDetail}
-                   contentLabel="Minimal Modal Example"
-                   style={defaultStyles}
-                   ariaHideApp={false}
-                >
-                    <div className = "detail_preview_modal_container">
-                        <div className = "detail_preview_modal_container_inner">
-                              <ExpertDetail expertID = {this.state.expertID} imgUrl = {this.state[this.state.expertID]}/>
-                        </div>
+        return (
+          <div>
+            <Query
+              query={GET_EXPERT_DETAIL_BAIT}
+              variables={{ account_type: "Expert" }}
+            >
+              {({ loading, error, data }) => {
+                if (loading)
+                  return (
+                    <div className="loader">
+                      <div className="loader_main_content">
+                        <img src={loader} alt="gradsuccess" />
+                        <h1>Loading...</h1>
+                      </div>
                     </div>
-                    <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-                </Modal>
-            </div>
+                  )
+                if (error) return <div>failed to load data</div>
+                return (
+                  <div className="form_preview_inner">
+                    <div className="form_preview_col_1">
+                      {data.allExpertDetail === null ? (
+                        <div className="client_expert_listing_main_expert">
+                          <h4>No Item Available</h4>
+                        </div>
+                      ) : (
+                        <div className="client_expert_listing_main_wrapper">
+                          {data.allExpertDetail.map((Expert, index) => (
+                            <div
+                              key={index}
+                              className="client_expert_listing_main_inner"
+                            >
+                              {this.downloadUploadedFile(
+                                Expert.id,
+                                Expert.profile_image_ref
+                              )}
+                              <div className="profile-hover-overleaf">
+                                <button
+                                  className="declineBtn"
+                                  onClick={() =>
+                                    this.handleOpenModal(Expert.expert_id)
+                                  }
+                                >
+                                  View
+                                </button>
+                              </div>
+                              <div className="client_expert_listing_main_expert">
+                                <div>
+                                  <div className="profile-wrapper">
+                                    <img src={this.state[Expert.id]} />
+                                  </div>
+                                  <div className="profile-detail">
+                                    <h4>
+                                      {Expert.user_name}
+                                    </h4>
+                                    <p>{Expert.where_client_from}</p>
+                                    <p>{Expert.ielts}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              }}
+            </Query>
 
+            <Modal
+              isOpen={this.state.showExpertDetail}
+              contentLabel="Minimal Modal Example"
+              style={defaultStyles}
+              ariaHideApp={false}
+            >
+              <div className="detail_preview_modal_container">
+                <div className="detail_preview_modal_container_inner">
+                  <ExpertDetail
+                    expertID={this.state.expertID}
+                    imgUrl={this.state[this.state.expertID]}
+                  />
+                </div>
+              </div>
+              <a className="ModalCloseBut" onClick={this.handleCloseModal}>
+                x
+              </a>
+            </Modal>
+          </div>
         )
     }
 

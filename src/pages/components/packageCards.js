@@ -12,10 +12,10 @@ const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 const PackageCards = ({ service }) => (
   <div
     css={{
-      width: "35%",
+      width: "80%",
       display: "flex",
       alignContent: "center",
-      justifyContent: "space-evenly",
+      justifyContent: "center",
       margin: "1em auto 4em",
       [mq[2]]: {
         flexDirection: "column",

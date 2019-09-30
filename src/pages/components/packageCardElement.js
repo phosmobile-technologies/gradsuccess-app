@@ -10,6 +10,7 @@ const PackageCardElement = ({ imgUrl, title, text, buttonUrl,custom }) => (
       width: "250px",
       borderRadius: '5px',
       boxShadow: '0px 5px 10px rgba(59,132,117,0.5)',
+      marginRight: "30px",
       marginBottom: '50px'
     }}
   >

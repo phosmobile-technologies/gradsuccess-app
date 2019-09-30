@@ -7,10 +7,6 @@ export default class PromotionBanner extends Component {
       showPromoCard: false,
     }
   }
-  closePromo() {
-    document.getElementById("promotionBannerWrapper").style.height = "0vh"
-  }
-
   componentDidMount() {
     if (localStorage.hasOwnProperty("showPromo")) {
       
@@ -25,9 +21,6 @@ export default class PromotionBanner extends Component {
   render() {
     return (
       <div className="promotion-banner-wrapper" id="promotionBannerWrapper">
-        <div className="clossPromo" onClick={this.closePromo}>
-          x
-        </div>
         <div className="promotion-banner">
           <div className="promotion-per">
             <h1>50%</h1>

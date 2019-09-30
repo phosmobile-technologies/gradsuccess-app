@@ -89,11 +89,11 @@ export default class FeaturedExperts extends Component {
                                </div>
                              ) : (
                                <div className="featured-experts">
-                                 <h2>Meet Your Admissions Guide</h2>
+                                 <h2>Meet Our Experts</h2>
                                  <div className="featured-experts-inner">
                                    {data.allExpertDetail.map(
                                      (Expert, index) => (
-                                       <div className="featured-experts-single">
+                                       <div className="featured-experts-single" key = {index}>
                                          {this.downloadUploadedFile(
                                            Expert.id,
                                            Expert.profile_image_ref
@@ -103,12 +103,12 @@ export default class FeaturedExperts extends Component {
                                          </div>
                                          <div className="summary-div">
                                            <p>{Expert.bio_bait}</p>
-                                           <Link
+                                          <Link
                                              to="/request-associate-service"
                                              state={{ id: Expert.expert_id }}
                                            >
-                                             get your CV treated by{" "}
-                                             {Expert.user_name}
+                                              Place an order with {" "}
+                                             {Expert.user_name.split(" ").pop()}
                                            </Link>
                                          </div>
                                        </div>

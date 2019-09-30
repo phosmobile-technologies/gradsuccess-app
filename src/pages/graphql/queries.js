@@ -618,24 +618,29 @@ export const BLOG_POSTS = gql`
 `;
 
 export const GET_EXPERT_DETAIL = gql`
-  query GetExpertDetail($expert_id: ID!) {
-  getExpertDetail(expert_id:$expert_id){
-    id
-    expert_id
-    highest_ranked_university_attended
-    qualification_at_university
-    employment
-    scholarships_and_awards
-    graduating_grade
-    gre_score
-    gmat_score
-    ielts
-    university_transcripts
-    curriculum_vitae
-    
-  }
-}
-`;
+         query GetExpertDetail($expert_id: ID!) {
+           getExpertDetail(expert_id: $expert_id) {
+             id
+             expert_id
+             highest_ranked_university_attended
+             qualification_at_university
+             employment
+             scholarships_and_awards
+             graduating_grade
+             gre_score
+             gmat_score
+             ielts
+             university_transcripts
+             curriculum_vitae
+             bio_bait
+             where_client_from
+             what_jobs_client
+             client_reach_you_for
+             profile_image_ref
+             user_name
+           }
+         }
+       `
 
 export const SINGLE_EXPERT_DETAIL_BAIT = gql`
          query GetExpertDetail($expert_id: ID!) {

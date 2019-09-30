@@ -49,6 +49,7 @@ componentDidMount() {
       data: {
         ...prevState.data,
         has_expert: localStorage.getItem("targeted"),
+        status: "Assigned",
       },
     }))
   }

@@ -159,7 +159,7 @@ class IndexPage extends React.Component {
         />
         <TitleAndText
           title="Apply With Confidence"
-          text="Have the best application that will make you easily noticeable from the rest of the rivalry."
+          text="Have the best application that will make you easily noticeable from the rest of the competition."
         />
         <UniDivider />
         <Steps />
@@ -167,16 +167,16 @@ class IndexPage extends React.Component {
         <BigCountCTA openModals={this.onOpenModal} />
         <FeaturedExperts />
         <Modal
-            open={open}
-            onClose={this.onCloseModal}
-            center
-            styles={{ modal }}
-          >
-            <div>
-              {" "}
-              <Search />{" "}
-            </div>
-          </Modal>
+          open={open}
+          onClose={this.onCloseModal}
+          center
+          styles={{ modal }}
+        >
+          <div>
+            {" "}
+            <Search />{" "}
+          </div>
+        </Modal>
       </Layout>
     )
   }

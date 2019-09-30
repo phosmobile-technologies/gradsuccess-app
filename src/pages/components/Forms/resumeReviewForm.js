@@ -44,6 +44,7 @@ export default class resumeReviewForm extends React.Component {
         data: {
           ...prevState.data,
           has_expert: localStorage.getItem("targeted"),
+          status: "Assigned",
         },
       }))
     }

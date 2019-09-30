@@ -86,83 +86,118 @@ class Header extends React.Component {
   render(){
     // let name = this.state.isToggle ? "mkRed" : null;
     return (
-  <header>
-        <PromotionBanner />
-      {/* Logo Area */}
-    <div>
-      <Modal 
-           isOpen={this.state.showModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           className = "modelStyling"
-           ariaHideApp={false}
-        >
-          <LoginForm />
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-        <span  css={{
-          display: 'none',
-          [mq[2]]: {
-            display: 'block',
-            fontSize: '40px',
-            position: 'absolute',
-            padding: '20px',
-            cursor: 'pointer'
-        }
-        }} onClick={this.toggleIcon}>&#9776;</span>
-        <div
-          css={{
-            width: "150px",
-            margin: ".5em auto .1em",
-          }}
-        > <Link to="/">
-          <Image /> </Link>
-        </div>
-      </div>
-      <ul
-        css={{
-          display: 'flex',
-          listStyle: 'none',
-          background: '#4A4A4A',
-          justifyContent: 'space-around',
-          padding: '.5em 8em',
-          textTransform: 'uppercase',
-          fontWeight: '700',
-          fontSize: '.9em',
-          margin: '0px',
-          [mq[2]]: {
-            display: 'none'
-        }
-        }}
-        id = {this.state.toggle ? "toggle" : "null"}
-      >
-        
-        <Link to="/Admissions" activeStyle={{color: 'white'}} className="pad" id="one" 
-        css={{
-          [mq[2]]: {
-            marginTop: '5px'
-        }
-        }}>Admissions</Link>
-        <Link to="/Careers" activeStyle={{color: 'white'}} className="pad">Job/Careers</Link>
-        <Link to="/Scholarships" activeStyle={{color: 'white'}} className="pad">Scholarships</Link>
-        <Link to="/about-us" activeStyle={{color: 'white'}} className="pad">About Us</Link>
-        <Link to="/blog" activeStyle={{ color: 'white' }} className="pad">Blog</Link>
-        <Link to="/Contact" activeStyle={{color: 'white'}} className="pad">Contact</Link>
-      </ul>
-
-        <div className = "cart_wrapper">
-          <Link to="Cart" activeStyle={{color: 'white'}} className="pad">
-          <div className = "cart">
-            <div>
-              <span  id = "counter" className="cart_indicator">{this.state.cartCounter}</span>
-              <img src = {cartImage}/>
-              </div>
+      <header>
+        {/* Logo Area */}
+        <div>
+          <Modal
+            isOpen={this.state.showModal}
+            contentLabel="Minimal Modal Example"
+            style={customStyles}
+            className="modelStyling"
+            ariaHideApp={false}
+          >
+            <LoginForm />
+            <a className="ModalCloseBut" onClick={this.handleCloseModal}>
+              x
+            </a>
+          </Modal>
+          <span
+            css={{
+              display: "none",
+              [mq[2]]: {
+                display: "block",
+                fontSize: "40px",
+                position: "absolute",
+                padding: "20px",
+                cursor: "pointer",
+                top: "160px"
+              },
+            }}
+            onClick={this.toggleIcon}
+          >
+            &#9776;
+          </span>
+          <PromotionBanner />
+          <div
+            css={{
+              width: "150px",
+              margin: ".5em auto .1em",
+            }}
+          >
+            {" "}
+            <Link to="/">
+              <Image />{" "}
+            </Link>
           </div>
-          </Link>
-          <button className = "loginBtn" onClick = {this.handleOpenModal}>login</button>
         </div>
-  </header>
-)
+        <ul
+          css={{
+            display: "flex",
+            listStyle: "none",
+            background: "#4A4A4A",
+            justifyContent: "space-around",
+            padding: ".5em 8em",
+            textTransform: "uppercase",
+            fontWeight: "700",
+            fontSize: ".9em",
+            margin: "0px",
+            [mq[2]]: {
+              display: "none",
+            },
+          }}
+          id={this.state.toggle ? "toggle" : "null"}
+        >
+          <Link
+            to="/Admissions"
+            activeStyle={{ color: "white" }}
+            className="pad"
+            id="one"
+            css={{
+              [mq[2]]: {
+                marginTop: "5px",
+              },
+            }}
+          >
+            Admissions
+          </Link>
+          <Link to="/Careers" activeStyle={{ color: "white" }} className="pad">
+            Job/Careers
+          </Link>
+          <Link
+            to="/Scholarships"
+            activeStyle={{ color: "white" }}
+            className="pad"
+          >
+            Scholarships
+          </Link>
+          <Link to="/about-us" activeStyle={{ color: "white" }} className="pad">
+            About Us
+          </Link>
+          <Link to="/blog" activeStyle={{ color: "white" }} className="pad">
+            Blog
+          </Link>
+          <Link to="/Contact" activeStyle={{ color: "white" }} className="pad">
+            Contact
+          </Link>
+        </ul>
+
+        <div className="cart_wrapper">
+          <Link to="Cart" activeStyle={{ color: "white" }} className="pad">
+            <div className="cart">
+              <div>
+                <span id="counter" className="cart_indicator">
+                  {this.state.cartCounter}
+                </span>
+                <img src={cartImage} />
+              </div>
+            </div>
+          </Link>
+          <button className="loginBtn" onClick={this.handleOpenModal}>
+            login
+          </button>
+        </div>
+      </header>
+    )
 }}
 
 export default Header

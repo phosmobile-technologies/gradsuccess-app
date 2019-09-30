@@ -68,8 +68,11 @@ export default class EditProfile extends React.Component {
       gmat_score: this.state.educational_details.gmat_score,
       ielts: this.state.educational_details.ielts,
       university_transcripts: this.state.educational_details.university_transcripts,
-      curriculum_vitae: this.state.educational_details.curriculum_vitae
-
+      curriculum_vitae: this.state.educational_details.curriculum_vitae,
+      bio_bait: this.state.educational_details.bio_bait,
+      where_client_from: this.state.educational_details.where_client_from,
+      what_jobs_client: this.state.educational_details.what_jobs_client,
+      client_reach_you_for: this.state.educational_details.client_reach_you_for
     }
     fetch(url, {
       headers: {
@@ -83,7 +86,7 @@ export default class EditProfile extends React.Component {
         return response.text()
       })
       .then(text => {
-        alert(text);
+        window.location.reload();
       })
       .catch(function (error) {
         alert("Networks Error please try again, Later!")
@@ -142,36 +145,41 @@ export default class EditProfile extends React.Component {
               this.setState({
                 educational_details: {
                   expert_id: data.getExpertDetail.expert_id,
-                  highest_ranked_university_attended: data.getExpertDetail.highest_ranked_university_attended,
-                  qualification_at_university: data.getExpertDetail.qualification_at_university,
+                  highest_ranked_university_attended:
+                    data.getExpertDetail.highest_ranked_university_attended,
+                  qualification_at_university:
+                    data.getExpertDetail.qualification_at_university,
                   employment: data.getExpertDetail.employment,
-                  scholarships_and_awards: data.getExpertDetail.scholarships_and_awards,
+                  scholarships_and_awards:
+                    data.getExpertDetail.scholarships_and_awards,
                   graduating_grade: data.getExpertDetail.graduating_grade,
                   gre_score: data.getExpertDetail.gre_score,
                   gmat_score: data.getExpertDetail.gmat_score,
                   ielts: data.getExpertDetail.ielts,
-                  university_transcripts: data.getExpertDetail.university_transcripts,
-                  curriculum_vitae: data.getExpertDetail.curriculum_vitae
-                }
+                  university_transcripts:
+                    data.getExpertDetail.university_transcripts,
+                  curriculum_vitae: data.getExpertDetail.curriculum_vitae,
+                  bio_bait: data.getExpertDetail.bio_bait,
+                  where_client_from: data.getExpertDetail.where_client_from,
+                  what_jobs_client: data.getExpertDetail.what_jobs_client,
+                  client_reach_you_for:
+                    data.getExpertDetail.client_reach_you_for,
+                },
               })
-
-
             }}
-
           >
             {({ loading, error, data }) => {
-              if (loading) return (
-                <div className="loader">
-                  <div className="loader_main_content">
-                    <img src={loader} alt="gradsuccess" />
-                    <h1>just a moment...</h1>
+              if (loading)
+                return (
+                  <div className="loader">
+                    <div className="loader_main_content">
+                      <img src={loader} alt="gradsuccess" />
+                      <h1>just a moment...</h1>
+                    </div>
                   </div>
-                </div>
-              )
+                )
               if (error) return <div>failed to load data</div>
-              return (
-                <div></div>
-              );
+              return <div></div>
             }}
           </Query>
 
@@ -206,7 +214,7 @@ export default class EditProfile extends React.Component {
                             required
                             placeholder="First name"
                             onChange={this.handleFormInput}
-                            value = {this.state.data.first_name}
+                            value={this.state.data.first_name}
                             id="first_name"
                             autoComplete="false"
                             name="first_name"
@@ -218,7 +226,7 @@ export default class EditProfile extends React.Component {
                             required
                             placeholder="Last name"
                             onChange={this.handleFormInput}
-                            value = {this.state.data.last_name}
+                            value={this.state.data.last_name}
                             id="last_name"
                             autoComplete="false"
                             name="last_name"
@@ -232,7 +240,7 @@ export default class EditProfile extends React.Component {
                           placeholder="Email Address"
                           id="email"
                           name="email"
-                          value = {this.state.data.email}
+                          value={this.state.data.email}
                           required
                           autoComplete="false"
                           onChange={this.handleFormInput}
@@ -243,7 +251,7 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="Phone"
-                            value = {this.state.data.phone}
+                            value={this.state.data.phone}
                             onChange={this.handleFormInput}
                             id="phone"
                             name="phone"
@@ -254,7 +262,10 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="Highest Ranked University Attended"
-                            value={this.state.educational_details.highest_ranked_university_attended}
+                            value={
+                              this.state.educational_details
+                                .highest_ranked_university_attended
+                            }
                             onChange={this.handleFormAssociateEducationalInfo}
                             id="highest_ranked_university_attended"
                             name="highest_ranked_university_attended"
@@ -265,7 +276,10 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="University Qualification"
-                            value={this.state.educational_details.qualification_at_university}
+                            value={
+                              this.state.educational_details
+                                .qualification_at_university
+                            }
                             onChange={this.handleFormAssociateEducationalInfo}
                             id="qualification_at_university"
                             name="qualification_at_university"
@@ -288,7 +302,10 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="Scholarships and Awards"
-                            value={this.state.educational_details.scholarships_and_awards}
+                            value={
+                              this.state.educational_details
+                                .scholarships_and_awards
+                            }
                             onChange={this.handleFormAssociateEducationalInfo}
                             id="scholarships_and_awards"
                             name="scholarships_and_awards"
@@ -300,12 +317,14 @@ export default class EditProfile extends React.Component {
                             type="text"
                             required
                             placeholder="Graduating Grade"
-                            value={this.state.educational_details.graduating_grade}
+                            value={
+                              this.state.educational_details.graduating_grade
+                            }
                             onChange={this.handleFormAssociateEducationalInfo}
                             id="graduating_grade"
                             name="graduating_grade"
                           />
-                        </div>  
+                        </div>
                         <div className="col">
                           <input
                             type="text"
@@ -339,28 +358,57 @@ export default class EditProfile extends React.Component {
                             name="ielts"
                           />
                         </div>
-                        {/* <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="University Trabscript"
-                            value={this.state.educational_details.university_transcripts}
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="phone"
-                            name="phone"
-                          /> */}
-                        {/* </div> */}
-                        {/* <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="Curricullum Vitae"
-                            value={this.state.educational_details.curriculum_vitae}
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="phone"
-                            name="phone"
-                          /> */}
-                        {/* </div> */}
+                      </div>
+                      <br />
+                      <div className="row-full">
+                        <label>
+                          <b>Bio Bait :</b>
+                        </label>
+                        <textarea
+                          type="text"
+                          id="bio_bait"
+                          name="bio_bait"
+                          rows="4"
+                          onChange={this.handleFormAssociateEducationalInfo}
+                          value={this.state.educational_details.bio_bait}
+                          required
+                        ></textarea>
+                      </div>
+                      <div className="col">
+                        <input
+                          type="text"
+                          required
+                          value={
+                            this.state.educational_details.where_client_from
+                          }
+                          onChange={this.handleFormAssociateEducationalInfo}
+                          id="where_client_from"
+                          name="where_client_from"
+                        />
+                      </div>
+                      <div className="col">
+                        <input
+                          type="text"
+                          required
+                          value={
+                            this.state.educational_details.what_jobs_client
+                          }
+                          onChange={this.handleFormAssociateEducationalInfo}
+                          id="what_jobs_client"
+                          name="what_jobs_client"
+                        />
+                      </div>
+                      <div className="col">
+                        <input
+                          type="text"
+                          required
+                          value={
+                            this.state.educational_details.client_reach_you_for
+                          }
+                          onChange={this.handleFormAssociateEducationalInfo}
+                          id="client_reach_you_for"
+                          name="client_reach_you_for"
+                        />
                       </div>
                     </div>
 

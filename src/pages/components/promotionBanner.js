@@ -1,42 +1,55 @@
 import React, { Component } from "react"
 
 export default class PromotionBanner extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showPromoCard: false,
-    }
-  }
-  componentDidMount() {
-    if (localStorage.hasOwnProperty("showPromo")) {
-      
-    }else{
-      setTimeout(() => {
-        document.getElementById("promotionBannerWrapper").style.height = "50vh"
-        localStorage.setItem("showPromo",true)
-      }, 5000)
-    }
-    
-  }
-  render() {
-    return (
-      <div className="promotion-banner-wrapper" id="promotionBannerWrapper">
-        <div className="promotion-banner">
-          <div className="promotion-per">
-            <h1>50%</h1>
-            <h2>Discount</h2>
-          </div>
-          <h3>
-            Get 50% off your total price.
-            <br />
-            <span>
-              Also get extra 10% off for custom package of up to three or more
-              review/redraft plan
-            </span>
-          </h3>
-          <p>Promo till 21 October, 2019</p>
-        </div>
-      </div>
-    )
-  }
-}
+                 constructor(props) {
+                   super(props)
+                   this.state = {
+                     showPromoCard: false,
+                   }
+                 }
+                 componentDidMount() {
+                   if (localStorage.hasOwnProperty("showPromo")) {
+                   } else {
+                     setTimeout(() => {
+                       document.getElementById(
+                         "promotionBannerWrapper"
+                       ).style.height = "40vh"
+                       localStorage.setItem("showPromo", true)
+                     }, 5000)
+                   }
+                 }
+
+                 closePromo(){
+                  alert();
+                   document.getElementById(
+                     "promotionBannerWrapper"
+                   ).style.height = "0vh"
+                 }
+                 render() {
+                   return (
+                     <div
+                       className="promotion-banner-wrapper"
+                       id="promotionBannerWrapper"
+                     >
+                       <div className="promotion-banner">
+                         <div className="closePromo" onClick={this.closePromo}>
+                           x
+                         </div>
+                         <div className="promotion-per">
+                           <h1>50%</h1>
+                           <h2>Discount</h2>
+                         </div>
+                         <h3>
+                           Get 50% of total with coupon "50_OUT_DICOUNT"
+                           <br />
+                           <span>
+                             Also get extra 10% off for custom package of up to
+                             three or more review/redraft plan
+                           </span>
+                         </h3>
+                         <p>Promo till 21 October, 2019</p>
+                       </div>
+                     </div>
+                   )
+                 }
+               }

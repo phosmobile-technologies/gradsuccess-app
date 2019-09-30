@@ -110,7 +110,7 @@ class Header extends React.Component {
                 position: "absolute",
                 padding: "20px",
                 cursor: "pointer",
-                top: "160px"
+                top: "70px",
               },
             }}
             onClick={this.toggleIcon}
@@ -118,6 +118,9 @@ class Header extends React.Component {
             &#9776;
           </span>
           <PromotionBanner />
+          <div className = "top_coupon">
+            Get 50% of total with coupon <span>50_OUT_DICOUNT</span>
+          </div>
           <div
             css={{
               width: "150px",

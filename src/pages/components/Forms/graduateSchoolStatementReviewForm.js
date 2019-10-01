@@ -213,7 +213,7 @@ componentDidMount() {
                               <progress value = "0" max= "100" id = "uploader">0%</progress>
                             </div>
                             <div className = "file_upload_label">
-                              <label htmlFor="file" >Upload Curriculum Vitae</label>
+                              <label htmlFor="file" >Upload Resume</label>
                             </div>
                             <br />
 
@@ -232,7 +232,7 @@ componentDidMount() {
 
 
                   <div className = "explainInput">
-                      <h3>Graduate School Statement Review Form *</h3>
+                      <h3>Resume Review Form *</h3>
                         <p>
                             The information to be collected from this form would be used as a basis for your resume and cover letter. For experienced personnel with over 5 years professional experience, just upload your CV. the form is not required. 
                          </p>

@@ -204,7 +204,7 @@ export default class resumeReviewForm extends React.Component {
                       <progress value = "0" max= "100" id = "uploader">0%</progress>
                     </div>
                     <div className = "file_upload_label">
-                      <label htmlFor="file" >Upload Cover Letter</label>
+                      <label htmlFor="file" >Upload Essay</label>
                     </div>
                     <br />
                     
@@ -217,7 +217,7 @@ export default class resumeReviewForm extends React.Component {
                 )}
                 </Mutation>
                 <div className = "explainInput">
-                  <h3>Cover Letter Review Form</h3>
+                  <h3>Essay Review Form</h3>
                   
                   <p>The information to be collected from this form would be used as a basis for your cover letter. For experienced personnel with over 5 years professional experience, just upload your CV. the form is not required.
                   </p>

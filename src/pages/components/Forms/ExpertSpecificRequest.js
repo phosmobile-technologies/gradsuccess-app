@@ -305,7 +305,7 @@ export default class resumeReviewForm extends React.Component {
                            <div className="expert-specific-request">
                              <form className="form">
                                <div className="admission-listing">
-                                 <h3>Admision</h3>
+                                 <h3>Admission</h3>
                                  <div className="admission-listing-inner">
                                    <div className="listing-grouping">
                                      <h4>CV/Resume Review</h4>

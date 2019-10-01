@@ -621,7 +621,7 @@ export default class resumeReviewForm extends React.Component {
                       </progress>
                     </div>
                     <div className="file_upload_label">
-                      <label htmlFor="file">Upload Curriculum Vitae</label>
+                      <label htmlFor="file">Upload Resume</label>
                     </div>
                     <br />
                     <input
@@ -650,7 +650,7 @@ export default class resumeReviewForm extends React.Component {
               )}
             </Mutation>
             <div className="explainInput">
-              <h3>Graduate School Essay Redraft Form</h3>
+              <h3>Resume Redraft Form</h3>
               <p>
                 The information to be collected from this form would be used as
                 a basis for your Statement of Purpose.

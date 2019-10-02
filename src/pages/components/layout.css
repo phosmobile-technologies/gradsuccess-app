@@ -1686,8 +1686,9 @@ progress {
 .promotion-banner {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 .promotion-banner h2 {
@@ -1705,12 +1706,14 @@ progress {
   padding: 20px;
 }
 .promotion-banner h3 {
-  font-size: 16px;
-  text-align: center;
-  justify-content: center;
-  color: white;
-  margin-bottom: 0px;
-  padding: 5px;
+  font-size: 20px;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 0px;
+    padding: 5px;
+    width: 70%;
+    margin: auto;
 }
 .promotion-banner h1 {
   margin-bottom: 0;
@@ -1720,7 +1723,16 @@ progress {
 
 }
 .promotion-banner span {
-  color: yellow;
+  background-color: yellow;
+  color: black;
+  padding: 10px 30px;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  border-radius: 3px;
+  font-weight: 800;
+  text-align: center;
+  width: 50%;
+  margin: auto;
 }
 
 .promotion-banner p {

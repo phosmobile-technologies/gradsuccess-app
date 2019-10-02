@@ -13,14 +13,13 @@ export default class PromotionBanner extends Component {
                      setTimeout(() => {
                        document.getElementById(
                          "promotionBannerWrapper"
-                       ).style.height = "40vh"
+                       ).style.height = "30vh"
                        localStorage.setItem("showPromo", true)
                      }, 5000)
                    }
                  }
 
                  closePromo(){
-                  alert();
                    document.getElementById(
                      "promotionBannerWrapper"
                    ).style.height = "0vh"
@@ -36,18 +35,13 @@ export default class PromotionBanner extends Component {
                            x
                          </div>
                          <div className="promotion-per">
-                           <h1>50%</h1>
-                           <h2>Discount</h2>
+                           <h2>
+                             {" "}
+                             We've <strong>Launched!</strong>
+                           </h2>
                          </div>
-                         <h3>
-                           Get 50% of total with coupon "50_OUT_DICOUNT"
-                           <br />
-                           <span>
-                             Also get extra 10% off for custom package of up to
-                             three or more review/redraft plan
-                           </span>
-                         </h3>
-                         <p>Promo till 21 October, 2019</p>
+                         <h3>Get 50% off your order with the coupon code</h3>
+                         <span>LAUNCH50</span>
                        </div>
                      </div>
                    )

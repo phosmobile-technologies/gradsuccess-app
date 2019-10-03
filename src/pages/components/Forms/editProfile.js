@@ -136,36 +136,41 @@ export default class EditProfile extends React.Component {
         </div>
       )
     } else {
+      
       return (
         <div>
           <Query
             query={GET_EXPERT_DETAIL}
             variables={{ expert_id: this.props.id }}
             onCompleted={data => {
-              this.setState({
-                educational_details: {
-                  expert_id: data.getExpertDetail.expert_id,
-                  highest_ranked_university_attended:
-                    data.getExpertDetail.highest_ranked_university_attended,
-                  qualification_at_university:
-                    data.getExpertDetail.qualification_at_university,
-                  employment: data.getExpertDetail.employment,
-                  scholarships_and_awards:
-                    data.getExpertDetail.scholarships_and_awards,
-                  graduating_grade: data.getExpertDetail.graduating_grade,
-                  gre_score: data.getExpertDetail.gre_score,
-                  gmat_score: data.getExpertDetail.gmat_score,
-                  ielts: data.getExpertDetail.ielts,
-                  university_transcripts:
-                    data.getExpertDetail.university_transcripts,
-                  curriculum_vitae: data.getExpertDetail.curriculum_vitae,
-                  bio_bait: data.getExpertDetail.bio_bait,
-                  where_client_from: data.getExpertDetail.where_client_from,
-                  what_jobs_client: data.getExpertDetail.what_jobs_client,
-                  client_reach_you_for:
-                    data.getExpertDetail.client_reach_you_for,
-                },
-              })
+              if (data.getExpertDetail !== null) {
+                this.setState({
+                  educational_details: {
+                    expert_id: data.getExpertDetail.expert_id,
+                    highest_ranked_university_attended:
+                      data.getExpertDetail.highest_ranked_university_attended,
+                    qualification_at_university:
+                      data.getExpertDetail.qualification_at_university,
+                    employment: data.getExpertDetail.employment,
+                    scholarships_and_awards:
+                      data.getExpertDetail.scholarships_and_awards,
+                    graduating_grade: data.getExpertDetail.graduating_grade,
+                    gre_score: data.getExpertDetail.gre_score,
+                    gmat_score: data.getExpertDetail.gmat_score,
+                    ielts: data.getExpertDetail.ielts,
+                    university_transcripts:
+                      data.getExpertDetail.university_transcripts,
+                    curriculum_vitae: data.getExpertDetail.curriculum_vitae,
+                    bio_bait: data.getExpertDetail.bio_bait,
+                    where_client_from: data.getExpertDetail.where_client_from,
+                    what_jobs_client: data.getExpertDetail.what_jobs_client,
+                    client_reach_you_for:
+                      data.getExpertDetail.client_reach_you_for,
+                  },
+                })
+              } else {
+                return false
+              }
             }}
           >
             {({ loading, error, data }) => {

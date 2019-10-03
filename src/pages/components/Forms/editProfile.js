@@ -32,7 +32,8 @@ export default class EditProfile extends React.Component {
         ielts: "",
         university_transcripts: "",
         curriculum_vitae: ""
-      }
+      },
+      admin:false
     }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.updateExpertsDetails = this.updateExpertsDetails.bind(this)
@@ -109,7 +110,13 @@ export default class EditProfile extends React.Component {
     this.setState({
          account_created:true
     })
-    this.updateExpertsDetails(this.state.data.id);
+
+    if(this.state.admin){
+
+    }else{
+      this.updateExpertsDetails(this.state.data.id)
+    }
+    
     setTimeout(function() {
       window.location.reload()
     }, 2000)
@@ -169,7 +176,9 @@ export default class EditProfile extends React.Component {
                   },
                 })
               } else {
-                return false
+                this.setState({
+                    admin:true
+                })
               }
             }}
           >
@@ -262,6 +271,9 @@ export default class EditProfile extends React.Component {
                             name="phone"
                           />
                         </div>
+                        </div>
+                        {this.state.admin ? <div></div>:
+                        <div>
                         <div className="col">
                           <input
                             type="text"
@@ -363,7 +375,6 @@ export default class EditProfile extends React.Component {
                             name="ielts"
                           />
                         </div>
-                      </div>
                       <br />
                       <div className="row-full">
                         <label>
@@ -415,6 +426,7 @@ export default class EditProfile extends React.Component {
                           name="client_reach_you_for"
                         />
                       </div>
+                      </div> }
                     </div>
 
                     <br />

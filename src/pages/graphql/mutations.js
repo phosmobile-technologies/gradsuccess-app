@@ -44,30 +44,30 @@ export const FORGOT_PASSWORD = gql`
 	}
 `;
 
-export const CREATE_CLIENT_ACCOUNT = gql`
-    mutation CreateClientAcccount(
-    $first_name:String!,
-    $last_name:String!,
-    $phone:String!,
-    $form_id: String!,
-    $package: String!,
-	$email:String!,
-	$password:String!
-	$account_type:String! ){
-		 createClientAcccount(
-		    first_name:$first_name
-		    last_name:$last_name
-		    phone:$phone
-		    form_id:$form_id
-		    package:$package
-		    email:$email
-		    password:$password
-		    account_type:$account_type
-				  ){
-				    id
+	export const CREATE_CLIENT_ACCOUNT = gql`
+		mutation CreateClientAcccount(
+		$first_name:String!,
+		$last_name:String!,
+		$phone:String!,
+		$form_id: String!,
+		$package: String!,
+		$email:String!,
+		$password:String!
+		$account_type:String! ){
+			createClientAcccount(
+				first_name:$first_name
+				last_name:$last_name
+				phone:$phone
+				form_id:$form_id
+				package:$package
+				email:$email
+				password:$password
+				account_type:$account_type
+					){
+						id
+			}
 		}
-	}
-`;
+	`;
 export const UPDATE_CLIENT_ACCOUNT = gql`
     mutation UpdateClientAcccount(
     $id:ID!,

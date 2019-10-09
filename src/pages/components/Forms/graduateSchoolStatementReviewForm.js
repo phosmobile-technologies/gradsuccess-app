@@ -258,9 +258,7 @@ componentDidMount() {
               </div>
         );
         }else{
-          return(
-             <ThankYou />
-          )
+          return <ThankYou form_id={this.state.data.form_id} />
         }
     }
 }

@@ -19,6 +19,7 @@ export default class assignExpertToApplication extends React.Component {
 			assignedSucess:false
 		}
 		this.setExpertInfo = this.setExpertInfo.bind(this)
+		this.formSubmitted = this.formSubmitted.bind(this)
 	}
 
 	setExpertInfo(firstName, lastName, phone, email,id){
@@ -30,15 +31,16 @@ export default class assignExpertToApplication extends React.Component {
 			id:id
 		})
 	}
-	formSubmitted(data,id){
+	formSubmitted(data_info,id){
 		this.setState({
 			assignedSucess:true
 		})
-		setTimeout(function(){
+		setTimeout(()=>{
 			let url = APPLICATION_ASSIGNED
 		    let data = {
-		        expert_id: id
-		    }
+          expert_id: id,
+          userID: data_info.updateCoverLetterReviewForm.form_id,
+        }
 		      fetch(url, {
 		      headers: {
 		        "Content-Type": "application/json",
@@ -53,7 +55,6 @@ export default class assignExpertToApplication extends React.Component {
 		    }).catch(function(error){
 		       alert("Networks Error please try again, Later!");
 		    })
-			window.location.reload();
 		},1000)
 	}
 

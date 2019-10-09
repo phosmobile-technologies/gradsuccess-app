@@ -363,38 +363,36 @@ export const CREATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 `;
 
 export const UPDATE_RESUME_REVIEW_FORM = gql`
-    mutation UpdateResumeReviewForm(
-    $id: ID!,
-	$has_expert:String
-	$status:String
-	){
-		updateResumeReviewForm(
-			id:$id,
-			has_expert:$has_expert
-			status:$status
-			){
-			name
-    
-		}
-	}
-`;
+         mutation UpdateResumeReviewForm(
+           $id: ID!
+           $has_expert: String
+           $status: String
+         ) {
+           updateResumeReviewForm(
+             id: $id
+             has_expert: $has_expert
+             status: $status
+           ) {
+             form_id
+           }
+         }
+       `
 
 export const UPDATE_COVER_LETTER_REVIEW_FORM = gql`
-    mutation UpdateCoverLetterReviewForm(
-    $id: ID!,
-	$has_expert:String
-	$status:String
-	){
-		updateCoverLetterReviewForm(
-			id:$id,
-			has_expert:$has_expert
-			status:$status
-			){
-			name
-    		
-		}
-	}
-`;
+         mutation UpdateCoverLetterReviewForm(
+           $id: ID!
+           $has_expert: String
+           $status: String
+         ) {
+           updateCoverLetterReviewForm(
+             id: $id
+             has_expert: $has_expert
+             status: $status
+           ) {
+             form_id
+           }
+         }
+       `
 export const UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
     mutation UpdateGraduateSchoolStatementReviewForm(
     $id: ID!,
@@ -406,7 +404,7 @@ export const UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
 			has_expert:$has_expert
 			status:$status
 			){
-			name
+			form_id
     
 		}
 	}
@@ -422,7 +420,7 @@ export const UPDATE_COVER_LETTER_REDRAFT = gql`
 			has_expert:$has_expert
 			status:$status
 			){
-			name
+			form_id
     
 		}
 	}
@@ -438,7 +436,7 @@ export const UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 			has_expert:$has_expert
 			status:$status
 			){
-			name
+			form_id
     
 		}
 	}
@@ -455,7 +453,7 @@ export const SEND_ATTACHMENT = gql`
 			has_expert:$has_expert
 			status:$status
 			){
-			name
+			form_id
     
 		}
 	}

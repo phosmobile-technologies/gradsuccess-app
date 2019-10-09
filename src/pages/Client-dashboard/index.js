@@ -190,61 +190,120 @@ class IndexPage extends Component {
                     )
                 if (error) return `Error! ${error.message}`;
                 return (
-                <div>
-                    {data.me.account_type === "Expert"?
-                        <NotFoundPage />
-                        :<div className = "main-content-wrapper">
-                            <div className = "main-content">
-                                <div className = "client_main_area">
-                                    <div className = "fixedHeader">
-                                        <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
-                                            <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
-                                            <button 
-                                            className = {this.state.currentMenu === "accountInfo"? "currentMenu":""} 
-                                            id = "accountInfo" 
-                                            onClick = {this.handleDisplayComponent}>Uploaded Info
-                                            </button>
-                                            <button 
-                                            className = {this.state.currentMenu === "changePassword"? "currentMenu":""}
-                                            id = "changePassword" 
-                                            onClick = {this.handleDisplayComponent}>Change Password
-                                            </button>
-                                            <button 
-                                            className = {this.state.currentMenu === "leaveAMessage"? "currentMenu":""}
-                                            id = "leaveAMessage" 
-                                            onClick = {this.handleDisplayComponent}>Leave a Message
-                                            </button>
-                                            <LogoutForm />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <MainLayout  currentComponent = {this.state.currentMenu} toggleMenu = {this.toggleMenu} id  = {data.me.id}  accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email} showEditComponent = {this.showEditComponent}/>
-                                        <div className="client_main_area_content_area">
-                                            {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id} account_type = {data.me.account_type}/>}
-                                            {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.form_id} sender = {data.me.first_name +" "+ data.me.last_name}/>}
-                                            {this.state.changePassword &&  <ChangePassword  id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>}
-
-                                            {this.state.editProfile && <EditProfile  
-                                            first_name = {data.me.first_name}
-                                            last_name = {data.me.last_name}
-                                            email = {data.me.email}
-                                            phone = {data.me.phone}
-                                            id = {data.me.id}/>}
-                                            {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
-                                        </div>
-                                        <div className = "footer-hide">
-                                        <Footer />
-                                        </div>
-                                    </div>
+                  <div>
+                    {data.me.account_type === "Expert" ? (
+                      <NotFoundPage />
+                    ) : (
+                      <div className="main-content-wrapper">
+                        <div className="main-content">
+                          <div className="client_main_area">
+                            <div className="fixedHeader">
+                              <div
+                                className="client_main_area_menu"
+                                id={this.state.toggle ? "toggle_menu" : ""}
+                              >
+                                <div className="logo-image">
+                                  <img src={discouted} alt="Logo" />
                                 </div>
-                            </div>
-                        </div>
-                    }
+                                <button
+                                  className={
+                                    this.state.currentMenu === "accountInfo"
+                                      ? "currentMenu"
+                                      : ""
+                                  }
+                                  id="accountInfo"
+                                  onClick={this.handleDisplayComponent}
+                                >
+                                  Dashboard
+                                </button>
+                                <button
+                                  className={
+                                    this.state.currentMenu === "leaveAMessage"
+                                      ? "currentMenu"
+                                      : ""
+                                  }
+                                  id="leaveAMessage"
+                                  onClick={this.handleDisplayComponent}
+                                >
+            
+                                  Chat with Expert
+                                </button>
+                                <button
+                                  className={
+                                    this.state.currentMenu === "changePassword"
+                                      ? "currentMenu"
+                                      : ""
+                                  }
+                                  id="changePassword"
+                                  onClick={this.handleDisplayComponent}
+                                >
+                                  Change Password
+                                </button>
 
-                   
-                </div>
-                    );
+                                <LogoutForm />
+                              </div>
+                            </div>
+
+                            <div>
+                              <MainLayout
+                                currentComponent={this.state.currentMenu}
+                                toggleMenu={this.toggleMenu}
+                                id={data.me.id}
+                                accountName={
+                                  data.me.first_name + " " + data.me.last_name
+                                }
+                                email={data.me.email}
+                                showEditComponent={this.showEditComponent}
+                              />
+                              <div className="client_main_area_content_area">
+                                {this.state.accountInfo && (
+                                  <AccountInfo
+                                    table={data.me.package}
+                                    userID={data.me.form_id}
+                                    account_type={data.me.account_type}
+                                  />
+                                )}
+                                {this.state.leaveAMessage && (
+                                  <LeaveAMessageForm
+                                    logged_in_user_id={data.me.form_id}
+                                    sender={
+                                      data.me.first_name +
+                                      " " +
+                                      data.me.last_name
+                                    }
+                                  />
+                                )}
+                                {this.state.changePassword && (
+                                  <ChangePassword
+                                    id={data.me.id}
+                                    email={data.me.email}
+                                    closeModal={this.handleCloseModal}
+                                  />
+                                )}
+
+                                {this.state.editProfile && (
+                                  <EditProfile
+                                    first_name={data.me.first_name}
+                                    last_name={data.me.last_name}
+                                    email={data.me.email}
+                                    phone={data.me.phone}
+                                    id={data.me.id}
+                                  />
+                                )}
+                                {this.state.updateProfileImage && (
+                                  <UpdateProfileImage id={data.me.id} />
+                                )}
+                              </div>
+                              <div className="footer-hide">
+                                <Footer />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
                     }}
                 </Query>
             );

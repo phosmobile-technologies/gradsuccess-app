@@ -48,7 +48,8 @@ export default class formCompletePage extends React.Component {
 				return response.text()
 				})
 				.then(text => {
-					return true;
+					// return true;
+					alert(text)
 				})
 				.catch(function(error) {
 				alert("Networks Error please try again, Later!")

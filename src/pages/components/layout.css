@@ -2197,6 +2197,15 @@ progress {
   color: white;
 }
 
+.email_e{
+  background-color: rgba(255, 0, 0, 0.8);
+  font-weight: bold;
+  font-size: 12px;
+  padding: 0px 10px;
+  color: white;
+  opacity: 0.8;
+}
+
 @media only screen and (max-width: 1100px) {
   .expert-specific-wrapper{
     width: 97%;

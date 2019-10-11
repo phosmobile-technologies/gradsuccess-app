@@ -31,16 +31,6 @@ const customStyles = {
   }
 };
 
-const defaultStyles = {
-  content : {
-    top                   : '0%',
-    left                  : '0%',
-    width                 : '100%',
-    height                : '100%',
-    backgroundColor       : 'rgba(17, 153, 146, 0.3)'
-  }
-};
-
 class IndexPage extends Component {
     constructor(props) {
         super(props)
@@ -310,16 +300,16 @@ class IndexPage extends Component {
         } else {
             return (
                  <div>
-                        <Modal 
-                           isOpen={this.state.showModal}
-                           contentLabel="Minimal Modal Example"
-                           style={customStyles}
-                           ariaHideApp={false}
-                        >
-                          <LoginForm />
-                          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-                        </Modal>
-                    </div>
+                    <Modal 
+                        isOpen={this.state.showModal}
+                        contentLabel="Minimal Modal Example"
+                        style={customStyles}
+                        ariaHideApp={false}
+                    >
+                      <LoginForm />
+                      <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+                    </Modal>
+                </div>
             )
         }
     }

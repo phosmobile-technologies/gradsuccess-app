@@ -15,7 +15,7 @@ class History extends Component {
       <div>
         <MainLayout />
           <div className = "main-content"> 
-                  <p>History</p>
+            <p>History</p>
           </div>
 
          <Footer />

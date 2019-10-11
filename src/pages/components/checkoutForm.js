@@ -7,7 +7,7 @@ import loader from "../../images/loader.gif"
 import PaystackButton from "react-paystack"
 
 import { SAVE_CLIENT_DETAILS } from "../../api/sendMailEndpoint"
-
+import { GET_EMAIL } from "../../api/sendMailEndpoint"
 
 export default class checkoutForm extends Component {
   constructor(props) {
@@ -25,14 +25,15 @@ export default class checkoutForm extends Component {
       submitForm: true,
       notVerified: true,
       mcs: 1,
+      emailExist: true,
     }
 
     this.handleForm = this.handleForm.bind(this)
     this.verifyFormSubmit = this.verifyFormSubmit.bind(this)
     this.formSubmitted = this.formSubmitted.bind(this)
+    this.verifyEmail = this.verifyEmail.bind(this)
 
     this.paystackPaymentSuccess = this.paystackPaymentSuccess.bind(this)
-
   }
 
   componentDidMount() {
@@ -44,8 +45,6 @@ export default class checkoutForm extends Component {
       randomstring += chars.substring(rnum, rnum + 1)
     }
     let amount = localStorage.getItem("CheckoutAmount")
-
-    
 
     this.setState({
       amount: amount * 100,
@@ -85,8 +84,41 @@ export default class checkoutForm extends Component {
     }
   }
 
+  verifyEmail() {
+    let url = GET_EMAIL
+    let data = {
+      email: this.state.email
+    }
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "post",
+      body: JSON.stringify(data),
+    })
+      .then(function(response) {
+        return response.text()
+      })
+      .then(text => {
+        if(text === "false"){
+          this.setState({
+            emailExist:false
+          })
+        }else{
+           this.setState({
+            emailExist:true
+          })
+        }
+      })
+      .catch(function(error) {
+        alert("Networks Error please try again, Later!")
+      })
+  }
+
   paystackPaymentSuccess(response) {
     let url = SAVE_CLIENT_DETAILS
+
     let data = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
@@ -97,6 +129,7 @@ export default class checkoutForm extends Component {
       password: this.state.password,
       account_type: "Client",
     }
+
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +150,6 @@ export default class checkoutForm extends Component {
           localStorage.removeItem("ItemsInCart")
           localStorage.removeItem("CheckoutAmount")
           window.location = "/Application-details"
-          
         }, 4000)
       })
       .catch(function(error) {
@@ -289,6 +321,18 @@ export default class checkoutForm extends Component {
                         </div>
                         <div className="row-full">
                           <input
+                            type="email"
+                            required
+                            placeholder="Email Address"
+                            onChange={this.handleForm}
+                            id="email"
+                            name="email"
+                            onBlur={this.verifyEmail}
+                          />
+                          {this.state.emailExist && <p className = "email_e">Email Already exists</p>}
+                        </div>
+                        <div className="row-full">
+                          <input
                             type="text"
                             required
                             placeholder="Phone"
@@ -297,21 +341,15 @@ export default class checkoutForm extends Component {
                             name="phone"
                           />
                         </div>
-                        <div className="row-full">
-                          <input
-                            type="email"
-                            required
-                            placeholder="Email Address"
-                            onChange={this.handleForm}
-                            id="email"
-                            name="email"
-                          />
-                        </div>
                       </form>
 
                       <div
                         className="cartStyle"
-                        id={this.state.notVerified ? "notActive" : ""}
+                        id={
+                          this.state.notVerified || this.state.emailExist
+                            ? "notActive"
+                            : ""
+                        }
                       >
                         <PaystackButton
                           text="Proceed to payment"
@@ -319,7 +357,7 @@ export default class checkoutForm extends Component {
                           callback={this.paystackPaymentSuccess}
                           close={this.close}
                           disabled={
-                            this.state.notVerified
+                            this.state.notVerified || this.state.emailExist
                           } /*disable payment button*/
                           embed={
                             false

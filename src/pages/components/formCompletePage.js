@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from "../components/Forms/loginForm";
 import Modal from "react-modal"
 import { CLIENT_PASSWORD } from "../../api/sendMailEndpoint"
+import { SEND_ASSOCIATE_EMAIL } from "../../api/sendMailEndpoint"
 
 const customStyles = {
   content : {
@@ -28,6 +29,13 @@ export default class formCompletePage extends React.Component {
 
 	componentDidMount(){
 		let url = CLIENT_PASSWORD
+		let a_url = SEND_ASSOCIATE_EMAIL
+
+
+		let a_data = {
+			form_id: this.props.form_id,
+		}
+		
 		this.setState({
 			password:localStorage.getItem("yshKSMCis129_#&NISis")
 		},()=>{
@@ -48,14 +56,33 @@ export default class formCompletePage extends React.Component {
 				return response.text()
 				})
 				.then(text => {
-					// return true;
-					alert(text)
+					fetch(a_url, {
+						headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+						},
+						method: "post",
+						body: JSON.stringify(a_data),
+					})
+						.then(function(response) {
+						return response.text()
+						})
+						.then(text => {
+							console.log(text)
+						})
+						.catch(function(error) {
+						alert("Networks Error please try again, Later!")
+						})
 				})
 				.catch(function(error) {
 				alert("Networks Error please try again, Later!")
 				})
 		})
+		
 
+        
+      
+    
 		
 
 

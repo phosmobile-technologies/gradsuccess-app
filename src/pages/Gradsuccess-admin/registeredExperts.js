@@ -17,195 +17,181 @@ const defaultStyles = {
 };
 
 class registeredExperts extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props)
     this.state = {
-        open: false,
-        expertID:"",
-        showExpertDetail:false,
-        profileImage:""
+      open: false,
+      expertID: "",
+      showExpertDetail: false,
+      profileImage: "",
+      selectedExpertImageurl:""
     }
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.downloadUploadedFile = this.downloadUploadedFile.bind(this);
-    this.displayProfleImage = this.displayProfleImage.bind(this);
-    }
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+  }
 
-    handleOpenModal(id){
-        this.setState({
-            expertID:id,
-            showExpertDetail:true
+  handleOpenModal(id,url) {
+    this.setState({
+      expertID: id,
+      showExpertDetail: true,
+      selectedExpertImageurl:url
+    })
+  }
+  handleCloseModal() {
+    this.setState({
+      showExpertDetail: false,
+    })
+  }
+
+  getImageUrl() {
+    const firebase = require("firebase")
+    const config = {
+      apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+      authDomain: "gradsuccess.firebaseapp.com",
+      databaseURL: "https://gradsuccess.firebaseio.com",
+      projectId: "gradsuccess",
+      storageBucket: "gradsuccess.appspot.com",
+      messagingSenderId: "1038128602103",
+      appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
+    }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
+    var storageRef = firebase.storage().ref()
+
+    this.state.allExpert.forEach((element, index) => {
+      storageRef
+        .child(element.profile_image_ref)
+        .getDownloadURL()
+        .then(url => {
+          let el = {
+            id: element.expert_id,
+            user_name: element.user_name,
+            bait: element.bio_bait,
+            img_url: url,
+            where_client_from:element.where_client_from,
+            ielts:element.ielts,
+          }
+          if (this.state.displayExpertsInfo) {
+            this.setState(
+              {
+                displayExpertsInfo: [...this.state.displayExpertsInfo, el],
+              },
+              () => {
+                console.log(this.state)
+              }
+            )
+          } else {
+            this.setState(
+              {
+                displayExpertsInfo: [el],
+              },
+              () => {
+                console.log(this.state)
+              }
+            )
+          }
         })
-    }
-    handleCloseModal(){
-        this.setState({
-            showExpertDetail:false
+        .catch(error => {
+          console.log(error)
         })
-    }
+    })
+  }
 
-    displayProfleImage(id){
-        let url = PROFILE_IMAGE_REF
-        let data = {
-            expert_id: id,
-        }
-          fetch(url, {
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          method: "post",
-          body: JSON.stringify(data)
-        }).then(function(response){
-            return response.text()
-        }).then((text)=>{
-            this.downloadUploadedFile(id,text)
-        }).catch(function(error){
-        })
-    }
-
-    downloadUploadedFile(id,downloadRef){
-        const firebase = require("firebase")
-        const config = {
-          apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
-          authDomain: "gradsuccess.firebaseapp.com",
-          databaseURL: "https://gradsuccess.firebaseio.com",
-          projectId: "gradsuccess",
-          storageBucket: "gradsuccess.appspot.com",
-          messagingSenderId: "1038128602103",
-          appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
-        }
-        if (!firebase.apps.length) {
-           firebase.initializeApp(config)
-        }
-        var storageRef = firebase.storage().ref(downloadRef)
-
-       storageRef.getDownloadURL().then((url) =>{
-          this.setState({
-              [id]:url
-          })
-        }).catch((error) => {
-         switch (error.code) {
-            case 'storage/object-not-found':
-             this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-
-            case 'storage/unauthorized':
-               this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-
-            case 'storage/canceled':
-               this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-
-            case 'storage/unknown':
-               this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-         }
-
-        });
-    }
-
-
-    render() {
-        return (
-          <div>
-            <Query
-              query={GET_EXPERT_DETAIL_BAIT}
-              variables={{ account_type: "Expert" }}
-            >
-              {({ loading, error, data }) => {
-                if (loading)
-                  return (
-                    <div className="loader">
-                      <div className="loader_main_content">
-                        <img src={loader} alt="gradsuccess" />
-                        <h1>Loading...</h1>
-                      </div>
-                    </div>
-                  )
-                if (error) return <div>failed to load data</div>
-                return (
-                  <div className="form_preview_inner">
-                    <div className="form_preview_col_1">
-                      {data.allExpertDetail === null ? (
-                        <div className="client_expert_listing_main_expert">
-                          <h4>No Item Available</h4>
-                        </div>
-                      ) : (
-                        <div className="client_expert_listing_main_wrapper">
-                          {data.allExpertDetail.map((Expert, index) => (
-                            <div
-                              key={index}
-                              className="client_expert_listing_main_inner"
-                            >
-                              {this.downloadUploadedFile(
-                                Expert.expert_id,
-                                Expert.profile_image_ref
-                              )}
-                              <div className="profile-hover-overleaf">
-                                <button
-                                  className="declineBtn"
-                                  onClick={() =>
-                                    this.handleOpenModal(Expert.expert_id)
-                                  }
-                                >
-                                  View
-                                </button>
-                              </div>
-                              <div className="client_expert_listing_main_expert">
-                                <div>
-                                  <div className="profile-wrapper">
-                                    <img src={this.state[Expert.expert_id]} />
-                                  </div>
-                                  <div className="profile-detail">
-                                    <h4>
-                                      {Expert.user_name}
-                                    </h4>
-                                    <p>{Expert.where_client_from}</p>
-                                    <p>{Expert.ielts}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+  render() {
+    return (
+      <div>
+        <Query
+          query={GET_EXPERT_DETAIL_BAIT}
+          onCompleted={data => {
+            this.setState({
+              allExpert: data.allExpertDetail,
+            })
+            this.getImageUrl()
+          }}
+        >
+          {({ loading, error, data }) => {
+            if (loading)
+              return (
+                <div className="loader">
+                  <div className="loader_main_content">
+                    <img src={loader} alt="gradsuccess" />
+                    <h1>Loading...</h1>
                   </div>
-                )
-              }}
-            </Query>
-
-            <Modal
-              isOpen={this.state.showExpertDetail}
-              contentLabel="Minimal Modal Example"
-              style={defaultStyles}
-              ariaHideApp={false}
-            >
-              <div className="detail_preview_modal_container">
-                <div className="detail_preview_modal_container_inner">
-                  <ExpertDetail
-                    expertID={this.state.expertID}
-                    imgUrl={this.state[this.state.expertID]}
-                  />
+                </div>
+              )
+            if (error) return <div>failed to load data</div>
+            return (
+              <div className="form_preview_inner">
+                <div className="form_preview_col_1">
+                  {data.allExpertDetail === null ? (
+                    <div className="client_expert_listing_main_expert">
+                      <h4>No Item Available</h4>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               </div>
-              <a className="ModalCloseBut" onClick={this.handleCloseModal}>
-                x
-              </a>
-            </Modal>
+            )
+          }}
+        </Query>
+        {this.state.displayExpertsInfo ? (
+          <div className="client_expert_listing_main_wrapper">
+            {this.state.displayExpertsInfo.map((Expert, index) => (
+              <div key={index} className="client_expert_listing_main_inner">
+                <div className="profile-hover-overleaf">
+                  <button
+                    className="declineBtn"
+                    onClick={() =>
+                      this.handleOpenModal(Expert.id, Expert.img_url)
+                    }
+                  >
+                    View
+                  </button>
+                </div>
+                <div className="client_expert_listing_main_expert">
+                  <div>
+                    <div className="profile-wrapper">
+                      <img src={Expert.img_url} />
+                    </div>
+                    <div className="profile-detail">
+                      <h4>{Expert.user_name}</h4>
+                      <p>{Expert.where_client_from}</p>
+                      <p>{Expert.ielts}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        )
-    }
-
+        ) : (
+          <div className="show-box">
+            <div className="show-box-inner"></div>
+            <div className="show-box-inner"></div>
+          </div>
+        )}
+        <Modal
+          isOpen={this.state.showExpertDetail}
+          contentLabel="Minimal Modal Example"
+          style={defaultStyles}
+          ariaHideApp={false}
+        >
+          <div className="detail_preview_modal_container">
+            <div className="detail_preview_modal_container_inner">
+              <ExpertDetail
+                expertID={this.state.expertID}
+                imgUrl={this.state.selectedExpertImageurl}
+              />
+            </div>
+          </div>
+          <a className="ModalCloseBut" onClick={this.handleCloseModal}>
+            x
+          </a>
+        </Modal>
+      </div>
+    )
+  }
 }
 export default registeredExperts

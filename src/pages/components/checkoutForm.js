@@ -13,7 +13,7 @@ export default class checkoutForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      key: "pk_live_a2e85558692cca93f4693bc3a2c7b21b78a53ace", //PAYSTACK PUBLIC KEY
+      key: "pk_test_54178ff803144d4be6b17fd55e811288d4a20ddf", //PAYSTACK PUBLIC KEY
       amount: 100000, //equals NGN100,
       success: false,
       password: "",
@@ -25,7 +25,6 @@ export default class checkoutForm extends Component {
       submitForm: true,
       notVerified: true,
       mcs: 1,
-      emailExist: true,
     }
 
     this.handleForm = this.handleForm.bind(this)
@@ -87,7 +86,7 @@ export default class checkoutForm extends Component {
   verifyEmail() {
     let url = GET_EMAIL
     let data = {
-      email: this.state.email
+      email: this.state.email,
     }
     fetch(url, {
       headers: {
@@ -101,13 +100,13 @@ export default class checkoutForm extends Component {
         return response.text()
       })
       .then(text => {
-        if(text === "false"){
+        if (text === "false") {
           this.setState({
-            emailExist:false
+            emailExist: false,
           })
-        }else{
-           this.setState({
-            emailExist:true
+        } else {
+          this.setState({
+            emailExist: true,
           })
         }
       })
@@ -329,7 +328,9 @@ export default class checkoutForm extends Component {
                             name="email"
                             onBlur={this.verifyEmail}
                           />
-                          {this.state.emailExist && <p className = "email_e">Email Already exists</p>}
+                          {this.state.emailExist && (
+                            <p className="email_e">Email Already exists</p>
+                          )}
                         </div>
                         <div className="row-full">
                           <input

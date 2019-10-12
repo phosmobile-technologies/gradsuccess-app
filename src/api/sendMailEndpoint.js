@@ -23,3 +23,6 @@ export const UPDATE_EXPERT_DETAILS = "https://infinite-cove-53014.herokuapp.com/
 export const EXPERT_DETAIL = "https://infinite-cove-53014.herokuapp.com/api/expertDetail"
 export const EXPERT_INFO = "https://infinite-cove-53014.herokuapp.com/api/expertInfo"
 export const GET_EMAIL ="https://infinite-cove-53014.herokuapp.com/api/getEmail"
+
+export const SEND_ASSOCIATE_EMAIL =
+         "https://infinite-cove-53014.herokuapp.com/api/sendAssociateEmail"

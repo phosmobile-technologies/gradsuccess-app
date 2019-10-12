@@ -14,9 +14,7 @@ import Steps from "./components/steps"
 import FeaturedTestimonial from "./components/featuredTestimonial"
 import BigCountCTA from "./components/bigCountCTA"
 import bgImage from '../images/bgImage.jpg'
-import { setContext } from 'apollo-link-context'
 import FeaturedExperts from "./components/featuredExperts"
-// import * as firebase from 'firebase'
 
 
 
@@ -66,9 +64,11 @@ class Search extends React.Component {
     }
   }
 
-  componentDidMount(){
-
-  }
+  // componentDidMount(){
+  //   this.setState({
+  //     storageRef: "firebase.storage()",
+  //   })
+  // }
 
 
   handleRedirect(event) {

@@ -95,6 +95,7 @@ render() {
       <div>
         <Query
           query={GET_USER}
+          fetchPolicy="no-cache"
           variables={{ id: this.props.expertID }}
           onCompleted={data => {
             this.setState({
@@ -123,6 +124,7 @@ render() {
         </Query>
         <Query
           query={GET_EXPERT_DETAIL}
+          fetchPolicy="no-cache"
           variables={{ expert_id: this.props.expertID }}
           onCompleted={data => {
             this.setState({

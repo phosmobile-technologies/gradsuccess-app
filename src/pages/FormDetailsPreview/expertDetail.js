@@ -182,8 +182,9 @@ render() {
             <h3 className="form-header">Details </h3>
             <div className="form-div">
               <div>
-                <img src={this.props.imgUrl} />
-
+                <div className ="imag_wrap">
+                  <img src={this.props.imgUrl} />
+                </div>
                 <div className="form_preview_fields form_preview_fields-large">
                   <small>Bio Bait:</small>
                   <p>{this.state.userDetail.bio_bait}</p>

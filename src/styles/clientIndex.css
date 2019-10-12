@@ -1619,7 +1619,7 @@ font-family: 'Lato', sans-serif;
 .form-div img{
     margin-bottom: 0px;
     border-radius: 50%;
-    width: 60%;
+    width: 100%;
     margin: auto;
 }
 .account-updated{
@@ -1759,6 +1759,9 @@ color:cadetblue
     opacity: .9;
 }
 @media only screen and (max-width: 500px) {
+    .form_preview_fields{
+        width: 100%;
+    }
 .loginBtn {
 padding: 0px;
 }
@@ -1975,8 +1978,8 @@ margin-left: 35%;
 width: 90%;
 }
 .form-div{
-grid-template-columns: 1fr;
-width: 100%;
+    grid-template-columns: 1fr;
+    padding: 0px;
 }
 
 .detail_rating{
@@ -2058,6 +2061,13 @@ body {
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     line-height: 1.2em;
+}
+.imag_wrap{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1);
 }
 
 .item-1{

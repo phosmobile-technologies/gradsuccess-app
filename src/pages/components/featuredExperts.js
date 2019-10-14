@@ -45,23 +45,13 @@ getImageUrl(){
                img_url: url,
              }
              if(this.state.displayExpertsInfo){
-                this.setState(
-                {
+                this.setState( {
                     displayExpertsInfo: [...this.state.displayExpertsInfo, el],
-                },
-                () => {
-                    console.log(this.state)
-                }
-                )
+                })
             }else{
-                this.setState(
-                  {
+                this.setState({
                     displayExpertsInfo: [el],
-                  },
-                  () => {
-                    console.log(this.state)
-                  }
-                )
+                  })
              }
           })
           .catch(error => {

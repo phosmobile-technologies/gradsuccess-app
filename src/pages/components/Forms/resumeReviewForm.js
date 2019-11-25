@@ -219,7 +219,7 @@ export default class resumeReviewForm extends React.Component {
                       </progress>
                     </div>
                     <div className="file_upload_label">
-                      <label htmlFor="file">Upload Resume</label>
+                      <label htmlFor="file">Upload Document</label>
                     </div>
                     <br />
                     <br />

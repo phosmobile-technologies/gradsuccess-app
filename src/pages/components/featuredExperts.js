@@ -45,7 +45,7 @@ getImageUrl(){
                img_url: url,
              }
              if(this.state.displayExpertsInfo){
-                this.setState( {
+                this.setState({
                     displayExpertsInfo: [...this.state.displayExpertsInfo, el],
                 })
             }else{

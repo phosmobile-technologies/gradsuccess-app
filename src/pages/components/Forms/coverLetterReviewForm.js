@@ -204,7 +204,7 @@ export default class resumeReviewForm extends React.Component {
                       <progress value = "0" max= "100" id = "uploader">0%</progress>
                     </div>
                     <div className = "file_upload_label">
-                      <label htmlFor="file" >Upload Essay</label>
+                      <label htmlFor="file" >Upload Document</label>
                     </div>
                     <br />
                     

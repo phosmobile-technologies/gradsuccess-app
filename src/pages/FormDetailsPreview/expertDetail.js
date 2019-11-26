@@ -28,7 +28,9 @@ class ExpertDetail extends Component {
                 gmat_score:"",
                 ielts:"",
                 university_transcripts:"",
-                curriculum_vitae:""
+                curriculum_vitae:"",
+                bank_account_number:"",
+                bank_name:"",
             },
             university_transcripts:"",
             curriculum_vitae:""
@@ -150,6 +152,8 @@ render() {
                 client_reach_you_for: data.getExpertDetail.client_reach_you_for,
                 profile_image_ref: data.getExpertDetail.profile_image_ref,
                 user_name: data.getExpertDetail.user_name,
+                bank_account_number: data.getExpertDetail.bank_account_number,
+                bank_name: data.getExpertDetail.bank_name,
               },
             })
 
@@ -182,7 +186,7 @@ render() {
             <h3 className="form-header">Details </h3>
             <div className="form-div">
               <div>
-                <div className ="imag_wrap">
+                <div className="imag_wrap">
                   <img src={this.props.imgUrl} />
                 </div>
                 <div className="form_preview_fields form_preview_fields-large">
@@ -246,6 +250,16 @@ render() {
                   <small>Employment:</small>
                   <p>{this.state.userDetail.employment}</p>
                 </div>
+                <div className="form_preview_fields">
+                  <small>Bank Account Number:</small>
+                  <p>{this.state.userDetail.bank_account_number}</p>
+                </div>
+
+                <div className="form_preview_fields">
+                  <small>Bank Name</small>
+                  <p>{this.state.userDetail.bank_name}</p>
+                </div>
+                
                 <div className="form_preview_fields">
                   <small>Scholarships and Awards:</small>
                   <p>{this.state.userDetail.scholarships_and_awards}</p>

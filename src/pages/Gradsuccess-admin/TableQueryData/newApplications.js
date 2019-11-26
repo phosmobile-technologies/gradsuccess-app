@@ -110,6 +110,7 @@ handleCloseModal(){
         GraduateSchoolEssayRedraftFormAR:false
 
     })   
+    window.location.reload();
 }
 
 OpenAssignExpertModal(formType, name, id){
@@ -139,8 +140,6 @@ OpenAssignExpertModal(formType, name, id){
             assignExpertToApplicationGraduateStatementReview:true,
         })
     }
-    
-
 
 }
 upadateItemCount(list){
@@ -170,7 +169,6 @@ assignSelf(form_id,application,id){
     }).then(function(response){
         return response.text()
     }).then((text)=>{
-
         if(application === "coverLetterReviewForm"){
             this.setState({
                 CoverLetterReviewFormAR:true,
@@ -434,9 +432,7 @@ render() {
                                                              {error && <div className="FailedTagForm"> Connection error, please check network and try again.</div>}
                                                     </div>
                                                      )}
-
                                                     </Mutation>}
-                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -594,13 +590,11 @@ render() {
                                                      )}
 
                                                     </Mutation>}
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     )}
                         </div>
-                        
                     </div>
                 </div>
               );

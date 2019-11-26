@@ -27,4 +27,4 @@ export const GET_EMAIL ="https://infinite-cove-53014.herokuapp.com/api/getEmail"
 export const SEND_ASSOCIATE_EMAIL =
          "https://infinite-cove-53014.herokuapp.com/api/sendAssociateEmail"
          export const MESSAGE_MAIL =
-                  "https://infinite-cove-53014.herokuapp.com/api/messageNotification"
+                  "https://infinite-cove-53014.herokuapp.com/api/messageNotification"   

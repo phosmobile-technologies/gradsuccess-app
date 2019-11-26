@@ -37,7 +37,8 @@ sendNotification(appStatus){
 
     let url = DECLINE_EMAIL
     let data = {
-        expert_id: this.state.expert_id
+      expert_id: this.state.expert_id,
+      form_id: this.state.form_id,
     }
       fetch(url, {
       headers: {
@@ -59,7 +60,8 @@ sendNotification(appStatus){
 
     let url = APPROVED_MAIL
     let data = {
-        expert_id: this.state.expert_id,
+      expert_id: this.state.expert_id,
+      form_id: this.state.form_id,
     }
       fetch(url, {
       headers: {

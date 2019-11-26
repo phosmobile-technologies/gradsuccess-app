@@ -215,7 +215,6 @@ class IndexPage extends Component {
                                   id="leaveAMessage"
                                   onClick={this.handleDisplayComponent}
                                 >
-            
                                   Chat with Expert
                                 </button>
                                 <button
@@ -261,6 +260,7 @@ class IndexPage extends Component {
                                       " " +
                                       data.me.last_name
                                     }
+                                    sender_id={data.me.form_id}
                                   />
                                 )}
                                 {this.state.changePassword && (

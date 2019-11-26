@@ -638,6 +638,8 @@ export const GET_EXPERT_DETAIL = gql`
              client_reach_you_for
              profile_image_ref
              user_name
+             bank_account_number
+             bank_name
            }
          }
        `

@@ -241,89 +241,182 @@ render() {
             )
         if (error) return `Error! ${error.message}`;
         return (
-        <div>
-            {data.me.account_type === "Client"?
-                <NotFoundPage />
-                :<div className = "main-content-wrapper">
-                    <div className = "main-content">
-                        <div className = "client_main_area">
-                            <div className = "fixedHeader">
-                                <div className = "client_main_area_menu" id  = {this.state.toggle?"toggle_menu":""}>
-                                    <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
-                                    <button 
-                                        className = {this.state.currentMenu === "NewApplications"? "currentMenu":""} 
-                                        name = "New Applications" 
-                                        id = "NewApplications" 
-                                        onClick = {this.handleDisplayComponent}>New Applications
-                                    </button>
-
-                                    <button 
-                                        className = {this.state.currentMenu === "AssignedApplication" ? "currentMenu":""} 
-                                        name = "Assigned Applications" 
-                                        id = "AssignedApplication" 
-                                        onClick = {this.handleDisplayComponent}>Assigned Applications
-                                    </button>
-
-                                    <button 
-                                        className = {this.state.currentMenu === "InProgressApplication" ? "currentMenu":""} 
-                                        name = "In Progress Applications" 
-                                        id = "InProgressApplication" 
-                                        onClick = {this.handleDisplayComponent}>In Progress Applications
-                                    </button>
-
-                                    <button 
-                                        className = {this.state.currentMenu === "CompletedApplication" ? "currentMenu":""} 
-                                        name = "Completed Applications" 
-                                        id = "CompletedApplication" 
-                                        onClick = {this.handleDisplayComponent}>Completed Applications
-                                    </button>
-                                    <button 
-                                        className = {this.state.currentMenu === "changePassword"? "currentMenu":""}
-                                        id = "changePassword" 
-                                        onClick = {this.handleDisplayComponent}>Change Password
-                                    </button>
-
-                                    <button 
-                                        className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
-                                        name = "Experts List" 
-                                        id = "ExpertsComponent" 
-                                        onClick = {this.handleDisplayComponent}>Experts
-                                    </button>
-                                    <LogoutForm />
-
-                                      {/*<ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>*/}
-                                </div>
-                            </div>
-                            <div>
-                            <MainLayout currentComponent = {this.state.currentComponent} toggleMenu = {this.toggleMenu} id  = {data.me.id} accountName = {data.me.first_name + " " + data.me.last_name} email = {data.me.email} 
-                                showEditComponent = {this.showEditComponent}/>
-                                <div className="client_main_area_content_area">
-                                    {this.state.NewApplications && <NewApplications account_type = {data.me.account_type} expert_id = {data.me.id}/>}
-                                    {this.state.AssignedApplication && <AssignedApplication account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent} />}
-                                    {this.state.InProgressApplication && <InProgressApplication account_type = {data.me.account_type} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>}
-                                    {this.state.CompletedApplication && <CompletedApplication account_type = {data.me.account_type} />}
-                                    {this.state.ExpertsComponent && <ExpertsComponent />}
-                                    {this.state.LeaveAMessageComponent && <LeaveAMessageForm  logged_in_user_id = {this.state.client_id} sender = {data.me.first_name +" "+ data.me.last_name} expert_id = {data.me.id}/>}
-                                    {this.state.changePassword && <ChangePassword   id = {data.me.id} email = {data.me.email} closeModal = {this.handleCloseModal}/>}
-
-                                    {this.state.editProfile && <EditProfile  
-                                        first_name = {data.me.first_name}
-                                        last_name = {data.me.last_name}
-                                        email = {data.me.email}
-                                        phone = {data.me.phone}
-                                        id = {data.me.id}/>}
-                                    {this.state.updateProfileImage && <UpdateProfileImage  id = {data.me.id}/>}
-                                </div>
-                                <div className = "footer-hide">
-                                 <Footer />
-                                 </div>
-                            </div>
+          <div>
+            {data.me.account_type === "Client" ? (
+              <NotFoundPage />
+            ) : (
+              <div className="main-content-wrapper">
+                <div className="main-content">
+                  <div className="client_main_area">
+                    <div className="fixedHeader">
+                      <div
+                        className="client_main_area_menu"
+                        id={this.state.toggle ? "toggle_menu" : ""}
+                      >
+                        <div className="logo-image">
+                          <img src={discouted} alt="Logo" />
                         </div>
-                    </div>                  
-                   </div>
-            }
-        </div>
-            );
+                        <button
+                          className={
+                            this.state.currentMenu === "NewApplications"
+                              ? "currentMenu"
+                              : ""
+                          }
+                          name="New Applications"
+                          id="NewApplications"
+                          onClick={this.handleDisplayComponent}
+                        >
+                          New Applications
+                        </button>
+
+                        <button
+                          className={
+                            this.state.currentMenu === "AssignedApplication"
+                              ? "currentMenu"
+                              : ""
+                          }
+                          name="Assigned Applications"
+                          id="AssignedApplication"
+                          onClick={this.handleDisplayComponent}
+                        >
+                          Assigned Applications
+                        </button>
+
+                        <button
+                          className={
+                            this.state.currentMenu === "InProgressApplication"
+                              ? "currentMenu"
+                              : ""
+                          }
+                          name="In Progress Applications"
+                          id="InProgressApplication"
+                          onClick={this.handleDisplayComponent}
+                        >
+                          In Progress Applications
+                        </button>
+
+                        <button
+                          className={
+                            this.state.currentMenu === "CompletedApplication"
+                              ? "currentMenu"
+                              : ""
+                          }
+                          name="Completed Applications"
+                          id="CompletedApplication"
+                          onClick={this.handleDisplayComponent}
+                        >
+                          Completed Applications
+                        </button>
+                        <button
+                          className={
+                            this.state.currentMenu === "changePassword"
+                              ? "currentMenu"
+                              : ""
+                          }
+                          id="changePassword"
+                          onClick={this.handleDisplayComponent}
+                        >
+                          Change Password
+                        </button>
+
+                        <button
+                          className={
+                            this.state.currentMenu === "ExpertsComponent"
+                              ? "currentMenu"
+                              : ""
+                          }
+                          name="Experts List"
+                          id="ExpertsComponent"
+                          onClick={this.handleDisplayComponent}
+                        >
+                          Experts
+                        </button>
+                        <LogoutForm />
+
+                        {/*<ExpertClients expertID = {data.me.id} handleDisplayMessagingComponent = {this.handleDisplayMessagingComponent}/>*/}
+                      </div>
+                    </div>
+                    <div>
+                      <MainLayout
+                        currentComponent={this.state.currentComponent}
+                        toggleMenu={this.toggleMenu}
+                        id={data.me.id}
+                        accountName={
+                          data.me.first_name + " " + data.me.last_name
+                        }
+                        email={data.me.email}
+                        showEditComponent={this.showEditComponent}
+                      />
+                      <div className="client_main_area_content_area">
+                        {this.state.NewApplications && (
+                          <NewApplications
+                            account_type={data.me.account_type}
+                            expert_id={data.me.id}
+                          />
+                        )}
+                        {this.state.AssignedApplication && (
+                          <AssignedApplication
+                            account_type={data.me.account_type}
+                            handleDisplayMessagingComponent={
+                              this.handleDisplayMessagingComponent
+                            }
+                          />
+                        )}
+                        {this.state.InProgressApplication && (
+                          <InProgressApplication
+                            account_type={data.me.account_type}
+                            handleDisplayMessagingComponent={
+                              this.handleDisplayMessagingComponent
+                            }
+                          />
+                        )}
+                        {this.state.CompletedApplication && (
+                          <CompletedApplication
+                            account_type={data.me.account_type}
+                          />
+                        )}
+                        {this.state.ExpertsComponent && <ExpertsComponent />}
+                        {this.state.LeaveAMessageComponent && (
+                          <LeaveAMessageForm
+                            logged_in_user_id={this.state.client_id}
+                            sender={
+                              data.me.first_name + " " + data.me.last_name
+                            }
+                            sender_id={data.me.id}
+                            expert_id={data.me.id}
+                          />
+                        )}
+                        {this.state.changePassword && (
+                          <ChangePassword
+                            id={data.me.id}
+                            email={data.me.email}
+                            closeModal={this.handleCloseModal}
+                          />
+                        )}
+
+                        {this.state.editProfile && (
+                          <EditProfile
+                            first_name={data.me.first_name}
+                            last_name={data.me.last_name}
+                            email={data.me.email}
+                            phone={data.me.phone}
+                            id={data.me.id}
+                          />
+                        )}
+                        {this.state.updateProfileImage && (
+                          <UpdateProfileImage id={data.me.id} />
+                        )}
+                      </div>
+                      <div className="footer-hide">
+                        <Footer />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )
             }}
     </Query>
         );

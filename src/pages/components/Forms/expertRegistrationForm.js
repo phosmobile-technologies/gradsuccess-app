@@ -99,6 +99,30 @@ export default class ExpertBasicInfo extends React.Component {
                                  />
                                </div>
                              </div>
+
+                             <div className="row">
+                                 <input
+                                   type="text"
+                                   required
+                                   placeholder="Bank Account Number"
+                                   onChange={handleFormInput}
+                                   id="bank_account_number"
+                                   name="bank_account_number"
+                                   value={this.props.bank_account_number}
+                                 />
+
+                               <div className="col">
+                                 <input
+                                   type="text"
+                                   required
+                                   placeholder="Bank Name"
+                                   onChange={handleFormInput}
+                                   id="bank_name"
+                                   name="bank_name"
+                                   value={this.props.bank_name}
+                                 />
+                               </div>
+                             </div>
                              <input
                                type="password"
                                placeholder="Password"
@@ -144,23 +168,23 @@ export default class ExpertBasicInfo extends React.Component {
                                type="button"
                                className="submit-details-prev"
                                value="Next"
-                                css={{
-                                  opacity: this.props.password_verified ||
-                                    this.props.first_name === "" ||
-                                    this.props.last_name === "" ||
-                                    this.props.email === "" ||
-                                    this.props.phone === ""
-                                    ? "0.3" 
-                                    : "1",
-                                }}
-                                disabled={
-                                  this.props.password_verified ||
-                                  this.props.first_name === "" ||
-                                  this.props.last_name === "" ||
-                                  this.props.email === "" ||
-                                  this.props.phone === ""
-                                  
-                                }
+                               css={{
+                                 opacity:
+                                   this.props.password_verified ||
+                                   this.props.first_name === "" ||
+                                   this.props.last_name === "" ||
+                                   this.props.email === "" ||
+                                   this.props.phone === ""
+                                     ? "0.3"
+                                     : "1",
+                               }}
+                               disabled={
+                                 this.props.password_verified ||
+                                 this.props.first_name === "" ||
+                                 this.props.last_name === "" ||
+                                 this.props.email === "" ||
+                                 this.props.phone === ""
+                               }
                                onClick={nextStep}
                              />
                            </div>

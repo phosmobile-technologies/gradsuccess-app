@@ -2,7 +2,7 @@ import React from "react"
 import { Mutation } from "react-apollo"
 import { UPDATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
 import loader from "../../../images/loader.gif"
-import { Query } from "react-apollo";
+import { Query } from "react-apollo"
 import { GET_EXPERT_DETAIL } from "../../graphql/queries"
 import { UPDATE_EXPERT_DETAILS } from "../../../api/sendMailEndpoint"
 
@@ -10,16 +10,16 @@ export default class EditProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data:{
-           id:this.props.id,
-           first_name:this.props.first_name,
-           last_name:this.props.last_name,
-           email:this.props.email,
-           phone:this.props.phone,
+      data: {
+        id: this.props.id,
+        first_name: this.props.first_name,
+        last_name: this.props.last_name,
+        email: this.props.email,
+        phone: this.props.phone,
       },
       password_verified: true,
       account_created: false,
-      moredetails:"",
+      moredetails: "",
       educational_details: {
         expert_id: "",
         highest_ranked_university_attended: "",
@@ -29,15 +29,22 @@ export default class EditProfile extends React.Component {
         graduating_grade: "",
         gre_score: "",
         gmat_score: "",
+        where_client_from: "",
+        what_jobs_client: "",
+        client_reach_you_for: "",
         ielts: "",
         university_transcripts: "",
-        curriculum_vitae: ""
+        curriculum_vitae: "",
+        bank_account_number: "",
+        bank_name: "",
       },
-      admin:false
+      admin: false,
     }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.updateExpertsDetails = this.updateExpertsDetails.bind(this)
-    this.handleFormAssociateEducationalInfo = this.handleFormAssociateEducationalInfo.bind(this)
+    this.handleFormAssociateEducationalInfo = this.handleFormAssociateEducationalInfo.bind(
+      this
+    )
   }
 
   handleFormInput(event) {
@@ -48,32 +55,32 @@ export default class EditProfile extends React.Component {
         [name]: value,
       },
     }))
-
   }
 
   updateExpertsDetails(id) {
     let url = UPDATE_EXPERT_DETAILS
     let data = {
       expert_id: id,
-      highest_ranked_university_attended: this.state
-        .educational_details
+      highest_ranked_university_attended: this.state.educational_details
         .highest_ranked_university_attended,
-      qualification_at_university: this.state
-        .educational_details.qualification_at_university,
+      qualification_at_university: this.state.educational_details
+        .qualification_at_university,
       employment: this.state.educational_details.employment,
       scholarships_and_awards: this.state.educational_details
         .scholarships_and_awards,
-      graduating_grade: this.state.educational_details
-        .graduating_grade,
+      graduating_grade: this.state.educational_details.graduating_grade,
       gre_score: this.state.educational_details.gre_score,
       gmat_score: this.state.educational_details.gmat_score,
       ielts: this.state.educational_details.ielts,
-      university_transcripts: this.state.educational_details.university_transcripts,
+      university_transcripts: this.state.educational_details
+        .university_transcripts,
       curriculum_vitae: this.state.educational_details.curriculum_vitae,
       bio_bait: this.state.educational_details.bio_bait,
       where_client_from: this.state.educational_details.where_client_from,
       what_jobs_client: this.state.educational_details.what_jobs_client,
-      client_reach_you_for: this.state.educational_details.client_reach_you_for
+      client_reach_you_for: this.state.educational_details.client_reach_you_for,
+      bank_account_number: this.state.educational_details.bank_account_number,
+      bank_name: this.state.educational_details.bank_name,
     }
     fetch(url, {
       headers: {
@@ -83,19 +90,18 @@ export default class EditProfile extends React.Component {
       method: "post",
       body: JSON.stringify(data),
     })
-      .then(function (response) {
+      .then(function(response) {
         return response.text()
       })
       .then(text => {
-        window.location.reload();
+        window.location.reload()
       })
-      .catch(function (error) {
+      .catch(function(error) {
         alert("Networks Error please try again, Later!")
       })
-
   }
 
-   handleFormAssociateEducationalInfo(event) {
+  handleFormAssociateEducationalInfo(event) {
     const { name, value } = event.target
     this.setState(prevState => ({
       educational_details: {
@@ -103,34 +109,29 @@ export default class EditProfile extends React.Component {
         [name]: value,
       },
     }))
-
   }
 
   formSubmitted(data) {
     this.setState({
-         account_created:true
+      account_created: true,
     })
 
-    if(this.state.admin){
-
-    }else{
+    if (this.state.admin) {
+    } else {
       this.updateExpertsDetails(this.state.data.id)
     }
-    
+
     setTimeout(function() {
       window.location.reload()
     }, 2000)
   }
-
-
-
 
   render() {
     if (this.state.account_created) {
       return (
         <div>
           <div className="account-updated">
-            <div >
+            <div>
               <h1>
                 Account Updated <i>!</i>
               </h1>
@@ -143,7 +144,6 @@ export default class EditProfile extends React.Component {
         </div>
       )
     } else {
-      
       return (
         <div>
           <Query
@@ -173,11 +173,14 @@ export default class EditProfile extends React.Component {
                     what_jobs_client: data.getExpertDetail.what_jobs_client,
                     client_reach_you_for:
                       data.getExpertDetail.client_reach_you_for,
+                    bank_account_number:
+                      data.getExpertDetail.bank_account_number,
+                    bank_name: data.getExpertDetail.bank_name,
                   },
                 })
               } else {
                 this.setState({
-                    admin:true
+                  admin: true,
                 })
               }
             }}
@@ -271,162 +274,188 @@ export default class EditProfile extends React.Component {
                             name="phone"
                           />
                         </div>
-                        </div>
-                        {this.state.admin ? <div></div>:
+                      </div>
+                      {this.state.admin ? (
+                        <div></div>
+                      ) : (
                         <div>
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="Highest Ranked University Attended"
-                            value={
-                              this.state.educational_details
-                                .highest_ranked_university_attended
-                            }
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="highest_ranked_university_attended"
-                            name="highest_ranked_university_attended"
-                          />
-                        </div>
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="University Qualification"
-                            value={
-                              this.state.educational_details
-                                .qualification_at_university
-                            }
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="qualification_at_university"
-                            name="qualification_at_university"
-                          />
-                        </div>
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="Employment"
-                            value={this.state.educational_details.employment}
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="employment"
-                            name="employment"
-                          />
-                        </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="Highest Ranked University Attended"
+                              value={
+                                this.state.educational_details
+                                  .highest_ranked_university_attended
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="highest_ranked_university_attended"
+                              name="highest_ranked_university_attended"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="University Qualification"
+                              value={
+                                this.state.educational_details
+                                  .qualification_at_university
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="qualification_at_university"
+                              name="qualification_at_university"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="Employment"
+                              value={this.state.educational_details.employment}
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="employment"
+                              name="employment"
+                            />
+                          </div>
 
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="Scholarships and Awards"
-                            value={
-                              this.state.educational_details
-                                .scholarships_and_awards
-                            }
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="scholarships_and_awards"
-                            name="scholarships_and_awards"
-                          />
-                        </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="Scholarships and Awards"
+                              value={
+                                this.state.educational_details
+                                  .scholarships_and_awards
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="scholarships_and_awards"
+                              name="scholarships_and_awards"
+                            />
+                          </div>
 
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="Graduating Grade"
-                            value={
-                              this.state.educational_details.graduating_grade
-                            }
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="graduating_grade"
-                            name="graduating_grade"
-                          />
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="Graduating Grade"
+                              value={
+                                this.state.educational_details.graduating_grade
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="graduating_grade"
+                              name="graduating_grade"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="GRE Score"
+                              value={this.state.educational_details.gre_score}
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="gre_score"
+                              name="gre_score"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="GMAT score"
+                              value={this.state.educational_details.gmat_score}
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="gmat_score"
+                              name="gmat_score"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              placeholder="IELTs"
+                              value={this.state.educational_details.ielts}
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="ielts"
+                              name="ielts"
+                            />
+                          </div>
+                          <br />
+                          <div className="row-full">
+                            <label>
+                              <b>Bio Bait :</b>
+                            </label>
+                            <textarea
+                              type="text"
+                              id="bio_bait"
+                              name="bio_bait"
+                              rows="4"
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              value={this.state.educational_details.bio_bait}
+                              required
+                            ></textarea>
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              value={
+                                this.state.educational_details.where_client_from
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="where_client_from"
+                              name="where_client_from"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              value={
+                                this.state.educational_details.what_jobs_client
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="what_jobs_client"
+                              name="what_jobs_client"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              value={
+                                this.state.educational_details
+                                  .client_reach_you_for
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="client_reach_you_for"
+                              name="client_reach_you_for"
+                            />
+                          </div>
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              value={
+                                this.state.educational_details
+                                  .bank_account_number
+                              }
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="bank_account_number"
+                              name="bank_account_number"
+                            />
+                          </div>
+
+                          <div className="col">
+                            <input
+                              type="text"
+                              required
+                              value={this.state.educational_details.bank_name}
+                              onChange={this.handleFormAssociateEducationalInfo}
+                              id="bank_name"
+                              name="bank_name"
+                            />
+                          </div>
                         </div>
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="GRE Score"
-                            value={this.state.educational_details.gre_score}
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="gre_score"
-                            name="gre_score"
-                          />
-                        </div>
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="GMAT score"
-                            value={this.state.educational_details.gmat_score}
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="gmat_score"
-                            name="gmat_score"
-                          />
-                        </div>
-                        <div className="col">
-                          <input
-                            type="text"
-                            required
-                            placeholder="IELTs"
-                            value={this.state.educational_details.ielts}
-                            onChange={this.handleFormAssociateEducationalInfo}
-                            id="ielts"
-                            name="ielts"
-                          />
-                        </div>
-                      <br />
-                      <div className="row-full">
-                        <label>
-                          <b>Bio Bait :</b>
-                        </label>
-                        <textarea
-                          type="text"
-                          id="bio_bait"
-                          name="bio_bait"
-                          rows="4"
-                          onChange={this.handleFormAssociateEducationalInfo}
-                          value={this.state.educational_details.bio_bait}
-                          required
-                        ></textarea>
-                      </div>
-                      <div className="col">
-                        <input
-                          type="text"
-                          required
-                          value={
-                            this.state.educational_details.where_client_from
-                          }
-                          onChange={this.handleFormAssociateEducationalInfo}
-                          id="where_client_from"
-                          name="where_client_from"
-                        />
-                      </div>
-                      <div className="col">
-                        <input
-                          type="text"
-                          required
-                          value={
-                            this.state.educational_details.what_jobs_client
-                          }
-                          onChange={this.handleFormAssociateEducationalInfo}
-                          id="what_jobs_client"
-                          name="what_jobs_client"
-                        />
-                      </div>
-                      <div className="col">
-                        <input
-                          type="text"
-                          required
-                          value={
-                            this.state.educational_details.client_reach_you_for
-                          }
-                          onChange={this.handleFormAssociateEducationalInfo}
-                          id="client_reach_you_for"
-                          name="client_reach_you_for"
-                        />
-                      </div>
-                      </div> }
+                      )}
                     </div>
 
                     <br />
@@ -452,6 +481,7 @@ export default class EditProfile extends React.Component {
               )}
             </Mutation>
           </div>
+          <br />
         </div>
       )
     }

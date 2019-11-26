@@ -36,7 +36,8 @@ class approveDeclineApplicationResumeReview extends Component {
 
         let url = DECLINE_EMAIL
         let data = {
-            expert_id: this.state.expert_id
+          expert_id: this.state.expert_id,
+          form_id: this.state.form_id,
         }
           fetch(url, {
           headers: {
@@ -52,13 +53,12 @@ class approveDeclineApplicationResumeReview extends Component {
         }).catch(function(error){
            alert("Networks Error please try again, Later!");
         })
-
-
       }else if(appStatus === "Application Approved"){
 
         let url = APPROVED_MAIL
         let data = {
-            expert_id: this.state.expert_id,
+          expert_id: this.state.expert_id,
+          form_id: this.state.form_id,
         }
           fetch(url, {
           headers: {

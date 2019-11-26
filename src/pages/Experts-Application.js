@@ -18,6 +18,8 @@ export default class ApplicationDetail extends Component {
         first_name: "",
         last_name: "",
         phone: "",
+        bank_account_number:"",
+        bank_name:"",
         form_id: "null",
         app_package: "null",
         email: "",
@@ -119,6 +121,8 @@ export default class ApplicationDetail extends Component {
       client_reach_you_for: this.state.educational_details.client_reach_you_for,
       profile_image_ref: this.state.profileImageRef,
       user_name: this.state.data.last_name + " " + this.state.data.first_name,
+      bank_account_number: this.state.data.bank_account_number,
+      bank_name: this.state.data.bank_name 
     }
     fetch(url, {
       headers: {
@@ -301,6 +305,8 @@ export default class ApplicationDetail extends Component {
       first_name,
       last_name,
       phone,
+      bank_account_number,
+      bank_name,
       form_id,
       app_package,
       email,
@@ -374,7 +380,6 @@ export default class ApplicationDetail extends Component {
         return (
           <Layout>
             <div>
-               
               <div
                 css={{
                   padding: "3em 1em",
@@ -385,12 +390,12 @@ export default class ApplicationDetail extends Component {
                   handleFormInput={this.handleFormInput}
                   verifyPassword={this.verifyPassword}
                   storePassword={this.storePassword}
-                  verifyConfirmPassword={
-                    this.verifyConfirmPassword
-                  }
+                  verifyConfirmPassword={this.verifyConfirmPassword}
                   first_name={first_name}
                   last_name={last_name}
                   phone={phone}
+                  bank_account_number={bank_account_number}
+                  bank_name={bank_name}
                   form_id={form_id}
                   app_package={app_package}
                   email={email}

@@ -103,6 +103,7 @@ class registeredExperts extends Component {
     return (
       <div>
         <Query
+          fetchPolicy="no-cache"
           query={GET_EXPERT_DETAIL_BAIT}
           onCompleted={data => {
             this.setState({

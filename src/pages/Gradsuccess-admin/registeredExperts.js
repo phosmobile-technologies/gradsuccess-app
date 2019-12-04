@@ -86,9 +86,6 @@ class registeredExperts extends Component {
             this.setState(
               {
                 displayExpertsInfo: [el],
-              },
-              () => {
-                console.log(this.state)
               }
             )
           }

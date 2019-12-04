@@ -254,7 +254,7 @@ export default class leaveAMessageForm extends React.Component {
                           (messageInstance, index) => (
                             <div>
                               {messageInstance.message_type === "image" ||
-                              messageInstance.message_type === "file" ? (
+                              messageInstance.message_type === "application" ? (
                                 <div
                                   className="container lighter"
                                   id={
@@ -282,10 +282,6 @@ export default class leaveAMessageForm extends React.Component {
                                     </div>
                                   ) : (
                                     <div className="display_message_upload_icon">
-                                      <img
-                                        className="dl_icon"
-                                        src={downloadedAttach}
-                                      />
                                       <div>
                                         <a
                                           target="_blank"
@@ -294,10 +290,15 @@ export default class leaveAMessageForm extends React.Component {
                                           {messageInstance.attachment_name}
                                         </a>
                                       </div>
+                                      <img
+                                        className="dl_icon"
+                                        src={downloadedAttach}
+                                      />
                                     </div>
                                   )}
 
                                   <p>{messageInstance.message_body}</p>
+                                  <br />
                                   <div className="msg_spec">
                                     <span className="time-right">
                                       {messageInstance.client_name}

@@ -6,7 +6,6 @@ import { CREATE_CLIENT_ACCOUNT } from "../../graphql/mutations"
 import loader from "../../../images/loader.gif"
 
 export default class ExpertBasicInfo extends React.Component {
-                
                  render() {
                    const {
                      handleFormInput,
@@ -28,7 +27,6 @@ export default class ExpertBasicInfo extends React.Component {
                                  <h3>1</h3>
                                  <p>Associate Detail</p>
                                </li>
-
                                <li>
                                  <h3>2</h3>
                                  <p>Educational Background</p>
@@ -74,7 +72,6 @@ export default class ExpertBasicInfo extends React.Component {
                                  />
                                </div>
                              </div>
-
                              <div className="row">
                                <input
                                  type="email"
@@ -86,7 +83,6 @@ export default class ExpertBasicInfo extends React.Component {
                                  onChange={handleFormInput}
                                  value={this.props.email}
                                />
-
                                <div className="col">
                                  <input
                                    type="text"
@@ -99,7 +95,6 @@ export default class ExpertBasicInfo extends React.Component {
                                  />
                                </div>
                              </div>
-
                              <div className="row">
                                  <input
                                    type="text"

@@ -22,6 +22,11 @@ export default class ApplicationDetail extends Component {
     }
 
     componentDidMount(){
+      if (this.state.form_submit_success) {
+        localStorage.removeItem("yshKSMCis129_#&NISis")
+        localStorage.removeItem("targeted")
+      } else {
+      }
         if(localStorage.getItem("yshKSMCis129_#&NISis") === null){
             window.location = '/';
         }else{

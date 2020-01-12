@@ -1,4 +1,4 @@
 export const COUPON = {
-  code: "LAUNCH50",
-  discount: 50,
+  code: "NEWYEAR10",
+  discount: 10,
 }

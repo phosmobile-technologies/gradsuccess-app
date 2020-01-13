@@ -1,5 +1,5 @@
 import React from "react"
-import{ jsx, css } from "@emotion/core"
+import { jsx, css } from "@emotion/core"
 import Layout from "../components/layout"
 import HomeHero from "../components/homeHero"
 import EssayReview from "../components/Careers/essayReview"
@@ -8,14 +8,11 @@ import ResumeReview from "../components/Careers/resumeReview"
 import ResumeRedraft from "../components/Careers/resumeRedraft"
 import careersbg from "../../images/careersbg.jpg"
 
-
 const careersBgURL = `url(${careersbg})`
 
-const breakpoints = [375, 576, 768 ]
+const breakpoints = [375, 576, 768]
 
-const mq = breakpoints.map(
-  bp => `@media (max-width: ${bp}px)`
-)
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 class CVresume extends React.Component {
   constructor(props) {
@@ -98,7 +95,7 @@ class CVresume extends React.Component {
               width: "50%",
               border: "none",
               outline: "none",
-              position:"relative"
+              position: "relative",
             }}
           >
             <button

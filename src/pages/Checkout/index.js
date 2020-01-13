@@ -10,14 +10,13 @@ class Contact extends React.Component {
   render() {
     return (
       <Layout>
-
-          <div
+        <div
           css={{
             background: "white",
             padding: "3em 1em",
           }}
         >
-        <CheckoutForm />
+          <CheckoutForm />
         </div>
       </Layout>
     )

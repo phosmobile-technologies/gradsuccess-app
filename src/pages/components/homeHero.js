@@ -22,39 +22,39 @@ class HomeHero extends React.Component {
           background: button
             ? `linear-gradient(295deg, rgba(0,169,157,0.5) 0%, rgba(0,169,157,1) 100%), ${imgUrl}`
             : `linear-gradient(295deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,.7) 100%),${imgUrl}`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: button ? 'top' : 'center',
-            backgroundSize:'cover',
-          height: button ? "450px" : '300px',
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: button ? "top" : "center",
+          backgroundSize: "cover",
+          height: button ? "450px" : "300px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
         }}
       >
         <h1
-        css={{
+          css={{
             color: "white",
             textAlign: "center",
             textTransform: "capitalize",
-            padding: '10px'
+            padding: "10px",
           }}
         >
           {title}
         </h1>
         <p
-        css={{
+          css={{
             color: "white",
             textAlign: "center",
             margin: "0 auto",
             maxWidth: "600px",
-            padding: '10px'
+            padding: "10px",
           }}
         >
           {text}
         </p>
         <div
-        css={{
-            margin: "1em auto 0"
+          css={{
+            margin: "1em auto 0",
           }}
           onClick={this.openModal}
         >

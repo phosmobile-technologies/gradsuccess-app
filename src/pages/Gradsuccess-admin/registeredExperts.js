@@ -1,5 +1,5 @@
 import { React, Component } from "react"
-import { Query } from "react-apollo";
+import { Query } from "react-apollo"
 import loader from "../../images/loader.gif"
 import Modal from "react-modal"
 import { GET_EXPERT_DETAIL_BAIT } from "../graphql/queries"
@@ -7,14 +7,14 @@ import ExpertDetail from "../FormDetailsPreview/expertDetail"
 import { PROFILE_IMAGE_REF } from "../../api/sendMailEndpoint"
 
 const defaultStyles = {
-  content : {
-    top                   : '0%',
-    left                  : '0%',
-    width                 : '100%',
-    height                : '100%',
-    backgroundColor       : 'rgba(17, 153, 146, 0.3)'
-  }
-};
+  content: {
+    top: "0%",
+    left: "0%",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(17, 153, 146, 0.3)",
+  },
+}
 
 class registeredExperts extends Component {
   constructor(props) {
@@ -24,18 +24,18 @@ class registeredExperts extends Component {
       expertID: "",
       showExpertDetail: false,
       profileImage: "",
-      selectedExpertImageurl:""
+      selectedExpertImageurl: "",
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
   }
 
-  handleOpenModal(id,url) {
+  handleOpenModal(id, url) {
     this.setState({
       expertID: id,
       showExpertDetail: true,
-      selectedExpertImageurl:url
+      selectedExpertImageurl: url,
     })
   }
   handleCloseModal() {
@@ -70,8 +70,8 @@ class registeredExperts extends Component {
             user_name: element.user_name,
             bait: element.bio_bait,
             img_url: url,
-            where_client_from:element.where_client_from,
-            ielts:element.ielts,
+            where_client_from: element.where_client_from,
+            ielts: element.ielts,
           }
           if (this.state.displayExpertsInfo) {
             this.setState(
@@ -86,6 +86,9 @@ class registeredExperts extends Component {
             this.setState(
               {
                 displayExpertsInfo: [el],
+              },
+              () => {
+                console.log(this.state)
               }
             )
           }

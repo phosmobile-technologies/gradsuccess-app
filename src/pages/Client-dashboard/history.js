@@ -1,5 +1,5 @@
-import {React,Component} from "react"
-import Footer from '../components/Footer'
+import { React, Component } from "react"
+import Footer from "../components/Footer"
 import MainLayout from "../components/ClientAccountComponents/mainLayout"
 
 class History extends Component {
@@ -14,11 +14,11 @@ class History extends Component {
     return (
       <div>
         <MainLayout />
-          <div className = "main-content"> 
-            <p>History</p>
-          </div>
+        <div className="main-content">
+          <p>History</p>
+        </div>
 
-         <Footer />
+        <Footer />
       </div>
     )
   }

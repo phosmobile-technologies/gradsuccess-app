@@ -161,7 +161,6 @@ class IndexPage extends React.Component {
           discipline="B.Eng. Biomedical Engineering Undergraduate "
           pdfURL={ScholarshipsFile}
           downloadPdf={ScholarshipsFile}
-          
         />
 
         {/*Modal popup*/}

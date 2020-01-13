@@ -1,98 +1,97 @@
 import { React, Component } from "react"
-import { Query } from "react-apollo";
+import { Query } from "react-apollo"
 import loader from "../../images/loader.gif"
 import { GET_USER } from "../graphql/queries"
-import { GET_EXPERT_DETAIL} from "../graphql/queries"
-import {EXPERT_AVERAGE_RATING} from "../../api/sendMailEndpoint"
-import StarRatingComponent from 'react-star-rating-component';
+import { GET_EXPERT_DETAIL } from "../graphql/queries"
+import { EXPERT_AVERAGE_RATING } from "../../api/sendMailEndpoint"
+import StarRatingComponent from "react-star-rating-component"
 
 class ExpertDetail extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            expertRating:0,
-            user:{
-                first_name:"",
-                last_name:"",
-                phone:"",
-                email:"",
-            },
-            userDetail:{
-                expert_id:"",
-                highest_ranked_university_attended:"",
-                qualification_at_university:"",
-                employment:"",
-                scholarships_and_awards:"",
-                graduating_grade:"",
-                gre_score:"",
-                gmat_score:"",
-                ielts:"",
-                university_transcripts:"",
-                curriculum_vitae:"",
-                bank_account_number:"",
-                bank_name:"",
-            },
-            university_transcripts:"",
-            curriculum_vitae:""
-        }
-
-        this.downloadUploadedFile = this.downloadUploadedFile.bind(this)
+  constructor(props) {
+    super(props)
+    this.state = {
+      expertRating: 0,
+      user: {
+        first_name: "",
+        last_name: "",
+        phone: "",
+        email: "",
+      },
+      userDetail: {
+        expert_id: "",
+        highest_ranked_university_attended: "",
+        qualification_at_university: "",
+        employment: "",
+        scholarships_and_awards: "",
+        graduating_grade: "",
+        gre_score: "",
+        gmat_score: "",
+        ielts: "",
+        university_transcripts: "",
+        curriculum_vitae: "",
+        bank_account_number: "",
+        bank_name: "",
+      },
+      university_transcripts: "",
+      curriculum_vitae: "",
     }
 
+    this.downloadUploadedFile = this.downloadUploadedFile.bind(this)
+  }
 
-componentDidMount(){
+  componentDidMount() {
     let url = EXPERT_AVERAGE_RATING
     let data = {
-        expert_id: this.props.expertID,
-        
+      expert_id: this.props.expertID,
     }
     fetch(url, {
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-       },
-        method: "post",
-        body: JSON.stringify(data)
-    }).then(function(response){
-        return response.text()
-    }).then((text)=>{
-        this.setState({
-            expertRating:text
-        })
-    }).catch(function(error){
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "post",
+      body: JSON.stringify(data),
     })
-}
+      .then(function(response) {
+        return response.text()
+      })
+      .then(text => {
+        this.setState({
+          expertRating: text,
+        })
+      })
+      .catch(function(error) {})
+  }
 
-onStarClick(nextValue, prevValue, name) {
-}
+  onStarClick(nextValue, prevValue, name) {}
 
-
-    downloadUploadedFile(target, downloadRef) {
-        const firebase = require("firebase")
-        const config = {
-            apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
-            authDomain: "gradsuccess.firebaseapp.com",
-            databaseURL: "https://gradsuccess.firebaseio.com",
-            projectId: "gradsuccess",
-            storageBucket: "gradsuccess.appspot.com",
-            messagingSenderId: "1038128602103",
-            appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
-        }
-        if (!firebase.apps.length) {
-            firebase.initializeApp(config)
-        }
-        var storageRef = firebase.storage().ref(downloadRef)
-
-        storageRef.getDownloadURL().then((url) => {
-            this.setState({
-                [target]: url
-            })
-        }).catch((error) => {
-
-        });
+  downloadUploadedFile(target, downloadRef) {
+    const firebase = require("firebase")
+    const config = {
+      apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+      authDomain: "gradsuccess.firebaseapp.com",
+      databaseURL: "https://gradsuccess.firebaseio.com",
+      projectId: "gradsuccess",
+      storageBucket: "gradsuccess.appspot.com",
+      messagingSenderId: "1038128602103",
+      appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
     }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
+    var storageRef = firebase.storage().ref(downloadRef)
 
-render() {
+    storageRef
+      .getDownloadURL()
+      .then(url => {
+        this.setState({
+          [target]: url,
+        })
+      })
+      .catch(error => {})
+  }
+
+  render() {
     return (
       <div>
         <Query
@@ -259,7 +258,7 @@ render() {
                   <small>Bank Name</small>
                   <p>{this.state.userDetail.bank_name}</p>
                 </div>
-                
+
                 <div className="form_preview_fields">
                   <small>Scholarships and Awards:</small>
                   <p>{this.state.userDetail.scholarships_and_awards}</p>
@@ -298,6 +297,6 @@ render() {
         </div>
       </div>
     )
+  }
 }
-}
-export default ExpertDetail;
+export default ExpertDetail

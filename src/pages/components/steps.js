@@ -4,11 +4,9 @@ import step1 from "../../images/step1.svg"
 import step2 from "../../images/step2.svg"
 import step3 from "../../images/step3.svg"
 
-const breakpoints = [375, 576, 768 ]
+const breakpoints = [375, 576, 768]
 
-const mq = breakpoints.map(
-  bp => `@media (max-width: ${bp}px)`
-)
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const ImgStyles = {
   width: "100px",
@@ -18,14 +16,14 @@ const ImgStyles = {
 const DivStyles = {
   padding: "1em",
   flex: 1,
-  minWidth: '200px',
-  textAlign:'center'
+  minWidth: "200px",
+  textAlign: "center",
 }
 
 const TextStyles = {
   fontSize: "14px",
-  textAlign: 'center',
-  textJustify: 'inter-word',
+  textAlign: "center",
+  textJustify: "inter-word",
 }
 
 const Steps = () => (
@@ -34,8 +32,8 @@ const Steps = () => (
       display: "flex",
       padding: "1em 10%",
       [mq[2]]: {
-        flexDirection: 'column'
-    }
+        flexDirection: "column",
+      },
     }}
   >
     <div css={DivStyles}>
@@ -43,13 +41,16 @@ const Steps = () => (
       <h4
         css={{
           margin: "7px 0",
-          textTransform: "capitalize"
+          textTransform: "capitalize",
         }}
       >
         Don't Hesitate to Engage us
       </h4>
       <p css={TextStyles}>
-        Talk to us about your needs. We are most concerned about your advancement in career or academia, and for this reason, we have equipped ourselves with the skills needed to fine-tune your essays and resumes for the best results.
+        Talk to us about your needs. We are most concerned about your
+        advancement in career or academia, and for this reason, we have equipped
+        ourselves with the skills needed to fine-tune your essays and resumes
+        for the best results.
       </p>
     </div>
     <div css={DivStyles}>

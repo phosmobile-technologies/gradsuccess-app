@@ -14,7 +14,7 @@ const inputStyle = {
   fontSize: "20px",
   borderBottom: "1px solid gray",
   width: "45%",
-  fontFamily: 'Lato',
+  fontFamily: "Lato",
   marginBottom: "70px",
 }
 
@@ -32,17 +32,17 @@ const button = {
   justifySelf: "center",
   color: "#111",
   fontWeight: "bold",
-  fontFamily: 'Lato',
+  fontFamily: "Lato",
   margin: "0px auto",
   cursor: "pointer",
   ":hover": {
     background: "#47dcbc",
     color: "yellow",
     border: "none",
-    outline: "none"
+    outline: "none",
   },
   transition: "all .2s ease-out",
-  boxShadow: '0 3px 10px rgba(0,0,0,0.5)'
+  boxShadow: "0 3px 10px rgba(0,0,0,0.5)",
 }
 
 const MessageUs = () => (
@@ -82,7 +82,8 @@ const MessageUs = () => (
             css={{ display: "flex", flexWrap: "wrap" }}
             name="contact"
             netlify
-            method="POST" data-netlify="true"
+            method="POST"
+            data-netlify="true"
           >
             <input
               type="text"
@@ -92,8 +93,15 @@ const MessageUs = () => (
                 ${inputStyle};
                 margin-right: 5%;
               `}
-             required />
-            <input type="text" placeholder="Email Address" name="email" css={inputStyle} required/>
+              required
+            />
+            <input
+              type="text"
+              placeholder="Email Address"
+              name="email"
+              css={inputStyle}
+              required
+            />
             <br /> <br />
             <input
               type="text"
@@ -112,7 +120,8 @@ const MessageUs = () => (
                 ${inputStyle};
                 width: 95%;
               `}
-             required />
+              required
+            />
             {/* Describe */}
             <button css={button} name="submit" type="submit">
               {" "}

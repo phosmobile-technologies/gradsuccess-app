@@ -14,13 +14,13 @@ const aboutBgURL = `url(${aboutBg})`
 const modal = { backgroundColor: "#E9E9E4" }
 
 const inputTab = {
-  minWidth: '255px',
+  minWidth: "255px",
   height: "40px",
   margin: "0px 30px",
   background: "white",
   outline: "none",
   border: "none",
-  fontFamily: 'Lato',
+  fontFamily: "Lato",
   textIndent: "10px",
 }
 
@@ -28,10 +28,9 @@ const steps = {
   textAlign: "center",
   color: "#19a99d",
   marginBottom: "10px",
-  fontFamily: 'Lato',
+  fontFamily: "Lato",
   fontWeight: "bolder",
 }
-
 
 const breakpoints = [375, 576, 768]
 
@@ -44,13 +43,12 @@ const text3 = "History"
 const text4 = `In 2013, GradSuccess was formed as a tutorial club for final year students at Covenant University. Initially, the group which was called Club 340 at the time was devoted to tutoring it's members, some of the highest performing students across the set, for aptitude tests (such as McKinsey's PST), and popular graduate school exams like the GRE and GMAT. Since 2013, GradSuccess has expanded its services cover clients outside of the university space. Previously, our focus was on candidates at undergraduate or graduate school level, but this has since evolved to include entry-level to experienced professionals looking to advance careers with a new role or by attaining a second degree.
 `
 
-
 class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       disabled: true,
-      firstUrl: ""
+      firstUrl: "",
     }
     this.handleRedirect = this.handleRedirect.bind(this)
     this.handleEnable = this.handleEnable.bind(this)
@@ -84,7 +82,7 @@ class Search extends React.Component {
       >
         <h2
           css={{
-            fontFamily: 'Lato',
+            fontFamily: "Lato",
             textAlign: "center",
           }}
         >
@@ -123,7 +121,6 @@ class Search extends React.Component {
   }
 }
 
-
 class AboutUs extends React.Component {
   constructor(props) {
     super(props)
@@ -151,12 +148,15 @@ class AboutUs extends React.Component {
           imgUrl={aboutBgURL}
           openModal={this.onOpenModal}
         />
-        <AboutBox first={text1} second={text2} third={""}/>
-        <AboutBox first={text3} second={text4} third={""}/>
+        <AboutBox first={text1} second={text2} third={""} />
+        <AboutBox first={text3} second={text4} third={""} />
         {/* Breaker */}
         <FeaturedTestimonial openModal={this.onOpenModal} />
 
-        <AboutBox first={"Our Charge"} third={"Dear Client,"} second={`GradSuccess affords you expert assistance on some of your most important graduate
+        <AboutBox
+          first={"Our Charge"}
+          third={"Dear Client,"}
+          second={`GradSuccess affords you expert assistance on some of your most important graduate
                           school and professional ambitions. In the last 10 years, we have leveraged top-notch
                           excellence of our associate pool made up of professionals from some of the most elite
                           institutions to assist young graduates and professionals achieve the finest quality
@@ -166,20 +166,21 @@ class AboutUs extends React.Component {
                           highest quality work. With a rigid and disciplined culture, we are set out to tread a
                           new path in the career and academic consultancy space, and we are not going to rest
                           on our oars. We will continue to build on our successes with our clients, creating a
-                          resilient and truly transformational partnership in the process.`} />
-      
+                          resilient and truly transformational partnership in the process.`}
+        />
+
         {/*Modal popup*/}
         <Modal
-        open={open}
-        onClose={this.onCloseModal}
-        center
-        styles={{ modal }}
-      >
-        <div>
-          {" "}
-          <Search />{" "}
-        </div>
-      </Modal>
+          open={open}
+          onClose={this.onCloseModal}
+          center
+          styles={{ modal }}
+        >
+          <div>
+            {" "}
+            <Search />{" "}
+          </div>
+        </Modal>
       </Layout>
     )
   }

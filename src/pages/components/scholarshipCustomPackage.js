@@ -25,9 +25,15 @@ class scholarshipCustomPackage extends Component {
               {" "}
               A Quick Glance at Our Essay Review Plans On this plan, we
               critically access the bigger story–Your assigned associate will
-              assess your essays and check them for overall engagement.<br />
-
-              <Link to="/Scholarships/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              assess your essays and check them for overall engagement.
+              <br />
+              <Link
+                to="/Scholarships/cv-resume"
+                activeStyle={{ color: "white" }}
+                className="pad"
+              >
+                More Detais
+              </Link>
               <br />
             </p>
             <div class="cu-container-inner">
@@ -48,14 +54,19 @@ class scholarshipCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
-          <div className = "comming_soon">Comming Soon!</div>
+            <div className="comming_soon">Comming Soon!</div>
             <h1>Resume Redraft Plans</h1>
             <p>
-              
               The Essay Redraft Plan is designed to boost your confidence going
               into the most competitive application processes.
               <br />
-              <Link to="/Scholarships/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link
+                to="/Scholarships/cv-resume"
+                activeStyle={{ color: "white" }}
+                className="pad"
+              >
+                More Detais
+              </Link>
               <br />
             </p>
             <div class="cu-container-inner">
@@ -81,9 +92,14 @@ class scholarshipCustomPackage extends Component {
               A Quick Glance at Our Essay Review Plans On this plan, we
               critically access the bigger story–Your assigned associate will
               assess your essays and check them for overall engagement.
-              <br /> 
-
-              <Link to="/Scholarships/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <br />
+              <Link
+                to="/Scholarships/essays"
+                activeStyle={{ color: "white" }}
+                className="pad"
+              >
+                More Detais
+              </Link>
               <br />
             </p>
             <div class="cu-container-inner">
@@ -103,13 +119,19 @@ class scholarshipCustomPackage extends Component {
           </div>
 
           <div class="cu-container">
-          <div className = "comming_soon">Comming Soon!</div>
+            <div className="comming_soon">Comming Soon!</div>
             <h1>Essay Redraft Plans</h1>
             <p>
               The Essay Redraft Plan is designed to boost your confidence going
               into the most competitive application processes.
               <br />
-              <Link to="/Scholarships/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <Link
+                to="/Scholarships/essays"
+                activeStyle={{ color: "white" }}
+                className="pad"
+              >
+                More Detais
+              </Link>
               <br />
             </p>
             <div class="cu-container-inner">

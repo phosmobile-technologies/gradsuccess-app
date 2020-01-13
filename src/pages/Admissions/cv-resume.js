@@ -58,7 +58,6 @@ class CVresume extends React.Component {
               border: "none",
               outline: "none",
               verticalAlign: "middle",
-
             }}
           >
             <button
@@ -93,7 +92,7 @@ class CVresume extends React.Component {
               width: "50%",
               border: "none",
               outline: "none",
-              position:"relative"
+              position: "relative",
             }}
           >
             <button
@@ -113,7 +112,6 @@ class CVresume extends React.Component {
                 css={{
                   marginBottom: "0px",
                   color: this.state.redraftTab ? "white" : "#19a99d",
-
                 }}
               >
                 {" "}

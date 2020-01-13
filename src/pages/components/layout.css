@@ -1652,36 +1652,35 @@ progress {
 }
 .promotion-banner-wrapper {
   left: 0px;
-    display: flex;
-    background-color: #00a99d;
-    justify-content: center;
-    justify-items: center;
-    overflow: hidden;
-    transition: 1s;
-    transition-timing-function: ease-out;
-    position: fixed;
-    width: 20%;
-    bottom: 0px;
-    z-index: 20000;
-    height: 0vh;
-
+  display: flex;
+  background-color: #00a99d;
+  justify-content: center;
+  justify-items: center;
+  overflow: hidden;
+  transition: 1s;
+  transition-timing-function: ease-out;
+  position: fixed;
+  width: 20%;
+  bottom: 0px;
+  z-index: 20000;
+  height: 0vh;
 }
-.top_coupon{
-    text-align: center;
-    padding: 7px;
-    background-color: #47dcbc;
-    font-family: "Lato", sans-serif;
-    font-size: 12px;
+.top_coupon {
+  text-align: center;
+  padding: 7px;
+  background-color: #47dcbc;
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
 }
 .top_coupon span {
   background-color: yellow;
-    color: black;
-    padding: 5px 10px;
-    margin-left: 10px;
-    font-family: "Lato", sans-serif;
-    font-size: 12px;
-    border-radius: 3px;
-    font-weight: 800;
+  color: black;
+  padding: 5px 10px;
+  margin-left: 10px;
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  border-radius: 3px;
+  font-weight: 800;
 }
 .promotion-banner {
   display: flex;
@@ -1707,20 +1706,19 @@ progress {
 }
 .promotion-banner h3 {
   font-size: 20px;
-    text-align: center;
-    justify-content: center;
-    color: white;
-    margin-bottom: 0px;
-    padding: 5px;
-    width: 70%;
-    margin: auto;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 0px;
+  padding: 5px;
+  width: 70%;
+  margin: auto;
 }
 .promotion-banner h1 {
   margin-bottom: 0;
   font-size: 25px;
   margin-right: 10px;
   margin-top: 5px;
-
 }
 .promotion-banner span {
   background-color: yellow;
@@ -1741,7 +1739,7 @@ progress {
   color: white;
 }
 
-.closePromo{
+.closePromo {
   position: absolute;
   right: 5px;
   width: 20px;
@@ -1752,12 +1750,12 @@ progress {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: .5;
+  opacity: 0.5;
   font-size: 10px;
   top: 5px;
   cursor: pointer;
 }
-.closePromo:hover{
+.closePromo:hover {
   opacity: 0.2;
 }
 
@@ -1966,7 +1964,7 @@ progress {
   color: #00a99d;
   font-weight: bold;
 }
-.summary-div a:hover{
+.summary-div a:hover {
   border-bottom: 1px solid;
 }
 
@@ -2093,21 +2091,20 @@ progress {
 .listing-grouping {
   width: 35%;
 }
-.listing-grouping h4{
+.listing-grouping h4 {
   text-align: left;
   text-transform: initial;
 }
 
-
-.selectItems-wrapper{
-      width: 68%;
-    margin: auto;
-    background-color: #47dcbc;
-    padding: 20px;
-    margin-bottom: 50px;
-    margin-top: -50px;
+.selectItems-wrapper {
+  width: 68%;
+  margin: auto;
+  background-color: #47dcbc;
+  padding: 20px;
+  margin-bottom: 50px;
+  margin-top: -50px;
 }
-.selectItems{
+.selectItems {
   width: 50%;
   background-color: white;
   margin: 10px 0px;
@@ -2180,7 +2177,7 @@ progress {
   cursor: pointer;
   visibility: hidden;
 }
-.selectItemsBtn{
+.selectItemsBtn {
   background-color: yellow;
   border: none;
   padding: 10px 50px;
@@ -2192,12 +2189,12 @@ progress {
   font-family: "Lato", sans-serif;
 }
 
-.selectItemsBtn:hover{
+.selectItemsBtn:hover {
   background-color: black;
   color: white;
 }
 
-.email_e{
+.email_e {
   background-color: rgba(255, 0, 0, 0.8);
   font-weight: bold;
   font-size: 12px;
@@ -2207,14 +2204,14 @@ progress {
 }
 
 @media only screen and (max-width: 1100px) {
-  .expert-specific-wrapper{
+  .expert-specific-wrapper {
     width: 97%;
   }
 }
 
 @media only screen and (max-width: 819px) {
   .listing-grouping {
-      width: 45%;
+    width: 45%;
   }
 }
 
@@ -2226,43 +2223,43 @@ progress {
     justify-content: space-evenly;
   }
 
-  .promotion-banner-wrapper{
+  .promotion-banner-wrapper {
     width: 100%;
   }
-  .promotion-per{
-        padding-top: 20px;
+  .promotion-per {
+    padding-top: 20px;
   }
-  .promotion-banner h1{
+  .promotion-banner h1 {
     font-size: 30px;
     margin-top: 0px;
-}
-.promotion-banner h2{
-  padding-bottom: 0px;
-  margin: 0px;
-  text-align: center;
-}
-.promotion-banner h3{
-  font-size: 14px;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  width: 70%;
-  margin: auto;
-}
+  }
+  .promotion-banner h2 {
+    padding-bottom: 0px;
+    margin: 0px;
+    text-align: center;
+  }
+  .promotion-banner h3 {
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    width: 70%;
+    margin: auto;
+  }
 
-  .featured-experts-single{
+  .featured-experts-single {
     flex-direction: column;
   }
-  .summary-div{
+  .summary-div {
     width: 90%;
     margin-left: 0px;
     text-align: center;
     margin-top: 10px;
   }
-  .expert-specific-wrapper{
+  .expert-specific-wrapper {
     width: 100%;
   }
-  .expert-specific-wrapper h2{
+  .expert-specific-wrapper h2 {
     width: 90%;
     font-size: 16px;
     margin: auto;
@@ -2271,96 +2268,96 @@ progress {
   }
 
   .admission-listing-inner,
-.career-listing-inner,
-.scholarships-listing-inner {
-  flex-direction: column;
-}
-.expert-specific-request .form{
-  padding: 0px;
-}
+  .career-listing-inner,
+  .scholarships-listing-inner {
+    flex-direction: column;
+  }
+  .expert-specific-request .form {
+    padding: 0px;
+  }
 
-.admission-listing, .career-listing, .scholarships-listing{
-  width: 100%;
-  background-color: white;
-  padding: 10px 0px;
-  margin: 0px;
-  border-top: 20px solid black;
-  padding-top: 50px;
-}
-.listing-grouping h4{
-  margin-left: 20px;
-}
-.expert-specific-request .inputGroup label{
-  width: 90%;
-  margin: auto
-}
-.listing-grouping{
-  width: 100%;
-  margin: auto;
-}
-.selectItems-wrapper{
-   width: 100%;
+  .admission-listing,
+  .career-listing,
+  .scholarships-listing {
+    width: 100%;
+    background-color: white;
+    padding: 10px 0px;
+    margin: 0px;
+    border-top: 20px solid black;
+    padding-top: 50px;
+  }
+  .listing-grouping h4 {
+    margin-left: 20px;
+  }
+  .expert-specific-request .inputGroup label {
+    width: 90%;
+    margin: auto;
+  }
+  .listing-grouping {
+    width: 100%;
+    margin: auto;
+  }
+  .selectItems-wrapper {
+    width: 100%;
     padding: 5px;
     margin-top: 0px;
-}
-.selectItems{
-  width: 100%;
-}
-.featured-experts h2{
-  margin-bottom: 50px;
-  margin-top: -50px;
-  text-align: center;
-}
-.featured-experts-inner{
-  width: 100%;
-
-}
-.featured-experts-single{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  margin-left: 00px;
-  margin-top: 20px;
-}
+  }
+  .selectItems {
+    width: 100%;
+  }
+  .featured-experts h2 {
+    margin-bottom: 50px;
+    margin-top: -50px;
+    text-align: center;
+  }
+  .featured-experts-inner {
+    width: 100%;
+  }
+  .featured-experts-single {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 00px;
+    margin-top: 20px;
+  }
 }
 @media only screen and (max-width: 500px) {
-  
-  .promotion-banner-wrapper{
+  .promotion-banner-wrapper {
     width: 100%;
   }
-  .promotion-per{
-        padding-top: 20px;
+  .promotion-per {
+    padding-top: 20px;
   }
-  .promotion-banner h1{
+  .promotion-banner h1 {
     font-size: 30px;
     margin-top: 0px;
-}
-.promotion-banner h2{
-  font-size: 18px;
-}
-.promotion-banner h3{
-  font-size: 14px;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  width: 70%;
-  margin: auto;
-}
+  }
+  .promotion-banner h2 {
+    font-size: 18px;
+  }
+  .promotion-banner h3 {
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    width: 70%;
+    margin: auto;
+  }
 
-  .featured-experts-single{
+  .featured-experts-single {
     flex-direction: column;
   }
-  .summary-div{
+  .summary-div {
     width: 90%;
     margin-left: 0px;
     text-align: center;
     margin-top: 10px;
   }
-  .expert-specific-wrapper{
+  .expert-specific-wrapper {
     width: 100%;
   }
-  .expert-specific-wrapper h2{
+  .expert-specific-wrapper h2 {
     width: 90%;
     font-size: 16px;
     margin: auto;
@@ -2369,58 +2366,59 @@ progress {
   }
 
   .admission-listing-inner,
-.career-listing-inner,
-.scholarships-listing-inner {
-  flex-direction: column;
-}
-.expert-specific-request .form{
-  padding: 0px;
-}
+  .career-listing-inner,
+  .scholarships-listing-inner {
+    flex-direction: column;
+  }
+  .expert-specific-request .form {
+    padding: 0px;
+  }
 
-.admission-listing, .career-listing, .scholarships-listing{
-  width: 100%;
-  background-color: white;
-  padding: 10px 0px;
-  margin: 0px;
-  border-top: 20px solid black;
-  padding-top: 50px;
-}
-.listing-grouping h4{
-  margin-left: 20px;
-}
-.expert-specific-request .inputGroup label{
-  width: 90%;
-  margin: auto
-}
-.listing-grouping{
-  width: 100%;
-  margin: auto;
-}
-.selectItems-wrapper{
-   width: 100%;
+  .admission-listing,
+  .career-listing,
+  .scholarships-listing {
+    width: 100%;
+    background-color: white;
+    padding: 10px 0px;
+    margin: 0px;
+    border-top: 20px solid black;
+    padding-top: 50px;
+  }
+  .listing-grouping h4 {
+    margin-left: 20px;
+  }
+  .expert-specific-request .inputGroup label {
+    width: 90%;
+    margin: auto;
+  }
+  .listing-grouping {
+    width: 100%;
+    margin: auto;
+  }
+  .selectItems-wrapper {
+    width: 100%;
     padding: 5px;
     margin-top: 0px;
-}
-.selectItems{
-  width: 100%;
-}
-.featured-experts h2{
-  margin-bottom: 50px;
-  margin-top: -50px;
-  text-align: center;
-}
-.featured-experts-inner{
-  width: 100%;
-
-}
-.featured-experts-single{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  margin-left: 00px;
-  margin-top: 20px;
-}
+  }
+  .selectItems {
+    width: 100%;
+  }
+  .featured-experts h2 {
+    margin-bottom: 50px;
+    margin-top: -50px;
+    text-align: center;
+  }
+  .featured-experts-inner {
+    width: 100%;
+  }
+  .featured-experts-single {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 00px;
+    margin-top: 20px;
+  }
   #uploader {
     width: 100%;
   }

@@ -13,14 +13,13 @@ export default class itemInCart extends Component {
       totalAmount: 0,
       discountedAmount: 0,
       cartItem: 0,
-      ItemInCar:null,
+      ItemInCar: null,
       hasCoupon: false,
       coupon: "",
       couponError: false,
       couponAplied: false,
       cApplied: true,
-      applyingCoupon:false
-
+      applyingCoupon: false,
     }
 
     this.DeleteItem = this.DeleteItem.bind(this)
@@ -32,50 +31,47 @@ export default class itemInCart extends Component {
 
   handleForm(e) {
     const { name, value } = e.target
-    this.setState(
-      {
-        [name]: value,
-      }
-    )
+    this.setState({
+      [name]: value,
+    })
   }
   applyCoupon() {
     this.setState({
-        applyingCoupon:true
+      applyingCoupon: true,
     })
-    setTimeout(()=>{
-        if (this.state.coupon === " ") {
-            this.setState({
-              couponMessage: "Coupon code can not be empty",
-              couponError: true,
-              applyingCoupon:false
-            })
-          } else if (COUPON.code !== this.state.coupon) {
-            this.setState({
-              couponMessage: "Sorry, coupon has expired.",
-              couponError: true,
-              applyingCoupon:false
-            })
-          } else {
-            const discounttedAmount = (this.state.totalAmount / 100) * COUPON.discount
-            const newAmount = this.state.totalAmount - discounttedAmount
-            this.setState({
-              couponError: false,
-              couponAplied: true,
-              applyingCoupon:false,
-              discountedAmount:newAmount,
-              totalAmount:newAmount,
-              cApplied:false
-            })
+    setTimeout(() => {
+      if (this.state.coupon === " ") {
+        this.setState({
+          couponMessage: "Coupon code can not be empty",
+          couponError: true,
+          applyingCoupon: false,
+        })
+      } else if (COUPON.code !== this.state.coupon) {
+        this.setState({
+          couponMessage: "Sorry, coupon has expired.",
+          couponError: true,
+          applyingCoupon: false,
+        })
+      } else {
+        const discounttedAmount =
+          (this.state.totalAmount / 100) * COUPON.discount
+        const newAmount = this.state.totalAmount - discounttedAmount
+        this.setState({
+          couponError: false,
+          couponAplied: true,
+          applyingCoupon: false,
+          discountedAmount: newAmount,
+          totalAmount: newAmount,
+          cApplied: false,
+        })
 
-
-            setTimeout(()=>{
-              this.setState({
-                couponAplied:false
-              })
-            }, 10000)
-          }
-    },2000)
-    
+        setTimeout(() => {
+          this.setState({
+            couponAplied: false,
+          })
+        }, 10000)
+      }
+    }, 2000)
   }
 
   showCoupon() {
@@ -89,8 +85,7 @@ export default class itemInCart extends Component {
       return {
         totalAmount:
           preState.totalAmount + Number(num.Price.replace(/\D/g, "")),
-          cApplied:true
-
+        cApplied: true,
       }
     })
   }
@@ -122,9 +117,9 @@ export default class itemInCart extends Component {
   }
 
   componentDidMount() {
-    if(localStorage.getItem("ItemsInCart") === "undefined"){
-        window.location = '/'
-    }else{
+    if (localStorage.getItem("ItemsInCart") === "undefined") {
+      window.location = "/"
+    } else {
       let _item = localStorage.getItem("ItemsInCart")
       let cartItem = JSON.parse(localStorage.getItem("ItemsInCart")) || []
       let couponApplied = localStorage.getItem("couponApplied")
@@ -135,10 +130,9 @@ export default class itemInCart extends Component {
       }
       this.setState({
         cartItem: cartItem.length,
-        ItemInCart: "itemExist"
+        ItemInCart: "itemExist",
       })
     }
-    
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -155,60 +149,66 @@ export default class itemInCart extends Component {
           cartItem: cartItem.length,
         })
       }
-    }else{
-      if(this.state.cartItem != 2){
-           this.setState({
-          cartItem: 2
-          })
+    } else {
+      if (this.state.cartItem != 2) {
+        this.setState({
+          cartItem: 2,
+        })
       }
     }
   }
 
-  setPackageVariable(itemInCart){
-        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-        var string_length = 12;
-        var randomstring = '';
+  setPackageVariable(itemInCart) {
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ"
+    var string_length = 12
+    var randomstring = ""
 
-        for (var i = 0; i < string_length; i++) {
-            var rnum = Math.floor(Math.random() * chars.length);
-            randomstring += chars.substring(rnum, rnum + 1);
-        }
+    for (var i = 0; i < string_length; i++) {
+      var rnum = Math.floor(Math.random() * chars.length)
+      randomstring += chars.substring(rnum, rnum + 1)
+    }
 
-        if(itemInCart.length > 0){
-        var form = itemInCart[0].form;
-        }else{
-          var form = "nil"
-        }
-        localStorage.setItem("form_id", randomstring);
-        localStorage.setItem("package", form);
+    if (itemInCart.length > 0) {
+      var form = itemInCart[0].form
+    } else {
+      var form = "nil"
+    }
+    localStorage.setItem("form_id", randomstring)
+    localStorage.setItem("package", form)
   }
-
 
   componentWillUnmount() {
     let cartItem = JSON.parse(localStorage.getItem("ItemsInCart")) || []
     if (cartItem.length >= 3) {
       localStorage.setItem("CheckoutAmount", this.state.discountedAmount)
-      this.setPackageVariable(cartItem);
+      this.setPackageVariable(cartItem)
     } else {
       localStorage.setItem("CheckoutAmount", this.state.totalAmount)
-      this.setPackageVariable(cartItem);
+      this.setPackageVariable(cartItem)
     }
   }
 
   render() {
     return (
       <div>
-       {this.state.Items.length === 0 ? 
-         <div className = "emptyCart">
-           <p css={{
-              textAlign:"center"
-            }}>Nothing in Cart
+        {this.state.Items.length === 0 ? (
+          <div className="emptyCart">
+            <p
+              css={{
+                textAlign: "center",
+              }}
+            >
+              Nothing in Cart
             </p>
           </div>
-          :
+        ) : (
           <div className="cart-container">
             {this.state.cartItem >= 3 && (
-              <img className="discounted" src={discouted} alt="Promo Discount" />
+              <img
+                className="discounted"
+                src={discouted}
+                alt="Promo Discount"
+              />
             )}
             <div className="cart-container-inner">
               <h1>Cart</h1>
@@ -236,26 +236,23 @@ export default class itemInCart extends Component {
                   <div>Total</div>
 
                   {this.state.cartItem >= 3 && (
-                    <div className  = "priceContainer">
+                    <div className="priceContainer">
                       <span className="strikedPrice">
                         N
                         {this.state.totalAmount
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </span>
-                      <span className  = "disPrice">
+                      <span className="disPrice">
                         N
                         {this.state.discountedAmount
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </span>
                       {this.state.couponAplied && (
-                        <div className="couponAplied">
-                          Coupon Applied.
-                        </div>
+                        <div className="couponAplied">Coupon Applied.</div>
                       )}
                     </div>
-
                   )}
 
                   {this.state.cartItem < 3 && (
@@ -267,68 +264,54 @@ export default class itemInCart extends Component {
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </span>
                       {this.state.couponAplied && (
-                        <div className="couponAplied">
-                          Coupon Applied.
-                        </div>
+                        <div className="couponAplied">Coupon Applied.</div>
                       )}
                     </div>
                   )}
-
-                  
                 </div>
                 {this.state.cApplied && (
-                          <div className="couponWrapper">
-                            <button
-                              className="couponBtn"
-                              type="button"
-                              onClick={this.showCoupon}
-                            >
-                              I have Coupon code
-                            </button>
+                  <div className="couponWrapper">
+                    <button
+                      className="couponBtn"
+                      type="button"
+                      onClick={this.showCoupon}
+                    >
+                      I have Coupon code
+                    </button>
 
-                            {this.state.couponError && (
-                              <div className="couponError">
-                                {this.state.couponMessage}
-                              </div>
-                            )}
-                            
+                    {this.state.couponError && (
+                      <div className="couponError">
+                        {this.state.couponMessage}
+                      </div>
+                    )}
 
-                            {this.state.hasCoupon && (
-                              <div className="couponDiv">
-                                <input
-                                  type="text"
-                                  name="coupon"
-                                  id="coupon"
-                                  placeholder="Your Coupon"
-                                  onChange={this.handleForm}
-                                />{" "}
-                                <button
-                                  type="button"
-                                  onClick={this.applyCoupon}
-                                >
-                                  {this.state.applyingCoupon ? (
-                                   "Applying"
-                                  ) : (
-                                    "Apply"
-                                  )}
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        )}
+                    {this.state.hasCoupon && (
+                      <div className="couponDiv">
+                        <input
+                          type="text"
+                          name="coupon"
+                          id="coupon"
+                          placeholder="Your Coupon"
+                          onChange={this.handleForm}
+                        />{" "}
+                        <button type="button" onClick={this.applyCoupon}>
+                          {this.state.applyingCoupon ? "Applying" : "Apply"}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
-            
-            
+
             <div className="btn-wrap">
-              
               <Link to="/Checkout">
                 <button className="checkout-button">Checkout</button>
               </Link>
             </div>
           </div>
-        }
-        </div>
+        )}
+      </div>
     )
   }
 }

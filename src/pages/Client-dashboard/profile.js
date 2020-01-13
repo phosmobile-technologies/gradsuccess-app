@@ -1,5 +1,5 @@
-import {React,Component} from "react"
-import Footer from '../components/Footer'
+import { React, Component } from "react"
+import Footer from "../components/Footer"
 
 import MainLayout from "../components/ClientAccountComponents/mainLayout"
 
@@ -13,12 +13,12 @@ class Profile extends Component {
 
   render() {
     return (
-     <div>
+      <div>
         <MainLayout />
-          <div className = "main-content"> 
-                  <p>Profile</p>
-          </div>
-          <Footer />
+        <div className="main-content">
+          <p>Profile</p>
+        </div>
+        <Footer />
       </div>
     )
   }

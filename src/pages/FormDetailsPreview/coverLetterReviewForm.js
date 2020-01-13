@@ -1,150 +1,167 @@
 import { React, Component } from "react"
-import { Query } from "react-apollo";
+import { Query } from "react-apollo"
 import loader from "../../images/loader.gif"
-import {COVER_LETTER_REVIEW_FORM} from "../graphql/queries"
+import { COVER_LETTER_REVIEW_FORM } from "../graphql/queries"
 import ExpertInCharge from "../Client-dashboard/getExpertInCharge"
 import ApproveDeclineApplicationCoverLetterReview from "../ApproveDeclineComponents/approveDeclineApplicationCoverLetterReview"
-import CompleteRateCoverLetterReview from "../CompleteRateComponent/completeRateCoverLetterReview";
-import GetApplicationRating from "./getApplicationRating";
-
-
-
+import CompleteRateCoverLetterReview from "../CompleteRateComponent/completeRateCoverLetterReview"
+import GetApplicationRating from "./getApplicationRating"
 
 class CoverLetterReviewForm extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            open: false,
-            form_id:props.userID || "empty",
-            fileUrl:"",
-            fileNotAvailable:false
-
-        }
-
-        this.downloadUploadedFile = this.downloadUploadedFile.bind(this);
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false,
+      form_id: props.userID || "empty",
+      fileUrl: "",
+      fileNotAvailable: false,
     }
 
+    this.downloadUploadedFile = this.downloadUploadedFile.bind(this)
+  }
 
-
-    downloadUploadedFile(downloadRef){
-        const firebase = require("firebase")
-        const config = {
-          apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
-          authDomain: "gradsuccess.firebaseapp.com",
-          databaseURL: "https://gradsuccess.firebaseio.com",
-          projectId: "gradsuccess",
-          storageBucket: "gradsuccess.appspot.com",
-          messagingSenderId: "1038128602103",
-          appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
-        }
-        if (!firebase.apps.length) {
-           firebase.initializeApp(config)
-        }
-        var storageRef = firebase.storage().ref(downloadRef)
-
-       storageRef.getDownloadURL().then((url) =>{
-          this.setState({
-              fileUrl:url
-          })
-       
-        }).catch((error) => {
-
-         switch (error.code) {
-            case 'storage/object-not-found':
-             this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-
-            case 'storage/unauthorized':
-               this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-
-            case 'storage/canceled':
-               this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-
-            case 'storage/unknown':
-               this.setState({
-                  fileNotAvailable:true
-              })
-              break;
-         }
-                });
+  downloadUploadedFile(downloadRef) {
+    const firebase = require("firebase")
+    const config = {
+      apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
+      authDomain: "gradsuccess.firebaseapp.com",
+      databaseURL: "https://gradsuccess.firebaseio.com",
+      projectId: "gradsuccess",
+      storageBucket: "gradsuccess.appspot.com",
+      messagingSenderId: "1038128602103",
+      appId: "1:1038128602103:web:55d1ab3ffe5b02bf222cf2",
     }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
+    }
+    var storageRef = firebase.storage().ref(downloadRef)
 
+    storageRef
+      .getDownloadURL()
+      .then(url => {
+        this.setState({
+          fileUrl: url,
+        })
+      })
+      .catch(error => {
+        switch (error.code) {
+          case "storage/object-not-found":
+            this.setState({
+              fileNotAvailable: true,
+            })
+            break
 
-render() {
-    return(  
-        <div>
-        <Query 
-        query={COVER_LETTER_REVIEW_FORM}
-        variables={{ form_id:this.state.form_id }}
-        onCompleted={(data)=>{
-            this.downloadUploadedFile(data.getCoverLetterReview.curriculum_vitae)
-        }}
+          case "storage/unauthorized":
+            this.setState({
+              fileNotAvailable: true,
+            })
+            break
+
+          case "storage/canceled":
+            this.setState({
+              fileNotAvailable: true,
+            })
+            break
+
+          case "storage/unknown":
+            this.setState({
+              fileNotAvailable: true,
+            })
+            break
+        }
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        <Query
+          query={COVER_LETTER_REVIEW_FORM}
+          variables={{ form_id: this.state.form_id }}
+          onCompleted={data => {
+            this.downloadUploadedFile(
+              data.getCoverLetterReview.curriculum_vitae
+            )
+          }}
         >
-            {({ loading, error, data }) => {
-             if (loading) return (
-                <div className = "loader">
-                    <div className="loader_main_content">
-                        <img  src={loader} alt="gradsuccess" />
-                        <h1>preparing...</h1>
-                    </div>
-                </div>
-                )
-              if (error) return <div>failed to load data</div>
+          {({ loading, error, data }) => {
+            if (loading)
               return (
-                <div className="form_preview form_preview_solid_bg">
-                    <div className="form_preview_inner">
-                        <h3 className = "form-header" >Form Details </h3>
-                        <ExpertInCharge id = {data.getCoverLetterReview.has_expert}/>
-                        {data.getCoverLetterReview.status === "Pending Approval" && this.props.account_type === "Admin" ?<ApproveDeclineApplicationCoverLetterReview id ={data.getCoverLetterReview.id} form_id = {data.getCoverLetterReview.form_id}/>:""}
-                        <div className="form_preview_col_1">
-                            <div className="form_preview_fields">
-                                <small>Name</small>
-                                <p>{data.getCoverLetterReview.name}</p>
-                            </div>
-                            <div className="form_preview_fields"> 
-                                <small>Industry and Role Title Applied for</small>
-                                <p>{data.getCoverLetterReview.industry_applied_for}</p>
-                            </div>
-
-                             <div className="form_preview_fields"> 
-                                <small>Summary of Interest</small>
-                                <p>{data.getCoverLetterReview.summary_of_interest}</p>
-                            </div>
-                            <br />
-                             <div className = "btn_wrapper">
-                            {!this.state.fileNotAvailable?<a className = "download_file" href = {this.state.fileUrl}> Download uploaded file</a>: <p className = "no_file">No Document was uploaded</p>}
-                            
-                            {this.props.account_type === "Client" && data.getCoverLetterReview.status === "Assigned"? 
-                              <CompleteRateCoverLetterReview 
-                              form_id = {data.getCoverLetterReview.form_id}
-                              applicationID = {data.getCoverLetterReview.id} 
-                              expert_id = {data.getCoverLetterReview.has_expert} 
-                              appStatus = {data.getCoverLetterReview.completed}
-                              />:
-                              ""}
-                             </div>
-                              {data.getCoverLetterReview.completed?
-                               <GetApplicationRating form_id = {data.getCoverLetterReview.form_id}/>:""}
-                            <div className = "spacing">
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
+                <div className="loader">
+                  <div className="loader_main_content">
+                    <img src={loader} alt="gradsuccess" />
+                    <h1>preparing...</h1>
+                  </div>
                 </div>
-              );
-            }}
+              )
+            if (error) return <div>failed to load data</div>
+            return (
+              <div className="form_preview form_preview_solid_bg">
+                <div className="form_preview_inner">
+                  <h3 className="form-header">Form Details </h3>
+                  <ExpertInCharge id={data.getCoverLetterReview.has_expert} />
+                  {data.getCoverLetterReview.status === "Pending Approval" &&
+                  this.props.account_type === "Admin" ? (
+                    <ApproveDeclineApplicationCoverLetterReview
+                      id={data.getCoverLetterReview.id}
+                      form_id={data.getCoverLetterReview.form_id}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  <div className="form_preview_col_1">
+                    <div className="form_preview_fields">
+                      <small>Name</small>
+                      <p>{data.getCoverLetterReview.name}</p>
+                    </div>
+                    <div className="form_preview_fields">
+                      <small>Industry and Role Title Applied for</small>
+                      <p>{data.getCoverLetterReview.industry_applied_for}</p>
+                    </div>
+
+                    <div className="form_preview_fields">
+                      <small>Summary of Interest</small>
+                      <p>{data.getCoverLetterReview.summary_of_interest}</p>
+                    </div>
+                    <br />
+                    <div className="btn_wrapper">
+                      {!this.state.fileNotAvailable ? (
+                        <a className="download_file" href={this.state.fileUrl}>
+                          {" "}
+                          Download uploaded file
+                        </a>
+                      ) : (
+                        <p className="no_file">No Document was uploaded</p>
+                      )}
+
+                      {this.props.account_type === "Client" &&
+                      data.getCoverLetterReview.status === "Assigned" ? (
+                        <CompleteRateCoverLetterReview
+                          form_id={data.getCoverLetterReview.form_id}
+                          applicationID={data.getCoverLetterReview.id}
+                          expert_id={data.getCoverLetterReview.has_expert}
+                          appStatus={data.getCoverLetterReview.completed}
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    {data.getCoverLetterReview.completed ? (
+                      <GetApplicationRating
+                        form_id={data.getCoverLetterReview.form_id}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    <div className="spacing"></div>
+                  </div>
+                </div>
+              </div>
+            )
+          }}
         </Query>
       </div>
     )
-}
+  }
 }
 export default CoverLetterReviewForm

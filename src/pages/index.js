@@ -13,27 +13,22 @@ import UniDivider from "./components/uniDivider"
 import Steps from "./components/steps"
 import FeaturedTestimonial from "./components/featuredTestimonial"
 import BigCountCTA from "./components/bigCountCTA"
-import bgImage from '../images/bgImage.jpg'
+import bgImage from "../images/bgImage.jpg"
 import FeaturedExperts from "./components/featuredExperts"
-
-
-
-
-
 
 const modal = { backgroundColor: "#E9E9E4" }
 
 const bgURL = `url(${bgImage})`
 
 const inputTab = {
-  minWidth: '255px',
+  minWidth: "255px",
   height: "40px",
   margin: "0px 30px",
   background: "white",
   outline: "none",
   border: "none",
   fontFamily: "poppins",
-  textIndent: "10px"
+  textIndent: "10px",
 }
 
 const steps = {
@@ -69,7 +64,6 @@ class Search extends React.Component {
   //     storageRef: "firebase.storage()",
   //   })
   // }
-
 
   handleRedirect(event) {
     if (event.target.value === "essays" || "cv-resume" || "complete-packages") {

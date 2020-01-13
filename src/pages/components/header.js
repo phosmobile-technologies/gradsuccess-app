@@ -1,89 +1,79 @@
 import React from "react"
 import { Link } from "gatsby"
-import{ jsx, css } from "@emotion/core"
-import './toggle.css'
+import { jsx, css } from "@emotion/core"
+import "./toggle.css"
 import Image from "./logoImage"
 import cartImage from "../../images/cart.png"
 import Modal from "react-modal"
 import LoginForm from "./Forms/loginForm"
 import PromotionBanner from "./promotionBanner"
 
-const breakpoints = [375, 576, 768 ]
+const breakpoints = [375, 576, 768]
 
-const mq = breakpoints.map(
-    bp => `@media (max-width: ${bp}px)`
-  )
-
-
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const customStyles = {
-  content : {
-    top                   : '0%',
-    left                  : '0%',
-    width                 : '100%',
-    height                : '100%',
-    backgroundColor       : 'rgba(255,255,255,0.3)'
-  }
-};
-
+  content: {
+    top: "0%",
+    left: "0%",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(255,255,255,0.3)",
+  },
+}
 
 class Header extends React.Component {
   constructor(props) {
     super(props)
-  this.state = {
-    toggle: false,
-    showModal:false,
-    cartCounter:""
-  }
+    this.state = {
+      toggle: false,
+      showModal: false,
+      cartCounter: "",
+    }
 
-  this.toggleIcon = this.toggleIcon.bind(this)
-  this.handleOpenModal = this.handleOpenModal.bind(this)
-  this.handleCloseModal = this.handleCloseModal.bind(this)
-  this.getStoreCount = this.getStoreCount.bind(this)
+    this.toggleIcon = this.toggleIcon.bind(this)
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+    this.getStoreCount = this.getStoreCount.bind(this)
   }
 
   toggleIcon() {
     this.setState({
-      toggle: !this.state.toggle
+      toggle: !this.state.toggle,
     })
   }
 
-  handleOpenModal () {
-    
-        this.setState({ showModal: true });
-    }
-
-  handleCloseModal () {
-          this.setState({ showModal: false });
+  handleOpenModal() {
+    this.setState({ showModal: true })
   }
 
-  componentDidMount(){
-    this.getStoreCount();
+  handleCloseModal() {
+    this.setState({ showModal: false })
   }
 
+  componentDidMount() {
+    this.getStoreCount()
+  }
 
-  getStoreCount(){
+  getStoreCount() {
     if (typeof window !== `undefined`) {
+      if (localStorage.getItem("ItemsInCart") !== null) {
+        var list = JSON.parse(localStorage.getItem("ItemsInCart"))
 
-      if(localStorage.getItem('ItemsInCart') !== null){
-
-        var list = JSON.parse(localStorage.getItem('ItemsInCart'));
-
-        if(list.length === 0 || list.length === null){
+        if (list.length === 0 || list.length === null) {
           this.setState({
-            cartCounter:""
+            cartCounter: "",
           })
-        }else{
-            this.setState({
-              cartCounter:list.length
-            })
+        } else {
+          this.setState({
+            cartCounter: list.length,
+          })
         }
       }
-
+    }
   }
-}
-      
-  render(){
+
+  render() {
     // let name = this.state.isToggle ? "mkRed" : null;
     return (
       <header>
@@ -110,7 +100,7 @@ class Header extends React.Component {
                 position: "absolute",
                 padding: "20px",
                 cursor: "pointer",
-                top: "70px",  
+                top: "70px",
               },
             }}
             onClick={this.toggleIcon}
@@ -118,8 +108,9 @@ class Header extends React.Component {
             &#9776;
           </span>
           <PromotionBanner />
-          <div className = "top_coupon">
-           We've <strong>Launched!</strong> Get 50% off your order with the coupon code<span>LAUNCH50</span>
+          <div className="top_coupon">
+            We've <strong>Launched!</strong> Get 50% off your order with the
+            coupon code<span>LAUNCH50</span>
           </div>
           <div
             css={{
@@ -201,6 +192,7 @@ class Header extends React.Component {
         </div>
       </header>
     )
-}}
+  }
+}
 
 export default Header

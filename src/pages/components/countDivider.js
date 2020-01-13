@@ -2,11 +2,9 @@ import React from "react"
 import { jsx, css } from "@emotion/core"
 import PryButton from "./pryButton"
 
-const breakpoints = [375, 576, 768 ]
+const breakpoints = [375, 576, 768]
 
-const mq = breakpoints.map(
-  bp => `@media (max-width: ${bp}px)`
-)
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const flexCount = {
   display: "flex",
@@ -15,8 +13,8 @@ const flexCount = {
   margin: "0px auto",
   flexWrap: "wrap",
   [mq[2]]: {
-    flexDirection: 'column'
-}
+    flexDirection: "column",
+  },
 }
 
 const CountDivider = () => (
@@ -26,7 +24,7 @@ const CountDivider = () => (
         css={{
           flex: 1,
           textAlign: "center",
-          margin: '40px 0px'
+          margin: "40px 0px",
         }}
       >
         <div
@@ -57,7 +55,7 @@ const CountDivider = () => (
         css={{
           flex: 1,
           textAlign: "center",
-          margin: '40px 0px'
+          margin: "40px 0px",
           /*border: '2px solid red'*/
         }}
       >
@@ -90,7 +88,7 @@ const CountDivider = () => (
         css={{
           flex: 1,
           textAlign: "center",
-          margin: '40px 0px'
+          margin: "40px 0px",
         }}
       >
         <div

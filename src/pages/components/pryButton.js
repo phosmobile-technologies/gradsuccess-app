@@ -4,14 +4,14 @@ import "./layout.css"
 import Modal from "react-modal"
 
 const customStyles = {
-  content : {
-    top                   : '0%', 
-    left                  : '0%',
-    width                 : '100%',
-    height                : '100%',
-    backgroundColor       : 'rgba(255,255,255,0.3)'
-  }
-};
+  content: {
+    top: "0%",
+    left: "0%",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(255,255,255,0.3)",
+  },
+}
 
 class PryButton extends React.Component {
   constructor(props) {
@@ -21,8 +21,6 @@ class PryButton extends React.Component {
       show: false,
     }
   }
-
-
 
   getItem = () => {
     if (typeof this.props.itemDescription === "undefined") {
@@ -35,9 +33,9 @@ class PryButton extends React.Component {
         itemArr.push({
           IitemDescription: this.props.itemDescription,
           Price: this.props.price,
-          form:this.props.form,
+          form: this.props.form,
         })
-        
+
         itemArr = Array.from(new Set(itemArr))
 
         localStorage.setItem("ItemsInCart", JSON.stringify(itemArr))
@@ -61,7 +59,7 @@ class PryButton extends React.Component {
         itemArr.push({
           IitemDescription: this.props.itemDescription,
           Price: this.props.price,
-          form:this.props.form,
+          form: this.props.form,
         })
         localStorage.setItem("ItemsInCart", JSON.stringify(itemArr))
 
@@ -85,9 +83,6 @@ class PryButton extends React.Component {
       }
     }
   }
-
-
-
 
   render() {
     return (

@@ -1,9 +1,9 @@
-import {React,Component} from "react"
-import Footer from '../components/Footer'
+import { React, Component } from "react"
+import Footer from "../components/Footer"
 
 import MainLayout from "../components/ClientAccountComponents/mainLayout"
 
-import { ThemeProvider } from '@livechat/ui-kit'
+import { ThemeProvider } from "@livechat/ui-kit"
 
 class Message extends Component {
   constructor(props) {
@@ -17,12 +17,12 @@ class Message extends Component {
     return (
       <div>
         <MainLayout />
-          <div className = "main-content"> 
-                  <p>Message</p>
-          </div>
-          <div className = "footer-hide">
-            <Footer />
-          </div>
+        <div className="main-content">
+          <p>Message</p>
+        </div>
+        <div className="footer-hide">
+          <Footer />
+        </div>
       </div>
     )
   }

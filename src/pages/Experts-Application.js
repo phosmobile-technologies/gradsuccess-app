@@ -18,8 +18,8 @@ export default class ApplicationDetail extends Component {
         first_name: "",
         last_name: "",
         phone: "",
-        bank_account_number:"null",
-        bank_name:"null",
+        bank_account_number: "null",
+        bank_name: "null",
         form_id: "null",
         app_package: "null",
         email: "",
@@ -40,7 +40,7 @@ export default class ApplicationDetail extends Component {
         bio_bait: "",
         where_client_from: "",
         what_jobs_client: "",
-        client_reach_you_for: ""
+        client_reach_you_for: "",
       },
       password_verified: true,
       account_created: false,
@@ -57,19 +57,14 @@ export default class ApplicationDetail extends Component {
       cv_ref: "",
     }
     this.handleFormInput = this.handleFormInput.bind(this)
-    this.handleEducationalBgInput = this.handleEducationalBgInput.bind(
-      this
-    )
+    this.handleEducationalBgInput = this.handleEducationalBgInput.bind(this)
     this.storePassword = this.storePassword.bind(this)
     this.verifyPassword = this.verifyPassword.bind(this)
     this._onChange = this._onChange.bind(this)
     this.onChange = this.onChange.bind(this)
     this.formSubmitted = this.formSubmitted.bind(this)
     this.saveExpertsDetails = this.saveExpertsDetails.bind(this)
-    this.verifyConfirmPassword = this.verifyConfirmPassword.bind(
-      this
-    )
-
+    this.verifyConfirmPassword = this.verifyConfirmPassword.bind(this)
   }
 
   handleFormInput(event) {
@@ -93,12 +88,11 @@ export default class ApplicationDetail extends Component {
   }
 
   formSubmitted(data) {
-    this.onChange(this.state.fileImg, data.createClientAcccount.id);
-    
+    this.onChange(this.state.fileImg, data.createClientAcccount.id)
   }
 
   saveExpertsDetails(id) {
-    document.getElementById("expert_loader").style.display = "none";
+    document.getElementById("expert_loader").style.display = "none"
     let url = SAVE_EXPERT_DETAILS
     let data = {
       expert_id: id,
@@ -122,7 +116,7 @@ export default class ApplicationDetail extends Component {
       profile_image_ref: this.state.profileImageRef,
       user_name: this.state.data.last_name + " " + this.state.data.first_name,
       bank_account_number: this.state.data.bank_account_number,
-      bank_name: this.state.data.bank_name 
+      bank_name: this.state.data.bank_name,
     }
     fetch(url, {
       headers: {
@@ -132,17 +126,15 @@ export default class ApplicationDetail extends Component {
       method: "post",
       body: JSON.stringify(data),
     })
-      .then(function (response) {
+      .then(function(response) {
         return response.text()
       })
       .then(text => {
-        window.location = '/application-successful'
-        
+        window.location = "/application-successful"
       })
-      .catch(function (error) {
+      .catch(function(error) {
         alert("Networks Error please try again, Later!")
       })
-
   }
 
   storePassword(event) {
@@ -158,16 +150,13 @@ export default class ApplicationDetail extends Component {
   _onChange(event) {
     this.setState({
       file: URL.createObjectURL(event.target.files[0]),
-      fileImg: event.target.files[0]
+      fileImg: event.target.files[0],
     })
-
   }
 
   verifyPassword(event) {
     const { name, value } = event.target
-    const password_info = document.getElementById(
-      "password_info"
-    )
+    const password_info = document.getElementById("password_info")
     // When the user starts to type something inside the password field
     // Validate length
     if (value.length >= 8) {
@@ -181,7 +170,7 @@ export default class ApplicationDetail extends Component {
   }
 
   onChange(file, id) {
-    document.getElementById("expert_loader").style.display = "flex";
+    document.getElementById("expert_loader").style.display = "flex"
     let saveExpert = this.saveExpertsDetails
     const firebase = require("firebase")
     const config = {
@@ -199,14 +188,9 @@ export default class ApplicationDetail extends Component {
     let imageName = "Expert_upload"
     let timeSubmitted = new Date().getTime()
     let fileRef =
-      "ExpertUpload/" +
-      imageName +
-      "_" +
-      timeSubmitted +
-      "_" +
-      file.name
+      "ExpertUpload/" + imageName + "_" + timeSubmitted + "_" + file.name
     this.setState(prevState => ({
-      "profileImageRef": fileRef,
+      profileImageRef: fileRef,
     }))
     var storageRef = firebase.storage().ref(fileRef)
     var task = storageRef.put(file)
@@ -219,7 +203,6 @@ export default class ApplicationDetail extends Component {
         alert("failed to update profile...pls try again")
       },
       function complete() {
-
         let url = SAVE_PROFILE_IMAGE
         let data = {
           profileID: id,
@@ -233,24 +216,20 @@ export default class ApplicationDetail extends Component {
           method: "post",
           body: JSON.stringify(data),
         })
-          .then(function (response) {
+          .then(function(response) {
             return response.text()
           })
           .then(text => {
             saveExpert(id)
           })
-          .catch(function (error) { })
+          .catch(function(error) {})
       }
-
     )
   }
 
-
   verifyConfirmPassword(event) {
     const { value } = event.target
-    const password_info_c = document.getElementById(
-      "password_info_c"
-    )
+    const password_info_c = document.getElementById("password_info_c")
     // When the user starts to type something inside the password field
     // Validate length
     if (value !== this.state.data.password) {
@@ -282,18 +261,17 @@ export default class ApplicationDetail extends Component {
 
   saveImageRef = (refType, ref) => {
     this.setState({
-      [refType]: ref
+      [refType]: ref,
     })
   }
 
-  handleUniversityTranscript = (ut) => {
+  handleUniversityTranscript = ut => {
     this.setState({
       uni_transcript: ut.name,
     })
   }
 
-  handleCVUpload = (cv) => {
-
+  handleCVUpload = cv => {
     this.setState({
       cv: cv.name,
     })
@@ -314,14 +292,13 @@ export default class ApplicationDetail extends Component {
       account_type,
     } = this.state.data
 
-
     const {
       password_verified,
       imageUrl,
       file,
       profileImageRef,
       uni_transcript,
-      cv
+      cv,
     } = this.state
     const {
       highest_ranked_university_attended,
@@ -337,8 +314,7 @@ export default class ApplicationDetail extends Component {
       bio_bait,
       where_client_from,
       what_jobs_client,
-      client_reach_you_for
-
+      client_reach_you_for,
     } = this.state.educational_details
 
     const profileIMageUpload = {
@@ -374,7 +350,6 @@ export default class ApplicationDetail extends Component {
       cv,
     }
 
-    
     switch (step) {
       case 1:
         return (
@@ -422,11 +397,11 @@ export default class ApplicationDetail extends Component {
                   nextStep={this.nextStep}
                   prevStep={this.prevStep}
                   handleFormInput={this.handleEducationalBgInput}
-                  handleUniversityTranscript={
-                    this.handleUniversityTranscript
-                  }
+                  handleUniversityTranscript={this.handleUniversityTranscript}
                   handleCVUpload={this.handleCVUpload}
-                  highest_ranked_university_attended={highest_ranked_university_attended}
+                  highest_ranked_university_attended={
+                    highest_ranked_university_attended
+                  }
                   qualification_at_university={qualification_at_university}
                   employment={employment}
                   scholarships_and_awards={scholarships_and_awards}
@@ -494,56 +469,57 @@ export default class ApplicationDetail extends Component {
       case 5:
         return (
           <div>
-          <Layout>
-            <div>
-              <div className="expert_loader" id="expert_loader">
-                <p>Just a moment</p>
-                <img src={loader} />
+            <Layout>
+              <div>
+                <div className="expert_loader" id="expert_loader">
+                  <p>Just a moment</p>
+                  <img src={loader} />
                 </div>
-              <div
-                css={{
-                  background: "white",
-                  padding: "3em 1em",
-                }}
-              >
-                <RegistrationSummary
-                  highest_ranked_university_attended={highest_ranked_university_attended}
-                  qualification_at_university={qualification_at_university}
-                  employment={employment}
-                  scholarships_and_awards={scholarships_and_awards}
-                  graduating_grade={graduating_grade}
-                  gre_score={gre_score}
-                  gmat_score={gmat_score}
-                  ielts={ielts}
-                  university_transcripts={university_transcripts}
-                  curriculum_vitae={curriculum_vitae}
-                  uni_transcript={uni_transcript}
-                  cv={cv}
-                  first_name={first_name}
-                  last_name={last_name}
-                  phone={phone}
-                  form_id={form_id}
-                  app_package={app_package}
-                  email={email}
-                  password={password}
-                  account_type={account_type}
-                  password_verified={password_verified}
-                  imageUrl={imageUrl}
-                  file={file}
-                  profileImageRef={profileImageRef}
-                  bio_bait={bio_bait}
-                  where_client_from={where_client_from}
-                  what_jobs_client={what_jobs_client}
-                  client_reach_you_for={client_reach_you_for}
-                  saveApplication={this.onChange}
-                  prevStep={this.prevStep}
-                  nextStep={this.nextStep}
-                  formSubmitted={this.formSubmitted}
-                />
+                <div
+                  css={{
+                    background: "white",
+                    padding: "3em 1em",
+                  }}
+                >
+                  <RegistrationSummary
+                    highest_ranked_university_attended={
+                      highest_ranked_university_attended
+                    }
+                    qualification_at_university={qualification_at_university}
+                    employment={employment}
+                    scholarships_and_awards={scholarships_and_awards}
+                    graduating_grade={graduating_grade}
+                    gre_score={gre_score}
+                    gmat_score={gmat_score}
+                    ielts={ielts}
+                    university_transcripts={university_transcripts}
+                    curriculum_vitae={curriculum_vitae}
+                    uni_transcript={uni_transcript}
+                    cv={cv}
+                    first_name={first_name}
+                    last_name={last_name}
+                    phone={phone}
+                    form_id={form_id}
+                    app_package={app_package}
+                    email={email}
+                    password={password}
+                    account_type={account_type}
+                    password_verified={password_verified}
+                    imageUrl={imageUrl}
+                    file={file}
+                    profileImageRef={profileImageRef}
+                    bio_bait={bio_bait}
+                    where_client_from={where_client_from}
+                    what_jobs_client={what_jobs_client}
+                    client_reach_you_for={client_reach_you_for}
+                    saveApplication={this.onChange}
+                    prevStep={this.prevStep}
+                    nextStep={this.nextStep}
+                    formSubmitted={this.formSubmitted}
+                  />
+                </div>
               </div>
-            </div>
-           
-          </Layout>
+            </Layout>
           </div>
         )
       default:
@@ -557,4 +533,3 @@ export default class ApplicationDetail extends Component {
     }
   }
 }
-

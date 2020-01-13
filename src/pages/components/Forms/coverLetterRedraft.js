@@ -121,6 +121,7 @@ export default class resumeReviewForm extends React.Component {
         this.setState({
           form_submit_success:true
         })
+
     }
 
     onChange(e) {
@@ -174,11 +175,13 @@ export default class resumeReviewForm extends React.Component {
             })
     }
     componentWillUnmount() {
+      
       if(this.state.form_submit_success){
         localStorage.removeItem("yshKSMCis129_#&NISis");
         localStorage.removeItem("targeted")
       }else{
       }
+
     }
     render() {
       if(!this.state.form_submit_success){

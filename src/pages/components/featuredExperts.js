@@ -16,8 +16,7 @@ export default class FeaturedExperts extends Component {
     this.getImageUrl = this.getImageUrl.bind(this)
   }
 
-
-getImageUrl(){
+  getImageUrl() {
     const firebase = require("firebase")
     const config = {
       apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
@@ -33,32 +32,32 @@ getImageUrl(){
     }
     var storageRef = firebase.storage().ref()
 
-    this.state.allExpert.forEach((element,index) => {
-        storageRef
-          .child(element.profile_image_ref)
-          .getDownloadURL()
-          .then(url => {
-             let el = {
-               id: element.expert_id,
-               user_name: element.user_name,
-               bait: element.bio_bait,
-               img_url: url,
-             }
-             if(this.state.displayExpertsInfo){
-                this.setState({
-                    displayExpertsInfo: [...this.state.displayExpertsInfo, el],
-                })
-            }else{
-                this.setState({
-                    displayExpertsInfo: [el],
-                  })
-             }
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    this.state.allExpert.forEach((element, index) => {
+      storageRef
+        .child(element.profile_image_ref)
+        .getDownloadURL()
+        .then(url => {
+          let el = {
+            id: element.expert_id,
+            user_name: element.user_name,
+            bait: element.bio_bait,
+            img_url: url,
+          }
+          if (this.state.displayExpertsInfo) {
+            this.setState({
+              displayExpertsInfo: [...this.state.displayExpertsInfo, el],
+            })
+          } else {
+            this.setState({
+              displayExpertsInfo: [el],
+            })
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     })
-}
+  }
 
   render() {
     return (
@@ -94,7 +93,6 @@ getImageUrl(){
             <div className="featured-experts-inner">
               {this.state.displayExpertsInfo.map((Expert, index) => (
                 <div className="featured-experts-single" key={index}>
-                
                   <div className="img-div">
                     <img src={Expert.img_url} />
                   </div>

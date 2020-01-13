@@ -30,11 +30,11 @@ export default class PromotionBanner extends Component {
           <div className="promotion-per">
             <h2>
               {" "}
-              We've <strong>Launched!</strong>
+              Happy <strong>New Year!</strong>
             </h2>
           </div>
-          <h3>Get 50% off your order with the coupon code</h3>
-          <span>LAUNCH50</span>
+          <h3>Get 10% off your order with the coupon code</h3>
+          <span>NEWYEAR10</span>
         </div>
       </div>
     )

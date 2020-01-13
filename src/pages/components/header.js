@@ -109,13 +109,8 @@ class Header extends React.Component {
           </span>
           <PromotionBanner />
           <div className="top_coupon">
-<<<<<<< HEAD
-            We've <strong>Launched!</strong> Get 50% off your order with the
-            coupon code<span>LAUNCH50</span>
-=======
             Happy <strong>New Year!</strong> Get 10% off your order with the
             coupon code<span>NEWYEAR10</span>
->>>>>>> refs/remotes/origin/master
           </div>
           <div
             css={{

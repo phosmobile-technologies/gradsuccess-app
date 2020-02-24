@@ -1,9 +1,9 @@
 import React from "react"
 
-import Layout from "./components/layout"
-import SEO from "./components/seo"
+import Layout from "./modules/websiteModule/components/layout"
+import SEO from "./modules/websiteModule/components/seo"
 import Modal from "react-modal"
-import LoginForm from "./components/Forms/loginForm"
+import LoginForm from "./modules/websiteModule/components/Forms/loginForm"
 
 const customStyles = {
   content: {
@@ -53,9 +53,9 @@ class NotFoundPage extends React.Component {
               ariaHideApp={false}
             >
               <LoginForm />
-              <a className="ModalCloseBut" onClick={this.handleCloseModal}>
+              <span className="ModalCloseBut" onClick={this.handleCloseModal}>
                 x
-              </a>
+              </span>
             </Modal>
           </div>
         </div>

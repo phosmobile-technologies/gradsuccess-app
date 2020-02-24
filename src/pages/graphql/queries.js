@@ -1,15 +1,6 @@
+import React, { Component } from "react"
 import gql from "graphql-tag"
-import React from "react"
-
-export default class queries extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return <div></div>
-  }
-}
+import { PackageFields, AssociateFields, Messages } from "./fragments"
 
 export const LOGGED_IN_USER = gql`
   {
@@ -18,12 +9,30 @@ export const LOGGED_IN_USER = gql`
       first_name
       last_name
       phone
-      form_id
-      package
       email
       account_type
+      cover_letter_redrafts {
+        ...coverLetterRedraftField
+      }
+      cover_letter_reviews {
+        ...coverLetterReviewField
+      }
+      graduate_school_essay_redrafts {
+        ...graduateSchoolEssayRedraftField
+      }
+      graduate_school_statement_review {
+        ...graduateSchoolStatementReviewField
+      }
+      resume_reviews {
+        ...resumeReviewField
+      }
     }
   }
+  ${PackageFields.cover_letter_redraft}
+  ${PackageFields.cover_letter_review}
+  ${PackageFields.graduate_school_essay_redrafts}
+  ${PackageFields.graduate_school_statement_review}
+  ${PackageFields.resume_reviews}
 `
 
 export const GET_USER = gql`
@@ -33,10 +42,7 @@ export const GET_USER = gql`
       first_name
       last_name
       phone
-      form_id
-      package
       email
-      account_type
     }
   }
 `
@@ -52,317 +58,108 @@ export const GET_EXPERT = gql`
     }
   }
 `
-
-export const COVER_LETTER_REVIEW_FORM = gql`
-  query GetCoverLetterReviewForm($form_id: String!) {
-    getCoverLetterReview(form_id: $form_id) {
-      id
-      name
-      industry_applied_for
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
+export const COMBINED_PACKAGE_QUERY_BY_STATUS = gql`
+  query($status: PackageStatus!) {
+    getCoverLetterReviewByStatus(status: $status) {
+      ...coverLetterReviewField
+    }
+    getGraduateSchoolStatementReviewByStatus(status: $status) {
+      ...graduateSchoolStatementReviewField
+    }
+    getCoverLetterRedraftByStatus(status: $status) {
+      ...coverLetterRedraftField
+    }
+    getGraduateSchoolEssayRedraftByStatus(status: $status) {
+      ...graduateSchoolEssayRedraftField
+    }
+    getResumeReviewByStatus(status: $status) {
+      ...resumeReviewField
     }
   }
+  ${PackageFields.cover_letter_redraft}
+  ${PackageFields.cover_letter_review}
+  ${PackageFields.graduate_school_essay_redrafts}
+  ${PackageFields.graduate_school_statement_review}
+  ${PackageFields.resume_reviews}
 `
 
-export const RESUME_REVIEW_FORM = gql`
-  query GetResumeReviewForm($form_id: String!) {
-    getResumeReviewForm(form_id: $form_id) {
-      id
-      name
-      industry_applied_for
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
+export const COMBINED_PACKAGE_QUERY_BY_STATUS_FOR_ASSOCIATE = gql`
+  query($status: PackageStatus!, $associate_id: ID!) {
+    getAssociateCoverLetterReviewByStatus(
+      status: $status
+      assigned_associate_id: $associate_id
+    ) {
+      ...coverLetterReviewField
+    }
+    getAssociateGraduateSchoolStatementReviewByStatus(
+      status: $status
+      assigned_associate_id: $associate_id
+    ) {
+      ...graduateSchoolStatementReviewField
+    }
+    getAssociateCoverLetterRedraftByStatus(
+      status: $status
+      assigned_associate_id: $associate_id
+    ) {
+      ...coverLetterRedraftField
+    }
+    getAssociateGraduateSchoolEssayRedraftByStatus(
+      status: $status
+      assigned_associate_id: $associate_id
+    ) {
+      ...graduateSchoolEssayRedraftField
+    }
+    getAssociateResumeReviewByStatus(
+      status: $status
+      assigned_associate_id: $associate_id
+    ) {
+      ...resumeReviewField
     }
   }
+  ${PackageFields.cover_letter_redraft}
+  ${PackageFields.cover_letter_review}
+  ${PackageFields.graduate_school_essay_redrafts}
+  ${PackageFields.graduate_school_statement_review}
+  ${PackageFields.resume_reviews}
 `
+export const COMBINED_PACKAGE_QUERY_BY_ASSOCIATE_ID = gql`
+         query($user_id: ID!) {
+           getCoverLetterReviewByAssociateId(assigned_associate_id: $user_id) {
+             ...coverLetterReviewField
+           }
+           getGraduateSchoolStatementReviewByAssociateId(assigned_associate_id: $user_id) {
+             ...graduateSchoolStatementReviewField
+           }
+           getCoverLetterRedraftByAssociateId(assigned_associate_id: $user_id) {
+             ...coverLetterRedraftField
+           }
+           getGraduateSchoolEssayRedraftByAssociateId(assigned_associate_id: $user_id) {
+             ...graduateSchoolEssayRedraftField
+           }
+           getResumeReviewByAssociateId(assigned_associate_id: $user_id) {
+             ...resumeReviewField
+           }
+         }
+         ${PackageFields.cover_letter_redraft}
+         ${PackageFields.cover_letter_review}
+         ${PackageFields.graduate_school_essay_redrafts}
+         ${PackageFields.graduate_school_statement_review}
+         ${PackageFields.resume_reviews}
+       `
 
-export const GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
-  query GetGraduateSchoolStatementReviewForm($form_id: String!) {
-    getGraduateSchoolStatementReviewForm(form_id: $form_id) {
-      id
-      name
-      university_and_course_applied_for
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
 
-export const GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM = gql`
-  query GetGraduateSchoolEssayRedraftForm($form_id: String!) {
-    getGraduateSchoolEssayRedraftForm(form_id: $form_id) {
-      id
-      name
-      phone
-      employment_most_relevant_to_you_masters_application
-      typical_achievements
-      scholarships_and_award
-      undegraduate_level_courses_master
-      project_dissertation_name_master
-      most_recent_undergraduate
-      undergraduate_level_grade
-      result_ranking
-      undegraduate_level_courses_phd
-      project_dissertation_name_phd
-      leadership_experience
-      interpersonal_skills
-      presentation_skills
-      programming
-      microsoft_excel
-      java
-      other_skills
-      extracurricular_activities
-      professional_workshops
-      academic_conferences_attended
-      certificate
-      english
-      french
-      german
-      spanish
-      nigeria_languages
-      other_languages
-      masters_intended_area_of_research
-      university_of_choice_and_course
-      modules_interested
-      teaching_personel_contacted
-      summary_of_interest
-      post_study_goal
-      referee
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
+export const CHAT_HISTORY = gql`
+         query($sender_id: ID!, $recipient_id: ID!) {
+           getSeMessages(sender_id: $sender_id, recipient_id: $recipient_id) {
+             ...MessageField
+           }
+           getReMessages(sender_id: $recipient_id, recipient_id: $sender_id) {
+             ...MessageField
+           }
+         }
+         ${Messages.message}
+       `
 
-export const COVER_LETTER_REDRAFT = gql`
-  query GetCoverLetterRedraft($form_id: String!) {
-    getCoverLetterRedraft(form_id: $form_id) {
-      id
-      name
-      address
-      phone
-      workplace_1
-      workplace_1_roles
-      workplace_1_recognized_job
-      workplace_2
-      workplace_2_roles
-      workplace_2_recognized_job
-      supervised_before
-      supervised_workplace
-      recent_tertiary_institute
-      number_of_employee_supervised_workplace_1
-      number_of_employee_supervised_workplace_2
-      recent_tertiary_institute_name
-      scholarship_and_awards
-      final_grade_school_1
-      result_rank_school_1
-      top_courses_school_1
-      project_dissertation_name_school_1
-      next_most_recent_tertiary_education
-      final_grade_school_2
-      result_rank_school_2
-      top_courses_school_2
-      leadership_experience
-      interpersonal_skills
-      presentation_skills
-      programming
-      microsoft_excel
-      java
-      other_skills
-      extracurricular_activities
-      professional_workshops
-      certification_dates
-      organization_contacted_before_hand
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
-
-export const GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS = gql`
-  query {
-    getAllGraduateSchoolStatementReviewForm {
-      id
-      name
-      university_and_course_applied_for
-      summary_of_interest
-      curriculum_vitae
-      created_at
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
-
-export const GET_ALL_COVER_LETTER_REVIEW_FORMS = gql`
-  query {
-    getAllCoverLetterReview {
-      id
-      name
-      industry_applied_for
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
-
-export const GET_ALL_RESUMME_REVIEW_FORMS = gql`
-  query {
-    getAllResumeReviewForm {
-      id
-      name
-      industry_applied_for
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
-export const GET_ALL_COVER_LETTER_REDRAFT_FORMS = gql`
-  query {
-    getAllCoverLetterRedraft {
-      id
-      name
-      address
-      phone
-      workplace_1
-      workplace_1_roles
-      workplace_1_recognized_job
-      workplace_2
-      workplace_2_roles
-      workplace_2_recognized_job
-      supervised_before
-      supervised_workplace
-      recent_tertiary_institute
-      number_of_employee_supervised_workplace_1
-      number_of_employee_supervised_workplace_2
-      recent_tertiary_institute_name
-      scholarship_and_awards
-      final_grade_school_1
-      result_rank_school_1
-      top_courses_school_1
-      project_dissertation_name_school_1
-      next_most_recent_tertiary_education
-      final_grade_school_2
-      result_rank_school_2
-      top_courses_school_2
-      leadership_experience
-      interpersonal_skills
-      presentation_skills
-      programming
-      microsoft_excel
-      java
-      other_skills
-      extracurricular_activities
-      professional_workshops
-      certification_dates
-      organization_contacted_before_hand
-      summary_of_interest
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
-export const GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS = gql`
-  query {
-    getAllGraduateSchoolEssayRedraftForm {
-      id
-      name
-      phone
-      employment_most_relevant_to_you_masters_application
-      typical_achievements
-      scholarships_and_award
-      undegraduate_level_courses_master
-      project_dissertation_name_master
-      most_recent_undergraduate
-      undergraduate_level_grade
-      result_ranking
-      undegraduate_level_courses_phd
-      project_dissertation_name_phd
-      leadership_experience
-      interpersonal_skills
-      presentation_skills
-      programming
-      microsoft_excel
-      java
-      other_skills
-      extracurricular_activities
-      professional_workshops
-      academic_conferences_attended
-      certificate
-      english
-      french
-      german
-      spanish
-      nigeria_languages
-      other_languages
-      masters_intended_area_of_research
-      university_of_choice_and_course
-      modules_interested
-      teaching_personel_contacted
-      summary_of_interest
-      post_study_goal
-      referee
-      curriculum_vitae
-      package
-      has_expert
-      form_id
-      status
-      completed
-      created_at
-    }
-  }
-`
 
 export const GET_ALL_EXPERTS = gql`
   query GetExperts($account_type: String!) {
@@ -379,9 +176,9 @@ export const GET_ALL_EXPERTS = gql`
   }
 `
 
-export const GET_EXPERT_IN_CHARGE = gql`
-  query GetExpertInCharge($id: ID!) {
-    getExpertInCharge(id: $id) {
+export const GET_ASSIGN_ASSOCIATE = gql`
+  query getAsignAssociate($id: ID!) {
+    getAsignAssociate(id: $id) {
       id
       first_name
       last_name
@@ -644,14 +441,48 @@ export const SINGLE_EXPERT_DETAIL_BAIT = gql`
   }
 `
 
+export const ALL_ASSOCIATES = gql`
+         query GetAllAssociates($account_type: String!) {
+           getAllAssociates(account_type: $account_type) {
+             ...associateField
+           }
+         }
+         ${AssociateFields.associate}
+       `
+
+
+
+export const ASSOCIATE = gql`
+         query getAssociate($id: ID!) {
+           getAssociate(id: $id) {
+             ...associateField
+           }
+         }
+         ${AssociateFields.associate}
+       `
+export const CHATLISTMEMBER = gql`
+         query getChatListMember($id: ID!) {
+           getChatListMember(id: $id) {
+             ...UserFullField
+           }
+         }
+         ${AssociateFields.user_full}
+       `
+
 export const GET_EXPERT_DETAIL_BAIT = gql`
-  {
-    allExpertDetail {
-      id
-      expert_id
-      bio_bait
-      profile_image_ref
-      user_name
-    }
+         {
+           allExpertDetail {
+             id
+             expert_id
+             bio_bait
+             profile_image_ref
+             user_name
+           }
+         }
+       `
+
+export default class Queries extends Component {
+  render() {
+    return <div></div>
   }
-`
+}

@@ -1,20 +1,20 @@
 import React from "react"
 import Modal from "react-responsive-modal"
-import { jsx, css } from "@emotion/core"
+import { jsx } from "@emotion/core"
 import { navigate } from "gatsby"
 
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
-import Layout from "./components/layout"
-import SEO from "./components/seo"
-import HomeHero from "./components/homeHero"
-import TitleAndText from "./components/titleNtext"
-import UniDivider from "./components/uniDivider"
-import Steps from "./components/steps"
-import FeaturedTestimonial from "./components/featuredTestimonial"
-import BigCountCTA from "./components/bigCountCTA"
+import Layout from "./modules/websiteModule/components/layout"
+import SEO from "./modules/websiteModule/components/seo"
+import HomeHero from "./modules/websiteModule/components/homeHero"
+import TitleAndText from "./modules/websiteModule/components/titleNtext"
+import UniDivider from "./modules/websiteModule/components/uniDivider"
+import Steps from "./modules/websiteModule/components/steps"
+import FeaturedTestimonial from "./modules/websiteModule/components/featuredTestimonial"
+import BigCountCTA from "./modules/websiteModule/components/bigCountCTA"
 import bgImage from "../images/bgImage.jpg"
-import FeaturedExperts from "./components/featuredExperts"
+import FeaturedExperts from "./modules/websiteModule/components/featuredExperts"
 
 const modal = { backgroundColor: "#E9E9E4" }
 
@@ -50,7 +50,7 @@ class Search extends React.Component {
   }
 
   handleEnable(event) {
-    if (event.target.value == "Admissions" || "Careers" || "Scholarships") {
+    if (event.target.value === "Admissions" || "Careers" || "Scholarships") {
       const firstUrl = event.target.value
       this.setState({
         disabled: false,
@@ -59,11 +59,6 @@ class Search extends React.Component {
     }
   }
 
-  // componentDidMount(){
-  //   this.setState({
-  //     storageRef: "firebase.storage()",
-  //   })
-  // }
 
   handleRedirect(event) {
     if (event.target.value === "essays" || "cv-resume" || "complete-packages") {

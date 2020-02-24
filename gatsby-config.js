@@ -37,7 +37,7 @@ module.exports = {
         // This is the field under which it's accessible
         fieldName: "Gradsuccess",
         // URL to query from
-        url: "https://infinite-cove-53014.herokuapp.com/graphql",
+        url: "http://127.0.0.1:8000/graphql",
       },
     },
 
@@ -51,6 +51,14 @@ module.exports = {
         color: `orangered`,
         // Disable the loading spinner.
         showSpinner: true,
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-routes`,
+      options: {
+        // this is the path to your routes configuration file
+        path: `${__dirname}/src/routes.js`,
       },
     },
   ],

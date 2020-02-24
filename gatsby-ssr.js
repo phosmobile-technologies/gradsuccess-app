@@ -8,4 +8,4 @@
 
 // export {wrapRootElement} from './src/apollo/wrap-root-element';
 import "./src/styles/clientIndex.css"
-export {wrapRootElement} from './src/apollo/wrap-root-element';
+export {wrapRootElement} from './src/wrap-root-element';

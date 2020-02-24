@@ -1,3 +1,7 @@
+@import "~normalize.css";
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
 body {
   font-family: "Lato", sans-serif;
   width: 100%;
@@ -112,8 +116,6 @@ body {
   color: white;
   padding-top: 5px;
   padding-right: 5px;
-}
-.main-content {
 }
 
 /*Styling for the menu drop downs*/
@@ -257,8 +259,6 @@ body {
   margin: auto;
   position: relative;
   min-height: 90vh;
-}
-.fixedHeader {
 }
 
 .assigned_application_board {
@@ -1100,12 +1100,12 @@ body {
 
   /* Looks great, now animating it */
   background-size: 25px 14px, 100% 100%, 100% 100%;
-  -webkit-animation: move 5s linear 0 infinite;
+  animation: move 5s linear 0 infinite;
 }
 
 /* That's it! Now let's try creating a new stripe pattern and animate it using animation and keyframes properties  */
 
-@-webkit-keyframes move {
+@keyframes move {
   0% {
     background-position: 0px 0px, 0 0, 0 0;
   }
@@ -1181,13 +1181,13 @@ body {
 }
 
 .loginBtn {
-  color: white;
   border: none;
+  background-color: #47dcbc;
   padding: 0px 30px;
   cursor: pointer;
   font-size: 14px;
-  background: transparent;
   font-family: "Lato", sans-serif;
+  border-radius: 2px;
 }
 .cart {
   width: 70px;
@@ -1195,19 +1195,23 @@ body {
   justify-content: center;
 }
 .cart:hover {
-  background-color: #47dcbc;
+  transform: scale(1.1);
   transition: 0.5s;
 }
 
 .loginBtn:hover {
   transition: 0.5s;
-  color: white;
   transition: 0.5s;
+}
+.login-header {
+  padding-top: 30px;
+}
+
+.login-form input {
+  padding-top: 0px !important;
 }
 
 .cart_indicator {
-  width: 100px;
-  color: yellow;
   font-size: 12px;
   color: black;
   font-weight: bold;
@@ -1218,9 +1222,8 @@ body {
   position: absolute;
   display: flex;
   justify-content: space-evenly;
-  top: 74px;
+  top: 55px;
   right: 0px;
-  background-color: #00a99d;
 }
 
 .cart_wrapper img {
@@ -1229,9 +1232,6 @@ body {
   padding-top: 5px;
 }
 
-.loginModal {
-  margin-top: 25vh !important;
-}
 .leave_a_message_form {
   margin-top: "0px";
   position: "absolute";
@@ -1730,12 +1730,22 @@ body {
   opacity: 0.9;
 }
 @media only screen and (max-width: 500px) {
+  .attach_file label {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
   .form_preview_fields {
     width: 100%;
   }
   .loginBtn {
-    padding: 0px;
+    padding: 5px;
+    width: 100px;
+    margin: auto;
+    margin-top: 20px;
   }
+
   .ModalCloseBut {
     top: 15px;
     right: 10px;
@@ -1759,9 +1769,8 @@ body {
     width: 100%;
   }
   .cart_wrapper {
-    flex-direction: column;
-    top: 62px;
-    width: 20%;
+    top: 55px;
+    right: 0px;
   }
 
   .d-menu-container-mobile ul li {
@@ -1874,9 +1883,6 @@ body {
 
   #toggle_menu {
     display: none;
-  }
-  .loginModal {
-    margin-top: 10vh !important;
   }
   .assign_success_board {
     padding: 10px;
@@ -2071,4 +2077,62 @@ body {
     left: 110%;
     opacity: 0;
   }
+}
+
+.attach_file {
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 14px !important;
+  width: 100%;
+}
+
+.attach_file label {
+  padding: 10px 40px;
+  border: 1px solid black;
+  border-radius: 3px;
+  transition: 03s;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+}
+
+.attach_file label:hover {
+  background-color: grey;
+}
+.icon-u {
+  color: black !important;
+}
+.btn-group {
+  margin-top: 5px;
+}
+.p-bar {
+  margin-bottom: 5px;
+}
+.attach_file_success {
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 12px !important;
+  width: 100%;
+}
+.attach_file_success label {
+  transition: 03s;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+}
+
+.download-attached-file {
+  margin-top: 10px;
+  padding: 10px 40px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-top: 30px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 12px;
 }

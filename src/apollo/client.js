@@ -7,7 +7,7 @@ import fetch from "isomorphic-fetch"
 
 var environURl
 if (process.env.NODE_ENV === "production") {
-  environURl = "http://127.0.0.1:8000/"
+  environURl = "https://infinite-cove-53014.herokuapp.com/"
 } else {
   environURl = "http://127.0.0.1:8000/"
 }

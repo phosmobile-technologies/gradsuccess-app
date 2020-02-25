@@ -65,6 +65,14 @@ const web_websites = [
     path: "/request-associate-service",
     component: path.resolve(website + `request-associate-service.js`),
   },
+  {
+    path: "/associate-registration",
+    component: path.resolve(website + `associateRegistration.js`),
+  },
+  {
+    path: "/registration-successful",
+    component: path.resolve(website + `registrationSuccessful.js`),
+  },
 ]
 
 

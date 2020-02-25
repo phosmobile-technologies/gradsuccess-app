@@ -2,7 +2,7 @@ import React from "react"
 
 import Layout from "./modules/websiteModule/components/layout"
 import SEO from "./modules/websiteModule/components/seo"
-import Modal from "react-modal"
+import Modal from "react-awesome-modal"
 import LoginForm from "./modules/websiteModule/components/Forms/loginForm"
 
 const customStyles = {
@@ -21,16 +21,12 @@ class NotFoundPage extends React.Component {
     this.state = {
       showModal: false,
     }
-    this.handleModal = this.handleModal.bind(this)
-    this.handleCloseModal = this.handleCloseModal.bind(this)
+  }
+  handleOpenModal = () => {
+    this.setState({ showModal: true })
   }
 
-  handleModal() {
-    this.setState({
-      showModal: true,
-    })
-  }
-  handleCloseModal() {
+  handleCloseModal = () => {
     this.setState({ showModal: false })
   }
 
@@ -42,20 +38,17 @@ class NotFoundPage extends React.Component {
           <h1>401!</h1>
           <h2>UNAUTHORIZED ACCESS</h2>
           <p>... please logged with appropriate logged details.</p>
-          <div className="cartStyle">
-            <button onClick={this.handleModal}>Login</button>
-          </div>
+          <button onClick={this.handleOpenModal} className="l-btn">
+            Login
+          </button>
           <div>
             <Modal
-              isOpen={this.state.showModal}
-              contentLabel="Minimal Modal Example"
-              style={customStyles}
-              ariaHideApp={false}
+              visible={this.state.showModal}
+              effect="fadeInUp"
+              className="modal"
+              onClickAway={() => this.handleCloseModal()}
             >
               <LoginForm />
-              <span className="ModalCloseBut" onClick={this.handleCloseModal}>
-                x
-              </span>
             </Modal>
           </div>
         </div>

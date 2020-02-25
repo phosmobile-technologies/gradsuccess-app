@@ -6,7 +6,6 @@ if (process.env.NODE_ENV === "production") {
   environURl = "http://127.0.0.1:8000/api/"
 }
 
-
 if (process.env.NODE_ENV === "production") {
   pKey = "pk_live_a2e85558692cca93f4693bc3a2c7b21b78a53ace"
 } else {

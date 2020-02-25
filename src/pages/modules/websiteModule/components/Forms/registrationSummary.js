@@ -1,13 +1,12 @@
 import React from "react"
 import { Mutation } from "react-apollo"
 import { CREATE_USER } from "../../../../graphql/mutations"
+import { Button, Callout } from "@blueprintjs/core"
 
 export default class ExpertBasicInfo extends React.Component {
   render() {
-    const {
-      prevStep,
-      formSubmitted,
-    } = this.props
+    const { prevStep, formSubmitted } = this.props
+
     return (
       <div>
         <h3 className="form-header expert-form-header">Apply As Expert</h3>
@@ -21,9 +20,6 @@ export default class ExpertBasicInfo extends React.Component {
           >
             {(createExpertAccount, { data, loading, error }) => (
               <div className="loader-wrapper">
-                <div id="submittedSucces" className="SuccessTagForm">
-                  Success! Account Create Successfully...
-                </div>
                 <form
                   onSubmit={e => {
                     e.preventDefault()
@@ -32,8 +28,6 @@ export default class ExpertBasicInfo extends React.Component {
                         first_name: this.props.first_name,
                         last_name: this.props.last_name,
                         phone: this.props.phone,
-                        form_id: this.props.form_id,
-                        package: this.props.app_package,
                         email: this.props.email,
                         password: this.props.password,
                         account_type: this.props.account_type,
@@ -67,14 +61,27 @@ export default class ExpertBasicInfo extends React.Component {
                       </li>
                     </ul>
                   </div>
+                  {error && (
+                    <Callout className="bp3-intent-danger" icon="error">
+                      {error.graphQLErrors.map(({ message }, i) => (
+                        <span color="danger" key={i}>
+                          {message}
+                        </span>
+                      ))}
+                    </Callout>
+                  )}
                   <h1>Basic Details</h1>
-                  <div className="row-full">
-                    <div className="col">
-                      <div className="summary-profile-image">
-                        <img src={this.props.file}  alt = "summary"/>
+                  {this.props.file !== null ? (
+                    <div className="row-full">
+                      <div className="col">
+                        <div className="summary-profile-image">
+                          <img src={this.props.file} alt="summary" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div></div>
+                  )}
                   <div className="row">
                     <div className="col">
                       <div>
@@ -205,26 +212,30 @@ export default class ExpertBasicInfo extends React.Component {
                       </div>
                     </div>
                   </div>
-
                   <br />
-                  <div>
-                    <input
+                  <br />
+                  <div className="layout-btn">
+                    <Button
                       type="button"
-                      className="submit-details-next"
-                      value="Previous"
+                      className="bp3-button bp3-intent-danger n-btn"
                       onClick={prevStep}
-                    />
-                    <input
+                      large={true}
+                    >
+                      Previous
+                    </Button>
+                    <Button
                       type="submit"
-                      className="submit-details-prev"
-                      value="Submit"
-                    />
+                      className="bp3-button bp3-intent-success n-btn"
+                      large={true}
+                      loading={
+                        loading || this.props.submitingForm ? true : false
+                      }
+                    >
+                      Submit
+                    </Button>
                   </div>
                 </form>
                 {loading && <div></div>}
-                {error && (
-                  <div className="FailedTagForm"> Email already Exists</div>
-                )}
               </div>
             )}
           </Mutation>

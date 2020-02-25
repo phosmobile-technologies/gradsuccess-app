@@ -13,6 +13,7 @@ export default class PackageDetails extends Component {
     }
   }
   componentDidMount() {
+
     this.setState({
       id: this.props.packageItem.assigned_associate_id,
     })
@@ -33,6 +34,7 @@ export default class PackageDetails extends Component {
           statusIndicator = "#FFD89E"
           break
       }
+      console.log(pItem);
 
       this.setState({
         packageIconCharacter: pItem.package.package_name.charAt(0),

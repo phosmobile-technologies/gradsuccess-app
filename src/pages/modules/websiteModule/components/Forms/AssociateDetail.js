@@ -1,13 +1,25 @@
 import React from "react"
 import upoadAttachment from "../../../../../images/icons/upoadAttachment.png"
 import loading from "../../../../../images/Rolling.svg"
+import { Button, Spinner } from "@blueprintjs/core"
+import SimpleReactValidator from "simple-react-validator"
 
 export default class AssociateDetails extends React.Component {
-  handleCVUpload = e => {
-    var saveRef = this.props.saveImageRef
-    var handleCVUpload = this.props.handleCVUpload
-    var cv_up = document.getElementById("cv_upload")
-    cv_up.style.display = "block"
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showUploadProgress:false
+    }
+    this.validator = new SimpleReactValidator({
+      autoForceUpdate: this,
+    })
+  }
+
+  handleCVUpload=(e)=> {
+    this.setState({
+      showUploadProgress: true,
+    })
     const firebase = require("firebase")
     const config = {
       apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
@@ -21,39 +33,50 @@ export default class AssociateDetails extends React.Component {
     if (!firebase.apps.length) {
       firebase.initializeApp(config)
     }
-    let imageName = "Expert_upload"
+
+    let name = "associate-cv"
     let timeSubmitted = new Date().getTime()
     var file = document.getElementById("curriculum_vitae").files[0]
     let fileRef =
-      "ExpertUpload/" + imageName + "_" + timeSubmitted + "_" + file.name
+      "uploaded_file/" + name + "_" + timeSubmitted + "_" + file.name
 
     var storageRef = firebase.storage().ref(fileRef)
     var task = storageRef.put(file)
+
     task.on(
       "state_changed",
-      function progress(snapshot) {
-        //
+      snapshot => {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        this.setState({
+          pro:progress
+        })       
       },
-      function error(err) {
-        alert("failed to update profile...pls try again")
+      error => {
+         console.log(error);
+         alert("Failed Uploading Curriculum Vitae");
+         this.setState({
+           showUploadProgress: false,
+         })
       },
-      function complete() {
-        saveRef("cv_ref", fileRef)
-        handleCVUpload(file)
-
-        cv_up.style.display = "none"
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        task.snapshot.ref.getDownloadURL().then(downloadURL => {
+           this.props.saveImageRef("cv_ref", downloadURL)
+          this.props.handleCVUpload(file)
+          this.setState({
+            showUploadProgress: false,
+          })
+        })
       }
     )
   }
 
-  handleTranscriptUpload = e => {
-    var saveRef = this.props.saveImageRef
-    var handleUniversityTranscript = this.props.handleUniversityTranscript
-    var ut_up = document.getElementById("ut_upload")
-    ut_up.style.display = "block"
-
+  handleTranscriptUpload =(e)=> {
+    this.setState({
+      showUploadProgress: true,
+    })
     const firebase = require("firebase")
-
     const config = {
       apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
       authDomain: "gradsuccess.firebaseapp.com",
@@ -66,27 +89,51 @@ export default class AssociateDetails extends React.Component {
     if (!firebase.apps.length) {
       firebase.initializeApp(config)
     }
-    let imageName = "Expert_upload"
+
+    let name = "associate-cv"
     let timeSubmitted = new Date().getTime()
     var file = document.getElementById("university_transcripts").files[0]
     let fileRef =
-      "ExpertUpload/" + imageName + "_" + timeSubmitted + "_" + file.name
+      "uploaded_file/" + name + "_" + timeSubmitted + "_" + file.name
+
     var storageRef = firebase.storage().ref(fileRef)
     var task = storageRef.put(file)
+
     task.on(
       "state_changed",
-      function progress(snapshot) {
-        //
+      snapshot => {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        
       },
-      function error(err) {
-        alert("failed to update profile...pls try again")
+      error => {
+        console.log(error);
+        alert("Failed Uploading transcript");
+        this.setState({
+          showUploadProgress: false,
+        })
       },
-      function complete() {
-        saveRef("uni_transcript_ref", fileRef)
-        handleUniversityTranscript(file)
-        ut_up.style.display = "none"
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        task.snapshot.ref.getDownloadURL().then(downloadURL => {
+          this.props.saveImageRef("uni_transcript_ref", downloadURL)
+          this.props.handleUniversityTranscript(file)
+          this.setState({
+            showUploadProgress: false,
+          })
+
+        })
       }
     )
+  }
+
+  verifyInputs = () => {
+    if (this.validator.allValid()) {
+      this.props.nextStep()
+    } else {
+      this.validator.showMessages()
+      this.forceUpdate()
+    }
   }
 
   render() {
@@ -122,8 +169,9 @@ export default class AssociateDetails extends React.Component {
                 </li>
               </ul>
             </div>
-            <div className="row-full">
-              <div className="row">
+
+            <div className="align-input">
+              <div className="align-input-w">
                 <input
                   type="text"
                   placeholder="Highest Ranked University Attended"
@@ -132,7 +180,20 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   name="highest_ranked_university_attended"
                   value={this.props.highest_ranked_university_attended}
+                  className="bp3-input bp3-large"
                 />
+                <p className="error_message">
+                  <i>
+                    {this.validator.message(
+                      "highest_ranked_university_attended",
+                      this.props.highest_ranked_university_attended,
+                      "required"
+                    )}
+                  </i>
+                </p>
+              </div>
+              <div className="align-input-w">
+                {" "}
                 <input
                   type="text"
                   placeholder="University Qualification"
@@ -141,10 +202,22 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   name="qualification_at_university"
                   value={this.props.qualification_at_university}
+                  className="bp3-input bp3-large"
                 />
+                <p className="error_message">
+                  <i>
+                    {this.validator.message(
+                      "qualification_at_university",
+                      this.props.qualification_at_university,
+                      "required"
+                    )}
+                  </i>
+                </p>
               </div>
+            </div>
 
-              <div className="row">
+            <div className="align-input">
+              <div className="align-input-w">
                 <input
                   type="text"
                   placeholder="Employment"
@@ -153,59 +226,108 @@ export default class AssociateDetails extends React.Component {
                   autoComplete="false"
                   onChange={handleFormInput}
                   value={this.props.employment}
+                  className="bp3-input bp3-large"
                 />
-
-                <div className="col">
-                  <input
-                    type="text"
-                    placeholder="Scholarships and Awards"
-                    onChange={handleFormInput}
-                    id="scholarships_and_awards"
-                    name="scholarships_and_awards"
-                    autoComplete="false"
-                    value={this.props.scholarships_and_awards}
-                  />
-                </div>
+                <p className="error_message">
+                  <i>
+                    {this.validator.message(
+                      "employment",
+                      this.props.employment,
+                      "required"
+                    )}
+                  </i>
+                </p>
               </div>
-              <input
-                type="text"
-                placeholder="Graduating Grade"
-                id="graduating_grade"
-                name="graduating_grade"
-                autoComplete="false"
-                onChange={handleFormInput}
-                value={this.props.graduating_grade}
-              />
 
-              <input
-                type="text"
-                placeholder="GRE Score"
-                id="gre_score"
-                autoComplete="false"
-                name="gre_score"
-                onChange={handleFormInput}
-                value={this.props.gre_score}
-              />
-
-              <input
-                type="text"
-                placeholder="GMAT score"
-                id="gmat_score"
-                name="gmat_score"
-                autoComplete="false"
-                onChange={handleFormInput}
-                value={this.props.gmat_score}
-              />
-              <input
-                type="text"
-                placeholder="IELTs"
-                id="ielts"
-                autoComplete="false"
-                name="ielts"
-                value={this.props.ielts}
-                onChange={handleFormInput}
-              />
+              <div className="align-input-w">
+                <input
+                  type="text"
+                  placeholder="Scholarships and Awards"
+                  onChange={handleFormInput}
+                  id="scholarships_and_awards"
+                  name="scholarships_and_awards"
+                  autoComplete="false"
+                  value={this.props.scholarships_and_awards}
+                  className="bp3-input bp3-large"
+                />
+                <p className="error_message">
+                  <i>
+                    {this.validator.message(
+                      "scholarships_and_awards",
+                      this.props.scholarships_and_awards,
+                      "required"
+                    )}
+                  </i>
+                </p>
+              </div>
             </div>
+
+            <div className="align-input">
+              <div className="align-input-w">
+                <input
+                  type="text"
+                  placeholder="Graduating Grade"
+                  id="graduating_grade"
+                  name="graduating_grade"
+                  autoComplete="false"
+                  onChange={handleFormInput}
+                  value={this.props.graduating_grade}
+                  className="bp3-input bp3-large"
+                />
+                <p className="error_message">
+                  <i>
+                    {this.validator.message(
+                      "gre_score",
+                      this.props.graduating_grade,
+                      "required"
+                    )}
+                  </i>
+                </p>
+              </div>
+
+              <div className="align-input-w">
+                <input
+                  type="text"
+                  placeholder="GRE Score"
+                  id="gre_score"
+                  autoComplete="false"
+                  name="gre_score"
+                  onChange={handleFormInput}
+                  value={this.props.gre_score}
+                  className="bp3-input bp3-large"
+                />
+              </div>
+            </div>
+
+            <div className="align-input">
+              <div className="align-input-w">
+                <input
+                  type="text"
+                  placeholder="GMAT score"
+                  id="gmat_score"
+                  name="gmat_score"
+                  autoComplete="false"
+                  onChange={handleFormInput}
+                  value={this.props.gmat_score}
+                  className="bp3-input bp3-large"
+                />
+              </div>
+
+              <div className="align-input-w">
+                <input
+                  type="text"
+                  placeholder="IELTs"
+                  id="ielts"
+                  autoComplete="false"
+                  name="ielts"
+                  value={this.props.ielts}
+                  onChange={handleFormInput}
+                  className="bp3-input bp3-large"
+                />
+              </div>
+            </div>
+            <br />
+            <div className="row-full"></div>
             <input
               type="file"
               name="university_transcripts"
@@ -222,65 +344,52 @@ export default class AssociateDetails extends React.Component {
             />
 
             <div className="expert_reg_upload_label">
-              <img src={upoadAttachment}  alt = "associates"/>
+              <img src={upoadAttachment} alt="associates" />
 
               <label htmlFor="university_transcripts">
-                {this.props.uni_transcript === ""
+                {this.props.uni_transcript === null
                   ? "Upload University Transcript"
                   : "Change"}
               </label>
-              <img src={loading} id="ut_upload" alt = "associates"/>
               <p>{this.props.uni_transcript}</p>
             </div>
 
             <div className="expert_reg_upload_label">
-              <img src={upoadAttachment} alt = "associates" />
+              <img src={upoadAttachment} alt="associates" />
 
               <label htmlFor="curriculum_vitae">
-                {this.props.cv === "" ? "Upload CV" : "Change"}
+                {this.props.cv === null ? "Upload CV" : "Change"}
               </label>
-              <img src={loading} id="cv_upload" alt = "associates"/>
               <p>{this.props.cv}</p>
             </div>
-            <div>
-              <input
+
+            {this.state.showUploadProgress && (
+              <Spinner
+                size={Spinner.SIZE_SMALL}
+                className="bp3-intent-success"
+              />
+            )}
+
+            <br />
+            <div className="layout-btn">
+              <Button
                 type="button"
-                className="submit-details-next"
-                value="Previous"
+                className="bp3-button bp3-intent-danger n-btn"
                 onClick={prevStep}
-              />
-              <input
+                large={true}
+                disabled={this.state.showUploadProgress}
+              >
+                Previous
+              </Button>
+              <Button
                 type="button"
-                className="submit-details-prev"
-                value="Next"
-                onClick={nextStep}
-                css={{
-                  opacity:
-                    this.props.highest_ranked_university_attended === "" ||
-                    this.props.qualification_at_university === "" ||
-                    this.props.employment === "" ||
-                    this.props.scholarships_and_awards === "" ||
-                    this.props.graduating_grade === "" ||
-                    (this.props.gre_score === "") === "" ||
-                    this.props.gmat_score === "" ||
-                    this.props.ielts === ""
-                      ? // this.props.uni_transcript === ""
-                        "0.3"
-                      : "1",
-                }}
-                disabled={
-                  // this.props.cv === "" ||
-                  // this.props.uni_transcript === "" ||
-                  this.props.highest_ranked_university_attended === "" ||
-                  this.props.qualification_at_university === "" ||
-                  this.props.employment === "" ||
-                  this.props.scholarships_and_awards === "" ||
-                  this.props.graduating_grade === "" ||
-                  (this.props.gre_score === "") === "" ||
-                  this.props.gmat_score === "" ||
-                  this.props.ielts === ""
-                }
-              />
+                className="bp3-button bp3-intent-success n-btn"
+                onClick={this.verifyInputs}
+                large={true}
+                disabled={this.state.showUploadProgress}
+              >
+                Next
+              </Button>
             </div>
           </form>
         </div>

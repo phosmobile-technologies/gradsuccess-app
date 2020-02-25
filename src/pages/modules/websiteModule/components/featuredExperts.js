@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Link } from "gatsby"
 import { Query } from "react-apollo"
 import { ALL_ASSOCIATES } from "../../../graphql/queries"
+import dProfile from '../../../../images/default_profile_img.png'
  /* eslint-disable */
 export default class FeaturedExperts extends Component {
   constructor(props) {
@@ -67,11 +68,6 @@ export default class FeaturedExperts extends Component {
             account_type: "Associate",
           }}
           onCompleted={data => {
-            // this.setState({
-            //   allExpert: data.allExpertDetail,
-            // })
-            // this.getImageUrl()
-            console.log(data)
           }}
         >
           {({ loading, error, data }) => {
@@ -84,9 +80,13 @@ export default class FeaturedExperts extends Component {
                   {data.getAllAssociates.map((associate, index) => (
                     <div className="featured-experts-single" key={index}>
                       <div className="img-div">
-                        <img src={associate.details.profile_image_ref} />
+                        {associate.details ? (
+                          <img src={associate.details.profile_image_ref} />
+                        ) : (
+                          <img src={dProfile} />
+                        )}
                       </div>
-                      <div className="summary-div">
+                      {associate.details ? <div className="summary-div">
                         <p>{associate.details.bio_bait}</p>
                         <Link
                           to="/request-associate-service"
@@ -94,7 +94,7 @@ export default class FeaturedExperts extends Component {
                         >
                           Place an order with {associate.details.user_name}
                         </Link>
-                      </div>
+                      </div>:<div className = "empty-assoiate-profile"></div>}
                     </div>
                   ))}
                 </div>

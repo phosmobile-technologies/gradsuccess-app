@@ -61,6 +61,57 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const CREATE_ASSOCIATE_PROFILE = gql`
+  mutation CreateAssociateDetail(
+    $highest_ranked_university_attended: String
+    $qualification_at_university: String
+    $employment: String
+    $scholarships_and_awards: String
+    $graduating_grade: String
+    $gre_score: String
+    $gmat_score: String
+    $ielts: String
+    $university_transcripts: String
+    $attached_file: String
+    $bio_bait: String!
+    $where_client_from: String
+    $what_jobs_client: String
+    $client_reach_you_for: String
+    $profile_image_ref: String
+    $user_name: String
+    $bank_account_number: String
+    $bank_name: String
+    $user_id: ID!
+  ) {
+    CreateAssociateDetail(
+      input: {
+        highest_ranked_university_attended: $highest_ranked_university_attended
+        qualification_at_university: $qualification_at_university
+        employment: $employment
+        scholarships_and_awards: $scholarships_and_awards
+        graduating_grade: $graduating_grade
+        gre_score: $gre_score
+        gmat_score: $gmat_score
+        ielts: $ielts
+        university_transcripts: $university_transcripts
+        attached_file: $attached_file
+        bio_bait: $bio_bait
+        where_client_from: $where_client_from
+        what_jobs_client: $what_jobs_client
+        client_reach_you_for: $client_reach_you_for
+        profile_image_ref: $profile_image_ref
+        user_name: $user_name
+        bank_account_number: $bank_account_number
+        bank_name: $bank_name
+        user_id: $user_id
+      }
+    ) {
+      id
+    }
+  }
+`
+
 export const UPDATE_USER = gql`
   mutation UpdateUser(
     $id: ID!
@@ -755,37 +806,34 @@ export const UPDATE_PASSWORD = gql`
   }
 `
 export const SAVE_MESSAGE = gql`
-         mutation CreateMessages(
-           $sender_id: ID!
-           $recipient_id: ID!
-           $message: String 
-           $attached_file: String
-           $attached_file_type: MessageType!
-           $attached_file_name: String
-         ) {
-           CreateMessage(
-             input: {
-               sender_id: $sender_id
-               recipient_id: $recipient_id
-               message: $message
-               attached_file: $attached_file
-               attached_file_type: $attached_file_type
-               attached_file_name: $attached_file_name
-             }
-           ) {
-             sender_id
-             recipient_id
-             message
-             attached_file
-             attached_file_name
-             attached_file_type
-             created_at
-           }
-         }
-       `
-
-
-
+  mutation CreateMessages(
+    $sender_id: ID!
+    $recipient_id: ID!
+    $message: String
+    $attached_file: String
+    $attached_file_type: MessageType!
+    $attached_file_name: String
+  ) {
+    CreateMessage(
+      input: {
+        sender_id: $sender_id
+        recipient_id: $recipient_id
+        message: $message
+        attached_file: $attached_file
+        attached_file_type: $attached_file_type
+        attached_file_name: $attached_file_name
+      }
+    ) {
+      sender_id
+      recipient_id
+      message
+      attached_file
+      attached_file_name
+      attached_file_type
+      created_at
+    }
+  }
+`
 
 export default class Mutations extends Component {
   render() {

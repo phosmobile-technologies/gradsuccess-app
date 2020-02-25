@@ -1,6 +1,7 @@
 
 import React from "react"
 import defaultImage from "../../../../../images/default_profile_img.png"
+import { Button } from '@blueprintjs/core';
 
 
 export default class resumeReviewForm extends React.Component {
@@ -47,6 +48,7 @@ export default class resumeReviewForm extends React.Component {
                              type="file"
                              name="file"
                              id="file"
+                             accept=".png,.jpg,.jpeg,.JPEG,.svg"
                              ref="uploadImg"
                              className="file_upload"
                              onChange={handleProfileFileUpload}
@@ -54,47 +56,48 @@ export default class resumeReviewForm extends React.Component {
 
                            <div
                              className={
-                               this.props.file !== ""
+                               this.props.file !== null
                                  ? "uploadImg"
                                  : "hide-upload-img"
                              }
                            >
-                             <img src={this.props.file} alt = "upload profile"/>
+                             <img src={this.props.file} alt="upload profile" />
                              <label htmlFor="file">change</label>
                            </div>
                            <div
                              className="p-image"
-                             id={this.props.file !== "" ? "hide-d-img" : ""}
+                             id={this.props.file !== null ? "hide-d-img" : ""}
                            >
                              <div>
-                               <img id="previewimg" src={defaultImage}  alt ="upload profile"/>
+                               <img
+                                 id="previewimg"
+                                 src={defaultImage}
+                                 alt="upload profile"
+                               />
                              </div>
                              <div className="p-image-trigger">
-                               <p>
-                                 Upload profile image <br />
-                                 <label htmlFor="file">Browse File</label>
-                               </p>
+                               <label htmlFor="file">
+                                 Upload Profile Image
+                               </label>
                              </div>
                            </div>
-                           <div>
-                             <input
+                           <div className="layout-btn">
+                             <Button
                                type="button"
-                               className="submit-details-next"
-                               value="Previous"
+                               className="bp3-button bp3-intent-danger n-btn"
                                onClick={prevStep}
-                             />
-                             <input
+                               large={true}
+                             >
+                               Previous
+                             </Button>
+                             <Button
                                type="button"
-                               className="submit-details-prev"
-                               value="Save and Continue"
+                               className="bp3-button bp3-intent-success n-btn"
                                onClick={nextStep}
-                               css={{
-                                 opacity: this.props.file === ""
-                                   ? "0.3"
-                                   : "1",
-                               }}
-                               disabled={this.props.file === ""}
-                             />
+                               large={true}
+                             >
+                               Next
+                             </Button>
                            </div>
                          </form>
                        </div>

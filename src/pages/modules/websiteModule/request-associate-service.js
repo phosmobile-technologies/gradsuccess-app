@@ -17,16 +17,18 @@ export default class ExpertSpecificApplication extends Component {
   }
 
   render() {
-    return (
-      <Layout>
-        <SEO
-          title="Request Associate Service"
-          keywords={[`success`, `application`, `university`]}
-        />
-        <ExpertSpecificRequest
-          associate={this.state.associate}
-        />
-      </Layout>
-    )
+    if (this.state.associate) {
+      return (
+        <Layout>
+          <SEO
+            title="Request Associate Service"
+            keywords={[`success`, `application`, `university`]}
+          />
+          <ExpertSpecificRequest associate={this.state.associate} />
+        </Layout>
+      )
+    }else{
+      return <div></div>
+    }
   }
 }

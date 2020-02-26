@@ -18,6 +18,7 @@ class FormCompletePage extends React.Component {
   }
 
   componentDidMount() {
+     this.props.deleteAssignedAssociate("null")
     let url = CLIENT_PASSWORD
     let a_url = SEND_ASSOCIATE_EMAIL
 
@@ -77,6 +78,7 @@ class FormCompletePage extends React.Component {
   handleCloseModal=()=> {
     this.setState({ showModal: false })
   }
+
   render() {
     return (
       <Layout>
@@ -143,9 +145,20 @@ function mapStateToProps(state) {
     user: state.user,
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+
+    deleteAssignedAssociate: id => {
+      dispatch({
+        type: "DELETE_ASSIGNED_ASSOCIATE",
+        id,
+      })
+    },
+  }
+}
 
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(FormCompletePage)

@@ -63,17 +63,12 @@ class CompletePackageRegistration extends Component {
       this.props.updateCart(this.state.newPackageList)
     } else {
       this.props.updateCart(this.state.newPackageList)
-      
        navigate("/application-creation-success", {
          state: {
            password: this.props.location.state.password,
          },
        })
     }
-  }
-
-  componentWillUnmount(){
-    this.props.deleteAssignedAssociate("null")
   }
   render() {
     switch (this.state.ePackage.form) {
@@ -162,13 +157,6 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: "UPDATE_CART",
         cart,
-      })
-    },
-
-    deleteAssignedAssociate: id => {
-      dispatch({
-        type: "DELETE_ASSIGNED_ASSOCIATE",
-        id,
       })
     },
   }

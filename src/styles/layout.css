@@ -2400,8 +2400,7 @@ progress {
     flex-direction: column;
     margin: auto;
     margin-top: 50px;
-    width: 70%;
-    max-width: 960px;
+    width: 80%;
 }
 .admission-listing,
 .career-listing,
@@ -2413,7 +2412,7 @@ progress {
 }
 .expert-spe {
   margin: auto;
-  width: 90%;
+  width: 70%;
 }
 .admission-listing-inner,
 .career-listing-inner,
@@ -3019,8 +3018,7 @@ progress {
 }
 
 .package-options{
-  padding: 40px;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3028,8 +3026,16 @@ progress {
   margin-bottom: 50px;
   min-height: 50vh;
 }
-
-
+.package-options .note{
+  font-style: italic;
+  margin-top: 10px;
+    padding-left: 10px;
+}
+.expert-specific-wrapper h2{
+  text-align: left;
+    width: 80%;
+    padding-bottom: 20px;
+}
 
 .align-input{
   display: flex;
@@ -3078,4 +3084,40 @@ progress {
 .sample-link a{
   color: red;
   padding: 0px 10px;
+}
+
+
+.p-d-box h5{
+  margin-bottom: 10px !important;
+  margin-top: 0px !important;
+}
+
+.e-s-packages{
+      display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.e-s-package-container{
+  background-color: white;
+  padding: 20px;
+  
+}
+
+.e-s-package-container h1{
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.e-s-btn{
+  margin-top: 40px;
+  min-width: 200px !important;
+}
+
+.completed-alert{
+  font-size: 14px;
+  text-align: center;
+  color: #1c584b;
 }

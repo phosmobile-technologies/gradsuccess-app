@@ -14,15 +14,6 @@ import OutstandingPackageRegisteration from "../outstandingPackageRegisteration"
 
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
-const customStyles = {
-  content: {
-    top: "0%",
-    left: "0%",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(255,255,255,0.3)",
-  },
-}
 
 class Header extends React.Component {
   constructor(props) {

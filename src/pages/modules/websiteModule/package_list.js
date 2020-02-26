@@ -173,7 +173,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Regular",
              price: "20000",
            },
-           label: "Admission Essay Redraft (₦20,000) Regular",
+           label: "₦20,000",
          },
          {
            value: {
@@ -182,7 +182,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "Admission Essay Redraft (₦30,000) Flash",
+           label: "₦30,000",
          },
          {
            value: {
@@ -191,7 +191,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Regular",
              price: "18500",
            },
-           label: "Admission Essay Review (₦18,500) Regular",
+           label: "₦18,500",
          },
          {
            value: {
@@ -200,7 +200,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Flash",
              price: "25000",
            },
-           label: "Admission Essay Review (₦25,000) Flash",
+           label: "₦25,000",
          },
          {
            value: {
@@ -209,7 +209,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Regular",
              price: "20000",
            },
-           label: "Admission Resume Redraft (₦20,000) Regular",
+           label: "₦20,000",
          },
          {
            value: {
@@ -218,7 +218,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "Admission Resume Redraft (₦30,000) Flash",
+           label: "₦30,000h",
          },
          {
            value: {
@@ -227,7 +227,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Regular",
              price: "10000",
            },
-           label: "Admission Resume Review (₦10,000) Regular",
+           label: "₦10,000",
          },
          {
            value: {
@@ -236,7 +236,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Flash",
              price: "15000",
            },
-           label: "Admission Resume Review (₦15,000) Flash",
+           label: "₦15,000",
          },
        ]
 
@@ -248,7 +248,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Regular",
              price: "20000",
            },
-           label: "Career Essay Redraft (₦20,000) Regular",
+           label: "₦20,000",
          },
          {
            value: {
@@ -257,7 +257,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "Career Essay Redraft (₦30,000) Flash",
+           label: "₦30,000",
          },
          {
            value: {
@@ -266,7 +266,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Regular",
              price: "18500",
            },
-           label: "Career Essay Review (₦18,500) Regular",
+           label: "₦18,500",
          },
          {
            value: {
@@ -275,7 +275,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Flash",
              price: "25000",
            },
-           label: "Career Essay Review (₦25,000) Flash",
+           label: "₦25,000",
          },
          {
            value: {
@@ -284,7 +284,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Regular",
              price: "20000",
            },
-           label: "Career Resume Redraft (₦20,000) Regular",
+           label: "₦20,000",
          },
          {
            value: {
@@ -293,7 +293,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "Career Resume Redraft (₦30,000) Flash",
+           label: "₦30,000",
          },
          {
            value: {
@@ -302,7 +302,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Regular",
              price: "10000",
            },
-           label: "Career Resume Review (₦10,000) Regular",
+           label: "₦10,000",
          },
          {
            value: {
@@ -311,7 +311,7 @@ export const packageSelectCareer = [
              turnAroundTime: "Flash",
              price: "15000",
            },
-           label: "Career Resume Review (₦15,000) Flash",
+           label: "₦15,000",
          },
        ]
 
@@ -323,7 +323,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Regular",
              price: "20000",
            },
-           label: "Scholarships Essay Redraft (₦20,000) Regular",
+           label: "₦20,000",
          },
          {
            value: {
@@ -332,7 +332,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "Scholarships Essay Redraft (₦30,000) Flash",
+           label: "₦30,000",
          },
          {
            value: {
@@ -341,7 +341,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Regular",
              price: "18500",
            },
-           label: "Scholarships Essay Review (₦18,500) Regular",
+           label: "₦18,500",
          },
          {
            value: {
@@ -350,7 +350,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Flash",
              price: "25000",
            },
-           label: "Scholarships Essay Review (₦25,000) Flash",
+           label: "₦25,000",
          },
          {
            value: {
@@ -359,7 +359,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Regular",
              price: "20000",
            },
-           label: "Scholarships Resume Redraft  (₦20,000) Regular",
+           label: "₦20,000",
          },
          {
            value: {
@@ -368,7 +368,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "Scholarships Resume Redraft (₦30,000) Flash",
+           label: "₦30,000",
          },
          {
            value: {
@@ -377,7 +377,7 @@ export const packageSelectScholarship = [
              turnAroundTime: "Regular",
              price: "10000",
            },
-           label: "Scholarships Resume Review (₦10,000) Regular",
+           label: "₦10,000",
          },
          {
            value: {
@@ -386,6 +386,6 @@ export const packageSelectScholarship = [
              turnAroundTime: "Flash",
              price: "15000",
            },
-           label: "Scholarships Resume Review (₦15,000) Flash",
+           label: "₦15,000",
          },
        ]

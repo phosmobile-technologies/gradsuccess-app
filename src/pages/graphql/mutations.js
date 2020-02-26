@@ -162,7 +162,7 @@ export const CREATE_GRADUATE_SCHOOL_STATEMENT_REVIEW = gql`
     $name: String!
     $university_and_course_applied_for: String!
     $summary_of_interest: String!
-    $attached_file: String!
+    $attached_file: String
     $package_id: ID!
     $assigned_associate_id: ID
     $user_id: ID!

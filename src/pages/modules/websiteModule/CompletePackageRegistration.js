@@ -63,12 +63,17 @@ class CompletePackageRegistration extends Component {
       this.props.updateCart(this.state.newPackageList)
     } else {
       this.props.updateCart(this.state.newPackageList)
+      
        navigate("/application-creation-success", {
          state: {
            password: this.props.location.state.password,
          },
        })
     }
+  }
+
+  componentWillUnmount(){
+    this.props.deleteAssignedAssociate("null")
   }
   render() {
     switch (this.state.ePackage.form) {
@@ -81,7 +86,8 @@ class CompletePackageRegistration extends Component {
                 updatePackageList={() => this.updatePackageList()}
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
-                currentFormNumber = {this.state.currentFormNumber}
+                currentFormNumber={this.state.currentFormNumber}
+                assignedAssociate={this.props.assignedAssociate.id}
               />
             </div>
           </Layout>
@@ -96,6 +102,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
+                assignedAssociate={this.props.assignedAssociate.id}
               />
             </div>
           </Layout>
@@ -110,6 +117,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
+                assignedAssociate={this.props.assignedAssociate.id}
               />
             </div>
           </Layout>
@@ -124,6 +132,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
+                assignedAssociate={this.props.assignedAssociate.id}
               />
             </div>
           </Layout>
@@ -143,6 +152,7 @@ function mapStateToProps(state) {
   return {
     packages: state.cart.paidPackageList,
     user: state.user,
+    assignedAssociate:state.assignedAssociate
   }
 }
 
@@ -152,6 +162,13 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: "UPDATE_CART",
         cart,
+      })
+    },
+
+    deleteAssignedAssociate: id => {
+      dispatch({
+        type: "DELETE_ASSIGNED_ASSOCIATE",
+        id,
       })
     },
   }

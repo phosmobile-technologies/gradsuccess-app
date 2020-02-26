@@ -1,12 +1,12 @@
 import React from "react"
-import Select from "react-select"
 import {
   packageSelectAdmission,
   packageSelectCareer,
   packageSelectScholarship,
 } from "./../../package_list"
-import chroma from "chroma-js"
-import { Callout } from "@blueprintjs/core"
+import { Callout, Button } from "@blueprintjs/core"
+import PriceBoxWithDescription from './../priceBoxWithDescription';
+import { Link } from 'gatsby';
 
 export default class ExpertSpecificRequest extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class ExpertSpecificRequest extends React.Component {
     this.state = {
       user_name: "",
       itemInCart: {},
-      associateDetail:null
+      associateDetail:null,
     }
 
     this.getItem = this.getItem.bind(this)
@@ -129,45 +129,76 @@ export default class ExpertSpecificRequest extends React.Component {
             <h2>How Can {this.state.associateDetail.user_name} Help You?</h2>
 
             <div className="package-options">
-              <Callout className="bp3-intent-success" icon="insert">
-                <span>Welcome,</span> <br />
-                <h3>{this.state.associateDetail.user_name}</h3>
+              <Callout className="bp3-intent-primary">
                 <span>
-                  will be pleased to Help you <br />
+                  {this.state.associateDetail.user_name}, will be pleased to
+                  Help you <br />
                   - Have the best application that will make you easily
                   noticeable from the rest of the competition.
                   <br />- achieve their long and short term academic and
                   professional goals
                   <br />- One more step closer to the funding you need
                 </span>
-                <p>
-                  <span>Note:</span> You can select multiple package.
+                <p className="note">
+                  <strong>Note:</strong> You can select multiple package.
                 </p>
               </Callout>
               <br />
               <br />
 
-              <div>
-                Choose from our Admission Packages
-                <Select
-                  options={packageSelectAdmission}
-                  styles={customStyles}
-                  label="Single select"
-                />
+              <div className="e-s-package-container">
+                <h1>Choose from our Admission Packages</h1>
+                <div className="e-s-packages">
+                  {packageSelectAdmission.map(packageItem => {
+                    return (
+                      <PriceBoxWithDescription
+                        text={packageItem.value.title}
+                        turnArroundTime={packageItem.value.turnAroundTime.toUpperCase()}
+                        price={packageItem.label}
+                        packageDetail={packageItem.value}
+                        assignAssociate={this.props.associate.id}
+                      />
+                    )
+                  })}
+                </div>
               </div>
 
-              <div>
-                Choose from our Career Packages
-                <Select options={packageSelectCareer} styles={customStyles} />
+              <div className="e-s-package-container">
+                <h1>Choose from our Career Packages</h1>
+                <div className="e-s-packages">
+                  {packageSelectCareer.map(packageItem => {
+                    return (
+                      <PriceBoxWithDescription
+                        text={packageItem.value.title}
+                        turnArroundTime={packageItem.value.turnAroundTime.toUpperCase()}
+                        price={packageItem.label}
+                        packageDetail={packageItem.value}
+                        assignAssociate={this.props.associate.id}
+                      />
+                    )
+                  })}
+                </div>
               </div>
 
-              <div>
-                Choose from our Scholarship Packages
-                <Select
-                  options={packageSelectScholarship}
-                  styles={customStyles}
-                />
+              <div className="e-s-package-container">
+                <h1>Choose from our Scholarship Packages</h1>
+                <div className="e-s-packages">
+                  {packageSelectScholarship.map(packageItem => {
+                    return (
+                      <PriceBoxWithDescription
+                        text={packageItem.value.title}
+                        turnArroundTime={packageItem.value.turnAroundTime.toUpperCase()}
+                        price={packageItem.label}
+                        packageDetail={packageItem.value}
+                        assignAssociate={this.props.associate.id}
+                      />
+                    )
+                  })}
+                </div>
               </div>
+              <Link to="cart">
+                <Button className = "bp3-intent-success bp3-large e-s-btn">Proceed</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -178,36 +209,3 @@ export default class ExpertSpecificRequest extends React.Component {
       
   }
 }
-
-const customStyles = {
-  control: styles => ({
-    ...styles,
-    backgroundColor: "white",
-    width: "500px",
-    padding: "10px",
-    marginTop: "10px",
-  }),
-  option: (styles, { data }) => {
-    return {
-      ...styles,
-    }
-  },
-  input: styles => ({ ...styles, ...dot() }),
-  placeholder: styles => ({ ...styles, ...dot() }),
-  singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
-}
-
-const dot = (color = "#ccc") => ({
-  alignItems: "center",
-  display: "flex",
-
-  ":before": {
-    backgroundColor: color,
-    borderRadius: 10,
-    content: '" "',
-    display: "block",
-    marginRight: 8,
-    height: 10,
-    width: 10,
-  },
-})

@@ -5,7 +5,7 @@ const cartReducer = (state, action) => {
       cartItems:[],
       paidPackageList:[],
       total:0,
-      subTotal:0
+      subTotal:0,
     }
   }
   switch (action.type) {
@@ -19,7 +19,7 @@ const cartReducer = (state, action) => {
     case "SAVE_PAID_PACKAGE_LIST": {
       return {
         ...state,
-        cartItems:[],
+        cartItems: [],
         paidPackageList: action.items,
         total: 0,
         subTotal: 0,
@@ -55,6 +55,7 @@ const cartReducer = (state, action) => {
         paidPackageList: action.cart,
       }
     }
+
 
     default: {
       return state

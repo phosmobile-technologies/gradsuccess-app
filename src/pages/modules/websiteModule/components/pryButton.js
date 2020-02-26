@@ -10,6 +10,9 @@ class PryButton extends React.Component {
           className={this.props.small ? "SmallButtonStyles" : "BigButtonStyles"}
           onClick={() => {
             this.props.addToCart(this.props.packageDetail)
+            if (this.props.assignAssociate) {
+              this.props.addAssignedAssociate(this.props.assignAssociate)
+            }
             swal(
               this.props.packageDetail.title + " (" +  this.props.packageDetail.turnAroundTime + ") " +
                 " Added to Cart continue to checkout or select another service THANK YOU ",
@@ -35,6 +38,12 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: "ADD_TO_CART",
         item,
+      })
+    },
+    addAssignedAssociate: id => {
+      dispatch({
+        type: "ADD_ASSIGNED_ASSOCIATE",
+        id,
       })
     },
   }

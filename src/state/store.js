@@ -3,6 +3,7 @@ import cart from "./reducers/cartReducers"
 import user from "./reducers/authReducer"
 import loggedInUser from "./reducers/userReducer"
 import chat from "./reducers/chatReducer"
+import assignedAssociate from "./reducers/assignedAssociateReducer"
 
 export const initialState = {}
 
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   user,
   loggedInUser,
   chat,
+  assignedAssociate,
 })
 
 const persistedState = loadFromLocalStorage()

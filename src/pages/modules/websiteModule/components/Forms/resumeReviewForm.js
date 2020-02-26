@@ -10,8 +10,7 @@ import {
   Button,
   Icon,
   ButtonGroup,
-  Position,
-  Toaster,
+Alert
 } from "@blueprintjs/core"
 import SimpleReactValidator from "simple-react-validator"
 
@@ -141,6 +140,21 @@ export default class ResumeReviewForm extends React.Component {
     if (this.props.packageDetail) {
       return (
         <div>
+          <Alert
+            isOpen={this.state.completed}
+            confirmButtonText="Continue"
+            onClose={() => {
+              this.setState({
+                initialState,
+              })
+              this.props.updatePackageList()
+            }}
+          >
+            <span className = "completed-alert">
+              form Details submitted sucessfully, pls filled the next form if
+              your sellected multiple package
+            </span>
+          </Alert>
           <div className="detail-form reviewModal">
             {this.state.loading && (
               <div className="spinner-loader-bg">
@@ -159,27 +173,16 @@ export default class ResumeReviewForm extends React.Component {
                   })
                 }}
                 onCompleted={data => {
-                  let AppToaster
-                  this.setState({
-                    loading: false,
-                  })
-                  if (typeof window !== `undefined`) {
-                    AppToaster = Toaster.create({
-                      className: "recipe-toaster",
-                      position: Position.TOP,
-                    })
-                    AppToaster.show({
-                      message:
-                        "form Details submitted sucessfully, pls filled the next form if your sellected multiple package",
-                      className: "bp3-intent-success",
-                      onDismiss: () => {
-                        this.setState({
-                          initialState,
-                        })
-                        this.props.updatePackageList()
-                      },
-                    })
-                  }
+                    this.setState(
+                    {
+                      loading: false,
+                    },
+                    () => {
+                      this.setState({
+                        completed: true,
+                      })
+                    }
+                  )
                 }}
               >
                 {(createResumeReviewData, { error }) => (

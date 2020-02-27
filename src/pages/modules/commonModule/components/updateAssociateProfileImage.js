@@ -21,9 +21,11 @@ export default class UpdateAssociateProfileImage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      imageRef: this.props.associateDetail.profile_image_ref,
-    })
+    if (this.props.associateDetail) {
+      this.setState({
+        imageRef: this.props.associateDetail.profile_image_ref,
+      })
+    }
   }
 
   openImageDialog = () => {

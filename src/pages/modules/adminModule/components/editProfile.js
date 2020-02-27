@@ -7,7 +7,7 @@ export default class AdminEditProfle extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<EditProfile />}
+        body={<EditProfile redirectLink="/admin/account/new-application" />}
         routes={admin_nav_routes}
         title="Edit Profile"
       />

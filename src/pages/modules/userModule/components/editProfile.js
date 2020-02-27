@@ -7,7 +7,7 @@ export default class UserEditProfile extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<EditProfile />}
+        body={<EditProfile redirectLink="/user/account/dashboard" />}
         routes={user_nav_routes}
         title="Edit Profile"
       />

@@ -2,20 +2,40 @@ import React, { Component } from "react"
 import gql from "graphql-tag"
 
 export const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
-    login(data: { username: $email, password: $password }) {
-      access_token
-      user {
-        id
-        first_name
-        last_name
-        phone
-        email
-        account_type
-      }
-    }
-  }
-`
+         mutation login($email: String!, $password: String!) {
+           login(data: { username: $email, password: $password }) {
+             access_token
+             user {
+               id
+               first_name
+               last_name
+               phone
+               email
+               account_type
+               details {
+                 id
+                 highest_ranked_university_attended
+                 qualification_at_university
+                 employment
+                 scholarships_and_awards
+                 graduating_grade
+                 gre_score
+                 gmat_score
+                 ielts
+                 university_transcripts
+                 attached_file
+                 bio_bait
+                 where_client_from
+                 what_jobs_client
+                 client_reach_you_for
+                 profile_image_ref
+                 user_name
+                 bank_account_number
+               }
+             }
+           }
+         }
+       `
 
 export const LOGOUT = gql`
   mutation {
@@ -112,27 +132,105 @@ export const CREATE_ASSOCIATE_PROFILE = gql`
   }
 `
 
-export const UPDATE_USER = gql`
-  mutation UpdateUser(
-    $id: ID!
-    $first_name: String!
-    $last_name: String!
-    $phone: String!
-    $email: String!
+
+export const UPDATE_ASSOCIATE_PROFILE = gql`
+  mutation UpdateAssociateDetail(
+    $id:ID!
+    $highest_ranked_university_attended: String
+    $qualification_at_university: String
+    $employment: String
+    $scholarships_and_awards: String
+    $graduating_grade: String
+    $gre_score: String
+    $gmat_score: String
+    $ielts: String
+    $university_transcripts: String
+    $attached_file: String
+    $bio_bait: String!
+    $where_client_from: String
+    $what_jobs_client: String
+    $client_reach_you_for: String
+    $profile_image_ref: String
+    $user_name: String
+    $bank_account_number: String
+    $bank_name: String
   ) {
-    UpdateUser(
+    UpdateAssociateDetail(
       input: {
-        id: $id
-        first_name: $first_name
-        last_name: $last_name
-        phone: $phone
-        email: $email
+        id:$id
+        highest_ranked_university_attended: $highest_ranked_university_attended
+        qualification_at_university: $qualification_at_university
+        employment: $employment
+        scholarships_and_awards: $scholarships_and_awards
+        graduating_grade: $graduating_grade
+        gre_score: $gre_score
+        gmat_score: $gmat_score
+        ielts: $ielts
+        university_transcripts: $university_transcripts
+        attached_file: $attached_file
+        bio_bait: $bio_bait
+        where_client_from: $where_client_from
+        what_jobs_client: $what_jobs_client
+        client_reach_you_for: $client_reach_you_for
+        profile_image_ref: $profile_image_ref
+        user_name: $user_name
+        bank_account_number: $bank_account_number
+        bank_name: $bank_name
       }
     ) {
-      id
+       id
     }
   }
 `
+
+
+
+export const UPDATE_USER = gql`
+         mutation UpdateUser(
+           $id: ID!
+           $first_name: String!
+           $last_name: String!
+           $phone: String!
+           $email: String!
+         ) {
+           UpdateUser(
+             input: {
+               id: $id
+               first_name: $first_name
+               last_name: $last_name
+               phone: $phone
+               email: $email
+             }
+           ) {
+             id
+             first_name
+             last_name
+             phone
+             email
+             account_type
+             details {
+               id
+               highest_ranked_university_attended
+               qualification_at_university
+               employment
+               scholarships_and_awards
+               graduating_grade
+               gre_score
+               gmat_score
+               ielts
+               university_transcripts
+               attached_file
+               bio_bait
+               where_client_from
+               what_jobs_client
+               client_reach_you_for
+               profile_image_ref
+               user_name
+               bank_account_number
+             }
+           }
+         }
+       `
 
 export const CREATE_PACKAGE = gql`
   mutation CreatePackage(

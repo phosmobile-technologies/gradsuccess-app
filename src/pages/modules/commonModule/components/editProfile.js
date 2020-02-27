@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 
 
 class EditProfile extends Component {
+  
   render() {
-    return <EditProfileView user={this.props.user} />
+    return (
+      <EditProfileView
+        user={this.props.user}
+        redirectLink={this.props.redirectLink}
+      />
+    )
   }
 }
 

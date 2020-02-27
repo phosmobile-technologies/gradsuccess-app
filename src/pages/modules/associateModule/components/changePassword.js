@@ -8,7 +8,9 @@ export default class AssociateChangePassword extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<ChangePassword />}
+        body={
+          <ChangePassword redirectLink="/associate/account/new-application" />
+        }
         routes={associate_nav_routes}
         title="Change Password"
       />

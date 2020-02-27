@@ -161,20 +161,7 @@ export const CHAT_HISTORY = gql`
        `
 
 
-export const GET_ALL_EXPERTS = gql`
-  query GetExperts($account_type: String!) {
-    getExperts(account_type: $account_type) {
-      id
-      first_name
-      last_name
-      phone
-      form_id
-      package
-      email
-      account_type
-    }
-  }
-`
+
 
 export const GET_ASSIGN_ASSOCIATE = gql`
   query getAsignAssociate($id: ID!) {
@@ -449,9 +436,6 @@ export const ALL_ASSOCIATES = gql`
          }
          ${AssociateFields.associate}
        `
-
-
-
 export const ASSOCIATE = gql`
          query getAssociate($id: ID!) {
            getAssociate(id: $id) {

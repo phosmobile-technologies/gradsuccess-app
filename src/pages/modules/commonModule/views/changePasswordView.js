@@ -40,8 +40,8 @@ export default class ChangePasswordView extends Component {
               passwordChanged:true
             })
             setTimeout(() => {
-              navigate("/user/account/dashboard")
-            }, 3000);
+              navigate(this.props.redirectLink)
+            }, 1000);
           }}
         >
           {(changePassword, { data, loading, error }) => (

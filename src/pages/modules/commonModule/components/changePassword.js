@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import ChangePasswordView from './../views/changePasswordView';
-import { connect } from 'react-redux';
+import React, { Component } from "react"
+import ChangePasswordView from "./../views/changePasswordView"
+import { connect } from "react-redux"
 
- class ChangePassword extends Component {
+class ChangePassword extends Component {
   render() {
     console.log(this.props.user)
     return (
-      <ChangePasswordView user = {this.props.user}/>
+      <ChangePasswordView
+        user={this.props.user}
+        redirectLink={this.props.redirectLink}
+      />
     )
   }
 }
-
 
 function mapStateToProps(state) {
   return {

@@ -122,6 +122,10 @@ const admin_routes = [
     path: "/admin/account/dashboard/profile",
     component: path.resolve(admin + `components/adminAssociateProfile.js`),
   },
+  {
+    path: "/admin/account/associates",
+    component: path.resolve(admin + `components/Associates.js`),
+  },
 ]
 
 const associate_routes = [

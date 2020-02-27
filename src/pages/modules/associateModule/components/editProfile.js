@@ -7,7 +7,7 @@ export default class AssociateEditProfile extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<EditProfile />}
+        body={<EditProfile redirectLink="/associate/account/new-application" />}
         routes={associate_nav_routes}
         title="Edit Profile"
       />

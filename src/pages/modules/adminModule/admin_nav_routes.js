@@ -36,6 +36,11 @@ export const admin_nav_routes = [
            path: "admin/account/completed-application",
          },
          {
+           name: "Associates",
+           icon: "comparison",
+           path: "admin/account/associates",
+         },
+         {
            name: "Messages",
            icon: "chat",
            path: "admin/account/chat-room",

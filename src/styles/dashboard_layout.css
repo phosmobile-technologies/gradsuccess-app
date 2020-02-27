@@ -334,7 +334,6 @@ body {
   max-width: 1200px;
   margin: auto;
   min-height: 86vh;
-  overflow-y: scroll;
 }
 .menu-image {
   display: flex;
@@ -755,11 +754,30 @@ p {
   min-height: 70vh;
 }
 .p-edit-form {
+  width: 100%;
+}
+
+.e-p-detail-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.e-p-detail-wrapper .input-e-c{
+  width: 90%;
+}
+.input-e-c{
   width: 50%;
 }
+
 .input-e-c span {
   font-size: 13px;
   font-style: italic;
+}
+.input-e-c textarea{
+  width: 100%;
+  margin-bottom: 40px;
+  min-height: 100px;
 }
 
 .logout {
@@ -1292,3 +1310,40 @@ table {
   overflow: hidden;
   margin-top: 10px;
 }
+
+.a-p-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.a-p-card{
+  width: 33%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+}
+
+.a-p-img-wrapper{
+  height: 250px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.a-p-card .bio_bait {
+  font-size: 13px;
+  padding: 10px 0px;
+
+}
+
+.a-p-card .name {
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 5px;
+
+}
+

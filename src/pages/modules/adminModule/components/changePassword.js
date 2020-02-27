@@ -8,7 +8,7 @@ export default class AdminChangePassword extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<ChangePassword />}
+        body={<ChangePassword redirectLink="/admin/account/new-application" />}
         routes={admin_nav_routes}
         title="Change Password"
       />

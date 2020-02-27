@@ -8,7 +8,7 @@ export default class UserChangePassword extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<ChangePassword />}
+        body={<ChangePassword redirectLink="/user/account/dashboard" />}
         routes={user_nav_routes}
         title="Change Password"
       />

@@ -176,7 +176,7 @@ import {
                           name="password"
                           onChange={this.handleFormInput}
                         />
-                      )}
+                      )}  
                     </div>
 
                     <br />

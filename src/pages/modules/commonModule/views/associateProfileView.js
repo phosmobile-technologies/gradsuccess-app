@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import FieldSetView from "./FieldSetView"
-import pImage from "../../../../images/dan.jpeg"
+import pImage from "../../../../images/default_profile_img.png"
 export default class AssociateProfileView extends Component {
   constructor(props) {
     super(props)

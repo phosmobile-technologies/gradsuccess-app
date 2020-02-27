@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Card, Button, Elevation, Divider } from "@blueprintjs/core"
 import { truncateString } from "../../commonModule/stringModifiers"
 import { Link } from "gatsby"
-import defaultImage from "../../../../images/dan.jpeg"
+import defaultImage from "../../../../images/default_profile_img.png"
 
 export default class AssociateProfileCardView extends Component {
   render() {

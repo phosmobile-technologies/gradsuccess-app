@@ -3,37 +3,63 @@ import gql from "graphql-tag"
 import { PackageFields, AssociateFields, Messages } from "./fragments"
 
 export const LOGGED_IN_USER = gql`
-  {
-    me {
-      id
-      first_name
-      last_name
-      phone
-      email
-      account_type
-      cover_letter_redrafts {
-        ...coverLetterRedraftField
-      }
-      cover_letter_reviews {
-        ...coverLetterReviewField
-      }
-      graduate_school_essay_redrafts {
-        ...graduateSchoolEssayRedraftField
-      }
-      graduate_school_statement_review {
-        ...graduateSchoolStatementReviewField
-      }
-      resume_reviews {
-        ...resumeReviewField
-      }
-    }
-  }
-  ${PackageFields.cover_letter_redraft}
-  ${PackageFields.cover_letter_review}
-  ${PackageFields.graduate_school_essay_redrafts}
-  ${PackageFields.graduate_school_statement_review}
-  ${PackageFields.resume_reviews}
-`
+         {
+           me {
+             id
+             first_name
+             last_name
+             phone
+             email
+             account_type
+             id
+             first_name
+             last_name
+             phone
+             email
+             account_type
+             details {
+               id
+               highest_ranked_university_attended
+               qualification_at_university
+               employment
+               scholarships_and_awards
+               graduating_grade
+               gre_score
+               gmat_score
+               ielts
+               university_transcripts
+               attached_file
+               bio_bait
+               where_client_from
+               what_jobs_client
+               client_reach_you_for
+               profile_image_ref
+               user_name
+               bank_account_number
+             }
+             cover_letter_redrafts {
+               ...coverLetterRedraftField
+             }
+             cover_letter_reviews {
+               ...coverLetterReviewField
+             }
+             graduate_school_essay_redrafts {
+               ...graduateSchoolEssayRedraftField
+             }
+             graduate_school_statement_review {
+               ...graduateSchoolStatementReviewField
+             }
+             resume_reviews {
+               ...resumeReviewField
+             }
+           }
+         }
+         ${PackageFields.cover_letter_redraft}
+         ${PackageFields.cover_letter_review}
+         ${PackageFields.graduate_school_essay_redrafts}
+         ${PackageFields.graduate_school_statement_review}
+         ${PackageFields.resume_reviews}
+       `
 
 export const GET_USER = gql`
   query GetUser($id: ID!) {

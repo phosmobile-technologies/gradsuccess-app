@@ -763,10 +763,10 @@ p {
   grid-template-columns: 1fr 1fr;
 }
 
-.e-p-detail-wrapper .input-e-c{
+.e-p-detail-wrapper .input-e-c {
   width: 90%;
 }
-.input-e-c{
+.input-e-c {
   width: 50%;
 }
 
@@ -774,7 +774,7 @@ p {
   font-size: 13px;
   font-style: italic;
 }
-.input-e-c textarea{
+.input-e-c textarea {
   width: 100%;
   margin-bottom: 40px;
   min-height: 100px;
@@ -1311,23 +1311,21 @@ table {
   margin-top: 10px;
 }
 
-.a-p-container{
+.a-p-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
-.a-p-card{
+.a-p-card {
   width: 33%;
   max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-
 }
 
-.a-p-img-wrapper{
+.a-p-img-wrapper {
   height: 250px;
   border-radius: 5px;
   overflow: hidden;
@@ -1336,7 +1334,6 @@ table {
 .a-p-card .bio_bait {
   font-size: 13px;
   padding: 10px 0px;
-
 }
 
 .a-p-card .name {
@@ -1344,6 +1341,29 @@ table {
   font-weight: bold;
   text-transform: uppercase;
   padding-top: 5px;
-
+}
+.d-h-account {
+  height: inherit;
+  overflow: hidden;
+  display: flex;
+}
+.d-h-profile-img-wapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+      margin-right: 20px;
 }
 
+.d-h-profile-img {
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.d-h-profile-img-wapper img {
+  margin-bottom: 0px;
+}
+.d-h-profile-img-wapper span {
+  font-size: 10px;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Link } from "gatsby"
 import { Icon } from "@blueprintjs/core"
 import logo from "../../../../images/logo2.png"
+import UserHeaderCard from './../userHeaderCard';
 
 export default class DashboardLayoutView extends Component {
   constructor(props) {
@@ -88,7 +89,18 @@ export default class DashboardLayoutView extends Component {
                   className="m-icon"
                   onClick={this.toggleMenu}
                 />
-                <h3>{this.props.title}</h3>
+                <nav class="bp3-navbar .modifier">
+                  <div class="bp3-navbar-group bp3-align-left">
+                    <div class="bp3-navbar-heading">{this.props.title}</div>
+                  </div>
+                  <div class="bp3-navbar-group bp3-align-right">
+                   <UserHeaderCard />
+
+                    <button class="bp3-button bp3-minimal bp3-icon-home">
+                      <Link to={this.props.routes[0].path}>Home</Link>
+                    </button>
+                  </div>
+                </nav>
               </div>
             </div>
             <div className="page-content-inner">{this.props.body}</div>

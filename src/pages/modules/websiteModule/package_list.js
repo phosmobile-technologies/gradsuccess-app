@@ -218,7 +218,7 @@ export const packageSelectAdmission = [
              turnAroundTime: "Flash",
              price: "30000",
            },
-           label: "₦30,000h",
+           label: "₦30,000",
          },
          {
            value: {

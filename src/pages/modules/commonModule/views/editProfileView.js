@@ -8,6 +8,8 @@ import {
 import { Mutation } from "react-apollo"
 import { navigate } from "gatsby"
 import { connect } from "react-redux"
+import UpdateAssociateProfileImage from "../components/updateAssociateProfileImage"
+import UpdateProfileImage from './../components/updateProfileImage';
 class EditProfileView extends Component {
   constructor(props) {
     super(props)
@@ -51,6 +53,7 @@ class EditProfileView extends Component {
   componentDidMount() {
     var user = this.props.user
     let details = this.props.user.details
+    console.log(details)
     this.setState(
       {
         email: user.email,
@@ -58,9 +61,6 @@ class EditProfileView extends Component {
         last_name: user.last_name,
         phone: user.phone,
         details,
-      },
-      () => {
-        console.log(this.state)
       }
     )
   }
@@ -91,18 +91,28 @@ class EditProfileView extends Component {
   render() {
     return (
       <div>
+        {this.state.details ? (
+          <UpdateAssociateProfileImage
+            associateDetail={this.props.user.details}
+          />
+        ) : (
+          <UpdateProfileImage id={this.props.user.id} />
+        )}
         <Mutation
           mutation={UPDATE_USER}
           onError={this.error}
           onCompleted={data => {
-            this.setState({
-              editSuccess: true,
-            },()=>{
-              this.props.saveUser(data.UpdateUser);
-              setTimeout(() => {
-                navigate(this.props.redirectLink)
-              }, 1000)
-            })
+            this.setState(
+              {
+                editSuccess: true,
+              },
+              () => {
+                this.props.saveUser(data.UpdateUser)
+                setTimeout(() => {
+                  navigate(this.props.redirectLink)
+                }, 1000)
+              }
+            )
           }}
         >
           {(editProfile, { loading, error }) => (
@@ -563,7 +573,7 @@ class EditProfileView extends Component {
         <Mutation
           mutation={UPDATE_ASSOCIATE_PROFILE}
           onCompleted={data => {
-           this.userForm.dispatchEvent(new Event("submit"))
+            this.userForm.dispatchEvent(new Event("submit"))
           }}
           onError={error => {
             alert(error)

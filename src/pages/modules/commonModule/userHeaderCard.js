@@ -14,8 +14,8 @@ import defaultImage from "../../../images/default_profile_img.png"
             {this.props.user.details && (
               <div className="d-h-profile-img-wapper">
                 <div className="d-h-profile-img">
-                  {this.props.user.detailsprofile_image_ref ? (
-                    <img src={this.props.user.detailsprofile_image_ref} />
+                  {this.props.user.details.profile_image_ref ? (
+                    <img src={this.props.user.details.profile_image_ref} />
                   ) : (
                     <img src={defaultImage} />
                   )}

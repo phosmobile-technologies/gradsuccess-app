@@ -146,7 +146,7 @@ export const UPDATE_ASSOCIATE_PROFILE = gql`
     $ielts: String
     $university_transcripts: String
     $attached_file: String
-    $bio_bait: String!
+    $bio_bait: String
     $where_client_from: String
     $what_jobs_client: String
     $client_reach_you_for: String
@@ -182,6 +182,19 @@ export const UPDATE_ASSOCIATE_PROFILE = gql`
     }
   }
 `
+
+export const UPDATE_ASSOCIATE_PROFILE_IMAGE = gql`
+         mutation UpdateAssociateDetail($id: ID!, $profile_image_ref: String) {
+           UpdateAssociateDetail(
+             input: { id: $id, profile_image_ref: $profile_image_ref }
+           ) {
+             id
+             profile_image_ref
+           }
+         }
+       `
+
+
 
 
 

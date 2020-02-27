@@ -13,21 +13,22 @@ function Table({data, user}) {
             accessor: "name",
           },
           {
-            Header: "Type",
-            accessor: "package.package_name",
-          },
-          {
-            Header: "Turn Arround Time",
-            accessor: "package.turn_around_time",
-          },
-          {
             Header: "Amount",
             accessor: "package.amount",
           },
           {
+            Header: "Package Type",
+            accessor: "package.package_name",
+          },
+          {
+            Header: "TAT",
+            accessor: "package.turn_around_time",
+          },
+
+          {
             Header: "Status",
             accessor: "status",
-          }
+          },
         ],
       },
     ],

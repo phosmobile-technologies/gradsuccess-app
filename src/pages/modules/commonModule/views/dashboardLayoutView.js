@@ -58,7 +58,7 @@ export default class DashboardLayoutView extends Component {
                         activeClassName="currentMenu"
                         partiallyActive={true}
                       >
-                        <Icon icon={route.icon} />
+                        <Icon icon={route.icon} iconSize={15} color="black" className = "icon-dashboard"/>
                         <span>{route.name}</span>
                       </Link>
                     </li>

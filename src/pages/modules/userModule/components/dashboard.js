@@ -34,7 +34,6 @@ class userIndex extends Component {
   }
 
   render() {
-    console.log(this.state.packages)
     return (
       <div>
         <DashboardView userPackages={this.state.packages} />

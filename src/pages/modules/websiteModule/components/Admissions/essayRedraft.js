@@ -104,12 +104,12 @@ class EssayRedraft extends Component {
               <div className="price-box-wrapper">
                 <PriceBox
                   text="STANDARD"
-                  price="N20,000"
+                  price="₦20,000"
                   packageDetail={packages.admission_grad_sch_essay_redraft_reg}
                 />
                 <PriceBox
                   text="FLASH PRICE"
-                  price="N30,000"
+                  price="₦30,000"
                   packageDetail={packages.admission_grad_sch_essay_redraft_fla}
                 />
               </div>

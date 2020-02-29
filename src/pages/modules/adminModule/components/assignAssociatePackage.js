@@ -22,7 +22,6 @@ class AssignAssociatePackage extends Component {
   }
 
   assignAssociatePackage = associate_id => {
-    console.log(this.props.packageItem.package.form_type)
     this.setState(
       {
         associate_id,

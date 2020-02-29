@@ -89,14 +89,14 @@ export default class DashboardLayoutView extends Component {
                   className="m-icon"
                   onClick={this.toggleMenu}
                 />
-                <nav class="bp3-navbar .modifier">
-                  <div class="bp3-navbar-group bp3-align-left">
-                    <div class="bp3-navbar-heading">{this.props.title}</div>
+                <nav className="bp3-navbar .modifier">
+                  <div className="bp3-navbar-group bp3-align-left">
+                    <div className="bp3-navbar-heading">{this.props.title}</div>
                   </div>
-                  <div class="bp3-navbar-group bp3-align-right">
+                  <div className="bp3-navbar-group bp3-align-right">
                    <UserHeaderCard />
 
-                    <button class="bp3-button bp3-minimal bp3-icon-home">
+                    <button className="bp3-button bp3-minimal bp3-icon-home">
                       <Link to={this.props.routes[0].path}>Home</Link>
                     </button>
                   </div>

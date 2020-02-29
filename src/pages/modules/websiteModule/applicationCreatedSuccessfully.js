@@ -59,7 +59,6 @@ class FormCompletePage extends React.Component {
                 return response.text()
               })
               .then(text => {
-                console.log(text)
               })
               .catch(function(error) {
                 alert("Networks Error please try again, Later!")

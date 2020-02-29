@@ -19,8 +19,9 @@ class CompletePackageRegistration extends Component {
         title: "",
       },
       user_id: null,
-      numberOfPackages:0,
-      currentFormNumber:1
+      numberOfPackages: 0,
+      currentFormNumber: 1,
+      assignedAssociateId:null
     }
   }
 
@@ -48,6 +49,12 @@ class CompletePackageRegistration extends Component {
         packages: this.props.packages,
         numberOfPackages: this.props.packages.length,
       })
+
+    if(this.props.assignedAssociate){
+      this.setState({
+        assignedAssociateId: this.props.assignedAssociate.id
+      })
+    }
   }
   
   updatePackageList = () => {
@@ -65,7 +72,7 @@ class CompletePackageRegistration extends Component {
       this.props.updateCart(this.state.newPackageList)
        navigate("/application-creation-success", {
          state: {
-           password: this.props.location.state.password,
+           password: this.props.location.state.password || null,
          },
        })
     }
@@ -82,7 +89,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
-                assignedAssociate={this.props.assignedAssociate.id}
+                assignedAssociate={this.state.assignedAssociateId}
               />
             </div>
           </Layout>
@@ -97,7 +104,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
-                assignedAssociate={this.props.assignedAssociate.id}
+                assignedAssociate={this.state.assignedAssociateId}
               />
             </div>
           </Layout>
@@ -112,7 +119,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
-                assignedAssociate={this.props.assignedAssociate.id}
+                assignedAssociate={this.state.assignedAssociateId}
               />
             </div>
           </Layout>
@@ -127,7 +134,7 @@ class CompletePackageRegistration extends Component {
                 user_id={this.state.user_id}
                 numberOfPackages={this.state.numberOfPackages}
                 currentFormNumber={this.state.currentFormNumber}
-                assignedAssociate={this.props.assignedAssociate.id}
+                assignedAssociate={this.state.assignedAssociateId}
               />
             </div>
           </Layout>

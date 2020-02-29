@@ -6,7 +6,6 @@ import defaultImage from "../../../../images/default_profile_img.png"
 
 export default class AssociateProfileCardView extends Component {
   render() {
-    console.log(this.props.associate)
     if (this.props.associate) {
       return (
         <Card interactive={true} elevation={Elevation.TWO} className="a-p-card">

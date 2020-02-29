@@ -4,7 +4,6 @@ import { connect } from "react-redux"
 
 class ChangePassword extends Component {
   render() {
-    console.log(this.props.user)
     return (
       <ChangePasswordView
         user={this.props.user}

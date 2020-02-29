@@ -145,7 +145,7 @@ class Checkout extends Component {
   }
 
   close = () => {
-    console.log("Payment closed")
+    console.log("Transaction terminated")
   }
 
   getReference = () => {

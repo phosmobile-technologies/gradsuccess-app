@@ -53,7 +53,6 @@ class EditProfileView extends Component {
   componentDidMount() {
     var user = this.props.user
     let details = this.props.user.details
-    console.log(details)
     this.setState({
       email: user.email,
       first_name: user.first_name,

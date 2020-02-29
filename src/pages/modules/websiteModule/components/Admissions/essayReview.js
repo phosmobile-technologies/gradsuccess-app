@@ -148,12 +148,12 @@ import { packages } from './../../package_list';
            <div className="price-box-wrapper">
              <PriceBox
                text="STANDARD"
-               price="N18,500"
+               price="₦18,500"
                packageDetail={packages.admission_grad_sch_essay_review_reg}
              />
              <PriceBox
                text="FLASH PRICE"
-               price="N25,000"
+               price="₦25,000"
                packageDetail={packages.admission_grad_sch_essay_review_fla}
              />
            </div>

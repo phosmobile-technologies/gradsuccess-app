@@ -34,7 +34,6 @@ export default class PackageDetails extends Component {
           statusIndicator = "#FFD89E"
           break
       }
-      console.log(pItem);
 
       this.setState({
         packageIconCharacter: pItem.package.package_name.charAt(0),

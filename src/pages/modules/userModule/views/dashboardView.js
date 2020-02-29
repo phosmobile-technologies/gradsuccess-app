@@ -11,7 +11,6 @@ export default class DashboardView extends Component {
   };
   
   render() {
-    console.log(this.props.userPackages)
     if (this.props.userPackages) {
        return (
          <div>

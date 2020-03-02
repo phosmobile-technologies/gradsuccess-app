@@ -47,7 +47,7 @@ class Search extends React.Component {
   }
 
   handleEnable(event) {
-    if (event.target.value == "Admissions" || "Careers" || "Scholarships") {
+    if (event.target.value == "admissions" || "careers" || "scholarships") {
       const firstUrl = event.target.value
       this.setState({
         disabled: false,
@@ -81,19 +81,19 @@ class Search extends React.Component {
           {" "}
           Get Started!
         </h2>
-        <h3 for="program-select" css={steps}>
+        <h3 htmlFor="program-select" css={steps}>
           STEP 1
         </h3>
         <select id="program-select" onChange={this.handleEnable} css={inputTab}>
           <option value="" selected disabled>
             What's your interest?
           </option>
-          <option value="Admissions"> Admission </option>
-          <option value="Careers"> Career</option>
-          <option value="Scholarships"> Scholarship</option>
+          <option value="admissions"> Admission </option>
+          <option value="careers"> Career</option>
+          <option value="scholarships"> Scholarship</option>
         </select>
         {/* Second */} <br /> <br />
-        <h3 for="program-select" css={steps}>
+        <h3 htmlFor="program-select" css={steps}>
           {" "}
           STEP 2{" "}
         </h3>

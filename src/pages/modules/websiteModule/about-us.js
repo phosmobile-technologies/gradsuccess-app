@@ -87,7 +87,7 @@ class Search extends React.Component {
           {" "}
           Get Started!
         </h2>
-        <h3 for="program-select" css={steps}>
+        <h3 htmlFor="program-select" css={steps}>
           STEP 1
         </h3>
         <select id="program-select" onChange={this.handleEnable} css={inputTab}>
@@ -99,7 +99,7 @@ class Search extends React.Component {
           <option value="scholarships"> Scholarship</option>
         </select>
         {/* Second */} <br /> <br />
-        <h3 for="program-select" css={steps}>
+        <h3 htmlFor="program-select" css={steps}>
           {" "}
           STEP 2{" "}
         </h3>

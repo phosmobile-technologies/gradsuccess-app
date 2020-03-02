@@ -2,11 +2,31 @@ import React, { Component } from "react"
 import FieldSetView from "./FieldSetView"
 import { Divider } from "@blueprintjs/core"
 import CurrencyFormat from "react-currency-format"
+import Modal from "react-awesome-modal"
+import MarkPackageCompleted from "../components/markPackageCompleted"
 
 export default class PackageDetailsView extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showModal: false,
+    }
+  }
+
+  handleOpenModal = () => {
+    this.setState({ showModal: true })
+  }
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false })
+  }
+
   render() {
-    const data = this.props.data
-    if(data){
+    if (this.props.user) {
+      const data = this.props.data
+      console.log(data)
+      const user = this.props.user
       return (
         <div>
           <section className="details-container">
@@ -332,7 +352,9 @@ export default class PackageDetailsView extends Component {
               <div className="bp3-callout .modifier">
                 <div
                   className="package-icon package-icon-d"
-                  style={{ backgroundColor: this.props.statusColor }}
+                  style={{
+                    backgroundColor: this.props.statusColor,
+                  }}
                 >
                   {this.props.packageIconCharacter}
                 </div>
@@ -398,13 +420,38 @@ export default class PackageDetailsView extends Component {
                   No File Attached to this request
                 </div>
               )}
+
+              {user.account_type === "Client" && data.status === "Assigned" ? (
+                <div>
+                  <br />
+                  <a
+                    href={data.attached_file}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mark-completed"
+                    onClick={this.handleOpenModal}
+                  >
+                    Mark package as completed
+                  </a>
+                  <br />
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </section>
+          <Modal
+            visible={this.state.showModal}
+            effect="fadeInUp"
+            className="modal"
+            onClickAway={() => this.handleCloseModal()}
+          >
+            <MarkPackageCompleted data={data}/>
+          </Modal>
         </div>
       )
-    }else{
+    } else {
       return <div></div>
     }
-    
   }
 }

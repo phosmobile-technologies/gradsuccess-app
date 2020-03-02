@@ -43,7 +43,6 @@ class Header extends React.Component {
   }
 
   render() {
-    // let name = this.state.isToggle ? "mkRed" : null;
     return (
       <header>
         {/* Logo Area */}

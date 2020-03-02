@@ -2,40 +2,40 @@ import React, { Component } from "react"
 import gql from "graphql-tag"
 
 export const LOGIN = gql`
-         mutation login($email: String!, $password: String!) {
-           login(data: { username: $email, password: $password }) {
-             access_token
-             user {
-               id
-               first_name
-               last_name
-               phone
-               email
-               account_type
-               details {
-                 id
-                 highest_ranked_university_attended
-                 qualification_at_university
-                 employment
-                 scholarships_and_awards
-                 graduating_grade
-                 gre_score
-                 gmat_score
-                 ielts
-                 university_transcripts
-                 attached_file
-                 bio_bait
-                 where_client_from
-                 what_jobs_client
-                 client_reach_you_for
-                 profile_image_ref
-                 user_name
-                 bank_account_number
-               }
-             }
-           }
-         }
-       `
+  mutation login($email: String!, $password: String!) {
+    login(data: { username: $email, password: $password }) {
+      access_token
+      user {
+        id
+        first_name
+        last_name
+        phone
+        email
+        account_type
+        details {
+          id
+          highest_ranked_university_attended
+          qualification_at_university
+          employment
+          scholarships_and_awards
+          graduating_grade
+          gre_score
+          gmat_score
+          ielts
+          university_transcripts
+          attached_file
+          bio_bait
+          where_client_from
+          what_jobs_client
+          client_reach_you_for
+          profile_image_ref
+          user_name
+          bank_account_number
+        }
+      }
+    }
+  }
+`
 
 export const LOGOUT = gql`
   mutation {
@@ -132,10 +132,9 @@ export const CREATE_ASSOCIATE_PROFILE = gql`
   }
 `
 
-
 export const UPDATE_ASSOCIATE_PROFILE = gql`
   mutation UpdateAssociateDetail(
-    $id:ID!
+    $id: ID!
     $highest_ranked_university_attended: String
     $qualification_at_university: String
     $employment: String
@@ -157,7 +156,7 @@ export const UPDATE_ASSOCIATE_PROFILE = gql`
   ) {
     UpdateAssociateDetail(
       input: {
-        id:$id
+        id: $id
         highest_ranked_university_attended: $highest_ranked_university_attended
         qualification_at_university: $qualification_at_university
         employment: $employment
@@ -178,72 +177,88 @@ export const UPDATE_ASSOCIATE_PROFILE = gql`
         bank_name: $bank_name
       }
     ) {
-       id
+      id
     }
   }
 `
 
 export const UPDATE_ASSOCIATE_PROFILE_IMAGE = gql`
-         mutation UpdateAssociateDetail($id: ID!, $profile_image_ref: String) {
-           UpdateAssociateDetail(
-             input: { id: $id, profile_image_ref: $profile_image_ref }
-           ) {
-             id
-             profile_image_ref
-           }
-         }
-       `
+  mutation UpdateAssociateDetail($id: ID!, $profile_image_ref: String) {
+    UpdateAssociateDetail(
+      input: { id: $id, profile_image_ref: $profile_image_ref }
+    ) {
+      id
+      profile_image_ref
+    }
+  }
+`
 
-
-
-
+export const REVIEW_PACKAGE = gql`
+  mutation ReviewPackage(
+    $associate_id: ID!
+    $user_id: ID!
+    $rating: String!
+    $comment: String
+  ) {
+    ReviewPackage(
+      input: {
+        associate_id: $associate_id
+        user_id: $user_id
+        rating: $rating
+        comment: $comment
+      }
+    ) {
+      id
+    }
+  }
+`
 
 export const UPDATE_USER = gql`
-         mutation UpdateUser(
-           $id: ID!
-           $first_name: String!
-           $last_name: String!
-           $phone: String!
-           $email: String!
-         ) {
-           UpdateUser(
-             input: {
-               id: $id
-               first_name: $first_name
-               last_name: $last_name
-               phone: $phone
-               email: $email
-             }
-           ) {
-             id
-             first_name
-             last_name
-             phone
-             email
-             account_type
-             details {
-               id
-               highest_ranked_university_attended
-               qualification_at_university
-               employment
-               scholarships_and_awards
-               graduating_grade
-               gre_score
-               gmat_score
-               ielts
-               university_transcripts
-               attached_file
-               bio_bait
-               where_client_from
-               what_jobs_client
-               client_reach_you_for
-               profile_image_ref
-               user_name
-               bank_account_number
-             }
-           }
-         }
-       `
+  mutation UpdateUser(
+    $id: ID!
+    $first_name: String!
+    $last_name: String!
+    $phone: String!
+    $email: String!
+  ) {
+    UpdateUser(
+      input: {
+        id: $id
+        first_name: $first_name
+        last_name: $last_name
+        phone: $phone
+        email: $email
+      }
+    ) {
+      id
+      first_name
+      last_name
+      phone
+      email
+      account_type
+      details {
+        id
+        highest_ranked_university_attended
+        qualification_at_university
+        employment
+        scholarships_and_awards
+        graduating_grade
+        gre_score
+        gmat_score
+        ielts
+        university_transcripts
+        attached_file
+        bio_bait
+        where_client_from
+        what_jobs_client
+        client_reach_you_for
+        profile_image_ref
+        user_name
+        bank_account_number
+      }
+    }
+  }
+`
 
 export const CREATE_PACKAGE = gql`
   mutation CreatePackage(
@@ -821,6 +836,78 @@ export const DECLINE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
     $status: PackageStatus!
   ) {
     DeclineGraduateSchoolEssayRedraft(
+      input: { id: $id, associate_id: $associate_id, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
+// mutation to for client to review packages
+
+export const MARK_RESUME_REVIEW_COMPLETED = gql`
+  mutation ApproveResumeReview(
+    $id: ID!
+    $associate_id: ID!
+    $status: PackageStatus!
+  ) {
+    ApproveResumeReview(
+      input: { id: $id, associate_id: $associate_id, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
+export const MARK_COVER_LETTER_REVIEW_COMPLETED = gql`
+  mutation ApproveCoverLetterReview(
+    $id: ID!
+    $associate_id: ID!
+    $status: PackageStatus!
+  ) {
+    ApproveCoverLetterReview(
+      input: { id: $id, associate_id: $associate_id, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
+export const MARK_GRADUATE_SCHOOL_ESSAY_REDRAFT_COMPLETED = gql`
+  mutation ApproveCoverLetterRedraft(
+    $id: ID!
+    $associate_id: ID!
+    $status: PackageStatus!
+  ) {
+    ApproveCoverLetterRedraft(
+      input: { id: $id, associate_id: $associate_id, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
+export const MARK_GRADUATE_SCHOOL_STATEMENT_REVIEW_COMPLETED = gql`
+  mutation ApproveGraduateSchoolStatementReview(
+    $id: ID!
+    $associate_id: ID!
+    $status: PackageStatus!
+  ) {
+    ApproveGraduateSchoolStatementReview(
+      input: { id: $id, associate_id: $associate_id, status: $status }
+    ) {
+      id
+    }
+  }
+`
+
+export const MARK_COVER_LETTER_REDRAFT_COMPLETED = gql`
+  mutation ApproveGraduateSchoolEssayRedraft(
+    $id: ID!
+    $associate_id: ID!
+    $status: PackageStatus!
+  ) {
+    ApproveGraduateSchoolEssayRedraft(
       input: { id: $id, associate_id: $associate_id, status: $status }
     ) {
       id

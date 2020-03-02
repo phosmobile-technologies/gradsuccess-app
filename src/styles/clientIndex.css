@@ -2148,10 +2148,89 @@ body {
   background-color: black;
   color: white;
   font-size: 12px;
+  border-radius: 5px;
 }
+
+
+.mark-completed {
+  margin-top: 10px;
+  padding: 10px 40px;
+  border: 1px solid #19a99d;
+  border-radius: 3px;
+  margin-top: 30px;
+  width: 100%;
+  background-color: #19a99d;
+  color: white;
+  font-size: 12px;
+  border-radius: 5px;
+  transition: .3s;
+}
+
+.mark-completed:hover{
+  color: white !important;
+  background-color: #00766e;
+}
+
 
 .empty-assoiate-profile{
   background-color: #056e65;
   opacity: .1;
   border-radius: 5px;
+}
+
+.i-form{
+  margin-bottom: 0px !important;
+}
+
+.rate-package{
+  min-width: 400px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.rate-package-top{
+  background-color: #00a99d;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 50px;
+  align-items: center;
+
+}
+.rate-package-top h3{
+  padding-top: 20px;
+  font-size: 16px;
+}
+
+.rate-package-inputs{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  flex-grow: 1;
+}
+.rate-package-inputs i{
+  font-size: 20px !important;
+}
+.rate-package-inputs textarea{
+  width: 100%;
+  min-height: 100px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.star-a{
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.star-a span{
+  padding-right: 20px;
 }

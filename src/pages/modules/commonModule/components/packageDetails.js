@@ -3,8 +3,9 @@ import PackageDetailsView from "./../views/packageDetailsView"
 import { GET_ASSIGN_ASSOCIATE } from "./../../../graphql/queries"
 import { Query } from "react-apollo"
 import { Spinner } from "@blueprintjs/core"
+import { connect } from 'react-redux';
 
-export default class PackageDetails extends Component {
+class PackageDetails extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -68,6 +69,7 @@ export default class PackageDetails extends Component {
                   packageIconCharacter={this.state.packageIconCharacter}
                   statusColor={this.state.statusColor}
                   assignedAssociate={data.getAsignAssociate}
+                  user = {this.props.user}
                 />
           )
         }}
@@ -75,3 +77,15 @@ export default class PackageDetails extends Component {
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(PackageDetails)

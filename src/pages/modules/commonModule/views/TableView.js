@@ -15,8 +15,9 @@ import AssignAssociatePackage from "../../adminModule/components/assignAssociate
 import AssignSelfPackage from "../components/assignSelfPackage"
 import ApprovePackage from "../../adminModule/components/approvePackage"
 import DeclinePackage from "../../adminModule/components/declinePackage"
+import { connect } from "react-redux"
 
-function TableView({ columns, data, user }) {
+function TableView({ columns, data, user, viewPackage }) {
   // Use the state and functions returned from useTable to build your UI
   if (columns) {
     const {
@@ -191,6 +192,7 @@ function TableView({ columns, data, user }) {
                               <MenuItem
                                 text="View application"
                                 onClick={() => {
+                                  viewPackage(row.original)
                                   navigate(
                                     "/admin/account/dashboard/package/details",
                                     {
@@ -227,6 +229,7 @@ function TableView({ columns, data, user }) {
                               <MenuItem
                                 text="View application"
                                 onClick={() => {
+                                  viewPackage(row.original)
                                   navigate(
                                     "/admin/account/dashboard/package/details",
                                     {
@@ -266,6 +269,7 @@ function TableView({ columns, data, user }) {
                               <MenuItem
                                 text="View application"
                                 onClick={() => {
+                                  viewPackage(row.original)
                                   navigate(
                                     "/admin/account/dashboard/package/details",
                                     {
@@ -361,9 +365,22 @@ function TableView({ columns, data, user }) {
         )}
       </>
     )
-  }else{
+  } else {
     return <div></div>
   }
 }
 
-export default TableView
+function mapDispatchToProps(dispatch) {
+  return {
+    viewPackage: packageItem => {
+      dispatch({
+        type: "VIEW_PACKAGE",
+        packageItem,
+      })
+    },
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(TableView)

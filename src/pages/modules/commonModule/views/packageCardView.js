@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Card, Button, Elevation, Divider } from "@blueprintjs/core"
 import { Link } from "gatsby"
 import { truncateString } from "./../stringModifiers"
+import { connect } from "react-redux"
 
 class PackageCardView extends Component {
   render() {
@@ -37,7 +38,9 @@ class PackageCardView extends Component {
             to="/user/account/dashboard/package/details"
             state={{ packageItem: this.props.data }}
           >
-            <Button className="bp3-small view-btn">View</Button>
+            <Button className="bp3-small view-btn" onClick = {()=>{
+              this.props.viewPackage(this.props.data)
+            }}>View</Button>
           </Link>
         </Card>
       )
@@ -47,4 +50,19 @@ class PackageCardView extends Component {
   }
 }
 
-export default PackageCardView
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    viewPackage: packageItem => {
+      dispatch({
+        type: "VIEW_PACKAGE",
+        packageItem,
+      })
+    },
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(PackageCardView)

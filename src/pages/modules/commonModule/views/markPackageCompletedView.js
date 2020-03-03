@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Mutation } from "react-apollo"
 import { Callout, Spinner, Button, Icon, Intent } from "@blueprintjs/core"
 import { REVIEW_PACKAGE } from "../../../graphql/mutations"
-import { navigate } from "gatsby"
 import StarRatingComponent from "react-star-rating-component"
 
 export default class MarkPackageCompletedView extends Component {

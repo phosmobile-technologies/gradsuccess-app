@@ -860,12 +860,12 @@ export const MARK_RESUME_REVIEW_COMPLETED = gql`
 `
 
 export const MARK_COVER_LETTER_REVIEW_COMPLETED = gql`
-  mutation ApproveCoverLetterReview(
+  mutation MarkAssociateCoverLetterReviewCompleted(
     $id: ID!
     $associate_id: ID!
     $status: PackageStatus!
   ) {
-    ApproveCoverLetterReview(
+    MarkAssociateCoverLetterReviewCompleted(
       input: { id: $id, associate_id: $associate_id, status: $status }
     ) {
       id
@@ -902,12 +902,12 @@ export const MARK_GRADUATE_SCHOOL_STATEMENT_REVIEW_COMPLETED = gql`
 `
 
 export const MARK_COVER_LETTER_REDRAFT_COMPLETED = gql`
-  mutation ApproveGraduateSchoolEssayRedraft(
+  mutation MarkAssociateCoverLetterRedraftCompleted(
     $id: ID!
     $associate_id: ID!
     $status: PackageStatus!
   ) {
-    ApproveGraduateSchoolEssayRedraft(
+    MarkAssociateCoverLetterRedraftCompleted(
       input: { id: $id, associate_id: $associate_id, status: $status }
     ) {
       id

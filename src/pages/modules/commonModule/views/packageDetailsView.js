@@ -25,7 +25,6 @@ export default class PackageDetailsView extends Component {
   render() {
     if (this.props.user) {
       const data = this.props.data
-      console.log(data)
       const user = this.props.user
       return (
         <div>

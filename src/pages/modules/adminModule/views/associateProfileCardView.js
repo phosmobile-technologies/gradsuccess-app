@@ -9,16 +9,20 @@ export default class AssociateProfileCardView extends Component {
     if (this.props.associate) {
       return (
         <Card interactive={true} elevation={Elevation.TWO} className="a-p-card">
-          {this.props.associate.details.profile_image_ref ? (
-            <div className="a-p-img-wrapper">
-              <img src={this.props.associate.details.profile_image_ref} />
-            </div>
-          ) : (
-            <div className="a-p-img-wrapper">
-              <img src={defaultImage} />
-            </div>
-          )}
-          <p className  = "name">
+          {this.props.associate.details &&
+            <>
+              {this.props.associate.details.profile_image_ref ? (
+                <div className="a-p-img-wrapper">
+                  <img src={this.props.associate.details.profile_image_ref} />
+                </div>
+              ) : (
+                <div className="a-p-img-wrapper">
+                  <img src={defaultImage} />
+                </div>
+              )}
+            </>
+          }
+          <p className="name">
             {this.props.associate.first_name +
               " " +
               this.props.associate.last_name}

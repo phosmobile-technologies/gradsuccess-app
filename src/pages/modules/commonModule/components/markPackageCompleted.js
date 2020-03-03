@@ -10,6 +10,8 @@ import {
   MARK_COVER_LETTER_REDRAFT_COMPLETED,
 } from "../../../graphql/mutations"
 import MarkPackageCompletedView from "../views/markPackageCompletedView"
+import { LOGGED_IN_USER } from "./../../../graphql/queries"
+import { navigate } from "gatsby"
 
 class MarkPackageCompleted extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class MarkPackageCompleted extends Component {
     this.state = {
       assigned: false,
       associate_id: null,
+      completed: false,
     }
   }
 
@@ -63,8 +66,10 @@ class MarkPackageCompleted extends Component {
     })
   }
 
-  processCompleted() {
-    window.location.reload()
+  processCompleted = () => {
+    this.setState({
+      completed: true,
+    })
   }
 
   render() {
@@ -296,6 +301,11 @@ class MarkPackageCompleted extends Component {
               </div>
             )}
           </Mutation>
+          {this.state.completed && (
+            <RefetchUserData
+              saveUpdatedUserDetail={this.props.saveUpdatedUserDetail}
+            />
+          )}
         </>
       )
     } else {
@@ -303,13 +313,48 @@ class MarkPackageCompleted extends Component {
     }
   }
 }
+
 function mapStateToProps(state) {
   return {
     user: state.loggedInUser,
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    saveUpdatedUserDetail: data => {
+      dispatch({
+        type: "SAVE_USER_DETAILS",
+        data,
+      })
+    },
+  }
+}
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(MarkPackageCompleted)
+
+const RefetchUserData = ({ saveUpdatedUserDetail }) => (
+  <Query
+    query={LOGGED_IN_USER}
+    fetchPolicy="no-cache"
+    onCompleted={data => {
+      saveUpdatedUserDetail(data.me)
+      setTimeout(() => {
+        navigate("/user/account/dashboard")
+      }, 1000)
+    }}
+  >
+    {({ data, loading, error }) => {
+      if (loading) return <div></div>
+      if (error) return "Failed to load"
+      return (
+        <Callout className="bp3-intent-success">
+          <span>Package Completed</span>
+        </Callout>
+      )
+    }}
+  </Query>
+)

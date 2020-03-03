@@ -10,6 +10,7 @@ import {
 } from "@blueprintjs/core"
 import { navigate } from 'gatsby';
 import { truncateString } from './../../commonModule/stringModifiers';
+import { connect } from "react-redux";
 
 class AssignAssPackageView extends Component {
   constructor(props) {
@@ -93,6 +94,7 @@ associates:null,
                <Button
                  className="bp3-small bp3-intent-primary"
                  onClick={() => {
+                  this.props.viewPackage(this.state.packageItem)
                    navigate("/admin/account/dashboard/package/details", {
                      state: {
                        packageItem: this.state.packageItem,
@@ -113,4 +115,17 @@ associates:null,
   }
 }
 
-export default AssignAssPackageView
+function mapDispatchToProps(dispatch) {
+  return {
+    viewPackage: packageItem => {
+      dispatch({
+        type: "VIEW_PACKAGE",
+        packageItem,
+      })
+    },
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(AssignAssPackageView)

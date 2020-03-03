@@ -1399,3 +1399,24 @@ td, th {
   align-items: center;
   justify-content: center;
 }
+.rating{
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.rating-t{
+  display: block;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+
+}
+.rating-s{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}

@@ -2,8 +2,9 @@ import React, { Component } from "react"
 import { user_nav_routes } from "../user_nav_routes"
 import DashboardLayout from "./../../commonModule/components/dashboardLayout"
 import PackageDetails from "./../../commonModule/components/packageDetails"
+import { connect } from "react-redux"
 
-export default class UserEditProfile extends Component {
+class UserEditProfile extends Component {
   constructor(props) {
     super(props)
 
@@ -13,9 +14,10 @@ export default class UserEditProfile extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      packageItem: this.props.location.state.packageItem,
-    })
+     this.setState({
+       packageItem: this.props.packageDetail,
+     })
+    
   }
 
   render() {
@@ -32,3 +34,16 @@ export default class UserEditProfile extends Component {
     }
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    packageDetail:state.cart.package
+  }
+}
+export default connect(
+  mapStateToProps,
+  null
+)(UserEditProfile)
+
+
+

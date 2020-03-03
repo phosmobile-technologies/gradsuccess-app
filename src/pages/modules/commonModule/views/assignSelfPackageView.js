@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Button, Card, Elevation, Divider } from "@blueprintjs/core"
 import { navigate } from "gatsby"
 import { truncateString } from "./../stringModifiers"
+import { connect } from "react-redux"
 
 class AssignSelfPackageView extends Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class AssignSelfPackageView extends Component {
               <Button
                 className="bp3-small bp3-intent-primary"
                 onClick={() => {
+                  this.props.viewPackage(this.state.packageItem)
                   navigate("/admin/account/dashboard/package/details", {
                     state: {
                       packageItem: this.state.packageItem,
@@ -78,4 +80,17 @@ class AssignSelfPackageView extends Component {
   }
 }
 
-export default AssignSelfPackageView
+function mapDispatchToProps(dispatch) {
+  return {
+    viewPackage: packageItem => {
+      dispatch({
+        type: "VIEW_PACKAGE",
+        packageItem,
+      })
+    },
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(AssignSelfPackageView)

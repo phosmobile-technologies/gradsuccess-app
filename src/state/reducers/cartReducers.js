@@ -2,10 +2,11 @@
 const cartReducer = (state, action) => {
   if(state === undefined){
     return {
-      cartItems:[],
-      paidPackageList:[],
-      total:0,
-      subTotal:0,
+      cartItems: [],
+      paidPackageList: [],
+      total: 0,
+      subTotal: 0,
+      package:null
     }
   }
   switch (action.type) {
@@ -56,7 +57,12 @@ const cartReducer = (state, action) => {
       }
     }
 
-
+    case "VIEW_PACKAGE": {
+      return {
+        ...state,
+        package: action.packageItem,
+      }
+    }
     default: {
       return state
     }

@@ -482,7 +482,16 @@ export const GET_EXPERT_DETAIL_BAIT = gql`
     }
   }
 `
+export const CHATLISTMEMBER = gql`
+         query getChatListMember($id: ID!) {
+           getChatListMember(id: $id) {
+             ...UserFullField
+           }
+         }
+         ${AssociateFields.user_full}
+       `
 
+       
 export const ASSOCIATE_RATING = gql`
          query associateRating($associate_id: ID!) {
            associateRating(associate_id: $associate_id) {

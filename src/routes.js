@@ -73,6 +73,11 @@ const web_websites = [
     path: "/registration-successful",
     component: path.resolve(website + `registrationSuccessful.js`),
   },
+  {
+    path: "/reset-password/id/email",
+    matchPath:"/reset-password/*",
+    component: path.resolve(website + `resetPassword.js`),
+  },
 ]
 
 

@@ -3,12 +3,10 @@ import { Mutation } from "react-apollo"
 import { LOGIN } from "../../../../graphql/mutations"
 import loader from "../../../../../images/loader.gif"
 import { AUTH_TOKEN } from "../../../../../apollo/constants"
-import { PASSWORD_RESET } from "../../../../../api/sendMailEndpoint"
 import { connect } from "react-redux"
 import { navigate } from 'gatsby';
-
+import { FORGOT_PASSWORD } from "./../../../../graphql/mutations"
 import {
-
   Button,
   Callout
 } from "@blueprintjs/core"
@@ -28,7 +26,6 @@ import {
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleForgotPassword = this.handleForgotPassword.bind(this)
     this.formSubmitted = this.formSubmitted.bind(this)
-    this.forgotSubmitted = this.forgotSubmitted.bind(this)
   }
 
   handleFormInput(event) {
@@ -41,46 +38,6 @@ import {
     }))
   }
 
-  forgotSubmitted(data) {
-    document.getElementById("loaderImage").style.display = "block"
-    var chars =
-      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghijklmnopqrstuvwxtz_!@#$%^&*()_+=-<>?/|''"
-
-    var string_length = 64
-    var randomstring = ""
-    for (var i = 0; i < string_length; i++) {
-      var rnum = Math.floor(Math.random() * chars.length)
-      randomstring += chars.substring(rnum, rnum + 1)
-    }
-
-    let url = PASSWORD_RESET
-    let emailAddress = {
-      email: this.state.data.email,
-      token: randomstring,
-    }
-    fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(emailAddress),
-    })
-      .then(function(response) {
-        return response.text()
-      })
-      .then(text => {
-        this.setState({
-          message: text,
-          password_reset_success: true,
-        })
-        document.getElementById("loaderImage").style.display = "none"
-        document.getElementById("submittedSucces").style.display = "flex"
-      })
-      .catch(function(error) {
-        alert("password reset failed")
-      })
-  }
 
   formSubmitted(data) {
     localStorage.setItem(AUTH_TOKEN, data.login.access_token)
@@ -107,35 +64,68 @@ import {
           </div>
 
           {this.state.forgotPassword ? (
-            <div>
-              {!this.state.password_reset_success ? (
-                <form className="checkout-form-container">
-                  <h3 className="form-header">Forgot Password</h3>
-                  <div className="row-full">
-                    <input
-                      type="text"
-                      placeholder="Email"
-                      id="email"
-                      name="email"
-                      onChange={this.handleFormInput}
-                    />
-                    <br />
-                  </div>
+            <Mutation
+              mutation={FORGOT_PASSWORD}
+              onError={this.error}
+              onCompleted={data => {
+                // this.formSubmitted(data)
+              }}
+            >
+              {(loginUser, { data, loading, error }) => (
+                <div className="loader-wrapper">
+                  {data && (
+                    <Callout
+                      className="bp3-intent-success cart-resize"
+                      icon="error"
+                    >
+                      {data.forgotPassword.message}
+                    </Callout>
+                  )}
+                  <form
+                    onSubmit={e => {
+                      e.preventDefault()
+                      loginUser({
+                        variables: {
+                          email: this.state.data.email,
+                        },
+                      })
+                    }}
+                    className="checkout-form-container login-form"
+                  >
+                    <h3 className="form-header">Forgot Password</h3>
+                    <div className="row-full">
+                      <input
+                        type="text"
+                        placeholder="Email"
+                        id="email"
+                        name="email"
+                        onChange={this.handleFormInput}
+                      />
+                      <br />
+                    </div>
 
-                  <br />
-                  <input
-                    type="button"
-                    className="submit-details"
-                    value="Submit"
-                    onClick={this.forgotSubmitted}
-                  />
-                </form>
-              ) : (
-                <div id="submittedSucces" className="passwordSent">
-                  {this.state.message}
+                    <br />
+                    <Button
+                      type="submit"
+                      className="bp3-intent-success bp3-large submit-button"
+                      loading={loading ? true : false}
+                    >
+                      Reset Password
+                    </Button>
+                  </form>
+                  {error && (
+                    <Callout
+                      className="bp3-intent-danger cart-resize"
+                      icon="error"
+                    >
+                      {error.graphQLErrors.map(({ message }, i) => (
+                        <span key={i}>{message}</span>
+                      ))}
+                    </Callout>
+                  )}
                 </div>
               )}
-            </div>
+            </Mutation>
           ) : (
             <Mutation
               mutation={LOGIN}
@@ -176,7 +166,7 @@ import {
                           name="password"
                           onChange={this.handleFormInput}
                         />
-                      )}  
+                      )}
                     </div>
 
                     <br />

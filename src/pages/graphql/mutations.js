@@ -52,7 +52,6 @@ export const FORGOT_PASSWORD = gql`
     }
   }
 `
-
 export const CREATE_USER = gql`
   mutation CreateUser(
     $first_name: String!

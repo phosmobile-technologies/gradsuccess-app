@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import CartItemCard from "./cartItemCard"
 import CartPriceCard from "./cartPriceCard"
-import EmptyCart from "./emptyCart"
-import { Callout } from "@blueprintjs/core"
+import EmptyCart from './emptyCart'
+import { Callout} from "@blueprintjs/core"
 
 class CartSummary extends Component {
   constructor(props) {
@@ -43,6 +43,7 @@ class CartSummary extends Component {
     }, 5000)
   }
 
+
   render() {
     return (
       <div>
@@ -50,14 +51,8 @@ class CartSummary extends Component {
           <EmptyCart />
         ) : (
           <div className="cart-summary-container">
-            <div
-              className="cart-summary-inner"
-              css={{
-                width: "70%",
-                maxWidth: "700px",
-              }}
-            >
-              {this.state.showErrorDialogue ? (
+            <section className="c-s-main">
+              {this.state.showErrorDialogue && (
                 <Callout
                   title="Something went wrong"
                   className="bp3-intent-danger cart-resize"
@@ -65,10 +60,8 @@ class CartSummary extends Component {
                 >
                   {this.state.errorMessage}
                 </Callout>
-              ) : (
-                <div></div>
               )}
-              {this.state.showSuccessDialogue ? (
+              {this.state.showSuccessDialogue && (
                 <Callout
                   title="Successful"
                   className="bp3-intent-success cart-resize"
@@ -76,9 +69,7 @@ class CartSummary extends Component {
                 >
                   {this.state.successMessage}
                 </Callout>
-              ) : (
-                <div></div>
-              )}
+              ) }
 
               <div className="cart-header">
                 <h2>Your Cart</h2>
@@ -97,13 +88,13 @@ class CartSummary extends Component {
                   />
                 )
               })}
-            </div>
-            <div className="cart-summary-card">
+            </section>
+            <section className="cart-summary-card">
               <CartPriceCard
                 showErrorDialogue={this.showErrorDialogue}
-                showSuccessDialogue={this.showSuccessDialogue}
-              />
-            </div>
+                showSuccessDialogue =  {this.showSuccessDialogue}
+               />
+            </section>
           </div>
         )}
       </div>

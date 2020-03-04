@@ -102,7 +102,7 @@ dfn {
   padding-top: 50px;
   flex-wrap: wrap;
 }
-.cart-summary-inner {
+.c-s-main {
   width: 70%;
   max-width: 700px;
 }
@@ -184,7 +184,7 @@ dfn {
   justify-content: inherit;
   padding-top: 30px;
 }
-.cart-summary-inner {
+.c-s-main {
     width: 97%;
     margin: 0px auto;
 }

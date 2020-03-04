@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import CartItemCard from "./cartItemCard"
 import CartPriceCard from "./cartPriceCard"
-import EmptyCart from './emptyCart'
-import { Callout} from "@blueprintjs/core"
+import EmptyCart from "./emptyCart"
+import { Callout } from "@blueprintjs/core"
 
 class CartSummary extends Component {
   constructor(props) {
@@ -43,7 +43,6 @@ class CartSummary extends Component {
     }, 5000)
   }
 
-
   render() {
     return (
       <div>
@@ -51,7 +50,13 @@ class CartSummary extends Component {
           <EmptyCart />
         ) : (
           <div className="cart-summary-container">
-            <div className="cart-summary-inner">
+            <div
+              className="cart-summary-inner"
+              css={{
+                width: "70%",
+                maxWidth: "700px",
+              }}
+            >
               {this.state.showErrorDialogue ? (
                 <Callout
                   title="Something went wrong"
@@ -96,8 +101,8 @@ class CartSummary extends Component {
             <div className="cart-summary-card">
               <CartPriceCard
                 showErrorDialogue={this.showErrorDialogue}
-                showSuccessDialogue =  {this.showSuccessDialogue}
-               />
+                showSuccessDialogue={this.showSuccessDialogue}
+              />
             </div>
           </div>
         )}

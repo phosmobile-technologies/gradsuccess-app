@@ -52,6 +52,28 @@ export const FORGOT_PASSWORD = gql`
     }
   }
 `
+
+export const UPDATE_FORGOTTEN_PASSWORD = gql`
+  mutation UpdateForgottenPassword(
+    $email: String!
+    $token: String!
+    $password: String!
+    $password_confirmation: String!
+  ) {
+    updateForgottenPassword(
+      data: {
+        email: $email
+        token: $token
+        password: $password
+        password_confirmation: $password_confirmation
+      }
+    ) {
+      status
+      message
+    }
+  }
+`
+
 export const CREATE_USER = gql`
   mutation CreateUser(
     $first_name: String!

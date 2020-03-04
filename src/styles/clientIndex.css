@@ -1261,6 +1261,12 @@ body {
   background-color: white;
   padding: 100px;
   padding-top: 40px;
+  max-width: 1000px;
+}
+.terms_services ol li {
+  padding-left: 0;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .terms_services h1 {
@@ -1678,7 +1684,7 @@ body {
   padding: 5px;
   margin-top: 30px;
   font-size: 10px;
-  transition: .3s;
+  transition: 0.3s;
 }
 .l-btn {
   background-color: #056e65;
@@ -1689,7 +1695,7 @@ body {
   padding: 15px;
   margin-top: 30px;
   font-size: 10px;
-  transition: .3s;
+  transition: 0.3s;
 }
 .expert-summary label {
   font-weight: bolder;
@@ -2151,7 +2157,6 @@ body {
   border-radius: 5px;
 }
 
-
 .mark-completed {
   margin-top: 10px;
   padding: 10px 40px;
@@ -2163,26 +2168,25 @@ body {
   color: white;
   font-size: 12px;
   border-radius: 5px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
-.mark-completed:hover{
+.mark-completed:hover {
   color: white !important;
   background-color: #00766e;
 }
 
-
-.empty-assoiate-profile{
+.empty-assoiate-profile {
   background-color: #056e65;
-  opacity: .1;
+  opacity: 0.1;
   border-radius: 5px;
 }
 
-.i-form{
+.i-form {
   margin-bottom: 0px !important;
 }
 
-.rate-package{
+.rate-package {
   min-width: 400px;
   min-height: 400px;
   display: flex;
@@ -2192,38 +2196,37 @@ body {
   border-radius: 10px;
   overflow: hidden;
 }
-.rate-package-top{
+.rate-package-top {
   background-color: #00a99d;
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 20px 50px;
   align-items: center;
-
 }
-.rate-package-top h3{
+.rate-package-top h3 {
   padding-top: 20px;
   font-size: 16px;
 }
 
-.rate-package-inputs{
+.rate-package-inputs {
   display: flex;
   flex-direction: column;
   width: 90%;
   margin: auto;
   flex-grow: 1;
 }
-.rate-package-inputs i{
+.rate-package-inputs i {
   font-size: 20px !important;
 }
-.rate-package-inputs textarea{
+.rate-package-inputs textarea {
   width: 100%;
   min-height: 100px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.star-a{
+.star-a {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -2231,6 +2234,6 @@ body {
   margin-top: 20px;
   margin-bottom: 5px;
 }
-.star-a span{
+.star-a span {
   padding-right: 20px;
 }

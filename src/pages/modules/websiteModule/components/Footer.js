@@ -22,7 +22,7 @@ const defaultStyles = {
     left: "0%",
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(17, 153, 146, 0.3)",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
   },
 }
 
@@ -115,7 +115,7 @@ export default class resumeReviewForm extends React.Component {
             <div css={{ color: "#ccc" }}>
               <Link to="/">
                 <button
-                  name="PrivacyPolicy"
+                  name="privacyPolicy"
                   id="PrivacyPolicy"
                   className="footerBtn"
                 >
@@ -123,7 +123,7 @@ export default class resumeReviewForm extends React.Component {
                 </button>
               </Link>
               <span css={slash}> / </span>
-              <Link to="/Admissions">
+              <Link to="/admissions">
                 <button
                   name="PrivacyPolicy"
                   id="PrivacyPolicy"
@@ -143,7 +143,7 @@ export default class resumeReviewForm extends React.Component {
                 </button>
               </Link>
               <span css={slash}> / </span>
-              <Link to="/Contact">
+              <Link to="/contact">
                 <button
                   name="PrivacyPolicy"
                   id="PrivacyPolicy"
@@ -153,7 +153,7 @@ export default class resumeReviewForm extends React.Component {
                 </button>
               </Link>
               <span css={slash}> / </span>
-              <Link to="/Blog">
+              <Link to="/blog">
                 <button
                   name="PrivacyPolicy"
                   id="PrivacyPolicy"

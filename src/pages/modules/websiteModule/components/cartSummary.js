@@ -46,11 +46,11 @@ class CartSummary extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.props.cartItems.length === 0 ? (
           <EmptyCart />
         ) : (
-          <div className="cart-summary-container">
+          <section className="c-s-container">
             <section className="c-s-main">
               {this.state.showErrorDialogue && (
                 <Callout
@@ -69,7 +69,7 @@ class CartSummary extends Component {
                 >
                   {this.state.successMessage}
                 </Callout>
-              ) }
+              )}
 
               <div className="cart-header">
                 <h2>Your Cart</h2>
@@ -92,12 +92,12 @@ class CartSummary extends Component {
             <section className="cart-summary-card">
               <CartPriceCard
                 showErrorDialogue={this.showErrorDialogue}
-                showSuccessDialogue =  {this.showSuccessDialogue}
-               />
+                showSuccessDialogue={this.showSuccessDialogue}
+              />
             </section>
-          </div>
+          </section>
         )}
-      </div>
+      </>
     )
   }
 }

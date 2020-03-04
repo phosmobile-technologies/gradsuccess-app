@@ -5,7 +5,7 @@ import LogoutView from './../views/logoutView';
 
 class Logout extends Component {
   render() { 
-    return <LogoutView />
+    return <LogoutView redirectLink={this.props.redirectLink} />
   }
 }
 

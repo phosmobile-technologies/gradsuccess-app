@@ -7,7 +7,7 @@ export default class UserLogout extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<Logout />}
+        body={<Logout redirectLink="/admin/account/new-application" />}
         routes={admin_nav_routes}
         title="Logout"
       />

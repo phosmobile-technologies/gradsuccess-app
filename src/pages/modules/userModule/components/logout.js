@@ -7,7 +7,7 @@ export default class UserLogout extends Component {
   render() {
     return (
       <DashboardLayout
-        body={<Logout />}
+        body={<Logout redirectLink="/user/account/dashboard" />}
         routes={user_nav_routes}
         title="Logout"
       />

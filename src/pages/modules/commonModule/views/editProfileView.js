@@ -72,15 +72,10 @@ class EditProfileView extends Component {
     }))
   }
   editProfile = () => {
-    if (this.validator.allValid()) {
-      if (this.state.details) {
-        this.detailsForm.dispatchEvent(new Event("submit"))
-      } else {
-        this.userForm.dispatchEvent(new Event("submit"))
-      }
+    if (this.state.details) {
+      this.detailsForm.dispatchEvent(new Event("submit"))
     } else {
-      this.validator.showMessages()
-      this.forceUpdate()
+      this.userForm.dispatchEvent(new Event("submit"))
     }
   }
 

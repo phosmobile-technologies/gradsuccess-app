@@ -68,9 +68,7 @@ import { connect } from 'react-redux';
                         type="button"
                         className="bp3-intent-success bp3-large"
                         onClick = {()=>{
-                          navigate(
-                            "/user/account/dashboard"
-                          )
+                          navigate(this.props.redirectLink)
                         }}
                       >
                         Go Back

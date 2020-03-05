@@ -101,16 +101,11 @@ class ChatFormView extends Component {
 
     task.on(
       "state_changed",
-      snapshot => {
-        // Observe state change events such as progress, pause, and resume
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploade
-      },
+      snapshot => {},
       error => {
         alert("false to upload file please try again")
       },
       () => {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
           this.fileUploaded(downloadURL)
         })
@@ -123,7 +118,14 @@ class ChatFormView extends Component {
       <Mutation
         mutation={SAVE_MESSAGE}
         onCompleted={data => {
-          this.props.updatemessage(data.CreateMessage);
+          this.setState(
+            {
+              message: "",
+            },
+            () => {
+              this.props.updatemessage(data.CreateMessage)
+            }
+          )
         }}
         onError={() => {
           this.sendingError()
@@ -155,12 +157,11 @@ class ChatFormView extends Component {
                 e.preventDefault()
                 let fileName
 
-                if(this.state.file){
+                if (this.state.file) {
                   fileName = this.state.file.name
-                }else{
+                } else {
                   fileName = null
                 }
-
 
                 if (this.validator.allValid() || this.state.fileUrl !== null) {
                   sendMessage({
@@ -243,6 +244,7 @@ class ChatFormView extends Component {
                   type="text"
                   id="message"
                   name="message"
+                  value={this.state.message}
                   onChange={this.handleFormInput}
                 />
                 {this.validator.message(

@@ -140,7 +140,7 @@ export default class ResetPassword extends Component {
                             {this.validator.message(
                               "Password",
                               this.state.new_password,
-                              "required"
+                              "required|min:8"
                             )}
                           </i>
                         </p>

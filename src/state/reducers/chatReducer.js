@@ -12,10 +12,16 @@ const chatReducer = (state, action) => {
       }
     }
     case "ADD_NEW_MESSAGE": {
-      
       return {
         ...state,
         messages: [...state.messages, action.message],
+      }
+    }
+    case "POP_MESSAGE": {
+        var message = state.messages.filter(message => message.message !== action.message.message)
+      return {
+        ...state,
+        messages: [...message],
       }
     }
     case "RESET_USER": {

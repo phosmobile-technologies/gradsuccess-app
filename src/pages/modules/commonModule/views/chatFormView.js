@@ -7,12 +7,11 @@ import { SAVE_MESSAGE } from "./../../../graphql/mutations"
 import SimpleReactValidator from "simple-react-validator"
 import { connect } from "react-redux"
 import FileUploadPreview from "./FileUploadPreview"
-import { CHAT_HISTORY } from './../../../graphql/queries';
+import { CHAT_HISTORY } from "./../../../graphql/queries"
 
 class ChatFormView extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       message: null,
       openDialog: false,
@@ -50,25 +49,16 @@ class ChatFormView extends Component {
     })
   }
 
-  fileUploaded(url) {
-    this.closeImageDialog()
-    if (
-      this.state.file.type === "image/png" ||
-      this.state.file.type === "image/jpeg" ||
-      this.state.file.type === "image/gif"
-    ) {
-      this.setState({
-        fileType: "Image",
-      })
-    } else {
-      this.setState({
-        fileType: "File",
-      })
-    }
+  fileUploaded(url, message) {
+    this.setState({
+      fileType: this.getFileType(this.state.file),
+    })
+
     this.setState(
       {
         showUploadProgress: false,
         fileUrl: url,
+        message,
       },
       () => {
         this.form.dispatchEvent(new Event("submit"))
@@ -76,10 +66,50 @@ class ChatFormView extends Component {
     )
   }
 
+  getFileType(file) {
+    var fileType
+    if (
+      file.type === "image/png" ||
+      file.type === "image/jpeg" ||
+      file.type === "image/gif"
+    ) {
+      fileType = "Image"
+    } else {
+      fileType = "File"
+    }
+
+    return fileType
+  }
+
   uploadFile = e => {
     this.setState({
       showUploadProgress: true,
     })
+    var fileType = this.getFileType(this.state.file)
+
+    var newMessage = this.state.message
+
+    const Sentmessage = {
+      sender_id: this.props.user.id,
+      recipient_id: this.props.recipient_id,
+      message: newMessage,
+      attached_file: this.state.image,
+      attached_file_type: fileType || null,
+      attached_file_name: this.state.image,
+      sending: true,
+    }
+
+    this.setState(
+      {
+        message: "",
+      },
+      () => {
+        this.props.updatemessage(Sentmessage)
+      }
+    )
+
+    this.closeImageDialog()
+
     const firebase = require("firebase")
     const config = {
       apiKey: "AIzaSyC26CrW2BGh2lXXDK0Gkcl4gCIPccHvW6s",
@@ -107,7 +137,7 @@ class ChatFormView extends Component {
       },
       () => {
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
-          this.fileUploaded(downloadURL)
+          this.fileUploaded(downloadURL, newMessage)
         })
       }
     )
@@ -123,6 +153,7 @@ class ChatFormView extends Component {
               message: "",
             },
             () => {
+              this.props.popMessage(data.CreateMessage)
               this.props.updatemessage(data.CreateMessage)
             }
           )
@@ -162,8 +193,31 @@ class ChatFormView extends Component {
                 } else {
                   fileName = null
                 }
-
                 if (this.validator.allValid() || this.state.fileUrl !== null) {
+                  const Sentmessage = {
+                    sender_id: this.props.user.id,
+                    recipient_id: this.props.recipient_id,
+                    message: this.state.message,
+                    attached_file: this.state.fileUrl,
+                    attached_file_type: this.state.fileType || null,
+                    attached_file_name: fileName,
+                    sending: true,
+                  }
+
+                  this.setState(
+                    {
+                      message: "",
+                      openDialog: false,
+                      file: null,
+                      image: null,
+                      showUploadProgress: false,
+                      fileUrl: null,
+                      fileType: "None",
+                    },
+                    () => {
+                      this.props.updatemessage(Sentmessage)
+                    }
+                  )
                   sendMessage({
                     variables: {
                       sender_id: this.props.user.id,
@@ -221,11 +275,7 @@ class ChatFormView extends Component {
                     onChange={this.handleFormInput}
                   />
                   <button className="send-btn" onClick={this.uploadFile}>
-                    {this.state.showUploadProgress ? (
-                      <Spinner size={Spinner.SIZE_SMALL} />
-                    ) : (
-                      "Send"
-                    )}
+                    Send
                   </button>
                 </div>
               </Dialog>
@@ -252,9 +302,7 @@ class ChatFormView extends Component {
                   this.state.message,
                   "required"
                 )}
-                <button className="send-btn">
-                  {loading ? <Spinner size={Spinner.SIZE_SMALL} /> : "Send"}
-                </button>
+                <button className="send-btn">Send</button>
               </div>
             </form>
           </div>
@@ -278,9 +326,14 @@ function mapDispatchToProps(dispatch) {
         message,
       })
     },
+    popMessage: message => {
+      dispatch({
+        type: "POP_MESSAGE",
+        message,
+      })
+    },
   }
 }
-
 
 export default connect(
   mapStateToProps,

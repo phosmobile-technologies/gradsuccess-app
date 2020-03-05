@@ -1125,6 +1125,10 @@ td, th {
   background: #333;
   color: white;
 }
+
+.chat .messages .message.parker a{
+  margin-bottom: 10px;
+}
 .chat .messages .message .typing {
   display: inline-block;
   width: 0.8rem;
@@ -1419,4 +1423,17 @@ td, th {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
+}
+
+.sending-i{
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.sending-i span{
+  padding-left: 10px;
+  font-size: 10px;
+  color: burlywood;
 }

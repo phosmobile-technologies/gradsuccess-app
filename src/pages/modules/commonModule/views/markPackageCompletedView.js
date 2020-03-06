@@ -32,7 +32,7 @@ export default class MarkPackageCompletedView extends Component {
         mutation={REVIEW_PACKAGE}
         onError={this.error}
         onCompleted={data => {
-          this.props.markPackageCompleted()
+          this.props.markPackageCompleted(this.props.data.assigned_associate_id)
         }}
       >
         {(reviewPackage, { data, loading, error }) => (

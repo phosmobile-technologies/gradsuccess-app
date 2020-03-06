@@ -24,12 +24,13 @@ class MarkPackageCompleted extends Component {
   }
 
   markPackageCompleted = associate_id => {
+    alert(this.props.data.assigned_associate_id.form_type)
     this.setState(
       {
         associate_id,
       },
       () => {
-        switch (this.props.data.assigned_associate_id.form_type) {
+        switch (this.props.data.package.form_type) {
           case "COVER_LETTER_REDRAFT":
             this.markCoverLetterRedraftCompleted.dispatchEvent(
               new Event("submit")

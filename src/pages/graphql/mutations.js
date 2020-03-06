@@ -867,18 +867,18 @@ export const DECLINE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 // mutation to for client to review packages
 
 export const MARK_RESUME_REVIEW_COMPLETED = gql`
-  mutation ApproveResumeReview(
-    $id: ID!
-    $associate_id: ID!
-    $status: PackageStatus!
-  ) {
-    ApproveResumeReview(
-      input: { id: $id, associate_id: $associate_id, status: $status }
-    ) {
-      id
-    }
-  }
-`
+         mutation MarkAssociateResumeReviewCompleted(
+           $id: ID!
+           $associate_id: ID!
+           $status: PackageStatus!
+         ) {
+           MarkAssociateResumeReviewCompleted(
+             input: { id: $id, associate_id: $associate_id, status: $status }
+           ) {
+             id
+           }
+         }
+       `
 
 export const MARK_COVER_LETTER_REVIEW_COMPLETED = gql`
   mutation MarkAssociateCoverLetterReviewCompleted(
@@ -895,32 +895,32 @@ export const MARK_COVER_LETTER_REVIEW_COMPLETED = gql`
 `
 
 export const MARK_GRADUATE_SCHOOL_ESSAY_REDRAFT_COMPLETED = gql`
-  mutation ApproveCoverLetterRedraft(
-    $id: ID!
-    $associate_id: ID!
-    $status: PackageStatus!
-  ) {
-    ApproveCoverLetterRedraft(
-      input: { id: $id, associate_id: $associate_id, status: $status }
-    ) {
-      id
-    }
-  }
-`
+         mutation MarkAssociateGraduateSchoolEssayRedraftCompleted(
+           $id: ID!
+           $associate_id: ID!
+           $status: PackageStatus!
+         ) {
+           MarkAssociateGraduateSchoolEssayRedraftCompleted(
+             input: { id: $id, associate_id: $associate_id, status: $status }
+           ) {
+             id
+           }
+         }
+       `
 
 export const MARK_GRADUATE_SCHOOL_STATEMENT_REVIEW_COMPLETED = gql`
-  mutation ApproveGraduateSchoolStatementReview(
-    $id: ID!
-    $associate_id: ID!
-    $status: PackageStatus!
-  ) {
-    ApproveGraduateSchoolStatementReview(
-      input: { id: $id, associate_id: $associate_id, status: $status }
-    ) {
-      id
-    }
-  }
-`
+         mutation MarkAssociateGraduateSchoolStatementReviewCompleted(
+           $id: ID!
+           $associate_id: ID!
+           $status: PackageStatus!
+         ) {
+           MarkAssociateGraduateSchoolStatementReviewCompleted(
+             input: { id: $id, associate_id: $associate_id, status: $status }
+           ) {
+             id
+           }
+         }
+       `
 
 export const MARK_COVER_LETTER_REDRAFT_COMPLETED = gql`
   mutation MarkAssociateCoverLetterRedraftCompleted(

@@ -29,7 +29,7 @@ class MarkPackageCompleted extends Component {
         associate_id,
       },
       () => {
-        switch (this.props.data.package.form_type) {
+        switch (this.props.data.assigned_associate_id.form_type) {
           case "COVER_LETTER_REDRAFT":
             this.markCoverLetterRedraftCompleted.dispatchEvent(
               new Event("submit")
@@ -159,7 +159,7 @@ class MarkPackageCompleted extends Component {
                     createCoverLetterRedraftData({
                       variables: {
                         id: this.props.data.id,
-                        associate_id: this.props.data.package,
+                        associate_id: this.props.data.assigned_associate_id,
                         status: "Completed",
                       },
                     })
@@ -202,7 +202,7 @@ class MarkPackageCompleted extends Component {
                     createGraduateSchoolStatementData({
                       variables: {
                         id: this.props.data.id,
-                        associate_id: this.props.data.package,
+                        associate_id: this.props.data.assigned_associate_id,
                         status: "Completed",
                       },
                     })
@@ -245,7 +245,7 @@ class MarkPackageCompleted extends Component {
                     createGraduateSchoolRedraftData({
                       variables: {
                         id: this.props.data.id,
-                        associate_id: this.props.data.package,
+                        associate_id: this.props.data.assigned_associate_id,
                         status: "Completed",
                       },
                     })
@@ -288,7 +288,7 @@ class MarkPackageCompleted extends Component {
                     createResumeReview({
                       variables: {
                         id: this.props.data.id,
-                        associate_id: this.props.data.package,
+                        associate_id: this.props.data.assigned_associate_id,
                         status: "Completed",
                       },
                     })

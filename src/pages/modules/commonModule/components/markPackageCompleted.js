@@ -24,7 +24,6 @@ class MarkPackageCompleted extends Component {
   }
 
   markPackageCompleted = associate_id => {
-    alert(this.props.data.assigned_associate_id.form_type)
     this.setState(
       {
         associate_id,

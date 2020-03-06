@@ -406,7 +406,7 @@ export default class ApplicationDetail extends Component {
                   bio_bait={bio_bait}
                   where_client_from={where_client_from}
                   what_jobs_client={what_jobs_client}
-                  client_reach_you_htmlFor={client_reach_you_for}
+                  client_reach_you_for={client_reach_you_for}
                 />
               </div>
             </div>
@@ -457,7 +457,7 @@ export default class ApplicationDetail extends Component {
                     bio_bait={bio_bait}
                     where_client_from={where_client_from}
                     what_jobs_client={what_jobs_client}
-                    client_reach_you_htmlFor={client_reach_you_for}
+                    client_reach_you_for={client_reach_you_for}
                     saveApplication={this.onChange}
                     prevStep={this.prevStep}
                     nextStep={this.nextStep}

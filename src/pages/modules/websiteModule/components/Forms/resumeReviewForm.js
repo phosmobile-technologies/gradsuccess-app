@@ -10,7 +10,7 @@ import {
   Button,
   Icon,
   ButtonGroup,
-Alert
+  Alert,
 } from "@blueprintjs/core"
 import SimpleReactValidator from "simple-react-validator"
 
@@ -35,7 +35,9 @@ const initialState = {
 export default class ResumeReviewForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = initialState
+    this.state = {
+      ...initialState,
+    }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.onChange = this.onChange.bind(this)
     this.validator = new SimpleReactValidator({
@@ -145,12 +147,13 @@ export default class ResumeReviewForm extends React.Component {
             confirmButtonText="Continue"
             onClose={() => {
               this.setState({
-                initialState,
+                completed: false,
               })
+
               this.props.updatePackageList()
             }}
           >
-            <span className = "completed-alert">
+            <span className="completed-alert">
               form Details submitted sucessfully, pls filled the next form if
               your sellected multiple package
             </span>
@@ -173,7 +176,7 @@ export default class ResumeReviewForm extends React.Component {
                   })
                 }}
                 onCompleted={data => {
-                    this.setState(
+                  this.setState(
                     {
                       loading: false,
                     },
@@ -207,7 +210,7 @@ export default class ResumeReviewForm extends React.Component {
                       className="checkout-form-container"
                     >
                       <h3 className="form-header header-message">
-                        Please the form below for ({" "}
+                        Please fill the form below for ({" "}
                         {this.props.packageDetail.title} )
                       </h3>
                       <div className="row-full">
@@ -215,6 +218,7 @@ export default class ResumeReviewForm extends React.Component {
                           type="text"
                           placeholder="Name (Surname First)"
                           id="name"
+                          value={this.state.data.name}
                           name="name"
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
@@ -235,6 +239,7 @@ export default class ResumeReviewForm extends React.Component {
                           placeholder="Industry and Role Title Applied for?"
                           id="industry_applied_for"
                           name="industry_applied_for"
+                          value={this.state.data.industry_applied_for}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -257,6 +262,7 @@ export default class ResumeReviewForm extends React.Component {
                           placeholder="Summary of Interest in Role"
                           id="summary_of_interest"
                           name="summary_of_interest"
+                          value={this.state.data.summary_of_interest}
                           rows="4"
                           onChange={this.handleFormInput}
                           onBlur={() =>

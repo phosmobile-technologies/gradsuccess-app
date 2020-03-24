@@ -18,7 +18,7 @@ class FormCompletePage extends React.Component {
   }
 
   componentDidMount() {
-     this.props.deleteAssignedAssociate("null")
+     
     let url = CLIENT_PASSWORD
     let a_url = SEND_ASSOCIATE_EMAIL
 
@@ -78,6 +78,11 @@ class FormCompletePage extends React.Component {
     this.setState({ showModal: false })
   }
 
+
+  componentWillUnmount(){
+    this.props.deleteAssignedAssociate("null")
+    this.props.removePassword();
+  }
   render() {
     return (
       <Layout>
@@ -111,7 +116,7 @@ class FormCompletePage extends React.Component {
               <div>
                 <div className="passwordCard">
                   <p>This is your login password: </p>
-                  <h1>{this.state.password}</h1>
+                  <h1>{this.props.password.password}</h1>
                 </div>
                 <div className="">
                   <Button
@@ -142,15 +147,21 @@ class FormCompletePage extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
+    password:state.assignedAssociate
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-
     deleteAssignedAssociate: id => {
       dispatch({
         type: "DELETE_ASSIGNED_ASSOCIATE",
         id,
+      })
+    },
+    removePassword: password => {
+      dispatch({
+        type: "REMOVE_PASWORD",
+        password,
       })
     },
   }

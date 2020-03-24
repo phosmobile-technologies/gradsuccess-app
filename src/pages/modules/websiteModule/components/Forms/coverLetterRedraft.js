@@ -71,7 +71,9 @@ const initialState = {
 export default class CoverLetterRedraft extends React.Component {
   constructor(props) {
     super(props)
-    this.state = initialState
+    this.state = {
+      ...initialState,
+    }
     this.validator = new SimpleReactValidator({ autoForceUpdate: this })
     this.handleFormInput = this.handleFormInput.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -240,12 +242,13 @@ export default class CoverLetterRedraft extends React.Component {
             confirmButtonText="Continue"
             onClose={() => {
               this.setState({
-                initialState,
+                completed: false,
               })
+
               this.props.updatePackageList()
             }}
           >
-            <span className = "completed-alert">
+            <span className="completed-alert">
               form Details submitted sucessfully, pls filled the next form if
               your sellected multiple package
             </span>
@@ -268,7 +271,7 @@ export default class CoverLetterRedraft extends React.Component {
                   })
                 }}
                 onCompleted={data => {
-                   this.setState(
+                  this.setState(
                     {
                       loading: false,
                     },
@@ -310,7 +313,7 @@ export default class CoverLetterRedraft extends React.Component {
                       className="checkout-form-container"
                     >
                       <h3 className="form-header header-message">
-                        Please the form below for ({" "}
+                        Please fill the form below for ({" "}
                         {this.props.packageDetail.title} )
                       </h3>
                       <div className="row-full">
@@ -318,6 +321,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           placeholder="Name (Surname First)"
                           id="name"
+                          value={this.state.data.name}
                           name="name"
                           onBlur={() => this.validator.showMessageFor("name")}
                           onChange={this.handleFormInput}
@@ -337,6 +341,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="Address"
                           id="address"
                           name="address"
+                          value={this.state.data.address}
                           onBlur={() =>
                             this.validator.showMessageFor("address")
                           }
@@ -357,6 +362,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="Phone"
                           id="phone"
                           name="phone"
+                          value={this.state.data.phone}
                           onBlur={() => this.validator.showMessageFor("phone")}
                           onChange={this.handleFormInput}
                         />
@@ -395,6 +401,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="What was your role and your typical responsibilities?"
                           id="workplace_1_roles"
                           name="workplace_1_roles"
+                          value={this.state.data.workplace_1_roles}
                           rows="4"
                           onBlur={() =>
                             this.validator.showMessageFor("workplace_1_roles")
@@ -415,6 +422,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="Have you been recognized in this job? *"
                           id="workplace_1_recognized_job"
                           name="workplace_1_recognized_job"
+                          value={this.state.data.workplace_1_recognized_job}
                           rows="4"
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -437,6 +445,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="Workplace 2"
                           id="workplace_2"
                           name="workplace_2"
+                          value={this.state.data.workplace_2}
                           onBlur={() =>
                             this.validator.showMessageFor("workplace_2")
                           }
@@ -457,6 +466,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="What was your role and your typical responsibilities?"
                           id="workplace_2_roles"
                           name="workplace_2_roles"
+                          value={this.state.data.workplace_2_roles}
                           rows="4"
                           onBlur={() =>
                             this.validator.showMessageFor("workplace_2_roles")
@@ -477,6 +487,7 @@ export default class CoverLetterRedraft extends React.Component {
                           placeholder="Have you been recognized in this job? *"
                           id="workplace_2_recognized_job"
                           name="workplace_2_recognized_job"
+                          value={this.state.data.workplace_2_recognized_job}
                           rows="4"
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -543,6 +554,10 @@ export default class CoverLetterRedraft extends React.Component {
                           type="number"
                           name="number_of_employee_supervised_workplace_1"
                           id="number_of_employee_supervised_workplace_1"
+                          value={
+                            this.state.data
+                              .number_of_employee_supervised_workplace_1
+                          }
                           placeholder="How many employees did you supervise in Workplace 1? *"
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -564,6 +579,10 @@ export default class CoverLetterRedraft extends React.Component {
                         <input
                           type="number"
                           name="number_of_employee_supervised_workplace_2"
+                          value={
+                            this.state.data
+                              .number_of_employee_supervised_workplace_2
+                          }
                           id="number_of_employee_supervised_workplace_2"
                           placeholder="How many employees did you supervise in Workplace 2?"
                           onBlur={() =>
@@ -614,6 +633,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           name="recent_tertiary_institute_name"
                           id="recent_tertiary_institute_name"
+                          value={this.state.data.recent_tertiary_institute_name}
                           placeholder="Name of most recent tertiary education?"
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -635,6 +655,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           name="scholarship_and_awards"
                           id="scholarship_and_awards"
+                          value={this.state.data.scholarship_and_awards}
                           placeholder=" Scholarships and Awards (Awarding Body, Dates)"
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
@@ -652,6 +673,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="number"
                           name="final_grade_school_1"
                           id="final_grade_school_1"
+                          value={this.state.data.final_grade_school_1}
                           placeholder=" Final grade at School 1"
                           onBlur={() => this.validator.showMessageFor("name")}
                           onChange={this.handleFormInput}
@@ -696,6 +718,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="top_courses_school_1"
                           name="top_courses_school_1"
+                          value={this.state.data.top_courses_school_1}
                           placeholder="Top 5 courses at School 1"
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
@@ -713,6 +736,9 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="project_dissertation_name_school_1"
                           name="project_dissertation_name_school_1"
+                          value={
+                            this.state.data.project_dissertation_name_school_1
+                          }
                           placeholder="Your project/dissertation name at School 1"
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
@@ -731,6 +757,9 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="next_most_recent_tertiary_education"
                           name="next_most_recent_tertiary_education"
+                          value={
+                            this.state.data.next_most_recent_tertiary_education
+                          }
                           placeholder="Name of your next most recent tertiary education"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -753,6 +782,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="number"
                           id="final_grade_school_2"
                           name="final_grade_school_2"
+                          value={this.state.data.final_grade_school_2}
                           placeholder="Your final grade at School 2?"
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
@@ -797,6 +827,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="top_courses_school_2"
                           name="top_courses_school_2"
+                          value={this.state.data.top_courses_school_2}
                           placeholder="Your top 5 courses at School 2"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -818,6 +849,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           placeholder="Leadership Experiences"
                           id="leadership_experience"
+                          value={this.state.data.leadership_experience}
                           name="leadership_experience"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -886,6 +918,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="other_skills"
                           name="other_skills"
+                          value={this.state.data.other_skills}
                           placeholder="Other Skills"
                           onChange={this.handleFormInput}
                         />
@@ -893,6 +926,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="extracurricular_activities"
                           name="extracurricular_activities"
+                          value={this.state.data.extracurricular_activities}
                           placeholder="Extracurricular Activities"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -914,6 +948,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="professional_workshops"
                           name="professional_workshops"
+                          value={this.state.data.professional_workshops}
                           placeholder="Professional Workshops"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -935,6 +970,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="certification_dates"
                           name="certification_dates"
+                          value={this.state.data.certification_dates}
                           placeholder="Certifications and Dates"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -954,6 +990,9 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="organization_contacted_before_hand"
                           name="organization_contacted_before_hand"
+                          value={
+                            this.state.data.organization_contacted_before_hand
+                          }
                           placeholder="Employees at Organization Contacted Before Hand"
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
@@ -972,6 +1011,7 @@ export default class CoverLetterRedraft extends React.Component {
                           type="text"
                           id="summary_of_interest"
                           name="summary_of_interest"
+                          value={this.state.data.summary_of_interest}
                           placeholder="Summary of your interest"
                           rows="4"
                           onChange={this.handleFormInput}

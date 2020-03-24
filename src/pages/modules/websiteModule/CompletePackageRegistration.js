@@ -7,6 +7,7 @@ import CoverLetterReview from "./components/Forms/coverLetterReviewForm"
 import GraduateSchoolStatementReview from "./components/Forms/graduateSchoolStatementReviewForm"
 import { navigate } from "gatsby"
 
+
 class CompletePackageRegistration extends Component {
   constructor(props) {
     super()
@@ -31,15 +32,7 @@ class CompletePackageRegistration extends Component {
     if (this.props.packages.length <= 0) {
       navigate("/")
     }
-    if (!this.props.user) {
-      this.setState({
-        user_id: this.props.location.state.user_id,
-      })
-    } else {
-      this.setState({
-        user_id: this.props.user.id,
-      })
-    }
+    
     var packageList = [...this.props.packages]
       var currentForm = packageList.shift()
 
@@ -55,28 +48,48 @@ class CompletePackageRegistration extends Component {
         assignedAssociateId: this.props.assignedAssociate.id
       })
     }
+    if (this.props.location.state){
+        
+        if ({
+          password:this.props.location.state.password,
+          
+        }) {
+          let data = {
+            password:this.props.location.state.password,
+            user_id:this.props.location.state.user_id
+          }
+          this.props.addPassword(data)
+        }
+      
+    }
+      
+    if (!this.props.user) {
+      if (this.props.assignedAssociate) { 
+        this.setState({
+          user_id: this.props.assignedAssociate.user_id,
+        })
+      }else{
+        this.setState({
+          user_id: this.props.location.state.user_id,
+        })
+      }
+    } else {
+      this.setState({
+        user_id: this.props.user.id,
+      })
+    }
   }
   
   updatePackageList = () => {
     if (this.state.newPackageList.length > 0) {
-      var packageList = this.state.newPackageList
-      var currentForm = packageList.shift()
-
-      this.setState({
-        ePackage: currentForm,
-        newPackageList: packageList,
-        currentFormNumber:this.state.currentFormNumber+1
-      })
       this.props.updateCart(this.state.newPackageList)
+      window.location.reload();
     } else {
       this.props.updateCart(this.state.newPackageList)
-       navigate("/application-creation-success", {
-         state: {
-           password: this.props.location.state.password || null,
-         },
-       })
+       navigate("/application-creation-success")
     }
   }
+
   render() {
     switch (this.state.ePackage.form) {
       case "redraft_one":
@@ -164,6 +177,12 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: "UPDATE_CART",
         cart,
+      })
+    },
+    addPassword: data => {
+      dispatch({
+        type: "ADD_PASWORD",
+        data,
       })
     },
   }

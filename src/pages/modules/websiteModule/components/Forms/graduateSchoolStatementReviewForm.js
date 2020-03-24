@@ -34,7 +34,9 @@ const initialState = {
 class GraduateSchoolStatementReview extends React.Component {
   constructor(props) {
     super(props)
-    this.state = initialState
+    this.state = {
+      ...initialState,
+    }
     this.validator = new SimpleReactValidator({ autoForceUpdate: this })
     this.handleFormInput = this.handleFormInput.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -143,12 +145,13 @@ class GraduateSchoolStatementReview extends React.Component {
             confirmButtonText="Continue"
             onClose={() => {
               this.setState({
-                initialState,
+                completed: false,
               })
+
               this.props.updatePackageList()
             }}
           >
-            <span className = "completed-alert">
+            <span className="completed-alert">
               form Details submitted sucessfully, pls filled the next form if
               your sellected multiple package
             </span>
@@ -205,7 +208,7 @@ class GraduateSchoolStatementReview extends React.Component {
                       className="checkout-form-container"
                     >
                       <h3 className="form-header header-message">
-                        Please the form below for ({" "}
+                        Please fill the form below for ({" "}
                         {this.props.packageDetail.title} )
                       </h3>
                       <div className="row-full">
@@ -214,6 +217,7 @@ class GraduateSchoolStatementReview extends React.Component {
                           placeholder="Name (Surname First)"
                           id="name"
                           name="name"
+                          value={this.state.data.name}
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
                         />
@@ -232,6 +236,9 @@ class GraduateSchoolStatementReview extends React.Component {
                           type="text"
                           placeholder="University and Course Applied for?"
                           id="university_and_course_applied_for"
+                          value={
+                            this.state.data.university_and_course_applied_for
+                          }
                           name="university_and_course_applied_for"
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -256,6 +263,7 @@ class GraduateSchoolStatementReview extends React.Component {
                           placeholder="Summary of Interest in Course?"
                           id="summary_of_interest"
                           name="summary_of_interest"
+                          value={this.state.data.summary_of_interest}
                           onChange={this.handleFormInput}
                           rows="4"
                           onBlur={() =>

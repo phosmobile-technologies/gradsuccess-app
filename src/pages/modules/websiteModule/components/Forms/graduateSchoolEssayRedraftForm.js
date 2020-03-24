@@ -73,7 +73,9 @@ const initialState = {
 export default class GraduateSchoolEssayRedraft extends React.Component {
   constructor(props) {
     super(props)
-    this.state = initialState
+    this.state = {
+      ...initialState,
+    }
     this.validator = new SimpleReactValidator({ autoForceUpdate: this })
     this.handleFormInput = this.handleFormInput.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -201,12 +203,13 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
             confirmButtonText="Continue"
             onClose={() => {
               this.setState({
-                initialState,
+                completed: false,
               })
+
               this.props.updatePackageList()
             }}
           >
-            <span className = "completed-alert">
+            <span className="completed-alert">
               form Details submitted sucessfully, pls filled the next form if
               your sellected multiple package
             </span>
@@ -229,7 +232,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                   })
                 }}
                 onCompleted={data => {
-                   this.setState(
+                  this.setState(
                     {
                       loading: false,
                     },
@@ -239,7 +242,6 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                       })
                     }
                   )
-                 
                 }}
               >
                 {(createGraduateSchoolEssayRedraft, { error }) => (
@@ -264,7 +266,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                       className="checkout-form-container"
                     >
                       <h3 className="form-header header-message">
-                        Please the form below for ({" "}
+                        Please fill the form below for ({" "}
                         {this.props.packageDetail.title} )
                       </h3>
                       <div className="row-full">
@@ -272,6 +274,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           placeholder="Name (Surname First)"
                           name="name"
+                          value={this.state.data.name}
                           onBlur={() => this.validator.showMessageFor("name")}
                           onChange={this.handleFormInput}
                           id="name"
@@ -292,6 +295,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="Phone"
                           id="phone"
                           name="phone"
+                          value={this.state.data.phone}
                           required
                           onBlur={() => this.validator.showMessageFor("phone")}
                           onChange={this.handleFormInput}
@@ -311,6 +315,10 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="Which Employment is most relevant to your Masters Application"
                           id="employment_most_relevant_to_you_masters_application"
                           name="employment_most_relevant_to_you_masters_application"
+                          value={
+                            this.state.data
+                              .employment_most_relevant_to_you_masters_application
+                          }
                           onBlur={() =>
                             this.validator.showMessageFor(
                               "employment_most_relevant_to_you_masters_application"
@@ -334,6 +342,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="What were your typical achievements"
                           id="typical_achievements"
                           name="typical_achievements"
+                          value={this.state.data.typical_achievements}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -357,6 +366,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="Scholarships and Awards (Awarding Body, Dates)"
                           id="scholarships_and_award"
                           name="scholarships_and_award"
+                          value={this.state.data.scholarships_and_award}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -380,6 +390,9 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           id="undergraduate_level_courses_master"
                           name="undergraduate_level_courses_master"
                           rows="4"
+                          value={
+                            this.state.data.undergraduate_level_courses_master
+                          }
                           onChange={this.handleFormInput}
                           onBlur={() => this.validator.showMessageFor("name")}
                         ></textarea>
@@ -399,6 +412,9 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           name="project_dissertation_name_master"
                           placeholder="What was your project/dissertation name *"
                           onChange={this.handleFormInput}
+                          value={
+                            this.state.data.project_dissertation_name_master
+                          }
                           onBlur={() =>
                             this.validator.showMessageFor(
                               "project_dissertation_name_master"
@@ -420,6 +436,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           name="most_recent_undergraduate"
                           placeholder="What is the name of your most recent Undergraduate Education * "
                           onChange={this.handleFormInput}
+                          value={this.state.data.most_recent_undergraduate}
                           onBlur={() =>
                             this.validator.showMessageFor(
                               "most_recent_undergraduate"
@@ -441,6 +458,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           name="undergraduate_level_grade"
                           placeholder="What was your final grade at Undergraduate level?  *"
                           onChange={this.handleFormInput}
+                          value={this.state.data.undergraduate_level_grade}
                           onBlur={() =>
                             this.validator.showMessageFor(
                               "undergraduate_level_grade"
@@ -486,6 +504,9 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="What are your top 5 courses at Undergraduate relating to your PhD of interest?"
                           id="undergraduate_level_courses_phd"
                           name="undergraduate_level_courses_phd"
+                          value={
+                            this.state.data.undergraduate_level_courses_phd
+                          }
                           onChange={this.handleFormInput}
                           rows="4"
                           onBlur={() =>
@@ -509,6 +530,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           name="project_dissertation_name_phd"
                           placeholder="What was your project/dissertation name at Undergraduate level"
                           onChange={this.handleFormInput}
+                          value={this.state.data.project_dissertation_name_phd}
                           onBlur={() =>
                             this.validator.showMessageFor(
                               "project_dissertation_name_phd"
@@ -529,6 +551,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="Leadership Experiences (Include Dates)"
                           id="leadership_experience"
                           name="leadership_experience"
+                          value={this.state.data.leadership_experience}
                           rows="4"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -599,6 +622,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           id="other_skills"
                           name="other_skills"
                           placeholder="Other Skills"
+                          value={this.state.data.other_skills}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor("other_skills")
@@ -618,6 +642,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           name="extracurricular_activities"
                           id="extracurricular_activities"
+                          value={this.state.data.extracurricular_activities}
                           placeholder="Extracurricular Activities"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -640,6 +665,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           name="professional_workshops"
                           id="professional_workshops"
                           placeholder="Professional Workshops"
+                          value={this.state.data.professional_workshops}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -662,6 +688,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="Certifications and Dates"
                           id="academic_conferences_attended"
                           name="academic_conferences_attended"
+                          value={this.state.data.academic_conferences_attended}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor(
@@ -684,6 +711,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           placeholder="Certifications and Dates"
                           id="certificate"
                           name="certificate"
+                          value={this.state.data.certificate}
                           onChange={this.handleFormInput}
                           onBlur={() =>
                             this.validator.showMessageFor("certificate")
@@ -749,6 +777,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                             type="text"
                             id="other_languages"
                             name="other_languages"
+                            value={this.state.data.other_languages}
                             placeholder="Other Languages"
                             onChange={this.handleFormInput}
                             className="other_languages_input"
@@ -769,6 +798,9 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           id="masters_intended_area_of_research"
                           name="masters_intended_area_of_research"
+                          value={
+                            this.state.data.masters_intended_area_of_research
+                          }
                           placeholder="Masters Intended Area of Research"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -791,6 +823,9 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           id="university_of_choice_and_course"
                           name="university_of_choice_and_course"
+                          value={
+                            this.state.data.university_of_choice_and_course
+                          }
                           placeholder="University of Choice and Course"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -813,6 +848,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           id="modules_interested"
                           name="modules_interested"
+                          value={this.state.data.modules_interested}
                           placeholder="Possible modules interested in at first choice university course?"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -832,6 +868,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           id="teaching_personnel_contacted"
                           name="teaching_personnel_contacted"
+                          value={this.state.data.teaching_personnel_contacted}
                           placeholder="Teaching personnel/ Faculties Contacted at Institutions"
                           onChange={this.handleFormInput}
                           onBlur={() =>
@@ -854,6 +891,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                           type="text"
                           id="summary_of_interest"
                           name="summary_of_interest"
+                          value={this.state.data.summary_of_interest}
                           placeholder="Summary of your interest"
                           rows="4"
                           onChange={this.handleFormInput}

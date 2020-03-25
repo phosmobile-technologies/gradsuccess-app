@@ -18,57 +18,12 @@ class FormCompletePage extends React.Component {
   }
 
   componentDidMount() {
-     
-    let url = CLIENT_PASSWORD
-    let a_url = SEND_ASSOCIATE_EMAIL
 
-    let a_data = {
-      form_id: this.props.form_id,
+    if (this.props.password) {
+     this.setState({
+       password: this.props.password.password,
+     })
     }
-
-    this.setState(
-      {
-        password: this.props.location.state.password,
-      },
-      () => {
-        let data = {
-          form_id: this.props.form_id,
-          password: this.state.password,
-        }
-        fetch(url, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          method: "post",
-          body: JSON.stringify(data),
-        })
-          .then(function(response) {
-            return response.text()
-          })
-          .then(text => {
-            fetch(a_url, {
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-              method: "post",
-              body: JSON.stringify(a_data),
-            })
-              .then(function(response) {
-                return response.text()
-              })
-              .then(text => {
-              })
-              .catch(function(error) {
-                alert("Networks Error please try again, Later!")
-              })
-          })
-          .catch(function(error) {
-            alert("Networks Error please try again, Later!")
-          })
-      }
-    )
   }
   handleOpenModal =()=> {
     this.setState({ showModal: true })
@@ -116,7 +71,7 @@ class FormCompletePage extends React.Component {
               <div>
                 <div className="passwordCard">
                   <p>This is your login password: </p>
-                  <h1>{this.props.password.password}</h1>
+                  <h1>{this.state.password}</h1>
                 </div>
                 <div className="">
                   <Button

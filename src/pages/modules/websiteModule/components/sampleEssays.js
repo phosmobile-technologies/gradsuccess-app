@@ -13,7 +13,7 @@ const SampleEssays = ({
   discipline,
   downloadPdf,
   fileName,
-  video,
+  Video,
 }) => (
   <div
     css={{
@@ -154,43 +154,44 @@ const SampleEssays = ({
           </span>
         </div>
 
-        {/* second part*/}
-        <div
-          css={{
-            display: "flex",
-            fontFamily: '"Poppins", "sans-serif"',
-            fontSize: "12px",
-            marginTop:"15px"
-          }}
-        >
-          {" "}
-          <span
+        {Video && (
+          <div
             css={{
-              width: "200px",
-              textAlign: "right",
-              paddingRight: "30px",
-              color: "gray",
+              display: "flex",
               fontFamily: '"Poppins", "sans-serif"',
               fontSize: "12px",
-              [mq[2]]: {
-                paddingRight: "10px",
-                width: "100px",
-              },
+              marginTop: "15px",
             }}
           >
             {" "}
-            Watch Sample Essay Videos:{" "}
-          </span>{" "}
-          <span
-            css={{
-              width: "80%",
-              fontFamily: '"Poppins", "sans-serif"',
-              fontSize: "12px",
-            }}
-          >
-            <EssaySampleVideo video={video} />
-          </span>
-        </div>
+            <span
+              css={{
+                width: "200px",
+                textAlign: "right",
+                paddingRight: "30px",
+                color: "gray",
+                fontFamily: '"Poppins", "sans-serif"',
+                fontSize: "12px",
+                [mq[2]]: {
+                  paddingRight: "10px",
+                  width: "100px",
+                },
+              }}
+            >
+              {" "}
+              Watch Sample Video:{" "}
+            </span>{" "}
+            <span
+              css={{
+                width: "80%",
+                fontFamily: '"Poppins", "sans-serif"',
+                fontSize: "12px",
+              }}
+            >
+              <EssaySampleVideo video={Video} />
+            </span>
+          </div>
+        )}
       </div>
     </div>
   </div>

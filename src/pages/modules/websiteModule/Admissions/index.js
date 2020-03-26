@@ -12,6 +12,7 @@ import SampleEssays from "../components/sampleEssays"
 import admissionsbg from "../../../../images/admissionsbg.jpg"
 import { navigate } from "gatsby"
 import AdmissionsFile from "../../../../files/AdmissionsFile.pdf"
+import Video from "../../../../videos/essay_review_sample.mp4"
 
 
  /* eslint-disable */ 
@@ -161,6 +162,7 @@ class IndexPage extends React.Component {
           discipline="B.A. Theatre and Film Studies at Top undergraduate Nigerian University"
           downloadPdf={AdmissionsFile}
           fileName="Application Statement to University of Birmingham Masters in Theatre and Film Studies - (Redraft Service)"
+          Video ={Video}
         />
 
         {/*Modal popup*/}

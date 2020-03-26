@@ -13,6 +13,7 @@ import SampleEssays from "../components/sampleEssays"
 import scholarshipsbg from "../../../../images/scholarshipsbg.jpg"
 import { navigate } from "gatsby"
 import ScholarshipsFile from "../../../../files/ScholarshipsFile.pdf"
+import Video from "../../../../videos/essay_review_sample.mp4"
 
 const scholarBgURL = `url(${scholarshipsbg})`
 
@@ -161,6 +162,7 @@ class IndexPage extends React.Component {
           discipline="B.Eng. Biomedical Engineering Undergraduate "
           pdfURL={ScholarshipsFile}
           downloadPdf={ScholarshipsFile}
+          Video = {Video}
         />
 
         {/*Modal popup*/}

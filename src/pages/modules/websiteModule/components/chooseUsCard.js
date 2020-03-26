@@ -25,7 +25,7 @@ const ChooseUsCard = ({ title, text, imgUrl }) => (
         width: "80px",
         align: "center",
         display: "flex",
-        margin: "0 auto 1em",
+        margin: "0 auto 1em",   
       }}
     />
     <h4 css={{ marginBottom: "5px", textAlign: "center", color: "#19a99d" }}>

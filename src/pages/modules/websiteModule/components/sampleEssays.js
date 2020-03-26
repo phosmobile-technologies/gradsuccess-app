@@ -1,6 +1,7 @@
 import React from "react"
 import agenda from "../../../../images/agenda.svg"
 import pdf from "../../../../images/pdf.svg"
+import EssaySampleVideo from "./EssaySampleVideo"
  /* eslint-disable */
 const breakpoints = [375, 576, 768]
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
@@ -12,6 +13,7 @@ const SampleEssays = ({
   discipline,
   downloadPdf,
   fileName,
+  video,
 }) => (
   <div
     css={{
@@ -149,6 +151,44 @@ const SampleEssays = ({
           >
             {" "}
             {discipline}{" "}
+          </span>
+        </div>
+
+        {/* second part*/}
+        <div
+          css={{
+            display: "flex",
+            fontFamily: '"Poppins", "sans-serif"',
+            fontSize: "12px",
+            marginTop:"15px"
+          }}
+        >
+          {" "}
+          <span
+            css={{
+              width: "200px",
+              textAlign: "right",
+              paddingRight: "30px",
+              color: "gray",
+              fontFamily: '"Poppins", "sans-serif"',
+              fontSize: "12px",
+              [mq[2]]: {
+                paddingRight: "10px",
+                width: "100px",
+              },
+            }}
+          >
+            {" "}
+            Watch Sample Essay Videos:{" "}
+          </span>{" "}
+          <span
+            css={{
+              width: "80%",
+              fontFamily: '"Poppins", "sans-serif"',
+              fontSize: "12px",
+            }}
+          >
+            <EssaySampleVideo video={video} />
           </span>
         </div>
       </div>

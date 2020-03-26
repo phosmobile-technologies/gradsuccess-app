@@ -4,14 +4,18 @@ import PaystackButton from "react-paystack"
 import { GET_EMAIL } from "../../../../api/sendMailEndpoint"
 import { P_KEY } from "../../../../api/sendMailEndpoint"
 import Layout from "./layout"
-import { Callout, Spinner } from "@blueprintjs/core"
+import { Callout, Spinner, Checkbox } from "@blueprintjs/core"
 import { Button } from "@blueprintjs/core"
 import { connect } from "react-redux"
 import Modal from "react-awesome-modal"
+import ModalTerms from "react-modal"
 import LoginForm from "./Forms/loginForm"
 import { CREATE_USER } from "../../../graphql/mutations"
 import { Mutation } from "react-apollo"
 import Logout from "./Forms/logoutForm"
+import ClientTermsOfService from "./../../../../utils/clientTermsOfService"
+import SimpleReactValidator from "simple-react-validator"
+
 /* eslint-disable */
 class Checkout extends Component {
   constructor(props) {
@@ -26,12 +30,15 @@ class Checkout extends Component {
       phone: "",
       account_type: "Client",
       submitForm: true,
-      notVerified: true,
+      notVerified: false,
       emailExist: true,
       notEm: false,
       mcs: 1,
       loggedIn: false,
       loading: false,
+      accept_terms_and_services: false,
+      showTermsModal: false,
+      termNotAccepted:false
     }
 
     this.handleForm = this.handleForm.bind(this)
@@ -39,15 +46,18 @@ class Checkout extends Component {
     this.verifyEmail = this.verifyEmail.bind(this)
 
     this.paystackPaymentSuccess = this.paystackPaymentSuccess.bind(this)
+    this.validator = new SimpleReactValidator({
+      autoForceUpdate: this,
+    })
   }
 
   componentDidMount() {
-    if (this.props.cartItems.length == 0){
+    if (this.props.cartItems.length == 0) {
       navigate("/")
     }
-      if (this.props.user !== null) {
-        this.updateUserDetails()
-      }
+    if (this.props.user !== null) {
+      this.updateUserDetails()
+    }
     if (this.props.total <= 0) {
       navigate("/")
     }
@@ -85,11 +95,15 @@ class Checkout extends Component {
 
   verify = () => {
     if (
-      this.state.first_name !== "" &&
-      this.state.last_name !== "" &&
-      this.state.email !== "" &&
-      this.state.phone !== ""
+      !this.state.first_name  ||
+      !this.state.last_name  ||
+      !this.state.email  ||
+      !this.state.phone 
     ) {
+      this.setState({ 
+        notVerified: true,
+      })
+    }else{
       this.setState({
         notVerified: false,
       })
@@ -134,12 +148,12 @@ class Checkout extends Component {
     if (this.props.user === null) {
       this.form.dispatchEvent(new Event("submit"))
     } else {
-      this.props.savePaidPackageList(this.props.cartItems);
+      this.props.savePaidPackageList(this.props.cartItems)
       navigate("/complete-package", {
         state: {
           password: this.state.password,
         },
-        replace:true
+        replace: true,
       })
     }
   }
@@ -163,7 +177,7 @@ class Checkout extends Component {
   }
 
   handleCloseModal = () => {
-    this.setState({ showModal: false })
+    this.setState({ showModal: false, showTermsModal: false })
   }
 
   setLoadingState = () => {
@@ -185,6 +199,15 @@ class Checkout extends Component {
       loggedIn: true,
     })
   }
+
+  handleEnabledChange = e => {
+
+    this.setState({
+      termNotAccepted:false,
+      accept_terms_and_services: !this.state.accept_terms_and_services,
+    })
+  }
+
   render() {
     return (
       <Layout>
@@ -307,31 +330,73 @@ class Checkout extends Component {
                           value={this.state.phone}
                         />
                       </div>
+                      <div>
+                        <Checkbox
+                          checked={this.state.accept_terms_and_services}
+                          onChange={this.handleEnabledChange}
+                          className="t-s"
+                        >
+                          I have read and accepted gradsuccess
+                          <Button
+                            className="bp3-minimal  bp3-intent-success"
+                            onClick={() => {
+                              this.setState({
+                                showTermsModal: true,
+                              })
+                            }}
+                          >
+                            {" "}
+                            Terms and Services
+                          </Button>
+                        </Checkbox>
+                      </div>
+                      {this.state.termNotAccepted && (
+                        <p className="error_message">
+                          Please indicate that you accept the terms and
+                          conditions
+                        </p>
+                      )}
                     </form>
                   </div>
                 )}
               </Mutation>
 
               <div className="co-pay-btns">
-                <PaystackButton
-                  text="Proceed to payment"
-                  className={"paystack-co-btn"}
-                  callback={this.paystackPaymentSuccess}
-                  close={this.close}
-                  disabled={
-                    this.state.notVerified &&
-                    this.state.emailExist &&
-                    this.state.notEm
-                  } /*disable payment button*/
-                  embed={
-                    false
-                  } /*payment embed in your app instead of a pop up*/
-                  reference={this.getReference()}
-                  email={this.state.email}
-                  amount={this.props.total * 100}
-                  paystackkey={this.state.key}
-                  tag="button" /*it can be button or a or input tag */
-                />
+                {!this.state.accept_terms_and_services ? (
+                  <button
+                    className="paystack-co-btn"
+                    onClick={() => {
+                      if (!this.state.accept_terms_and_services) {
+                        this.setState({
+                          termNotAccepted: true,
+                        })
+                      }
+                    }}
+                  >
+                    Proceed to payment
+                  </button>
+                ) : (
+                  <PaystackButton
+                    text="Proceed to payment"
+                    className={"paystack-co-btn"}
+                    callback={this.paystackPaymentSuccess}
+                    close={this.close}
+                    disabled={
+                      this.state.notVerified ||
+                      this.state.emailExist ||
+                      this.state.notEm
+                    } /*disable payment button*/
+                    embed={
+                      false
+                    } /*payment embed in your app instead of a pop up*/
+                    reference={this.getReference()}
+                    email={this.state.email}
+                    amount={this.props.total * 100}
+                    paystackkey={this.state.key}
+                    tag="button" /*it can be button or a or input tag */
+                  />
+                )}
+
                 {this.state.loggedIn ? (
                   <Logout
                     handleCloseModal={this.handleCloseModal}
@@ -361,6 +426,21 @@ class Checkout extends Component {
         >
           <LoginForm handleCloseModal={this.handleCloseModal} />
         </Modal>
+
+        <div className="modal_wrapper">
+          <ModalTerms
+            isOpen={this.state.showTermsModal}
+            contentLabel="Minimal Modal Example"
+            style={defaultStyles}
+            ariaHideApp={false}
+          >
+            <ClientTermsOfService />
+
+            <a className="ModalCloseBut" onClick={this.handleCloseModal}>
+              x
+            </a>
+          </ModalTerms>
+        </div>
       </Layout>
     )
   }
@@ -370,7 +450,7 @@ function mapStateToProps(state) {
   return {
     total: state.cart.total,
     user: state.user,
-    cartItems:state.cart.cartItems
+    cartItems: state.cart.cartItems,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -387,3 +467,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Checkout)
+
+const defaultStyles = {
+  content: {
+    top: "0%",
+    left: "0%",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+  },
+}

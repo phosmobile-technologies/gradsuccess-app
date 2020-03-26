@@ -2237,3 +2237,14 @@ body {
 .star-a span {
   padding-right: 20px;
 }
+
+.t-s{
+  font-size: 12px;
+  font-weight: bold;
+
+}
+
+.t-s button{
+  font-size: 12px !important;
+  padding: 10px;
+}

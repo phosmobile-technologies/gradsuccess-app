@@ -37,7 +37,8 @@ const SampleEssays = ({
         boxShadow: "2px 2px 5px gray",
         [mq[2]]: {
           margin: "10px auto",
-          width: "80%",
+          width: "100%",
+          boxShadow: "none",
         },
       }}
     >
@@ -53,19 +54,47 @@ const SampleEssays = ({
         <div
           css={{
             display: "flex",
+            [mq[2]]: {
+              padding: "10px",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            },
           }}
         >
           <div>
-            <img src={agenda} alt="book" />
+            <img
+              src={agenda}
+              alt="book"
+              css={{
+                [mq[2]]: {
+                  maxWidth: "100px",
+                },
+              }}
+            />
           </div>
           <div>
             <div>
               {" "}
-              <h3> {essay} </h3>{" "}
+              <h3
+                css={{
+                  [mq[2]]: {
+                    textAlign: "center",
+                  },
+                }}
+              >
+                {" "}
+                {essay}{" "}
+              </h3>{" "}
             </div>
             <div
               css={{
                 display: "flex",
+                [mq[2]]: {
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
               }}
             >
               {" "}
@@ -161,6 +190,11 @@ const SampleEssays = ({
               fontFamily: '"Poppins", "sans-serif"',
               fontSize: "12px",
               marginTop: "15px",
+              [mq[2]]: {
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              },
             }}
           >
             {" "}
@@ -174,7 +208,8 @@ const SampleEssays = ({
                 fontSize: "12px",
                 [mq[2]]: {
                   paddingRight: "10px",
-                  width: "100px",
+                  width: "100%",
+                  textAlign:"center"
                 },
               }}
             >
@@ -186,6 +221,9 @@ const SampleEssays = ({
                 width: "80%",
                 fontFamily: '"Poppins", "sans-serif"',
                 fontSize: "12px",
+                [mq[2]]: {
+                 width:"100%"
+                },
               }}
             >
               <EssaySampleVideo video={Video} />

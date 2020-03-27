@@ -12,7 +12,6 @@ import SampleEssays from "../components/sampleEssays"
 import careersbg from "../../../../images/careersbg.jpg"
 import { navigate } from "gatsby"
 import CareersFile from "../../../../files/CareersFile.pdf"
-import Video from "../../../../videos/essay_review_sample.mp4"
  /* eslint-disable */ 
 const careersBgURL = `url(${careersbg})`
 const modal = { backgroundColor: "#E9E9E4" }
@@ -160,7 +159,6 @@ class IndexPage extends React.Component {
           discipline="Chemistry major switching to Health Industry. Has background in banking and project management"
           pdfURL={CareersFile}
           downloadPdf={CareersFile}
-          Video={Video}
         />
 
         {/*Modal popup*/}

@@ -1445,3 +1445,21 @@ td, th {
   font-size: 10px;
   color: burlywood;
 }
+
+
+@media only screen and (max-width: 500px) {
+ .send-btn {
+   padding: 12px 10px;
+   font-size: 10px;
+ }
+
+ .attach-icon:hover {
+   background-color: rgba(0, 0, 0, 0.521);
+   transition: 0.5s;
+   border-radius: 50%;
+ }
+
+ .chat .input{
+   padding-left: 0px;
+ }
+}

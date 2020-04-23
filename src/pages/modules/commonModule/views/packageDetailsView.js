@@ -401,7 +401,7 @@ export default class PackageDetailsView extends Component {
                 )}
                 <Divider />
               </div>
-              {data.attached_file !== "empty" ? (
+              {data.attached_file ? (
                 <div>
                   <br />
                   <a

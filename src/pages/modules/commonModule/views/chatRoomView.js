@@ -92,47 +92,51 @@ class ChatRoomView extends Component {
                         {client => {
                           return (
                             <div>
-                              <div
-                                className="contact"
-                                onClick={async () => {
-                                  this.toggleContactList()
-                                  this.setState({
-                                    chatMember: chatMember,
-                                  })
-                                  const { data } = await client.query({
-                                    query: CHAT_HISTORY,
-                                    variables: {
-                                      sender_id: this.props.user_id,
-                                      recipient_id: id,
-                                    },
-                                    fetchPolicy: "no-cache",
-                                  })
-                                  this.messageFetched(data)
-                                }}
-                              >
-                                <div className="pic">
-                                  {chatMember.details ? (
-                                    <img
-                                      src={chatMember.details.profile_image_ref}
-                                      alt={
-                                        chatMember.first_name +
-                                        " " +
-                                        chatMember.last_name
-                                      }
-                                    />
-                                  ) : (
-                                    <img
-                                      src={UserImage}
-                                      alt="Default profile"
-                                    />
-                                  )}
+                              {chatMember && (
+                                <div
+                                  className="contact"
+                                  onClick={async () => {
+                                    this.toggleContactList()
+                                    this.setState({
+                                      chatMember: chatMember,
+                                    })
+                                    const { data } = await client.query({
+                                      query: CHAT_HISTORY,
+                                      variables: {
+                                        sender_id: this.props.user_id,
+                                        recipient_id: id,
+                                      },
+                                      fetchPolicy: "no-cache",
+                                    })
+                                    this.messageFetched(data)
+                                  }}
+                                >
+                                  <div className="pic">
+                                    {chatMember.details ? (
+                                      <img
+                                        src={
+                                          chatMember.details.profile_image_ref
+                                        }
+                                        alt={
+                                          chatMember.first_name +
+                                          " " +
+                                          chatMember.last_name
+                                        }
+                                      />
+                                    ) : (
+                                      <img
+                                        src={UserImage}
+                                        alt="Default profile"
+                                      />
+                                    )}
+                                  </div>
+                                  <div className="name">
+                                    {chatMember.first_name +
+                                      " " +
+                                      chatMember.last_name}
+                                  </div>
                                 </div>
-                                <div className="name">
-                                  {chatMember.first_name +
-                                    " " +
-                                    chatMember.last_name}
-                                </div>
-                              </div>
+                              )}
                             </div>
                           )
                         }}

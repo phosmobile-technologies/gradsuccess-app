@@ -1462,4 +1462,12 @@ td, th {
  .chat .input{
    padding-left: 0px;
  }
+
+ .chat .messages{
+   padding: 0px !important;
+   width: 100%;
+   overflow: hidden;
+   font-size: 12px !important;
+   }
+ 
 }

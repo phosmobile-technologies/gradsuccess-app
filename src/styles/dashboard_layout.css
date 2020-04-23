@@ -380,6 +380,7 @@ body {
   }
   .contacts-menu {
     display: inline-flex;
+    margin-top: 20px;
   }
   .d-nav-header-inner .m-icon {
     display: block;
@@ -506,10 +507,7 @@ body {
       2rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
     transition: 0.5s ease-in !important;
   }
-  .h-contacts {
-    width: 50% !important;
-    right: 0% !important;
-  }
+  
   .logout {
     width: 100% !important;
   }
@@ -521,6 +519,15 @@ body {
 @media screen and (max-width: 400px) {
   .page-content .grid > article {
     grid-column: 1 / -1;
+  }
+  .contacts {
+    display: none;
+  }
+
+  .h-contacts {
+    display: block !important;
+    width: 60% !important;
+    right: 0% !important;
   }
 }
 

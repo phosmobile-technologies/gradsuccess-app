@@ -104,18 +104,6 @@ export default class DashboardLayoutView extends Component {
               </div>
             </div>
             <div className="page-content-inner">{this.props.body}</div>
-            <footer className="page-footer">
-              <small>
-                Made with <span>❤</span> by{" "}
-                <a
-                  href="https:/phosmobile.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Phosmobile
-                </a>
-              </small>
-            </footer>
           </section>
         </div>
       )

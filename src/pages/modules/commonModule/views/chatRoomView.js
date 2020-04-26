@@ -7,6 +7,8 @@ import { ApolloConsumer } from "react-apollo"
 import UserImage from "../../../../images/default_profile_img.png"
 import { connect } from "react-redux"
 import NoMessageView from "./NoMessageView"
+import LoadingMessageView from "./LoadingMessageView"
+
 
 class ChatRoomView extends Component {
   constructor(props) {
@@ -15,12 +17,12 @@ class ChatRoomView extends Component {
     this.state = {
       messages: [],
       chatMember: null,
-      ContactList:false
+      ContactList: false,
+      loading:false
     }
   }
 
   compare(a, b) {
-    // Use toUpperCase() to ignore character casing
     const bandA = a.created_at
     const bandB = b.created_at
 
@@ -33,8 +35,17 @@ class ChatRoomView extends Component {
     return comparison
   }
 
-  messageFetched = data => {
+  messageFetched = async  (client,id) => {
     
+    const { data } = await client.query({
+      query: CHAT_HISTORY,
+      variables: {
+        sender_id: this.props.user_id,
+        recipient_id: id,
+      },
+      fetchPolicy: "no-cache",
+    })
+
     var seMessages = data.getSeMessages
     var reMessages = data.getReMessages
     this.setState(
@@ -45,18 +56,23 @@ class ChatRoomView extends Component {
         let chats = this.state.messages.concat(seMessages, reMessages)
         this.props.saveChatHistory(chats.sort(this.compare))
 
-        
+
+        this.setState({
+          loading:false
+        })
       }
     )
   }
-  toggleContactList =()=>{
+
+  toggleContactList = () => {
     this.setState({
-      ContactList: !this.state.ContactList
+      ContactList: !this.state.ContactList,
     })
   }
 
+
   render() {
-    if (this.props.chatList){
+    if (this.props.chatList) {
       return (
         <div className="center">
           <div
@@ -94,21 +110,21 @@ class ChatRoomView extends Component {
                             <div>
                               {chatMember && (
                                 <div
-                                  className="contact"
-                                  onClick={async () => {
+                                  className={
+                                    " contact c-sb" +
+                                    (this.state.chatMember && this.state.chatMember
+                                      .id === chatMember.id
+                                      ? " selected-contact"
+                                      : "")
+                                  }
+                                  onClick={() => {
                                     this.toggleContactList()
                                     this.setState({
-                                      chatMember: chatMember,
+                                      chatMember,
+                                      loading: true,
                                     })
-                                    const { data } = await client.query({
-                                      query: CHAT_HISTORY,
-                                      variables: {
-                                        sender_id: this.props.user_id,
-                                        recipient_id: id,
-                                      },
-                                      fetchPolicy: "no-cache",
-                                    })
-                                    this.messageFetched(data)
+
+                                    this.messageFetched(client, id)
                                   }}
                                 >
                                   <div className="pic">
@@ -147,41 +163,54 @@ class ChatRoomView extends Component {
               )
             })}
           </div>
-          {this.state.chatMember ? (
-            <>
-              <div className="contacts-menu" onClick={this.toggleContactList}>
-                <span>Contacts</span>
-                <Icon
-                  icon="menu"
-                  iconSize={20}
-                  color="black"
-                  className="chat-contact-menu"
-                  onClick={this.toggleMenu}
-                />
-              </div>
-              <MessageBox chatMember={this.state.chatMember} />
-            </>
+          {this.state.loading ? (
+            <LoadingMessageView
+              chatMember={this.state.chatMember}
+            ></LoadingMessageView>
           ) : (
             <>
-              <div className="contacts-menu" onClick={this.toggleContactList}>
-                <span>Contacts</span>
-                <Icon
-                  icon="menu"
-                  iconSize={20}
-                  color="black"
-                  className="chat-contact-menu"
-                  onClick={this.toggleMenu}
-                />
-              </div>
-              <NoMessageView />
+              {this.state.chatMember ? (
+                <>
+                  <div
+                    className="contacts-menu"
+                    onClick={this.toggleContactList}
+                  >
+                    <span>Contacts</span>
+                    <Icon
+                      icon="menu"
+                      iconSize={20}
+                      color="black"
+                      className="chat-contact-menu"
+                      onClick={this.toggleMenu}
+                    />
+                  </div>
+                  <MessageBox chatMember={this.state.chatMember} />
+                </>
+              ) : (
+                <>
+                  <div
+                    className="contacts-menu"
+                    onClick={this.toggleContactList}
+                  >
+                    <span>Contacts</span>
+                    <Icon
+                      icon="menu"
+                      iconSize={20}
+                      color="black"
+                      className="chat-contact-menu"
+                      onClick={this.toggleMenu}
+                    />
+                  </div>
+                  <NoMessageView />
+                </>
+              )}
             </>
           )}
         </div>
       )
-    }else{
+    } else {
       return <div></div>
     }
-      
   }
 }
 

@@ -18,6 +18,7 @@ class MessageBox extends Component {
         <MessageBoxView
           messages={this.props.chat.messages}
           chatMember={this.props.chatMember}
+          channel={this.props.channel}
         />
       )
     }

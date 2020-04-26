@@ -4,8 +4,9 @@ import UserImage from "../../../../images/default_profile_img.png"
 import NoChatHistory from "./noChatHistory"
 import ChatForm from "./../components/chatForm"
 import { Spinner } from "@blueprintjs/core"
+import { connect } from "react-redux"
 
-export default class MessageBoxView extends Component {
+class MessageBoxView extends Component {
   render() {
     var today = new Date()
     var time =
@@ -85,7 +86,7 @@ export default class MessageBoxView extends Component {
                       )}
                     </div>
                   )
-                } else {
+                }else{
                   return (
                     <div className="message stark" key={key}>
                       {m.attached_file_type === "File" && (
@@ -133,3 +134,12 @@ export default class MessageBoxView extends Component {
     }
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    user: state.loggedInUser,
+  }
+}
+
+export default connect(mapStateToProps)(MessageBoxView)

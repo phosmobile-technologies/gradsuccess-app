@@ -18,7 +18,9 @@ const chatReducer = (state, action) => {
       }
     }
     case "POP_MESSAGE": {
-        var message = state.messages.filter(message => message.message !== action.message.message)
+      var message = state.messages.filter(
+        message => message.message !== action.message.message
+      )
       return {
         ...state,
         messages: [...message],

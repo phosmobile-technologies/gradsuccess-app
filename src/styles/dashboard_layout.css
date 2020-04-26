@@ -354,6 +354,12 @@ body {
   display: none;
   max-width: 130px;
 }
+
+.contacts h2 {
+  font-size: 16px;
+  margin: 10px;
+}
+
 .contacts-menu span {
   font-size: 14px;
   font-weight: bolder;
@@ -1003,12 +1009,21 @@ td, th {
 }
 
 .contact {
-  padding: 0.6rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
+  margin-top: 0px;
 }
 
 .contact:hover {
+  background-color: #47dcbc;
+}
+
+.c-sb{
+  border-radius: 4px;
+  border-radius: none !important;
+}
+.selected-contact{
   background-color: #47dcbc;
 }
 
@@ -1087,8 +1102,9 @@ td, th {
   flex-basis: 3.5rem;
   flex-shrink: 0;
   box-sizing: border-box;
-  background-color: #47dcbc;
+  background-color: white;
   color: black;
+ 
 }
 .chat .messages {
   padding: 1rem;
@@ -1470,8 +1486,11 @@ td, th {
  .chat .messages{
    padding: 0px !important;
    width: 100%;
-   overflow: hidden;
+   overflow: scroll;
    font-size: 12px !important;
+   }
+   .chat .contact.bar {
+     background-color: white;
    }
  
 }

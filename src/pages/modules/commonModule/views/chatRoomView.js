@@ -87,13 +87,9 @@ class ChatRoomView extends Component {
     })
 
     channel.bind("new-message", data => this.updateChat(data))
-
-    console.log(pusher.allChannels())
   }
 
   updateChat = data => {
-    console.log(data.message)
-
     if (this.state.chatMember) {
       
       if (this.state.chatMember.id == data.message.sender_id) {

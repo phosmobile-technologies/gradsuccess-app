@@ -8,9 +8,7 @@ import SimpleReactValidator from "simple-react-validator"
 import { connect } from "react-redux"
 import FileUploadPreview from "./FileUploadPreview"
 import { CHAT_HISTORY } from "./../../../graphql/queries"
-import Pusher from "pusher-js"
-import pushid from "pushid"
-import { PUSHER_KEY } from "gatsby-env-variables"
+
 
 class ChatFormView extends Component {
   constructor(props) {
@@ -146,37 +144,7 @@ class ChatFormView extends Component {
     )
   }
 
-  componentDidMount() {
-    const pusher = new Pusher(PUSHER_KEY, {
-      cluster: "mt1",
-      encrypted: true,
-    })
-
-    const channel = pusher.subscribe("chat")
-
-    channel.bind("pusher:subscription_succeeded", function() {
-      console.log();
-    })
-
-    channel.bind("pusher:subscription_error", function(status) {
-      console.log(status)
-    })
-
-    channel.bind("new-message", data => this.updateChat(data))
-  }
-
-  updateChat = (data) => {    
-    if (parseInt(data.message.sender_id) === parseInt(this.props.recipient_id) &&
-      parseInt(data.message.recipient_id) === parseInt(this.props.user.id) 
-      
-    ) {
-      this.props.popMessage(data.message)
-      this.props.updatemessage(data.message)
-    }
-  }
-
   render() {
-  
     return (
       <Mutation
         mutation={SAVE_MESSAGE}

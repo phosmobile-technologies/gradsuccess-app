@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Divider, Spinner, Icon } from "@blueprintjs/core"
+import { Divider, Spinner, Icon, Tag } from "@blueprintjs/core"
 import { CHATLISTMEMBER, CHAT_HISTORY } from "./../../../graphql/queries"
 import { Query } from "react-apollo"
 import MessageBox from "../components/messageBox"
@@ -8,7 +8,9 @@ import UserImage from "../../../../images/default_profile_img.png"
 import { connect } from "react-redux"
 import NoMessageView from "./NoMessageView"
 import LoadingMessageView from "./LoadingMessageView"
-
+import Pusher from "pusher-js"
+import pushid from "pushid"
+import { PUSHER_KEY } from "gatsby-env-variables"
 
 class ChatRoomView extends Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class ChatRoomView extends Component {
       messages: [],
       chatMember: null,
       ContactList: false,
-      loading:false
+      loading: false,
     }
   }
 
@@ -35,8 +37,7 @@ class ChatRoomView extends Component {
     return comparison
   }
 
-  messageFetched = async  (client,id) => {
-    
+  messageFetched = async (client, id) => {
     const { data } = await client.query({
       query: CHAT_HISTORY,
       variables: {
@@ -56,9 +57,8 @@ class ChatRoomView extends Component {
         let chats = this.state.messages.concat(seMessages, reMessages)
         this.props.saveChatHistory(chats.sort(this.compare))
 
-
         this.setState({
-          loading:false
+          loading: false,
         })
       }
     )
@@ -70,6 +70,66 @@ class ChatRoomView extends Component {
     })
   }
 
+  componentDidMount() {
+    const pusher = new Pusher(PUSHER_KEY, {
+      cluster: "mt1",
+      encrypted: true,
+    })
+
+    const channel = pusher.subscribe("chat")
+
+    channel.bind("pusher:subscription_succeeded", () => {
+      console.log("subscribed")
+    })
+
+    channel.bind("pusher:subscription_error", function(status) {
+      console.log(status)
+    })
+
+    channel.bind("new-message", data => this.updateChat(data))
+
+    console.log(pusher.allChannels())
+  }
+
+  updateChat = data => {
+    console.log(data.message)
+
+    if (this.state.chatMember) {
+      
+      if (this.state.chatMember.id == data.message.sender_id) {
+      } else {
+        this.setState({
+          [data.message.sender_id]: 1,
+        })
+      }
+    }else{
+      this.setState({
+        [data.message.sender_id]: 1,
+      })
+    }
+
+    if (this.state.chatMember) {
+      if (
+        parseInt(data.message.sender_id) ===
+          parseInt(this.state.chatMember.id) &&
+        parseInt(data.message.recipient_id) === parseInt(this.props.user.id)
+      ) {
+        this.props.popMessage(data.message)
+        this.props.updatemessage(data.message)
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    const pusher = new Pusher(PUSHER_KEY, {
+      cluster: "mt1",
+      encrypted: true,
+    })
+
+    const channel = pusher.subscribe("chat")
+    channel.unbind_all()
+    pusher.disconnect()
+  }
 
   render() {
     if (this.props.chatList) {
@@ -112,8 +172,8 @@ class ChatRoomView extends Component {
                                 <div
                                   className={
                                     " contact c-sb" +
-                                    (this.state.chatMember && this.state.chatMember
-                                      .id === chatMember.id
+                                    (this.state.chatMember &&
+                                    this.state.chatMember.id === chatMember.id
                                       ? " selected-contact"
                                       : "")
                                   }
@@ -122,6 +182,7 @@ class ChatRoomView extends Component {
                                     this.setState({
                                       chatMember,
                                       loading: true,
+                                      [chatMember.id]: null,
                                     })
 
                                     this.messageFetched(client, id)
@@ -147,9 +208,16 @@ class ChatRoomView extends Component {
                                     )}
                                   </div>
                                   <div className="name">
-                                    {chatMember.first_name +
-                                      " " +
-                                      chatMember.last_name}
+                                    <span>
+                                      {chatMember.first_name +
+                                        " " +
+                                        chatMember.last_name}
+                                    </span>
+                                    {this.state[chatMember.id] ? (
+                                      <Tag minimal={true}>New</Tag>
+                                    ) : (
+                                      <></>
+                                    )}
                                   </div>
                                 </div>
                               )}
@@ -213,6 +281,11 @@ class ChatRoomView extends Component {
     }
   }
 }
+function mapStateToProps(state) {
+  return {
+    user: state.loggedInUser,
+  }
+}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -222,9 +295,21 @@ function mapDispatchToProps(dispatch) {
         chats,
       })
     },
+    updatemessage: message => {
+      dispatch({
+        type: "ADD_NEW_MESSAGE",
+        message,
+      })
+    },
+    popMessage: message => {
+      dispatch({
+        type: "POP_MESSAGE",
+        message,
+      })
+    },
   }
 }
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ChatRoomView)

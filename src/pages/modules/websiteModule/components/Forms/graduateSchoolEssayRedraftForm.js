@@ -161,7 +161,6 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
         if (this.state.alterUpload === "Stop") {
           task.stop()
         }
-        console.log("Upload is " + progress + "% done")
         switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED: // or 'paused'
             console.log("Upload is paused")

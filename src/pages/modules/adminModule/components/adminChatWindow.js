@@ -43,14 +43,11 @@ import { connect } from "react-redux"
                            data.getGraduateSchoolEssayRedraftByAssociateId,
                            data.getResumeReviewByAssociateId
                          )
-
-                         console.log(newPackages)
                          newPackages.map(p => userIDs.push(p.user_id))
                          var uniqueChatList = userIDs.filter(this.onlyUnique)
                          this.setState({
                            chatList: uniqueChatList,
                          })
-                         console.log(uniqueChatList)
                        }}
                      >
                        {({ loading, error, data }) => {

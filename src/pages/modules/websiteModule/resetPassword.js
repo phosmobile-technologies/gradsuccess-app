@@ -32,7 +32,6 @@ export default class ResetPassword extends Component {
         email,
       },
       () => {
-        console.log(this.state)
       }
     )
   }

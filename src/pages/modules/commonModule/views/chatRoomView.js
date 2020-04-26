@@ -71,6 +71,8 @@ class ChatRoomView extends Component {
   }
 
   componentDidMount() {
+    console.log(PUSHER_KEY)
+
     const pusher = new Pusher(PUSHER_KEY, {
       cluster: "mt1",
       encrypted: true,

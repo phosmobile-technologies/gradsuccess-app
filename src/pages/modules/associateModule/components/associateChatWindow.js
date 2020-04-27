@@ -38,7 +38,11 @@ import { connect } from "react-redux"
                              data.getGraduateSchoolEssayRedraftByAssociateId,
                              data.getResumeReviewByAssociateId
                            )
-                           newPackages.map(p => userIDs.push(p.user_id))
+                           newPackages.map(p => {
+                             if (p.user_id) {
+                               userIDs.push(p.user_id)
+                             }
+                           })
                            var uniqueChatList = userIDs.filter(this.onlyUnique)
                            this.setState({
                              chatList: uniqueChatList,

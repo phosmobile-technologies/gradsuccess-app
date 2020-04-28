@@ -27,7 +27,11 @@ class UserChatWindow extends Component {
       data.graduate_school_statement_review,
       data.resume_reviews
     )
-    newPackages.map(p => userIDs.push(p.assigned_associate_id))
+    newPackages.map(p => {
+      if (p.assigned_associate_id) {
+        userIDs.push(p.assigned_associate_id)
+      }
+    })
     var uniqueChatList = userIDs.filter(this.onlyUnique)
     this.setState(
       {

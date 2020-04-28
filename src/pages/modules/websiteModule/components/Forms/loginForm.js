@@ -10,6 +10,7 @@ import {
   Button,
   Callout
 } from "@blueprintjs/core"
+import SimpleReactValidator from "simple-react-validator"
 
  class Login extends React.Component {
   constructor(props) {
@@ -26,6 +27,9 @@ import {
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleForgotPassword = this.handleForgotPassword.bind(this)
     this.formSubmitted = this.formSubmitted.bind(this)
+     this.validator = new SimpleReactValidator({
+      autoForceUpdate: this,
+    })
   }
 
   handleFormInput(event) {
@@ -71,7 +75,7 @@ import {
                 // this.formSubmitted(data)
               }}
             >
-              {(loginUser, { data, loading, error }) => (
+              {(resetPassword, { data, loading, error }) => (
                 <div className="loader-wrapper">
                   {data && (
                     <Callout
@@ -84,7 +88,7 @@ import {
                   <form
                     onSubmit={e => {
                       e.preventDefault()
-                      loginUser({
+                      resetPassword({
                         variables: {
                           email: this.state.data.email,
                         },
@@ -101,6 +105,15 @@ import {
                         name="email"
                         onChange={this.handleFormInput}
                       />
+                       <p className="error_message">
+                    <i>
+                      {this.validator.message(
+                        "email",
+                        this.state.data.email,
+                        "required"
+                      )}
+                    </i>
+                  </p>
                       <br />
                     </div>
 
@@ -139,9 +152,17 @@ import {
                   <form
                     onSubmit={e => {
                       e.preventDefault()
-                      loginUser({
-                        variables: this.state.data,
-                      })
+                      if (this.validator.allValid()) {
+                         loginUser({
+                           variables: this.state.data,
+                         })
+                      } else {
+                        this.validator.showMessages()
+                        this.forceUpdate()
+                      }
+
+                      
+                     
                     }}
                     className="checkout-form-container login-form"
                   >
@@ -154,11 +175,21 @@ import {
                         name="email"
                         onChange={this.handleFormInput}
                       />
+                       <p className="error_message">
+                    <i>
+                      {this.validator.message(
+                        "email",
+                        this.state.data.email,
+                        "required"
+                      )}
+                    </i>
+                  </p>
                       <br />
 
                       {this.state.forgotPassword ? (
                         " "
                       ) : (
+                        <>
                         <input
                           type="password"
                           placeholder="Password"
@@ -166,6 +197,16 @@ import {
                           name="password"
                           onChange={this.handleFormInput}
                         />
+                         <p className="error_message">
+                    <i>
+                      {this.validator.message(
+                        "password",
+                        this.state.data.password,
+                        "required"
+                      )}
+                    </i>
+                  </p>
+                  </>
                       )}
                     </div>
 

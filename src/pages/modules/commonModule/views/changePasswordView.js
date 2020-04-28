@@ -6,6 +6,8 @@ import { Mutation } from 'react-apollo';
 import { navigate } from 'gatsby';
 
 
+
+
 export default class ChangePasswordView extends Component {
   constructor(props) {
     super(props)

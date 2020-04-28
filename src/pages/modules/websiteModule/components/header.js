@@ -3,7 +3,6 @@ import { Link } from "gatsby"
 import Image from "./logoImage"
 import Modal from "react-awesome-modal"
 import LoginForm from "./Forms/loginForm"
-// import PromotionBanner from "./promotionBanner"
 import CartItemIndicator from './cartItemIndicator';
 import { connect } from "react-redux"
 import LoggedIn from "./loggedIn"
@@ -73,8 +72,7 @@ class Header extends React.Component {
           </span>
           {/* <PromotionBanner /> */}
           <div className="top_coupon">
-            Get 10% off your order with the
-            coupon code<span>NEWYEAR10</span>
+            Get 10% off your order with the coupon code<span>NEWYEAR10</span>
           </div>
           <div
             css={{
@@ -174,8 +172,12 @@ class Header extends React.Component {
             <LoggedIn />
           )}
 
-          {this.props.outstandingRequestReg.length > 0 && (
-            <OutstandingPackageRegisteration />
+          {this.props.outstandingRequestReg && (
+            <>
+              {this.props.outstandingRequestReg.length > 0 && (
+                <OutstandingPackageRegisteration />
+              )}
+            </>
           )}
         </ul>
       </header>

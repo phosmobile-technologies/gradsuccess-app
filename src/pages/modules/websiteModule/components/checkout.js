@@ -58,7 +58,7 @@ class Checkout extends Component {
     if (this.props.user !== null) {
       this.updateUserDetails()
     }
-    if (this.props.total <= 0) {
+    if (this.props.total < 0) {
       navigate("/")
     }
 
@@ -127,12 +127,12 @@ class Checkout extends Component {
         return response.text()
       })
       .then(text => {
-        if (text === "false") {
+        if (text.trim() == "false") {
           this.setState({
             emailExist: false,
             notEm: false,
           })
-        } else {
+        } else {  
           this.setState({
             emailExist: true,
             notEm: true,
@@ -362,7 +362,7 @@ class Checkout extends Component {
               </Mutation>
 
               <div className="co-pay-btns">
-                {!this.state.accept_terms_and_services ? (
+                {!this.state.accept_terms_and_services ||  this.props.total <= 0 ? (
                   <button
                     className="paystack-co-btn"
                     onClick={() => {
@@ -371,6 +371,9 @@ class Checkout extends Component {
                           termNotAccepted: true,
                         })
                       }
+
+                       this.paystackPaymentSuccess()
+
                     }}
                   >
                     Proceed to payment

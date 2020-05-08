@@ -10,7 +10,7 @@ import React, { Component } from "react"
 import CurrencyFormat from "react-currency-format"
 import { connect } from "react-redux"
 import { Callout } from "@blueprintjs/core"
-import { COUPON } from "../../../../api/couponCode"
+import { COUPONS } from "../../../../api/couponCode"
 import { Link } from "gatsby"
 
 class CartPriceCard extends Component {
@@ -44,12 +44,26 @@ class CartPriceCard extends Component {
   applyCoupon = () => {
     this.props.calTotal(0)
     this.setState({ isOpen: !this.state.isOpen })
-    if (this.state.coupon !== COUPON.code) {
+
+    let applied_coupon = {
+      code: null,
+      discount: 0,
+    }
+
+    COUPONS.map(COUPON => {
+      if (this.state.coupon === COUPON.code) {
+        applied_coupon = COUPON
+      }
+    })
+
+    console.log(applied_coupon)
+
+    if (this.state.coupon !== applied_coupon.code) {
       this.props.showErrorDialogue(
         "Failed to apply your coupon code, it either expired or you enter a wrong coupon code."
       )
     } else {
-      var amount = (this.getCartSubtotal() / 100) * COUPON.discount
+      var amount = (this.getCartSubtotal() / 100) * applied_coupon.discount
       this.props.calTotal(amount)
       this.props.showSuccessDialogue("Coupon was successfully aplied")
       this.setState({

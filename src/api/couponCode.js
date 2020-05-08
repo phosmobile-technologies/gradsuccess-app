@@ -1,4 +1,10 @@
-export const COUPON = {
-  code: "NEWYEAR10",
-  discount: 10,
-}
+export const COUPONS = [
+  {
+    code: "NEWYEAR10",
+    discount: 10,
+  },
+  {
+    code: "GSGIVEAWAY100",
+    discount: 100,
+  },
+]

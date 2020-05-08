@@ -370,9 +370,11 @@ class Checkout extends Component {
                         this.setState({
                           termNotAccepted: true,
                         })
+                      }else{
+                        this.paystackPaymentSuccess()
                       }
 
-                       this.paystackPaymentSuccess()
+                       
 
                     }}
                   >

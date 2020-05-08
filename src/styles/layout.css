@@ -2400,6 +2400,7 @@ progress {
     margin: auto;
     margin-top: 50px;
     width: 80%;
+    max-width: 1350px;
 }
 .admission-listing,
 .career-listing,

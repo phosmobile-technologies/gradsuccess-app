@@ -2411,8 +2411,45 @@ progress {
 }
 .expert-spe {
   margin: auto;
-  width: 70%;
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
 }
+
+.expert-spe .img-wrapper {
+ margin-right: 30px;
+
+  
+}
+.expert-spe .img-wrapper .img-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+
+}
+.expert-spe .summary-div {
+  width: 70%;
+
+}
+.expert-spe .summary-div h2 {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  text-transform: capitalize;
+  font-weight: bolder;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.expert-spe .summary-div p {
+  font-size: 14px;
+  font-style: italic;
+}
+
+
 .admission-listing-inner,
 .career-listing-inner,
 .scholarships-listing-inner {
@@ -3092,11 +3129,17 @@ progress {
 }
 
 .e-s-packages{
-      display: flex;
+    display: flex;
     width: 100%;
     flex-wrap: wrap;
-}
+    justify-content: space-between;
 
+    
+}
+.e-s-packages .price-box{
+   margin: 0px;
+   margin-bottom: 20px;
+}
 .e-s-package-container{
   background-color: white;
   padding: 20px;

@@ -7,6 +7,7 @@ import {
 import { Callout, Button } from "@blueprintjs/core"
 import PriceBoxWithDescription from './../priceBoxWithDescription';
 import { Link } from 'gatsby';
+import dan from '../../../../../images/dan.jpeg'
 
 export default class ExpertSpecificRequest extends React.Component {
   constructor(props) {
@@ -111,18 +112,19 @@ export default class ExpertSpecificRequest extends React.Component {
       return (
         <div>
           <div className="expert-specific-wrapper">
-            <div>
-              <div className="featured-experts-single expert-spe ">
-                <div className="img-div">
+            <div className=" expert-spe">
+              <div className="img-wrapper">
+                <div className="img-circle">
                   <img
-                    src={this.state.associateDetail.profile_image_ref}
+                    // src={this.state.associateDetail.profile_image_ref}
+                    src={dan}
                     alt="expert Specific"
                   />
                 </div>
-                <div className="summary-div">
-                  <h2>{this.state.associateDetail.user_name}</h2>
-                  <p>{this.state.associateDetail.bio_bait}</p>
-                </div>
+              </div>
+              <div className="summary-div">
+                <h2>{this.state.associateDetail.user_name}</h2>
+                <p>{this.state.associateDetail.bio_bait}</p>
               </div>
             </div>
 
@@ -197,7 +199,9 @@ export default class ExpertSpecificRequest extends React.Component {
                 </div>
               </div>
               <Link to="cart">
-                <Button className = "bp3-intent-success bp3-large e-s-btn">Proceed</Button>
+                <Button className="bp3-intent-success bp3-large e-s-btn">
+                  Proceed
+                </Button>
               </Link>
             </div>
           </div>

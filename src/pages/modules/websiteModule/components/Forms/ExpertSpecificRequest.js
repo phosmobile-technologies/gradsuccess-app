@@ -7,7 +7,6 @@ import {
 import { Callout, Button } from "@blueprintjs/core"
 import PriceBoxWithDescription from './../priceBoxWithDescription';
 import { Link } from 'gatsby';
-import dan from '../../../../../images/dan.jpeg'
 
 export default class ExpertSpecificRequest extends React.Component {
   constructor(props) {
@@ -116,8 +115,7 @@ export default class ExpertSpecificRequest extends React.Component {
               <div className="img-wrapper">
                 <div className="img-circle">
                   <img
-                    // src={this.state.associateDetail.profile_image_ref}
-                    src={dan}
+                    src={this.state.associateDetail.profile_image_ref}
                     alt="expert Specific"
                   />
                 </div>

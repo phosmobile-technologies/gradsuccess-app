@@ -1604,6 +1604,10 @@ pre tt:after {
 
 }*/
 @media only screen and (max-width: 580px) {
+  .c-n-fill {
+    grid-template-columns: 1fr;
+  }
+
   .cu-container-inner {
     flex-direction: column;
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Mutation } from "react-apollo"
-import { Callout, Spinner, Button, Icon, Intent } from "@blueprintjs/core"
+import { Callout, Button, Icon } from "@blueprintjs/core"
 import { REVIEW_PACKAGE } from "../../../graphql/mutations"
 import StarRatingComponent from "react-star-rating-component"
 
@@ -13,17 +13,16 @@ export default class MarkPackageCompletedView extends Component {
     }
   }
 
-  handleForm=(event)=> {
+  handleForm = event => {
     const { name, value } = event.target
     this.setState({
       [name]: value,
     })
   }
 
-  onStarClick=(nextValue, prevValue, name) =>{
-    this.setState({rating: nextValue});
+  onStarClick = (nextValue, prevValue, name) => {
+    this.setState({ rating: nextValue })
   }
-
 
   render() {
     const { rating } = this.state

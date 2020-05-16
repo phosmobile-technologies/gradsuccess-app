@@ -5,16 +5,6 @@ import SEO from "./modules/websiteModule/components/seo"
 import Modal from "react-awesome-modal"
 import LoginForm from "./modules/websiteModule/components/Forms/loginForm"
 
-const customStyles = {
-  content: {
-    top: "0%",
-    left: "0%",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(255,255,255,0.3)",
-  },
-}
-
 class NotFoundPage extends React.Component {
   constructor(props) {
     super(props)

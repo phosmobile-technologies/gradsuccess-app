@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Callout, Spinner, Button } from "@blueprintjs/core"
+import { Callout, Button } from "@blueprintjs/core"
 import { UPDATE_FORGOTTEN_PASSWORD } from "../../graphql/mutations"
 import { navigate } from "gatsby"
 import { Mutation } from "react-apollo"
@@ -31,8 +31,7 @@ export default class ResetPassword extends Component {
         resetToken,
         email,
       },
-      () => {
-      }
+      () => {}
     )
   }
 
@@ -118,9 +117,10 @@ export default class ResetPassword extends Component {
                       <hr />
                       <p>
                         <small>
-                          <strong>Hints:</strong> At least 8 characters—the more
-                          characters, the better A mixture of both uppercase and
-                          lowercase letters, A mixture of letters and numbers
+                          <strong>Hints:</strong> At least 8 characters—the
+                          more characters, the better A mixture of both
+                          uppercase and lowercase letters, A mixture of letters
+                          and numbers
                         </small>
                       </p>
 

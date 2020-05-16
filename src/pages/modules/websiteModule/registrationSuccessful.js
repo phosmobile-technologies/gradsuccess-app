@@ -4,16 +4,6 @@ import LoginForm from "./components/Forms/loginForm"
 import Modal from "react-awesome-modal"
 import { Callout } from "@blueprintjs/core"
 
-const customStyles = {
-  content: {
-    top: "0%",
-    left: "0%",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(255,255,255,0.3)",
-  },
-}
-
 export default class ApplicationSuccefful extends Component {
   constructor(props) {
     super(props)

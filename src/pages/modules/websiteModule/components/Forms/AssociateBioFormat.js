@@ -1,22 +1,19 @@
 import React from "react"
-import {Link} from "gatsby"
-import { Button } from '@blueprintjs/core';
+import { Link } from "gatsby"
+import { Button } from "@blueprintjs/core"
 import SimpleReactValidator from "simple-react-validator"
 
 export default class AssociateDetails extends React.Component {
   constructor(props) {
     super(props)
-  
-    this.state = {
-       
-    };
+
+    this.state = {}
     this.validator = new SimpleReactValidator({
       autoForceUpdate: this,
     })
-  };
+  }
 
-
-    verifyInputs = () => {
+  verifyInputs = () => {
     if (this.validator.allValid()) {
       this.props.nextStep()
     } else {
@@ -25,8 +22,6 @@ export default class AssociateDetails extends React.Component {
     }
   }
 
-
-  
   handleCVUpload = e => {
     var saveRef = this.props.saveImageRef
     var handleCVUpload = this.props.handleCVUpload
@@ -114,7 +109,7 @@ export default class AssociateDetails extends React.Component {
   }
 
   render() {
-    const {nextStep, prevStep } = this.props
+    const { prevStep } = this.props
 
     return (
       <div>

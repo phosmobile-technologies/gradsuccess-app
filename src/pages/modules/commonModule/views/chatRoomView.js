@@ -9,7 +9,6 @@ import { connect } from "react-redux"
 import NoMessageView from "./NoMessageView"
 import LoadingMessageView from "./LoadingMessageView"
 import Pusher from "pusher-js"
-import pushid from "pushid"
 import { PUSHER_KEY } from "gatsby-env-variables"
 
 class ChatRoomView extends Component {
@@ -91,14 +90,13 @@ class ChatRoomView extends Component {
 
   updateChat = data => {
     if (this.state.chatMember) {
-      
-      if (this.state.chatMember.id == data.message.sender_id) {
+      if (this.state.chatMember.id === data.message.sender_id) {
       } else {
         this.setState({
           [data.message.sender_id]: 1,
         })
       }
-    }else{
+    } else {
       this.setState({
         [data.message.sender_id]: 1,
       })

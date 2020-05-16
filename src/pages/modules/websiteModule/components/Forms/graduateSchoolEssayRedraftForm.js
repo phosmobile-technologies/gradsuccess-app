@@ -1,5 +1,4 @@
 import React from "react"
-import { navigate } from "gatsby"
 import { Mutation } from "react-apollo"
 import {
   CREATE_GRADUATE_SCHOOL_ESSAY_REDRAFT,
@@ -17,7 +16,6 @@ import {
   Alert,
 } from "@blueprintjs/core"
 import SimpleReactValidator from "simple-react-validator"
-import { swal } from 'sweetalert';
 const initialState = {
   data: {
     name: null,
@@ -109,15 +107,15 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
     }))
   }
   componentDidMount() {
-     if (this.props.assignedAssociate) {
-       this.setState(prevState => ({
-         data: {
-           ...prevState.data,
-           assigned_associate_id: this.props.assignedAssociate,
-           status: "Assigned",
-         },
-       }))
-     }
+    if (this.props.assignedAssociate) {
+      this.setState(prevState => ({
+        data: {
+          ...prevState.data,
+          assigned_associate_id: this.props.assignedAssociate,
+          status: "Assigned",
+        },
+      }))
+    }
   }
 
   onChange(e) {
@@ -193,7 +191,6 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
   }
 
   render() {
-
     if (this.props.packageDetail) {
       return (
         <div>
@@ -1257,6 +1254,5 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
     } else {
       return <div></div>
     }
-    
   }
 }

@@ -1,7 +1,5 @@
 import React, { Component } from "react"
-import File from "../../../../images/file.svg"
 import UserImage from "../../../../images/default_profile_img.png"
-import NoChatHistory from "./noChatHistory"
 import ChatForm from "./../components/chatForm"
 import { Spinner } from "@blueprintjs/core"
 import { connect } from "react-redux"
@@ -12,8 +10,6 @@ class MessageBoxView extends Component {
     var time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
     var chatMember = this.props.chatMember
-    var messages = this.props.messages
-
     if (this.props.chatMember || this.props.messages) {
       return (
         <div className="chat">
@@ -35,7 +31,7 @@ class MessageBoxView extends Component {
           </div>
           <div className="messages" id="chat">
             <div className="history-unavailable">
-              <Spinner size = {Spinner.SIZE_SMALL}></Spinner>
+              <Spinner size={Spinner.SIZE_SMALL}></Spinner>
             </div>
           </div>
           <ChatForm recipient={chatMember} />
@@ -54,4 +50,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(MessageBoxView)
-

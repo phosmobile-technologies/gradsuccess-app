@@ -1,12 +1,11 @@
 import React from "react"
 import ChooseUsCard from "./chooseUsCard"
-import PryButton from "./pryButton"
 import scores from "../../../../images/scores.svg"
 import planet from "../../../../images/planet.svg"
 import rocket from "../../../../images/rocket.svg"
 import Modal from "react-responsive-modal"
-import { navigate } from 'gatsby';
- /* eslint-disable */
+import { navigate } from "gatsby"
+/* eslint-disable */
 const breakpoints = [375, 576, 768]
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
@@ -109,9 +108,6 @@ class Search extends React.Component {
   }
 }
 
-
-
-
 class WhyChooseUs extends React.Component {
   constructor(props) {
     super(props)
@@ -120,13 +116,13 @@ class WhyChooseUs extends React.Component {
     }
   }
 
-  openModal=()=> {
+  openModal = () => {
     this.setState({
       open: true,
     })
   }
 
-  closeModal=()=> {
+  closeModal = () => {
     this.setState({
       open: false,
     })

@@ -1,12 +1,10 @@
 import React from "react"
 import LoginForm from "./components/Forms/loginForm"
 import Modal from "react-awesome-modal"
-import { CLIENT_PASSWORD } from "../../../api/sendMailEndpoint"
-import { SEND_ASSOCIATE_EMAIL } from "../../../api/sendMailEndpoint"
 import Layout from "./components/layout"
-import { connect } from 'react-redux';
+import { connect } from "react-redux"
 import LoggedIn from "./components/loggedIn"
-import { Button } from '@blueprintjs/core';
+import { Button } from "@blueprintjs/core"
 
 class FormCompletePage extends React.Component {
   constructor(props) {
@@ -18,25 +16,23 @@ class FormCompletePage extends React.Component {
   }
 
   componentDidMount() {
-
     if (this.props.password) {
-     this.setState({
-       password: this.props.password.password,
-     })
+      this.setState({
+        password: this.props.password.password,
+      })
     }
   }
-  handleOpenModal =()=> {
+  handleOpenModal = () => {
     this.setState({ showModal: true })
   }
 
-  handleCloseModal=()=> {
+  handleCloseModal = () => {
     this.setState({ showModal: false })
   }
 
-
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.deleteAssignedAssociate("null")
-    this.props.removePassword();
+    this.props.removePassword()
   }
   render() {
     return (
@@ -102,7 +98,7 @@ class FormCompletePage extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    password:state.assignedAssociate
+    password: state.assignedAssociate,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -121,7 +117,6 @@ function mapDispatchToProps(dispatch) {
     },
   }
 }
-
 
 export default connect(
   mapStateToProps,

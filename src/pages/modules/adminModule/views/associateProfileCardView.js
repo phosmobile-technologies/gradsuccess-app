@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Card, Button, Elevation, Divider } from "@blueprintjs/core"
+import { Card, Button, Elevation } from "@blueprintjs/core"
 import { truncateString } from "../../commonModule/stringModifiers"
 import { Link } from "gatsby"
 import defaultImage from "../../../../images/default_profile_img.png"
@@ -9,19 +9,22 @@ export default class AssociateProfileCardView extends Component {
     if (this.props.associate) {
       return (
         <Card interactive={true} elevation={Elevation.TWO} className="a-p-card">
-          {this.props.associate.details &&
+          {this.props.associate.details && (
             <>
               {this.props.associate.details.profile_image_ref ? (
                 <div className="a-p-img-wrapper">
-                  <img src={this.props.associate.details.profile_image_ref} />
+                  <img
+                    src={this.props.associate.details.profile_image_ref}
+                    alt="associate profile"
+                  />
                 </div>
               ) : (
                 <div className="a-p-img-wrapper">
-                  <img src={defaultImage} />
+                  <img src={defaultImage} alt="associate profile" />
                 </div>
               )}
             </>
-          }
+          )}
           <p className="name">
             {this.props.associate.first_name +
               " " +

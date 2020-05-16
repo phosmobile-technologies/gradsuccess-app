@@ -1,6 +1,5 @@
 import React from "react"
 import upoadAttachment from "../../../../../images/icons/upoadAttachment.png"
-import loading from "../../../../../images/Rolling.svg"
 import { Button, Spinner } from "@blueprintjs/core"
 import SimpleReactValidator from "simple-react-validator"
 
@@ -9,14 +8,14 @@ export default class AssociateDetails extends React.Component {
     super(props)
 
     this.state = {
-      showUploadProgress:false
+      showUploadProgress: false,
     }
     this.validator = new SimpleReactValidator({
       autoForceUpdate: this,
     })
   }
 
-  handleCVUpload=(e)=> {
+  handleCVUpload = e => {
     this.setState({
       showUploadProgress: true,
     })
@@ -48,21 +47,21 @@ export default class AssociateDetails extends React.Component {
       snapshot => {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         this.setState({
-          pro:progress
-        })       
+          pro: progress,
+        })
       },
       error => {
-         console.log(error);
-         alert("Failed Uploading Curriculum Vitae");
-         this.setState({
-           showUploadProgress: false,
-         })
+        console.log(error)
+        alert("Failed Uploading Curriculum Vitae")
+        this.setState({
+          showUploadProgress: false,
+        })
       },
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         task.snapshot.ref.getDownloadURL().then(downloadURL => {
-           this.props.saveImageRef("cv_ref", downloadURL)
+          this.props.saveImageRef("cv_ref", downloadURL)
           this.props.handleCVUpload(file)
           this.setState({
             showUploadProgress: false,
@@ -72,7 +71,7 @@ export default class AssociateDetails extends React.Component {
     )
   }
 
-  handleTranscriptUpload =(e)=> {
+  handleTranscriptUpload = e => {
     this.setState({
       showUploadProgress: true,
     })
@@ -101,13 +100,9 @@ export default class AssociateDetails extends React.Component {
 
     task.on(
       "state_changed",
-      snapshot => {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        
-      },
       error => {
-        console.log(error);
-        alert("Failed Uploading transcript");
+        console.log(error)
+        alert("Failed Uploading transcript")
         this.setState({
           showUploadProgress: false,
         })
@@ -121,7 +116,6 @@ export default class AssociateDetails extends React.Component {
           this.setState({
             showUploadProgress: false,
           })
-
         })
       }
     )
@@ -137,7 +131,7 @@ export default class AssociateDetails extends React.Component {
   }
 
   render() {
-    const { handleFormInput, nextStep, prevStep } = this.props
+    const { handleFormInput, prevStep } = this.props
 
     return (
       <div>

@@ -13,8 +13,6 @@ import {
   Alert,
 } from "@blueprintjs/core"
 import SimpleReactValidator from "simple-react-validator"
-import { swal } from "sweetalert"
-
 
 const initialState = {
   data: {

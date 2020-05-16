@@ -75,10 +75,7 @@ class MessageBoxView extends Component {
 
                       {m.sending ? (
                         <div className="sending-i">
-                          <Spinner
-                            size={10}
-                            className="bp3-intent-primary "
-                          />
+                          <Spinner size={10} className="bp3-intent-primary " />
                           <span>Sending</span>
                         </div>
                       ) : (
@@ -86,7 +83,7 @@ class MessageBoxView extends Component {
                       )}
                     </div>
                   )
-                }else{
+                } else {
                   return (
                     <div className="message stark" key={key}>
                       {m.attached_file_type === "File" && (
@@ -134,7 +131,6 @@ class MessageBoxView extends Component {
     }
   }
 }
-
 
 function mapStateToProps(state) {
   return {

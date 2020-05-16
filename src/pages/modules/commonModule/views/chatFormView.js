@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { IconNames } from "@blueprintjs/icons"
-import { Icon, Spinner, FileInput, Dialog } from "@blueprintjs/core"
+import { Icon, Dialog } from "@blueprintjs/core"
 import { Callout } from "@blueprintjs/core"
 import { Mutation } from "react-apollo"
 import { SAVE_MESSAGE } from "./../../../graphql/mutations"
@@ -8,7 +8,6 @@ import SimpleReactValidator from "simple-react-validator"
 import { connect } from "react-redux"
 import FileUploadPreview from "./FileUploadPreview"
 import { CHAT_HISTORY } from "./../../../graphql/queries"
-
 
 class ChatFormView extends Component {
   constructor(props) {

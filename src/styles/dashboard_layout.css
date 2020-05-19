@@ -1362,14 +1362,16 @@ td, th {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 }
 .a-p-card {
-  width: 33%;
-  max-width: 300px;
+  width: 31%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .a-p-img-wrapper {

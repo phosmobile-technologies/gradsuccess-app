@@ -818,6 +818,7 @@ body {
 
 .blog-body {
   width: 80% !important;
+  max-width: 1000px;
 }
 
 .unauthorized h1 {
@@ -829,24 +830,27 @@ body {
 
 .blog__post {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
+  justify-content: flex-start;
+  margin-bottom: 30px;
 }
 .blog__post a {
-  display: flex;
+  display: flex;  
   list-style: none;
 }
+
 .blog__post img {
-  min-width: 300px;
+  width: 300px !important;
+  max-width: 300px;
 }
 .blog_preview {
   padding-left: 20px;
   color: black;
+  text-align: left;
 }
 .blog__title {
   margin-top: 0px;
   margin-bottom: 10px;
+  padding:10px 0px
 }
 .blog__info {
   display: flex;
@@ -865,9 +869,11 @@ body {
   padding: 5px 30px;
   border-radius: 3px;
   color: white;
+  transition: .5s;
 }
 .blog__info .cBtn:hover {
-  opacity: 0.5;
+  background-color: #3cb99e;
+  color: white !important;
 }
 .blog-header-text {
   text-align: left;
@@ -1752,6 +1758,10 @@ body {
   .attach_file label {
     width: 100% !important;
   }
+  .blog__info .cBtn {
+    padding: 10px!important;
+    font-size: 12px;
+}
 }
 
 @media only screen and (max-width: 500px) {

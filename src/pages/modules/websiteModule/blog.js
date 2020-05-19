@@ -10,7 +10,7 @@ class Blogging extends Component {
 
   componentDidMount() {
     fetch(
-      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@club340achievers"
+      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@gradsuccessng"
     )
       .then(res => res.json())
       .then(data => {
@@ -53,7 +53,7 @@ class Blogging extends Component {
                      )}</span>
                      <a class = "cBtn" target = "_blank" href="${
                        item.link
-                     }">Continue reading...</a>
+                     }">Continue reading</a>
                   </div>
                </div>
             <a/>

@@ -132,15 +132,14 @@ export default class ExpertSpecificRequest extends React.Component {
               <Callout className="bp3-intent-primary">
                 <span>
                   {this.state.associateDetail.user_name}, will be pleased to
-                  Help you <br />
-                  - have the best application that will make you easily
-                  noticeable from the rest of the competition.
+                  help you 
+                  - prepare your application.
                   <br />- achieve your long and short term academic and
                   professional goals
                   <br />- move one more step closer to the funding you need
                 </span>
                 <p className="note">
-                  <strong>Note:</strong> You can select multiple package.
+                  <strong>Note:</strong> You can select multiple packages.
                 </p>
               </Callout>
               <br />

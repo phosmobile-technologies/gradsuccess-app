@@ -117,9 +117,7 @@ export default class ResetPassword extends Component {
                       <hr />
                       <p>
                         <small>
-                          <strong>Hints:</strong> At least 8 characters—the
-                          more characters, the better A mixture of both
-                          uppercase and lowercase letters, A mixture of letters
+                          <strong>Hints:</strong>Use at least 8 characters— A mixture of letters
                           and numbers
                         </small>
                       </p>

@@ -44,16 +44,11 @@ class FormCompletePage extends React.Component {
                 Thank You <i>!</i>
               </h1>
               <div>
-                <p>Your Application was successfully Submitted, </p>
-                <p>
-                  Our team of expert will contact via any means of communication
-                  provided in form.
-                </p>
-                <br />
-                <p>
-                  the code provided below is your login password to dashboard,
-                  if there is any additional infomation or correction to the
-                  information provided previously leave a message on your page{" "}
+                <p>Your Application was successfully Submitted, 
+
+An Expert on our team will contact you via details provided in the form. 
+
+The code provided below is your login password to dashboard, if there is any additional information or correction to the information provided previously leave a message on your page 
                 </p>
               </div>
             </div>

@@ -4,7 +4,7 @@ export const COUPONS = [
     discount: 10,
   },
   {
-    code: "GSGIVEAWAY100",
-    discount: 100,
+    code: "GSDISCOUNT50",
+    discount: 50,
   },
 ]

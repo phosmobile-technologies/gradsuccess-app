@@ -206,8 +206,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
             }}
           >
             <span className="completed-alert">
-              form Details submitted sucessfully, pls filled the next form if
-              your sellected multiple package
+            Your form details were submitted successfully, please fill the next forms if you selected multiple packages
             </span>
           </Alert>
           <div className="detail-form">
@@ -382,7 +381,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                         <br />
                         <textarea
                           type="text"
-                          placeholder="What are your top 5 courses at your Undegraduate level relating to your Masters of interest?"
+                          placeholder="What are your top 5 courses at your Undergraduate level relating to your Masters of interest?"
                           id="undergraduate_level_courses_master"
                           name="undergraduate_level_courses_master"
                           rows="4"
@@ -725,7 +724,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
 
                         <div className="selectibleList">
                           <label>
-                            Language at atleast Intermediate level (Good
+                            International Languages (Good
                             Writing/Good Understanding/Average Speaking) *
                           </label>
 
@@ -766,7 +765,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                         </div>
                         <section>
                           <label className="other_languages">
-                            Nigerian Language other than Native (Please describe
+                            Nigerian languages other than Native (Please describe
                             in 'other' below)
                           </label>
                           <input
@@ -1122,7 +1121,7 @@ export default class GraduateSchoolEssayRedraft extends React.Component {
                 </li>
                 <li>
                   <h6>
-                    What are your top 5 courses at your Undegraduate level
+                    What are your top 5 courses at your Undergraduate level
                     relating to your Masters of interest?
                   </h6>
                 </li>

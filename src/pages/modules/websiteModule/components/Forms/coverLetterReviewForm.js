@@ -156,8 +156,7 @@ export default class CoverLetterReview extends React.Component {
             }}
           >
             <span className="completed-alert">
-              form Details submitted sucessfully, pls filled the next form if
-              your sellected multiple package
+            Your form details were submitted successfully, please fill the next forms if you selected multiple packages
             </span>
           </Alert>
           <div className="detail-form reviewModal">

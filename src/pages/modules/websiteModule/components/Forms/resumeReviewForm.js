@@ -433,7 +433,7 @@ export default class ResumeReviewForm extends React.Component {
                   </p>
                 </li>
                 <li>
-                  <h6>Industry and Role Title Applied for? *</h6>
+                  <h6>Industry and Role Title CV is Required for?  *</h6>
                   <p>
                     State the function you are applying for and the industry
                     type. e.g Financial Analyst in a Manufacturing firm

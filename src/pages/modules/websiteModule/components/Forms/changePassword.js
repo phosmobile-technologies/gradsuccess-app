@@ -138,7 +138,7 @@ export default class resumeReviewForm extends React.Component {
                       onBlur={this.storePassword}
                     />
                     <span id="password_info" className="password_info">
-                      provide atleast 8 character password e.g ERe203_sj
+                      provide at least 8 character password e.g ERe203_sj
                     </span>
 
                     <input
@@ -171,7 +171,7 @@ export default class resumeReviewForm extends React.Component {
                 {error && (
                   <div className="FailedTagForm-d">
                     {" "}
-                    Something went wrong, pease try again.
+                    Something went wrong, please try again.
                   </div>
                 )}
               </div>

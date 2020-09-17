@@ -23,7 +23,7 @@ import { packages } from "./../../package_list"
               to go past initial screening stages to actually secure an offer.
               This is no surprise because with first glances averaging 6
               seconds, impressions are already being made by admission
-              panellists, HR personnel and even the bot who will be screening
+              panelists, HR personnel and even the bot who will be screening
               these one-pagers.
             </p>
             <p>

@@ -46,7 +46,7 @@ export default class PackageDetailsView extends Component {
               )}
               {data.employment_most_relevant_to_you_masters_application && (
                 <FieldSetView
-                  title="Employment Relevent to Your Master Application"
+                  title="Employment Relevant to Your Master Application"
                   value={
                     data.employment_most_relevant_to_you_masters_application
                   }
@@ -141,7 +141,7 @@ export default class PackageDetailsView extends Component {
               )}
               {data.supervised_before && (
                 <FieldSetView
-                  title="Superviced Before"
+                  title="Supervised Before"
                   value={data.supervised_before}
                 />
               )}
@@ -171,7 +171,7 @@ export default class PackageDetailsView extends Component {
               )}
               {data.recent_tertiary_institute_name && (
                 <FieldSetView
-                  title="Recent tertiary instutite name"
+                  title="Recent tertiary institute name"
                   value={data.recent_tertiary_institute_name}
                 />
               )}
@@ -251,7 +251,7 @@ export default class PackageDetailsView extends Component {
                 {data.interpersonal_skills && <p>Interpersonal Skills</p>}
                 {data.presentation_skills && <p>Presentation Skills</p>}
                 {data.programming && <p>Programming </p>}
-                {data.microsoft_excel && <p>Micrososft Excel</p>}
+                {data.microsoft_excel && <p>Microsoft Excel</p>}
                 {data.java && <p>Java</p>}
                 {data.other_skills && <p>{data.other_skills}</p>}
               </div>
@@ -380,7 +380,7 @@ export default class PackageDetailsView extends Component {
                   />
                 </div>
                 <div className="status-container">
-                  Turn Arround Time:{" "}
+                  Turn Around Time:{" "}
                   <span>{data.package.turn_around_time}</span>
                 </div>
 
@@ -416,7 +416,7 @@ export default class PackageDetailsView extends Component {
                 </div>
               ) : (
                 <div className="download-attached-file">
-                  No File Attached to this request
+                  No file attached to this request
                 </div>
               )}
 

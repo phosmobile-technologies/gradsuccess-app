@@ -33,8 +33,8 @@ export default class PromotionBanner extends Component {
               Happy <strong>New Year!</strong>
             </h2>
           </div>
-          <h3>Get 10% off your order with the coupon code</h3>
-          <span>NEWYEAR10</span>
+          <h3>Get 50% off your order with the coupon code</h3>
+          <span>GSDISCOUNT50</span>
         </div>
       </div>
     )

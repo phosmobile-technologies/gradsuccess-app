@@ -436,23 +436,15 @@ class GraduateSchoolStatementReview extends React.Component {
                   </p>
                 </li>
                 <li>
-                  <h6>Industry and Role Title Applied for? *</h6>
+                  <h6>University or Scholarship and Course Applied for  *</h6>
                   <p>
-                    State the University you are applying for and the name of
-                    the course. e.g Financial Analyst in a Manufacturing firm
+                  State the University or Scholarship Type you are applying for and the name of the graduate course. e.g University of Aberdeen, MSc. Oil & Gas Engineering, Chevening Scholarship 
                   </p>
                 </li>
                 <li>
                   <h6>Summary of Interest in Course?</h6>
                   <p>
-                    In short words, why are you applying to this University and
-                    Course? e.g. I have recently discovered the company's energy
-                    management division and previous client services provided. I
-                    particularly feel inspired by their ability of reducing
-                    energy consumption in client a by 20% annually as reported
-                    in their case study section on their website. I want to be
-                    part of a team like this actively changing the world in
-                    energy!
+                  In short words, why are you applying to this University/Scholarship and Course? e.g. I have realised that University of Aberdeen has top-notch facilities in their Petroleum Engineering department which are essential for my research in Oil Extraction Technologies. The faculty is also a leading faculty for the subject on a global scale. 
                   </p>
                 </li>
               </ul>

@@ -210,7 +210,7 @@ export default class resumeReviewForm extends React.Component {
             </div>
             <br /> <br />
             <div css={{ color: "#ccc" }} className="footer_addresss">
-              GradSuccess Suite A54 Prima-Tek Plaza Egbeda Lagos
+              GradSuccess Lagos
             </div>
           </div>
           {/* */}

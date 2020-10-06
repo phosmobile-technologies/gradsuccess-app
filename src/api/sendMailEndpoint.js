@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  pKey = PAYSTACK_TEST_KEY
+  pKey = PAYSTACK_LIVE_KEY
 } else {
   pKey = PAYSTACK_TEST_KEY
 }

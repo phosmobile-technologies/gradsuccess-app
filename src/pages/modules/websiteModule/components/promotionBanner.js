@@ -7,12 +7,14 @@ export default class PromotionBanner extends Component {
       showPromoCard: false,
     }
   }
+
+  //stopped this from showing up, could change in the future
   componentDidMount() {
     if (localStorage.hasOwnProperty("showPromo")) {
     } else {
       setTimeout(() => {
         document.getElementById("promotionBannerWrapper").style.height = "30vh"
-        localStorage.setItem("showPromo", true)
+        localStorage.setItem("showPromo", false)
       }, 5000)
     }
   }

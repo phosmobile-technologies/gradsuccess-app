@@ -71,9 +71,9 @@ class Header extends React.Component {
             &#9776;
           </span>
           {/* <PromotionBanner /> */}
-          <div className="top_coupon">
+          {/* <div className="top_coupon">
             Get 50% off your order with the coupon code<span>GSDISCOUNT50</span>
-          </div>
+          </div> */}
           <div
             css={{
               width: "150px",

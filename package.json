@@ -30,7 +30,7 @@
     "chroma-js": "^2.1.0",
     "emotion-theming": "^10.0.9",
     "firebase": "^6.2.2",
-    "gatsby": "^2.3.16",
+    "gatsby": "^2.32.13",
     "gatsby-env-variables": "^2.0.0",
     "gatsby-image": "^2.0.32",
     "gatsby-plugin-emotion": "^4.0.6",
